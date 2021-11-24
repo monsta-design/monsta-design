@@ -1,0 +1,43 @@
+:host {
+  width: 100%;
+  display: block;
+
+  .ns-menu-item-link {
+    display: flex;
+    height: 40px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(0, 0, 0, .85);
+    font-size: 14px;
+    padding: 0 14px;
+    text-decoration: none;
+
+    &:hover {
+      color: #1890ff;
+    }
+
+
+    > span {
+      display: flex;
+
+      > i.ns-menu-icon {
+        font-size: 14px;
+        width: 24px;
+      }
+
+      > span {
+        position: relative;
+        top: 1px;
+      }
+    }
+  }
+
+  .ns-menu-items {
+    padding-left: 20px;
+
+    &.hide {
+      display: none;
+    }
+  }
+}

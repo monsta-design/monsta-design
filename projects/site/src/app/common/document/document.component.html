@@ -1,0 +1,42 @@
+<div class="toc">
+  <p *ngFor="let item of toc">
+    <a>{{ item }}</a>
+  </p>
+</div>
+<div [innerHTML]="main"></div>
+<div class="examples" *ngIf="examples">
+  <h2>代码演示 <i class="bi bi-grid"></i></h2>
+  <div class="bs-container-fluid">
+    <div class="bs-row">
+      <ng-template [ngIf]="examples.col==1">
+        <ng-container *ngFor="let example of this.examples.children">
+          <example [title]="example.title" [description]="example.description" [code]="example.code">
+            <example-component></example-component>
+          </example>
+        </ng-container>
+      </ng-template>
+      <ng-template [ngIf]="examples.col==2">
+        <div class="bs-col-6">
+          <ng-container *ngFor="let example of this.examples.children;let i = index">
+
+            <example [title]="example.title" [description]="example.description" [code]="example.code"
+                     *ngIf="i%2==0">
+              <example-component></example-component>
+            </example>
+          </ng-container>
+        </div>
+        <div class="bs-col-6">
+          <ng-container *ngFor="let example of this.examples.children;let i = index">
+
+            <example [title]="example.title" [description]="example.description" [code]="example.code"
+                     *ngIf="i%2==1">
+              <example-component></example-component>
+            </example>
+          </ng-container>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<div [innerHTML]="api"></div>
+

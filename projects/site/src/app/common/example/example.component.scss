@@ -1,0 +1,39 @@
+:host {
+  display: block;
+  border: 1px solid #eee;
+  padding: 0;
+  margin-top: 20px;
+
+
+  .example-demo {
+    padding: 42px 24px 50px;
+  }
+
+  .example-title {
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    font-size: 13px;
+    font-weight: bold;
+    background: #fff;
+  }
+
+  .example-description {
+    position: relative;
+    border-top: 1px solid #eee;
+    padding: 30px 20px;
+    font-size: 13px;
+  }
+
+  .example-actions {
+    border-top: 1px solid #eee;
+    text-align: center;
+    line-height: 40px;
+
+    &:hover {
+      background: #e0e2e0;
+    }
+  }
+}
+
+

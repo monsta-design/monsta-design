@@ -1,0 +1,22 @@
+<div class="ns-modal-dialog">
+  <div class="ns-modal-content">
+    <div class="ns-modal-header">
+      <h5 class="ns-modal-title">
+        <ng-template [ngIf]="isTplTitle">
+          <ng-container [ngTemplateOutlet]="nsTitle"></ng-container>
+        </ng-template>
+        <ng-template [ngIf]="!isTplTitle">
+          {{ nsTitle }}
+        </ng-template>
+      </h5>
+      <button *ngIf="nsClose" type="button" class="ns-btn-close" (click)="close()"></button>
+    </div>
+    <div class="ns-modal-body">
+      <ng-content></ng-content>
+    </div>
+    <div class="ns-modal-footer">
+      <button type="ns-button" class="ns-btn ns-btn-secondary" (click)="cancel()">取消</button>
+      <button type="ns-button" class="ns-btn ns-btn-primary" (click)="ok()">确定</button>
+    </div>
+  </div>
+</div>

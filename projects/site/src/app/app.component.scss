@@ -1,0 +1,15 @@
+.header ::ng-deep {
+  nav {
+    background: #1b77ff;
+    border-bottom: 1px solid #eee;
+    color: #fff !important;
+
+    .bs-navbar-brand {
+      color: #fff !important;
+    }
+
+    a {
+      color: #fff !important;
+    }
+  }
+}

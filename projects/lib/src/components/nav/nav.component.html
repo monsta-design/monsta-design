@@ -1,0 +1,17 @@
+<nav class="bs-navbar bs-navbar-expand-lg bs-navbar-light">
+  <div class="bs-container-fluid">
+    <div class="bs-navbar-brand">
+      <ng-container [ngTemplateOutlet]="logo"></ng-container>
+    </div>
+    <button class="bs-navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="bs-navbar-toggler-icon"></span>
+    </button>
+    <div class="bs-collapse bs-navbar-collapse" id="navbarSupportedContent">
+      <ng-content></ng-content>
+      <form class="bs-d-flex">
+        <input class="bs-form-control bs-me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="bs-btn bs-btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,14 @@
+<div class="ns-card-body">
+  <ng-template [ngIf]="nsTitle">
+    <h5 *ngIf="!isTitleRef" class="card-title">{{ nsTitle}}</h5>
+    <ng-container *ngIf="isTitleRef" [ngTemplateOutlet]="nsTitle"></ng-container>
+  </ng-template>
+
+  <ng-template [ngIf]="nsBody">
+    <ng-template [ngIf]="!isBodyRef">
+      {{ nsBody }}
+    </ng-template>
+    <ng-container *ngIf="isBodyRef" [ngTemplateOutlet]="nsBody"></ng-container>
+  </ng-template>
+  <ng-content></ng-content>
+</div>
