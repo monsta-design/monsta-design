@@ -1,3 +1,7 @@
+@import "~monsta-bootstrap/scss/bootstrap-utilities";
+@import "~monsta-bootstrap/scss/navbar";
+@import "~monsta-bootstrap/scss/nav";
+
 .header ::ng-deep {
   nav {
     background: #1b77ff;

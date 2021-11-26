@@ -1,0 +1,43 @@
+<nav class="bs-navbar bs-navbar-expand-lg bs-navbar-light bs-bg-light">
+  <div class="bs-container-fluid">
+    <div class="bs-navbar-brand">
+      <ng-container [ngTemplateOutlet]="_brand"></ng-container>
+    </div>
+
+    <button class="bs-navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="bs-navbar-toggler-icon"></span>
+    </button>
+    <div class="bs-collapse bs-navbar-collapse" id="navbarSupportedContent">
+      <ul class="bs-navbar-nav bs-me-auto bs-mb-2 bs-mb-lg-0">
+        <ng-content></ng-content>
+<!--        <ns-navbar-item>-->
+<!--          <a class="bs-nav-link bs-active" aria-current="page" href="#">Home</a>-->
+<!--        </ns-navbar-item>-->
+<!--        <li class="bs-nav-item">-->
+<!--          <a class="bs-nav-link bs-active" aria-current="page" href="#">Home</a>-->
+<!--        </li>-->
+<!--        <li class="bs-nav-item">-->
+<!--          <a class="bs-nav-link" href="#">Link</a>-->
+<!--        </li>-->
+        <!--        <li class="bs-nav-item bs-dropdown">-->
+        <!--          <a class="bs-nav-link bs-dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+        <!--            Dropdown-->
+        <!--          </a>-->
+        <!--          <ul class="bs-dropdown-menu" aria-labelledby="navbarDropdown">-->
+        <!--            <li><a class="bs-dropdown-item" href="#">Action</a></li>-->
+        <!--            <li><a class="bs-dropdown-item" href="#">Another action</a></li>-->
+        <!--            <li><hr class="bs-dropdown-divider"></li>-->
+        <!--            <li><a class="bs-dropdown-item" href="#">Something else here</a></li>-->
+        <!--          </ul>-->
+        <!--        </li>-->
+<!--        <li class="bs-nav-item">-->
+<!--          <a class="bs-nav-link bs-disabled">Disabled</a>-->
+<!--        </li>-->
+      </ul>
+      <form class="bs-d-flex">
+        <ng-container [ngTemplateOutlet]="_more"></ng-container>
+      </form>
+    </div>
+  </div>
+</nav>

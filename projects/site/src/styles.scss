@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other scss files */
-//@import "../../lib/src/monsta-design";
-@import "~monsta-bootstrap/scss/bootstrap";
-@import "~bootstrap-icons/font/bootstrap-icons.css";
-@import "~prismjs/themes/prism.css";
+//@import "~monsta-bootstrap/scss/bootstrap-utilities";
+//@import "~monsta-bootstrap/scss/bootstrap-grid";
+//@import "~monsta-bootstrap/scss/reboot";
+//@import "~monsta-bootstrap/scss/navbar";
+//@import "~monsta-bootstrap/scss/dropdown";
+//@import "~bootstrap-icons/font/bootstrap-icons.css";
+//@import "~prismjs/themes/prism.css";
+
+@import "projects/lib/src/monsta-design";

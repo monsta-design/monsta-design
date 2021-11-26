@@ -1,8 +1,13 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {NSButtonDirective} from './button.directive';
+import {NSButtonComponent} from './button.component';
+import {NSButtonGroupComponent} from './button-group.component';
 
-const COMPONENTS = [NSButtonDirective];
+
+const COMPONENTS = [
+  NSButtonComponent,
+  NSButtonGroupComponent,
+];
 
 @NgModule({
   declarations: [

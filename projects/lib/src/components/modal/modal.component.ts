@@ -11,6 +11,7 @@ import {
   TemplateRef
 } from '@angular/core';
 // import Modal from 'projects/lib/src/js/modal.js';
+import Modal from 'monsta-bootstrap/js/src/modal.js';
 import {NS_SIZE} from 'projects/lib/src/types';
 
 @Component({
@@ -20,7 +21,7 @@ import {NS_SIZE} from 'projects/lib/src/types';
 })
 export class NSModalComponent implements AfterViewInit, OnChanges, OnInit {
 
-  @HostBinding() class = 'ns-modal ns-fade';
+  @HostBinding() class = 'bs-modal bs-fade';
   @HostBinding() tabindex = -1;
   @Input() nsHeader: TemplateRef<any> | null = null;
   @Input() nsFooter: TemplateRef<any> | string | boolean | null = null;
@@ -41,7 +42,7 @@ export class NSModalComponent implements AfterViewInit, OnChanges, OnInit {
 
   isTplTitle: boolean = false;
 
-  // modal: Modal = null;
+  modal: Modal = null;
 
   constructor(private el: ElementRef) {
   }
@@ -54,17 +55,17 @@ export class NSModalComponent implements AfterViewInit, OnChanges, OnInit {
 
 
   ngAfterViewInit() {
-    // this.modal = new Modal(this.el.nativeElement);
+    this.modal = new Modal(this.el.nativeElement);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // if (typeof changes.nsShow != 'undefined' && this.modal) {
-    // if (changes.nsShow) {
-    //   this.modal.show();
-    // } else {
-    //   this.modal.hide();
-    // }
-    // }
+    if (typeof changes.nsShow != 'undefined' && this.modal) {
+    if (changes.nsShow) {
+      this.modal.show();
+    } else {
+      this.modal.hide();
+    }
+    }
   }
 
   close() {

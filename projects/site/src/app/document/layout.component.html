@@ -1,0 +1,77 @@
+<ns-navbar [_brand]="brandRef" [_more]="moreRef">
+  <ng-template #brandRef>
+    Monsta
+  </ng-template>
+  <ng-template #moreRef>
+    <input class="bs-form-control bs-me-2" type="search" placeholder="Search" aria-label="Search">
+    <ns-button>Search</ns-button>
+  </ng-template>
+  <!--  <ns-navbar-item>-->
+  <!--    <a class="bs-nav-link bs-active" aria-current="page" href="#">主页</a>-->
+  <!--  </ns-navbar-item>-->
+  <ns-navbar-item><a class="bs-nav-link bs-active" href="/components/input">组件</a></ns-navbar-item>
+  <ns-navbar-item><a class="bs-nav-link bs-active" href="/dashboard/home">Dashboard</a></ns-navbar-item>
+</ns-navbar>
+<div class="bs-container-fluid">
+  <ns-row _cols_sm="1">
+    <ns-col _span="3" style="padding: 0">
+      <ns-menu _accordion="true">
+        <!--        <ns-menu-group *ngFor="let item of components" [nsTitle]="item.title">-->
+        <!--          <ns-menu-item *ngFor="let link of item.children" [nsTitle]="link.title" [nsLink]="link.link"></ns-menu-item>-->
+        <!--        </ns-menu-group>-->
+        <ns-menu-header _label="Navigation"></ns-menu-header>
+        <ns-menu-item _label="Dashboard" [_icon]="icons.dashboard"></ns-menu-item>
+        <ns-menu-item _label="Email" [_icon]="icons.email">
+          <ns-menu-item _label="Inbox"></ns-menu-item>
+          <ns-menu-item _label="Compose"></ns-menu-item>
+          <ns-menu-item _label="Detail"></ns-menu-item>
+        </ns-menu-item>
+        <ns-menu-divider></ns-menu-divider>
+        <ns-menu-header _label="Components"></ns-menu-header>
+        <ns-menu-item _label="Widgets" [_icon]="icons.widgets"></ns-menu-item>
+        <ns-menu-item _label="UI Kits" [_icon]="icons.uiKits">
+          <ns-menu-item _label="Bootstrap"></ns-menu-item>
+          <ns-menu-item _label="Buttons"></ns-menu-item>
+          <ns-menu-item _label="Card"></ns-menu-item>
+          <ns-menu-item _label="Icons"></ns-menu-item>
+        </ns-menu-item>
+        <ns-menu-item _label="Forms" [_icon]="icons.forms">
+          <ns-menu-item _label="Form Elements"></ns-menu-item>
+          <ns-menu-item _label="Form Plugins"></ns-menu-item>
+          <ns-menu-item _label="Form Elements"></ns-menu-item>
+          <ns-menu-item _label="Form Plugins"></ns-menu-item>
+          <ns-menu-item _label="Form Elements"></ns-menu-item>
+          <ns-menu-item _label="Form Plugins"></ns-menu-item>
+          <ns-menu-item _label="Form Elements"></ns-menu-item>
+          <ns-menu-item _label="Form Plugins"></ns-menu-item>
+          <ns-menu-item _label="Form Elements"></ns-menu-item>
+          <ns-menu-item _label="Form Plugins"></ns-menu-item>
+          <ns-menu-item _label="Form Elements"></ns-menu-item>
+          <ns-menu-item _label="Form Plugins"></ns-menu-item>
+          <ns-menu-item _label="Form Elements"></ns-menu-item>
+          <ns-menu-item _label="Form Plugins"></ns-menu-item>
+        </ns-menu-item>
+        <ns-menu-item _label="Tables" [_icon]="icons.tables">
+          <ns-menu-item _label="Table Elements"></ns-menu-item>
+          <ns-menu-item _label="Table Plugins"></ns-menu-item>
+        </ns-menu-item>
+      </ns-menu>
+    </ns-col>
+    <ns-col>
+      <div class="bs-container-fluid">
+        <router-outlet></router-outlet>
+      </div>
+    </ns-col>
+  </ns-row>
+  <!--  <div class="bs-row bs-flex-xl-nowrap">-->
+  <!--    <div class="bs-col-1" style="border-right: 1px solid #d8d8d8;height: calc(100vh - 3rem);width: 270px;">-->
+
+  <!--    </div>-->
+  <!--    <div class="bs-col">-->
+
+  <!--    </div>-->
+  <!--  </div>-->
+</div>
+
+
+
