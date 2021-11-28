@@ -32,8 +32,16 @@
     padding: 0 10px;
 
     &.expand {
-      .ns-menu-sub {
+      > .ns-menu-sub {
         display: block;
+      }
+    }
+
+    &.deep {
+      padding-right: 0;
+
+      .ns-menu-sub {
+        padding-bottom: 0;
       }
     }
   }

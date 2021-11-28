@@ -1,21 +1,22 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
-  ContentChild,
-  ContentChildren, ElementRef,
-  EventEmitter, HostBinding,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  HostBinding,
   Input,
-  OnInit,
-  Output, ViewChild
-} from '@angular/core';
-import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
+  Output,
+  ViewChild
+} from "@angular/core";
 import {IconDefinition} from "@fortawesome/fontawesome-common-types";
-
+import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'ns-menu-item',
   template: `
-    <a class="ns-menu-link" (click)="toggle()">
+    <a class="ns-menu-link" [ngClass]="{'has-caret':items.length>0}" (click)="toggle()">
       <span class="ns-menu-icon" *ngIf="_icon"><fa-icon [icon]="_icon"></fa-icon></span>
       <span class="ns-menu-label">{{ _label }}</span>
       <span class="ns-menu-caret" *ngIf="items.length>0"><fa-icon [icon]="caret"></fa-icon></span>
@@ -27,10 +28,10 @@ import {IconDefinition} from "@fortawesome/fontawesome-common-types";
     class: 'ns-menu-item'
   }
 })
-export class NSMenuItemComponent implements AfterViewInit {
+export class NSMenuItemComponent {
   @Input() _label: string;
   @Input() _icon: IconDefinition;
-  @Output() _stateChange: EventEmitter<string> = new EventEmitter<string>();
+  @Output() _stateChange: EventEmitter<NSMenuItemComponent> = new EventEmitter<NSMenuItemComponent>();
   @ViewChild('sub') sub: ElementRef;
   @ContentChildren(NSMenuItemComponent) items: NSMenuItemComponent[];
 
@@ -38,92 +39,43 @@ export class NSMenuItemComponent implements AfterViewInit {
     return this.expand
   }
 
-  num: string
+  @HostBinding('class.deep') get deepValid() {
+    return this.deep
+  }
+
+  id: string
+  deep: boolean
   expand = false
   caret = faCaretDown
-  cost = 200
-  lock = false
-  private clone: HTMLElement;
-  private height: number;
+  height: number
+  depth: number
+  siblings: NSMenuItemComponent[]
 
-  ngAfterViewInit() {
-    if (!this.sub) {
+  init(id: string, deep: boolean, siblings: NSMenuItemComponent[], elem: HTMLElement) {
+    this.id = id
+    setTimeout(() => {
+      this.deep = deep
+    }, 0)
+    this.siblings = siblings
+    this.initHeight(elem)
+  }
+
+  initHeight(container: HTMLElement) {
+    if (!this.sub || this.height > 0) {
       return
     }
-    this.clone = this.sub.nativeElement.cloneNode(true)
-    this.clone.style.display = 'block'
-    this.clone.style.position = 'absolute'
-    this.clone.style.visibility = 'hidden'
-    this.sub.nativeElement.parentElement.append(this.clone)
-    this.height = this.clone.offsetHeight
-    this.sub.nativeElement.parentElement.removeChild(this.clone)
+    let clone = this.sub.nativeElement.cloneNode(true)
+    clone.style.display = 'block'
+    clone.style.position = 'absolute'
+    clone.style.visibility = 'hidden'
+    container.append(clone)
+    this.height = clone.offsetHeight
+    container.removeChild(clone)
   }
 
   toggle() {
-    if (this.lock) {
-      return
-    }
-    this.lock = true
-    this._stateChange.emit(this.num)
-    if (!this.sub) {
-      return
-    }
-    if (this.expand) {
-      this.close()
-    } else {
-      this.open()
-    }
+    this._stateChange.emit(this)
   }
 
-  createMask(): HTMLElement {
-    let mask = document.createElement('div')
-    mask.classList.add('ns-menu-mask')
-    return mask
-  }
 
-  open() {
-    const mask = this.createMask()
-    this.expand = true
-    this.sub.nativeElement.appendChild(mask)
-    this.sub.nativeElement.style.overflow = 'hidden'
-    this.sub.nativeElement.style.height = '0px'
-    const steps = 50
-    const y = this.height / steps
-    let i = 0
-    const t = setInterval(() => {
-      i = i + y
-      if (i > this.height) {
-        i = this.height
-      }
-      this.sub.nativeElement.style.height = i + 'px'
-      if (i == this.height) {
-        clearInterval(t)
-        this.lock = false
-        this.sub.nativeElement.removeChild(mask)
-        this.sub.nativeElement.style.removeProperty('overflow')
-        this.sub.nativeElement.style.removeProperty('height')
-      }
-    }, this.cost / steps)
-  }
-
-  close() {
-    this.sub.nativeElement.style.overflow = 'hidden'
-    const steps = 50
-    const y = this.height / steps
-    let i = this.height
-    const t = setInterval(() => {
-      i = i - y
-      if (i < 0) {
-        i = 0
-      }
-      this.sub.nativeElement.style.height = i + 'px'
-      if (i == 0) {
-        this.expand = false
-        this.lock = false
-        this.sub.nativeElement.style.removeProperty('overflow')
-        this.sub.nativeElement.style.removeProperty('height')
-        clearInterval(t)
-      }
-    }, this.cost / steps)
-  }
 }
