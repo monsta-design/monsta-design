@@ -1,1 +1,79 @@
-<p>menu works!</p>
+<ns-menu _accordion="true">
+  <!--        <ns-menu-group *ngFor="let item of components" [nsTitle]="item.title">-->
+  <!--          <ns-menu-item *ngFor="let link of item.children" [nsTitle]="link.title" [nsLink]="link.link"></ns-menu-item>-->
+  <!--        </ns-menu-group>-->
+  <ns-menu-header _label="Navigation"></ns-menu-header>
+  <ns-menu-item _label="Dashboard" [_icon]="icons.dashboard"></ns-menu-item>
+  <ns-menu-item _label="Email" [_icon]="icons.email">
+    <ns-menu-item _label="Inbox"></ns-menu-item>
+    <ns-menu-item _label="Compose"></ns-menu-item>
+    <ns-menu-item _label="Detail"></ns-menu-item>
+  </ns-menu-item>
+  <ns-menu-divider></ns-menu-divider>
+  <ns-menu-header _label="Components"></ns-menu-header>
+  <ns-menu-item _label="Widgets" [_icon]="icons.widgets"></ns-menu-item>
+  <ns-menu-item _label="UI Kits" [_icon]="icons.uiKits">
+    <ns-menu-item _label="Bootstrap"></ns-menu-item>
+    <ns-menu-item _label="Buttons"></ns-menu-item>
+    <ns-menu-item _label="Card"></ns-menu-item>
+    <ns-menu-item _label="Icons"></ns-menu-item>
+  </ns-menu-item>
+  <ns-menu-item _label="Forms" [_icon]="icons.forms">
+    <ns-menu-item _label="Form Elements"></ns-menu-item>
+    <ns-menu-item _label="Form Plugins"></ns-menu-item>
+    <ns-menu-item _label="Form Elements"></ns-menu-item>
+    <ns-menu-item _label="Form Plugins"></ns-menu-item>
+    <ns-menu-item _label="Form Elements"></ns-menu-item>
+    <ns-menu-item _label="Form Plugins"></ns-menu-item>
+    <ns-menu-item _label="Form Elements"></ns-menu-item>
+    <ns-menu-item _label="Form Plugins"></ns-menu-item>
+    <ns-menu-item _label="Form Elements"></ns-menu-item>
+    <ns-menu-item _label="Form Plugins"></ns-menu-item>
+    <ns-menu-item _label="Form Elements"></ns-menu-item>
+    <ns-menu-item _label="Form Plugins"></ns-menu-item>
+    <ns-menu-item _label="Form Elements"></ns-menu-item>
+    <ns-menu-item _label="Form Plugins"></ns-menu-item>
+  </ns-menu-item>
+  <ns-menu-item _label="Tables" [_icon]="icons.tables">
+    <ns-menu-item _label="Table Elements"></ns-menu-item>
+    <ns-menu-item _label="Table Plugins"></ns-menu-item>
+  </ns-menu-item>
+  <ns-menu-item _label="Multi" [_icon]="icons.tables">
+    <ns-menu-item _label="First 1"></ns-menu-item>
+    <ns-menu-item _label="First 2">
+      <ns-menu-item _label="Second 1"></ns-menu-item>
+      <ns-menu-item _label="Second 2">
+        <ns-menu-item _label="Third 3"></ns-menu-item>
+      </ns-menu-item>
+      <ns-menu-item _label="Second 3"></ns-menu-item>
+    </ns-menu-item>
+    <ns-menu-item _label="First 3">
+      <ns-menu-item _label="Second 1"></ns-menu-item>
+      <ns-menu-item _label="Second 2">
+        <ns-menu-item _label="Third 3"></ns-menu-item>
+      </ns-menu-item>
+      <ns-menu-item _label="Second 3"></ns-menu-item>
+    </ns-menu-item>
+    <ns-menu-item _label="First 4"></ns-menu-item>
+  </ns-menu-item>
+  <ns-menu-divider></ns-menu-divider>
+  <ns-menu-header _label="Users"></ns-menu-header>
+  <ns-menu-item _label="Multi" [_icon]="icons.tables">
+    <ns-menu-item _label="First 1"></ns-menu-item>
+    <ns-menu-item _label="First 2">
+      <ns-menu-item _label="Second 1"></ns-menu-item>
+      <ns-menu-item _label="Second 2">
+        <ns-menu-item _label="Third 3"></ns-menu-item>
+      </ns-menu-item>
+      <ns-menu-item _label="Second 3"></ns-menu-item>
+    </ns-menu-item>
+    <ns-menu-item _label="First 3">
+      <ns-menu-item _label="Second 1"></ns-menu-item>
+      <ns-menu-item _label="Second 2">
+        <ns-menu-item _label="Third 3"></ns-menu-item>
+      </ns-menu-item>
+      <ns-menu-item _label="Second 3"></ns-menu-item>
+    </ns-menu-item>
+    <ns-menu-item _label="First 4"></ns-menu-item>
+  </ns-menu-item>
+</ns-menu>

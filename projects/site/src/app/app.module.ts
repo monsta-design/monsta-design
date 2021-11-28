@@ -13,6 +13,7 @@ import {NSDropdownModule} from "../../../lib/src/components/dropdown/dropdown.mo
 import {NSNavbarModule} from "../../../lib/src/components/navbar/navbar.module";
 import {NSButtonModule} from "../../../lib/src/components/button/button.module";
 import {NSMenuModule} from "../../../lib/src/components/menu/menu.module";
+import {NSPageModule} from "../../../lib/src/components/page/page.module";
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import {NSMenuModule} from "../../../lib/src/components/menu/menu.module";
     NSDropdownModule,
     NSNavbarModule,
     NSButtonModule,
-    NSMenuModule
+    NSMenuModule,
+    NSPageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

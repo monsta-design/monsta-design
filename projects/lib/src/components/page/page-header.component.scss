@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  color: #212837;
+  padding: 0;
+  border: none;
+  margin: 0 0 1rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+
+  ::ng-deep {
+    small {
+      font-size: 1rem;
+      color: #3c4e71;
+      font-weight: 400;
+    }
+  }
+}

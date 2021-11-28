@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  faChalkboard,
+  faChartPie,
+  faEnvelope,
+  faFileAlt,
+  faHeart,
+  faTable,
+  faThLarge
+} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +16,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
+  icons = {
+    dashboard: faChalkboard,
+    analytics: faChartPie,
+    email: faEnvelope,
+    widgets: faThLarge,
+    uiKits: faHeart,
+    forms: faFileAlt,
+    tables: faTable,
+  }
+
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
 }

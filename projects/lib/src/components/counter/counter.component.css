@@ -1,0 +1,18 @@
+:host {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(101, 126, 174, .25);
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.refresh {
+  position: absolute;
+  right: 10px;
+  top: 2px;
+}
