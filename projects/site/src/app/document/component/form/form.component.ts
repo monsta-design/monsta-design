@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import formDoc from '!raw-loader!projects/lib/docs/form.md';
-import data2 from '!raw-loader!projects/lib/src/components/input/demo/basic.component';
+import data2 from '!raw-loader!projects/lib/src/input/demo/basic.component';
 import * as marked from 'marked';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 

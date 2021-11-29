@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 
-import doc from '!raw-loader!projects/lib/src/components/modal/readme.md';
-import basicDoc from '!raw-loader!projects/lib/src/components/modal/demo/basic.md';
-import basicCode from '!raw-loader!projects/lib/src/components/modal/demo/basic.component';
-import {NsDemoModalBasicInputComponent} from 'projects/lib/src/components/modal/demo/basic.component';
+import doc from '!raw-loader!projects/lib/src/modal/readme.md';
+import basicDoc from '!raw-loader!projects/lib/src/modal/demo/basic.md';
+import basicCode from '!raw-loader!projects/lib/src/modal/demo/basic.component';
+import {NsDemoModalBasicInputComponent} from 'projects/lib/src/modal/demo/basic.component';
 import {Examples} from 'projects/site/src/app/common/document/document.component';
 
 @Component({

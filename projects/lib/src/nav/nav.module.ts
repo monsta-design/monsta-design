@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {NSNavComponent} from 'projects/lib/src/components/nav/nav.component';
+import {NSNavComponent} from 'projects/lib/src/nav/nav.component';
 import {NSButtonModule} from "../button/button.module";
 
 

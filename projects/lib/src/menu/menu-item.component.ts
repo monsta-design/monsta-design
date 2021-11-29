@@ -82,6 +82,7 @@ export class NSMenuItemComponent implements AfterViewInit {
   }
 
   toggle() {
+    console.log('ok')
     this._stateChange.emit(this)
   }
 

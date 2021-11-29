@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
-import doc from '!raw-loader!projects/lib/src/components/alert/readme.md';
+import doc from '!raw-loader!projects/lib/src/alert/readme.md';
 
-import {NsDemoAlertBasicComponent} from 'projects/lib/src/components/alert/demo/basic.component';
+import {NsDemoAlertBasicComponent} from 'projects/lib/src/alert/demo/basic.component';
 import {Examples} from 'projects/site/src/app/common/document/document.component';
 
-import basicDoc from '!raw-loader!projects/lib/src/components/alert/demo/basic.md';
-import basicCode from '!raw-loader!projects/lib/src/components/alert/demo/basic.component';
+import basicDoc from '!raw-loader!projects/lib/src/alert/demo/basic.md';
+import basicCode from '!raw-loader!projects/lib/src/alert/demo/basic.component';
 
-import secondDoc from '!raw-loader!projects/lib/src/components/alert/demo/second.md';
-import secondCode from '!raw-loader!projects/lib/src/components/alert/demo/second.component';
-import {NsDemoAlertSecondComponent} from 'projects/lib/src/components/alert/demo/second.component';
+import secondDoc from '!raw-loader!projects/lib/src/alert/demo/second.md';
+import secondCode from '!raw-loader!projects/lib/src/alert/demo/second.component';
+import {NsDemoAlertSecondComponent} from 'projects/lib/src/alert/demo/second.component';
 
 
 @Component({

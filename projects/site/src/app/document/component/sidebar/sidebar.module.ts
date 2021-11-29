@@ -3,8 +3,8 @@ import {CommonModule} from '@angular/common';
 import {SidebarComponent} from './sidebar.component';
 import {RouterModule} from "@angular/router";
 import {DocumentModule} from "../../../common/document/document.module";
-import {NsSidebarModule} from "../../../../../../lib/src/components/sidebar/sidebar.module";
-import {NsSidebarBasicComponent} from "../../../../../../lib/src/components/sidebar/demo/basic.component";
+import {NsSidebarModule} from "../../../../../../lib/src/sidebar/sidebar.module";
+import {NsSidebarBasicComponent} from "../../../../../../lib/src/sidebar/demo/basic.component";
 
 
 @NgModule({
