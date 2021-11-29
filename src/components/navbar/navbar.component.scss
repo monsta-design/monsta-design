@@ -1,0 +1,6 @@
+@import "~monsta-bootstrap/scss/bootstrap-utilities";
+
+:host ::ng-deep {
+  @import "~monsta-bootstrap/scss/navbar";
+}
+

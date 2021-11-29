@@ -15,6 +15,11 @@
       "es2018",
       "dom"
     ],
-    "allowSyntheticDefaultImports": true
-  }
+    "paths": {
+      "@components/*": [
+        "./src/components/*"
+      ]
+    }
+  },
+  "allowSyntheticDefaultImports": true
 }
