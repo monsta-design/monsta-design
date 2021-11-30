@@ -6,8 +6,8 @@ import {Component, Input, OnInit, TemplateRef} from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NSNavbarComponent implements OnInit {
-  @Input() _brand: TemplateRef<any>;
-  @Input() _more: TemplateRef<any>;
+  @Input('brand') _brand: TemplateRef<any>;
+  @Input('more') _more: TemplateRef<any>;
 
   constructor() {
   }

@@ -8,7 +8,7 @@ import {Component, HostBinding, Input, OnInit} from '@angular/core';
 })
 export class NsColComponent implements OnInit {
 
-  @Input() _span: number;
+  @Input('span') _span: number;
 
   @HostBinding('class') get hostBindingClass(): string {
     return [

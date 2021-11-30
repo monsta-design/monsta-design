@@ -13,9 +13,9 @@ import {Component, Host, HostBinding, Input, OnInit, ViewEncapsulation} from '@a
 })
 export class NSButtonComponent implements OnInit {
 
-  @Input() _type: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link';
-  @Input() _size: 'sm' | 'md' | 'lg';
-  @Input() _outline: boolean;
+  @Input('type') _type: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link';
+  @Input('size') _size: 'sm' | 'md' | 'lg';
+  @Input('outline') _outline: boolean;
   @HostBinding('class') class: string;
 
   ngOnInit() {

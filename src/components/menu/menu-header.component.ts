@@ -9,7 +9,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class NSMenuHeaderComponent implements OnInit {
 
-  @Input() _label: string
+  @Input('label') _label: string
 
   constructor() {
   }

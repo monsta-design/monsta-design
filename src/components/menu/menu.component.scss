@@ -12,8 +12,7 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  border-right: 1px solid #dae0ec;
-  background: #fff;
+  overflow: hidden;
 }
 
 ::ng-deep {
@@ -34,6 +33,7 @@
     &.expand {
       > .ns-menu-sub {
         display: block;
+        padding-bottom: 10px;
       }
     }
 
@@ -99,9 +99,10 @@
 
   .ns-menu-sub {
     position: relative;
-    padding-bottom: 10px;
+    //padding-bottom: 10px;
     padding-left: 20px;
     display: none;
+    //overflow: hidden;
 
     .ns-menu-mask {
       position: absolute;

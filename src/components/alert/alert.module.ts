@@ -4,7 +4,9 @@ import {NSAlertComponent} from './alert.component';
 
 
 @NgModule({
-  declarations: [NSAlertComponent],
+  declarations: [
+    NSAlertComponent,
+  ],
   imports: [
     CommonModule
   ],

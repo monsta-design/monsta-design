@@ -8,38 +8,42 @@ import {Component, HostBinding, Input, OnInit} from '@angular/core';
 })
 export class NsRowComponent implements OnInit {
 
-  @Input() _cols: number;
-  @Input() _cols_sm: number;
-  @Input() _cols_md: number;
-  @Input() _cols_lg: number;
-  @Input() _cols_xl: number;
-  @Input() _cols_xxl: number;
-  @Input() _gx: number;
-  @Input() _gy: number;
-  @Input() _g: number;
-  @Input() _g_sm: number;
-  @Input() _g_md: number;
-  @Input() _g_lg: number;
-  @Input() _g_xl: number;
-  @Input() _g_xxl: number;
+  @Input() cols: number;
+  @Input() cols_sm: number;
+  @Input() cols_md: number;
+  @Input() cols_lg: number;
+  @Input() cols_xl: number;
+  @Input() cols_xxl: number;
+  @Input() gx: number;
+  @Input() gy: number;
+  @Input() g: number;
+  @Input() g_sm: number;
+  @Input() g_md: number;
+  @Input() g_lg: number;
+  @Input() g_xl: number;
+  @Input() g_xxl: number;
+  @Input() mt: number;
+  @Input() mb: number;
+  @Input() ml: number;
+  @Input() mr: number;
 
   @HostBinding('class') get getClass(): string {
     return [
       'bs-row',
-      this._cols ? 'bs-cols-' + this._cols : '',
-      this._cols_sm ? 'bs-cols-sm-' + this._cols_sm : '',
-      this._cols_md ? 'bs-cols-md-' + this._cols_md : '',
-      this._cols_lg ? 'bs-cols-lg-' + this._cols_lg : '',
-      this._cols_xl ? 'bs-cols-xl-' + this._cols_xl : '',
-      this._cols_xxl ? 'bs-cols-xxl-' + this._cols_xxl : '',
-      this._gx ? 'bs-gx-' + this._gx : '',
-      this._gy ? 'bs-gy-' + this._gy : '',
-      this._g ? 'bs-g-' + this._g : '',
-      this._g_sm ? 'bs-g-sm-' + this._g_sm : '',
-      this._g_md ? 'bs-g-md-' + this._g_md : '',
-      this._g_lg ? 'bs-g-lg-' + this._g_lg : '',
-      this._g_xl ? 'bs-g-xl-' + this._g_xl : '',
-      this._g_xxl ? 'bs-g-xxl-' + this._g_xxl : '',
+      this.cols ? 'bs-cols-' + this.cols : '',
+      this.cols_sm ? 'bs-cols-sm-' + this.cols_sm : '',
+      this.cols_md ? 'bs-cols-md-' + this.cols_md : '',
+      this.cols_lg ? 'bs-cols-lg-' + this.cols_lg : '',
+      this.cols_xl ? 'bs-cols-xl-' + this.cols_xl : '',
+      this.cols_xxl ? 'bs-cols-xxl-' + this.cols_xxl : '',
+      this.gx ? 'bs-gx-' + this.gx : '',
+      this.gy ? 'bs-gy-' + this.gy : '',
+      this.g ? 'bs-g-' + this.g : '',
+      this.g_sm ? 'bs-g-sm-' + this.g_sm : '',
+      this.g_md ? 'bs-g-md-' + this.g_md : '',
+      this.g_lg ? 'bs-g-lg-' + this.g_lg : '',
+      this.g_xl ? 'bs-g-xl-' + this.g_xl : '',
+      this.g_xxl ? 'bs-g-xxl-' + this.g_xxl : '',
     ].join(' ')
   }
 

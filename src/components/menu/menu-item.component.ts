@@ -1,6 +1,5 @@
 import {
   AfterViewInit,
-  ChangeDetectorRef,
   Component,
   ContentChildren,
   ElementRef,
@@ -29,9 +28,9 @@ import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
   }
 })
 export class NSMenuItemComponent implements AfterViewInit {
-  @Input() _label: string;
-  @Input() _link: string;
-  @Input() _icon: IconDefinition;
+  @Input('label') _label: string;
+  @Input('link') _link: string;
+  @Input('icon') _icon: IconDefinition;
   @Output() _stateChange: EventEmitter<NSMenuItemComponent> = new EventEmitter<NSMenuItemComponent>();
   @ViewChild('a') a: ElementRef;
   @ViewChild('sub') sub: ElementRef;
@@ -82,7 +81,6 @@ export class NSMenuItemComponent implements AfterViewInit {
   }
 
   toggle() {
-    console.log('ok')
     this._stateChange.emit(this)
   }
 

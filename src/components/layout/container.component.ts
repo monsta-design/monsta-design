@@ -7,14 +7,19 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ContainerComponent implements OnInit {
 
-  @Input() _size: 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+  @Input() size: 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+  @Input() fluid: boolean | 'true' | 'false';
+  @Input() mt: number;
+  @Input() mb: number;
+  @Input() ml: number;
+  @Input() mr: number;
   sizeClass = ''
 
   constructor() {
   }
 
   ngOnInit() {
-    this.sizeClass = this._size ? 'bs-container-' + this._size : ''
+    this.sizeClass = this.size ? 'bs-container-' + this.size : ''
   }
 
 }

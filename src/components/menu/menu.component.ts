@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, ContentChildren, ElementRef, Input} from '@angular/core';
 import {NSMenuItemComponent} from "./menu-item.component";
+import anime from 'animejs/lib/anime.es.js';
 
 @Component({
   selector: 'ns-menu',
@@ -9,10 +10,9 @@ import {NSMenuItemComponent} from "./menu-item.component";
 })
 export class NSMenuComponent implements AfterViewInit {
 
-  @Input() _accordion: Boolean = false;
+  @Input('accordion') _accordion: boolean;
+  @Input() interval: Number = 180;
   @ContentChildren(NSMenuItemComponent) items: NSMenuItemComponent[];
-  cost = 500
-  steps = 50
   lock = false
 
   constructor(
@@ -21,9 +21,6 @@ export class NSMenuComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (!this._accordion) {
-      return
-    }
     this.parse('d-', this.items)
   }
 
@@ -41,7 +38,10 @@ export class NSMenuComponent implements AfterViewInit {
               this.open(v)
             }
           }
-        }, 0)
+        })
+        if (this._accordion === false) {
+          return
+        }
         for (const vv of item.siblings) {
           if (!v.sub || v.id != vv.id) {
             if (vv.expand) {
@@ -60,48 +60,42 @@ export class NSMenuComponent implements AfterViewInit {
   }
 
   open(item: NSMenuItemComponent) {
+    if (this.lock) {
+      return
+    }
+    this.lock = true
     const mask = this.createMask()
-    item.expand = true
     item.sub.nativeElement.appendChild(mask)
+    item.expand = true
+    item.sub.nativeElement.style.removeProperty('transition')
     item.sub.nativeElement.style.overflow = 'hidden'
     item.sub.nativeElement.style.height = '0px'
-    const y = item.height / (this.cost / this.steps)
-    let i = 0
-    const t = setInterval(() => {
-      i = i + y
-      if (i > item.height) {
-        i = item.height
-      }
-      item.sub.nativeElement.style.height = i + 'px'
-      if (i == item.height) {
-        clearInterval(t)
-        this.lock = false
-        item.sub.nativeElement.removeChild(mask)
+    anime({
+      targets: item.sub.nativeElement,
+      height: item.height,
+      duration: this.interval,
+      easing: 'easeInOutSine',
+      complete: (anim) => {
         item.sub.nativeElement.style.removeProperty('overflow')
         item.sub.nativeElement.style.removeProperty('height')
+        item.sub.nativeElement.removeChild(mask)
+        this.lock = false
       }
-    }, this.cost / this.steps)
+    })
   }
 
   close(item: NSMenuItemComponent) {
     item.sub.nativeElement.style.overflow = 'hidden'
-    const y = item.height / (this.cost / this.steps)
-    let i = item.height
-    const t = setInterval(() => {
-      i = i - y
-      if (i < 0) {
-        i = 0
-      }
-      item.sub.nativeElement.style.height = i + 'px'
-      if (i == 0) {
+    anime({
+      targets: item.sub.nativeElement,
+      height: 0,
+      duration: this.interval,
+      easing: 'easeInOutSine',
+      complete: (anim) => {
         item.expand = false
-        this.lock = false
-        item.sub.nativeElement.style.removeProperty('overflow')
-        item.sub.nativeElement.style.removeProperty('height')
         this.closeChildren(item)
-        clearInterval(t)
       }
-    }, this.cost / this.steps)
+    })
   }
 
   closeChildren(item: NSMenuItemComponent) {
