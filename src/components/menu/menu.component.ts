@@ -30,15 +30,13 @@ export class NSMenuComponent implements AfterViewInit {
       item.init(`${prefix}${i++}`, deep, items, this.el.nativeElement)
       this.parse(item.id, item.items, true)
       item._stateChange.subscribe((v: NSMenuItemComponent) => {
-        setTimeout(() => {
-          if (v.sub) {
-            if (v.expand) {
-              this.close(v)
-            } else {
-              this.open(v)
-            }
+        if (v.sub) {
+          if (v.expand) {
+            this.close(v)
+          } else {
+            this.open(v)
           }
-        })
+        }
         if (this._accordion === false) {
           return
         }
@@ -64,8 +62,13 @@ export class NSMenuComponent implements AfterViewInit {
       return
     }
     this.lock = true
-    const mask = this.createMask()
-    item.sub.nativeElement.appendChild(mask)
+    let mask
+    if (item.height > 72) {
+      mask = this.createMask()
+    }
+    if (mask) {
+      item.sub.nativeElement.appendChild(mask)
+    }
     item.expand = true
     item.sub.nativeElement.style.removeProperty('transition')
     item.sub.nativeElement.style.overflow = 'hidden'
@@ -78,7 +81,9 @@ export class NSMenuComponent implements AfterViewInit {
       complete: (anim) => {
         item.sub.nativeElement.style.removeProperty('overflow')
         item.sub.nativeElement.style.removeProperty('height')
-        item.sub.nativeElement.removeChild(mask)
+        if (mask) {
+          item.sub.nativeElement.removeChild(mask)
+        }
         this.lock = false
       }
     })

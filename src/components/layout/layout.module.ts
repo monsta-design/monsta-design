@@ -2,22 +2,27 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {NsRowComponent} from './row.component';
 import {NsColComponent} from './col.component';
-import { ContainerComponent } from './container.component';
-import { FlexBoxComponent } from './flex-box.component';
-import { FlexItemComponent } from './flex-item.component';
+import {ContainerComponent} from './container.component';
+import {FlexBoxComponent} from './flex-box.component';
+import {FlexItemComponent} from './flex-item.component';
+import {MarginDirectives} from './directives/margin.directive';
+import {PaddingDirectives} from './directives/padding.directive';
+import {GutterDirectives} from './directives/gutter.directive'
 
 const COMPONENTS = [
   NsRowComponent,
   NsColComponent,
+  ContainerComponent,
+  FlexBoxComponent,
+  FlexItemComponent,
+  ...MarginDirectives,
+  ...PaddingDirectives,
+  ...GutterDirectives,
 ];
 
 @NgModule({
   declarations: [
     ...COMPONENTS,
-    ContainerComponent,
-    FlexBoxComponent,
-    FlexItemComponent,
-
   ],
   imports: [
     CommonModule

@@ -12,80 +12,77 @@
   <ns-navbar-item><a class="bs-nav-link bs-active" href="/components/input">组件</a></ns-navbar-item>
   <ns-navbar-item><a class="bs-nav-link bs-active" href="/dashboard/home">Dashboard</a></ns-navbar-item>
 </ns-navbar>
-<div class="bs-container-fluid">
-  <ns-row cols_sm="1">
-    <ns-col span="3" style="padding: 0">
-      <ns-menu accordion="true">
-        <!--        <ns-menu-group *ngFor="let item of components" [nsTitle]="item.title">-->
-        <!--          <ns-menu-item *ngFor="let link of item.children" [nsTitle]="link.title" [nsLink]="link.link"></ns-menu-item>-->
-        <!--        </ns-menu-group>-->
-        <ns-menu-header label="Navigation"></ns-menu-header>
-        <ns-menu-item label="Dashboard" [icon]="icons.dashboard"></ns-menu-item>
-        <ns-menu-item label="Email" [icon]="icons.email">
-          <ns-menu-item label="Inbox"></ns-menu-item>
-          <ns-menu-item label="Compose"></ns-menu-item>
-          <ns-menu-item label="Detail"></ns-menu-item>
-        </ns-menu-item>
-        <ns-menu-divider></ns-menu-divider>
-        <ns-menu-header label="Components"></ns-menu-header>
-        <ns-menu-item label="Widgets" [icon]="icons.widgets"></ns-menu-item>
-        <ns-menu-item label="UI Kits" [icon]="icons.uiKits">
-          <ns-menu-item label="Bootstrap"></ns-menu-item>
-          <ns-menu-item label="Buttons"></ns-menu-item>
-          <ns-menu-item label="Card"></ns-menu-item>
-          <ns-menu-item label="Icons"></ns-menu-item>
-        </ns-menu-item>
-        <ns-menu-item label="Forms" [icon]="icons.forms">
-          <ns-menu-item label="Form Elements"></ns-menu-item>
-          <ns-menu-item label="Form Plugins"></ns-menu-item>
-          <ns-menu-item label="Form Elements"></ns-menu-item>
-          <ns-menu-item label="Form Plugins"></ns-menu-item>
-          <ns-menu-item label="Form Elements"></ns-menu-item>
-          <ns-menu-item label="Form Plugins"></ns-menu-item>
-          <ns-menu-item label="Form Elements"></ns-menu-item>
-          <ns-menu-item label="Form Plugins"></ns-menu-item>
-          <ns-menu-item label="Form Elements"></ns-menu-item>
-          <ns-menu-item label="Form Plugins"></ns-menu-item>
-          <ns-menu-item label="Form Elements"></ns-menu-item>
-          <ns-menu-item label="Form Plugins"></ns-menu-item>
-          <ns-menu-item label="Form Elements"></ns-menu-item>
-          <ns-menu-item label="Form Plugins"></ns-menu-item>
-        </ns-menu-item>
-        <ns-menu-item label="Tables" [icon]="icons.tables">
-          <ns-menu-item label="Table Elements"></ns-menu-item>
-          <ns-menu-item label="Table Plugins"></ns-menu-item>
-        </ns-menu-item>
-        <ns-menu-item label="Multi" [icon]="icons.tables">
-          <ns-menu-item label="First 1"></ns-menu-item>
-          <ns-menu-item label="First 2">
-            <ns-menu-item label="Second 1"></ns-menu-item>
-            <ns-menu-item label="Second 2">
-              <ns-menu-item label="Third 3"></ns-menu-item>
-            </ns-menu-item>
-            <ns-menu-item label="Second 3"></ns-menu-item>
-          </ns-menu-item>
-          <ns-menu-item label="First 3">
-            <ns-menu-item label="Second 1"></ns-menu-item>
-            <ns-menu-item label="Second 2">
-              <ns-menu-item label="Third 3"></ns-menu-item>
-            </ns-menu-item>
-            <ns-menu-item label="Second 3"></ns-menu-item>
-          </ns-menu-item>
-          <ns-menu-item label="First 4"></ns-menu-item>
-        </ns-menu-item>
-        <ns-menu-divider></ns-menu-divider>
-        <ns-menu-header label="组件"></ns-menu-header>
-        <ns-menu-item label="Menu 菜单" [icon]="icons.tables" link="component/menu"></ns-menu-item>
-        <ns-menu-item label="Counter 指标" [icon]="icons.tables" link="component/counter"></ns-menu-item>
-        <ns-menu-item label="Page 页面" [icon]="icons.tables" link="page"></ns-menu-item>
-      </ns-menu>
-    </ns-col>
-    <ns-col>
-      <div class="bs-container-fluid">
-        <router-outlet></router-outlet>
-      </div>
-    </ns-col>
-  </ns-row>
+
+<ns-menu accordion="true" style="position: absolute;left: 0;top:60px">
+  <!--        <ns-menu-group *ngFor="let item of components" [nsTitle]="item.title">-->
+  <!--          <ns-menu-item *ngFor="let link of item.children" [nsTitle]="link.title" [nsLink]="link.link"></ns-menu-item>-->
+  <!--        </ns-menu-group>-->
+  <ns-menu-header label="Navigation"></ns-menu-header>
+  <ns-menu-item label="Dashboard" [icon]="icons.dashboard"></ns-menu-item>
+  <ns-menu-item label="Email" [icon]="icons.email">
+    <ns-menu-item label="Inbox"></ns-menu-item>
+    <ns-menu-item label="Compose"></ns-menu-item>
+    <ns-menu-item label="Detail"></ns-menu-item>
+  </ns-menu-item>
+  <ns-menu-divider></ns-menu-divider>
+  <ns-menu-header label="Components"></ns-menu-header>
+  <ns-menu-item label="Widgets" [icon]="icons.widgets"></ns-menu-item>
+  <ns-menu-item label="UI Kits" [icon]="icons.uiKits">
+    <ns-menu-item label="Bootstrap"></ns-menu-item>
+    <ns-menu-item label="Buttons"></ns-menu-item>
+    <ns-menu-item label="Card"></ns-menu-item>
+    <ns-menu-item label="Icons"></ns-menu-item>
+  </ns-menu-item>
+  <ns-menu-item label="Forms" [icon]="icons.forms">
+    <ns-menu-item label="Form Elements"></ns-menu-item>
+    <ns-menu-item label="Form Plugins"></ns-menu-item>
+    <ns-menu-item label="Form Elements"></ns-menu-item>
+    <ns-menu-item label="Form Plugins"></ns-menu-item>
+    <ns-menu-item label="Form Elements"></ns-menu-item>
+    <ns-menu-item label="Form Plugins"></ns-menu-item>
+    <ns-menu-item label="Form Elements"></ns-menu-item>
+    <ns-menu-item label="Form Plugins"></ns-menu-item>
+    <ns-menu-item label="Form Elements"></ns-menu-item>
+    <ns-menu-item label="Form Plugins"></ns-menu-item>
+    <ns-menu-item label="Form Elements"></ns-menu-item>
+    <ns-menu-item label="Form Plugins"></ns-menu-item>
+    <ns-menu-item label="Form Elements"></ns-menu-item>
+    <ns-menu-item label="Form Plugins"></ns-menu-item>
+  </ns-menu-item>
+  <ns-menu-item label="Tables" [icon]="icons.tables">
+    <ns-menu-item label="Table Elements"></ns-menu-item>
+    <ns-menu-item label="Table Plugins"></ns-menu-item>
+  </ns-menu-item>
+  <ns-menu-item label="Multi" [icon]="icons.tables">
+    <ns-menu-item label="First 1"></ns-menu-item>
+    <ns-menu-item label="First 2">
+      <ns-menu-item label="Second 1"></ns-menu-item>
+      <ns-menu-item label="Second 2">
+        <ns-menu-item label="Third 3"></ns-menu-item>
+      </ns-menu-item>
+      <ns-menu-item label="Second 3"></ns-menu-item>
+    </ns-menu-item>
+    <ns-menu-item label="First 3">
+      <ns-menu-item label="Second 1"></ns-menu-item>
+      <ns-menu-item label="Second 2">
+        <ns-menu-item label="Third 3"></ns-menu-item>
+      </ns-menu-item>
+      <ns-menu-item label="Second 3"></ns-menu-item>
+    </ns-menu-item>
+    <ns-menu-item label="First 4"></ns-menu-item>
+  </ns-menu-item>
+  <ns-menu-divider></ns-menu-divider>
+  <ns-menu-header label="布局"></ns-menu-header>
+  <ns-menu-item label="Layout 布局" [icon]="icons.tables" link="layout"></ns-menu-item>
+  <ns-menu-divider></ns-menu-divider>
+  <ns-menu-header label="组件"></ns-menu-header>
+  <ns-menu-item label="Menu 菜单" [icon]="icons.tables" link="component/menu"></ns-menu-item>
+  <ns-menu-item label="Counter 指标" [icon]="icons.tables" link="component/counter"></ns-menu-item>
+  <ns-menu-item label="Page 页面" [icon]="icons.tables" link="page"></ns-menu-item>
+</ns-menu>
+
+<div class="bs-container-fluid" style="padding-left: 260px">
+  <router-outlet></router-outlet>
   <!--  <div class="bs-row bs-flex-xl-nowrap">-->
   <!--    <div class="bs-col-1" style="border-right: 1px solid #d8d8d8;height: calc(100vh - 3rem);width: 270px;">-->
 
