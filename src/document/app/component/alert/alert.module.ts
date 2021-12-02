@@ -4,9 +4,9 @@ import {RouterModule} from '@angular/router';
 
 import {AlertComponent} from './alert.component';
 
-import {NSAlertModule} from '@components/alert';
-import {NsDemoAlertBasicComponent} from '@components/alert/demo/basic.component';
-import {NsDemoAlertSecondComponent} from '@components/alert/demo/second.component';
+import {NSAlertModule} from '../../../../../components/alert';
+import {NsDemoAlertBasicComponent} from '../../../../../components/alert/demo/basic';
+import {NsDemoAlertSecondComponent} from '../../../../../components/alert/demo/second';
 
 @NgModule({
   declarations: [

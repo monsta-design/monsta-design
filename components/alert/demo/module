@@ -1,0 +1,3 @@
+import {NSAlertModule} from "@components/alert";
+
+export const moduleList = [NSAlertModule];

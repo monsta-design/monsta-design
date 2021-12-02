@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {LayoutComponent} from './layout.component';
 import {RouterModule, Routes} from "@angular/router";
-import {NSLayoutModule} from "@components/layout";
+import {NSLayoutModule} from "../../../../components/layout";
 
 const routes: Routes = [
   {

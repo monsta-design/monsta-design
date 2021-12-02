@@ -1,0 +1,16 @@
+@import "../../node_modules/monsta-bootstrap/scss/bootstrap-utilities";
+
+::ng-deep {
+  @import "../../node_modules/monsta-bootstrap/scss/navbar";
+
+  .bs-navbar {
+    background: #fff;
+  }
+
+  .bs-navbar-brand {
+    margin-left: -12px;
+    padding-left: 12px;
+    width: 240px;
+  }
+}
+
