@@ -7,7 +7,7 @@ en-US: Basic
 
 ## zh-CN
 
-最简单的用法。
+最简单的用法4。
 
 ## en-US
 

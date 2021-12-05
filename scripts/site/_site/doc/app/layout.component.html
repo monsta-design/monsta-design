@@ -1,1 +1,11 @@
-<p>layout works!</p>
+<div style="position: absolute;">
+  <ns-menu>
+    <ns-menu-header>组件</ns-menu-header>
+    <ns-menu-item *ngFor="let item of routes.components[0].children" [label]="item.label + ' ' + item.zh"
+                  [link]="item.path"></ns-menu-item>
+  </ns-menu>
+</div>
+
+<div style="padding-left: 250px;">
+  <router-outlet></router-outlet>
+</div>

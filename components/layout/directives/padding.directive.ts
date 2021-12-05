@@ -1,5 +1,5 @@
 import {Directive, HostBinding, Input} from '@angular/core';
-import {isSpacingSize, SpacingSize} from "layout/utils";
+import {isDefaultSpacingSize, SpacingSize} from "../utils";
 
 @Directive({
   selector: '[p]'
@@ -9,7 +9,7 @@ export class PDirective {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-p-' + this.size
     }
     return false
@@ -17,7 +17,7 @@ export class PDirective {
 
   @HostBinding('style.padding')
   get style() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false
@@ -32,7 +32,7 @@ export class PTDirective {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-pt-' + this.size
     }
     return false
@@ -40,7 +40,7 @@ export class PTDirective {
 
   @HostBinding('style.padding-top')
   get style() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false
@@ -55,7 +55,7 @@ export class PBDirective {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-pb-' + this.size
     }
     return false
@@ -63,7 +63,7 @@ export class PBDirective {
 
   @HostBinding('style.padding-bottom')
   get style() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false
@@ -78,7 +78,7 @@ export class PSDirective {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-ps-' + this.size
     }
     return false
@@ -86,7 +86,7 @@ export class PSDirective {
 
   @HostBinding('style.padding-left')
   get style() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false
@@ -101,7 +101,7 @@ export class PEDirective {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-pe-' + this.size
     }
     return false
@@ -109,7 +109,7 @@ export class PEDirective {
 
   @HostBinding('style.padding-right')
   get style() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false
@@ -124,7 +124,7 @@ export class PXDirective {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-px-' + this.size
     }
     return false
@@ -132,7 +132,7 @@ export class PXDirective {
 
   @HostBinding('style.padding-left')
   get left() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false
@@ -140,7 +140,7 @@ export class PXDirective {
 
   @HostBinding('style.padding-right')
   get right() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false
@@ -155,7 +155,7 @@ export class PYDirective {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-py-' + this.size
     }
     return false
@@ -163,7 +163,7 @@ export class PYDirective {
 
   @HostBinding('style.padding-top')
   get top() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false
@@ -171,7 +171,7 @@ export class PYDirective {
 
   @HostBinding('style.padding-bottom')
   get bottom() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false

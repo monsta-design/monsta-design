@@ -1,7 +1,7 @@
 ---
 order: 2
 title:
-zh-CN: 基本
+zh-CN: 第二个
 en-US: Basic
 ---
 

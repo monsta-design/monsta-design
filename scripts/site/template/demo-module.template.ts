@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-//import { ShareModule } from '../share/share.module';
+import { ShareModule } from '../../share/share.module';
 import { moduleList } from './module';
 
 {{imports}}
 
 @NgModule({
   imports     : [
-    //ShareModule,
+    ShareModule,
     ...moduleList,
     RouterModule.forChild([
       { path: 'en', component: NSDemo{{component}}EnComponent },

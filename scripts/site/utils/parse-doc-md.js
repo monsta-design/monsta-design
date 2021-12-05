@@ -1,6 +1,7 @@
 const MD = require('./marked');
 const getMeta = require('./get-meta');
 const angularNonBindAble = require('./angular-nonbindable');
+const toc = require('markdown-toc');
 
 module.exports = function parseDocMd(file, path) {
   // 获取meta信息
@@ -28,9 +29,10 @@ module.exports = function parseDocMd(file, path) {
     }
   }
   return {
-    meta     : meta,
-    path     : path,
+    meta: meta,
+    toc: toc(content).json,
+    path: path,
     whenToUse: angularNonBindAble(firstPart),
-    api      : angularNonBindAble(secondPart),
+    api: angularNonBindAble(secondPart),
   }
 };

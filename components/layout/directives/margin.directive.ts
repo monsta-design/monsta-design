@@ -1,5 +1,5 @@
 import {Directive, HostBinding, Input} from '@angular/core';
-import {isSpacingSize, SpacingSize} from "layout/utils";
+import {isDefaultSpacingSize, SpacingSize} from "../utils";
 
 @Directive({
   selector: '[m]'
@@ -9,7 +9,7 @@ export class MDirective {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-m-' + this.size
     }
     return false
@@ -17,7 +17,7 @@ export class MDirective {
 
   @HostBinding('style.margin')
   get style() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false
@@ -32,7 +32,7 @@ export class MTDirective {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-mt-' + this.size
     }
     return false
@@ -40,7 +40,7 @@ export class MTDirective {
 
   @HostBinding('style.margin-top')
   get style() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false
@@ -55,7 +55,7 @@ export class MBDirective {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-mb-' + this.size
     }
     return false
@@ -63,7 +63,7 @@ export class MBDirective {
 
   @HostBinding('style.margin-bottom')
   get style() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false
@@ -78,7 +78,7 @@ export class MSDirective {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-ms-' + this.size
     }
     return false
@@ -86,7 +86,7 @@ export class MSDirective {
 
   @HostBinding('style.margin-left')
   get style() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false
@@ -101,7 +101,7 @@ export class MEDirective {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-me-' + this.size
     }
     return false
@@ -109,7 +109,7 @@ export class MEDirective {
 
   @HostBinding('style.margin-right')
   get style() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false
@@ -124,7 +124,7 @@ export class MXDirective {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-mx-' + this.size
     }
     return false
@@ -132,7 +132,7 @@ export class MXDirective {
 
   @HostBinding('style.margin-left')
   get left() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false
@@ -140,7 +140,7 @@ export class MXDirective {
 
   @HostBinding('style.margin-right')
   get right() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false
@@ -155,7 +155,7 @@ export class MYDirective {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-my-' + this.size
     }
     return false
@@ -163,7 +163,7 @@ export class MYDirective {
 
   @HostBinding('style.margin-top')
   get top() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false
@@ -171,7 +171,7 @@ export class MYDirective {
 
   @HostBinding('style.margin-bottom')
   get bottom() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false

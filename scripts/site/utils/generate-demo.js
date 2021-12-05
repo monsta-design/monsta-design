@@ -65,10 +65,10 @@ function generatePageDemoComponent(content) {
   let enOutput = content.pageDemo.enCode;
   zhOutput = zhOutput
     .replace(`NSPageDemo${componentName(component)}Component`, `NzPageDemo${componentName(component)}ZhComponent`)
-    .replace(`nz-page-demo-${component}`, `nz-page-demo-${component}-zh`);
+    .replace(`ns-page-demo-${component}`, `ns-page-demo-${component}-zh`);
   enOutput = enOutput
     .replace(`NSPageDemo${componentName(component)}Component`, `NzPageDemo${componentName(component)}EnComponent`)
-    .replace(`nz-page-demo-${component}`, `nz-page-demo-${component}-en`);
+    .replace(`ns-page-demo-${component}`, `ns-page-demo-${component}-en`);
   return {
     en: enOutput,
     zh: zhOutput
@@ -103,15 +103,16 @@ function generateTemplate(result) {
     zh: generateTitle(result.docZh.meta, result.docZh.path),
     en: generateTitle(result.docEn.meta, result.docEn.path)
   };
+
   const name = result.name;
   const hasPageDemo = !!result.pageDemo;
   return {
     zh: wrapperAll(
-      generateToc('zh-CN', result.name, result.demoMap),
+      generateToc('zh-CN', result.name, result.demoMap, result.docZh.toc),
       wrapperHeader(titleMap.zh, result.docZh.whenToUse, 'zh', innerMap.zh, hasPageDemo, name) + wrapperAPI(result.docZh.api)
     ),
     en: wrapperAll(
-      generateToc('en-US', result.name, result.demoMap),
+      generateToc('en-US', result.name, result.demoMap, result.docEn.toc),
       wrapperHeader(titleMap.en, result.docEn.whenToUse, 'en', innerMap.en, hasPageDemo, name) + wrapperAPI(result.docEn.api)
     )
   };
@@ -146,29 +147,34 @@ function wrapperHeader(title, whenToUse, language, example, hasPageDemo, name) {
 }
 
 function wrapperAll(toc, content) {
-  // return `<!--<article>${toc}${content}</article>-->`;
-  return `${toc}${content}`;
+  return `<article class="article">${toc}${content}</article>`;
 }
 
-function generateToc(language, name, demoMap) {
+function generateToc(language, name, demoMap, toc) {
+
   let linkArray = [];
   for (const key in demoMap) {
-    // if (typeof demoMap[key].meta.title === 'undefined' || demoMap[key].meta.title === null) {
-    //   console.log('demoMap[key].meta.title is null: demoMap[key].meta:', name, key, demoMap[key].meta)
-    //   demoMap[key].meta.title = {}
-    // }
-    if (typeof demoMap[key].meta === 'undefined' || typeof demoMap[key].meta.title === 'undefined' || demoMap[key].meta.title === null) {
-      continue
-    }
     linkArray.push({
-      content: `<a href="#components-${name}-demo-${key}" nzTitle="${demoMap[key].meta.title[language]}"></a>`,
+      content: `<ns-scrollspy-item target="components-${name}-demo-${key}" level="3">${demoMap[key].meta.title[language]}</ns-scrollspy-item>`,
       order: demoMap[key].meta.order
     });
   }
   linkArray.sort((pre, next) => pre.order - next.order);
-  linkArray.push({content: `<a href="#api" nzTitle="API"></a>`});
-  const links = linkArray.map(link => link.content).join('');
-  return `${links}`
+
+  let mainLinks = []
+  for (let i = 0; i < toc.length; i++) {
+    const item = toc[i]
+    if (item.slug === 'api') {
+      mainLinks.push(`<ns-scrollspy-item target="demos" level="2">Demo</ns-scrollspy-item>`);
+      mainLinks.push(linkArray.map(link => link.content).join(''))
+    }
+    mainLinks.push(`<ns-scrollspy-item target="${item.slug}" level="${item.lvl}">${item.content}</ns-scrollspy-item>`)
+  }
+  const mainLinksHtml = mainLinks.join('\n')
+
+  // linkArray.push({content: `<a href="#api">API</a>`});
+  // const links = linkArray.map(link => link.content).join('');
+  return `<ns-scrollspy class="toc">${mainLinksHtml}</ns-scrollspy>`
 //   return `
 // <nz-affix class="toc-affix" [nzOffsetTop]="16">
 //     <nz-anchor [nzAffix]="false" nzShowInkInFixed (nzClick)="goLink($event)">

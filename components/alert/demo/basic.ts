@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'ns-demo-basic',
+  selector: 'ns-demo-alert-basic',
   template: `
     <ns-alert [type]="'secondary'">
       A simple primary alert—check it out!

@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {NSDemoAlertBasicComponent} from "./basic";
 import {NSDemoAlertSecondComponent} from "./second";
+import {NSAlertModule} from "../alert.module";
 
 
 @NgModule({
@@ -9,9 +10,10 @@ import {NSDemoAlertSecondComponent} from "./second";
     NSDemoAlertBasicComponent,
     NSDemoAlertSecondComponent,
   ],
-  imports: [
-    CommonModule
-  ]
+    imports: [
+        CommonModule,
+        NSAlertModule
+    ]
 })
 export class DemoModule {
 }

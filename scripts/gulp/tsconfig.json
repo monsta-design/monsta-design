@@ -17,9 +17,9 @@
     "types": [
       "node"
     ],
-    "baseUrl": ".."
+    "baseUrl": "."
   },
   "files": [
-    "gulpfile.ts"
+    "gulpfile.ts",
   ]
 }

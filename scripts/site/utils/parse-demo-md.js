@@ -1,5 +1,6 @@
 const MD = require('./marked');
 const YFM = require('yaml-front-matter');
+const toc = require('markdown-toc');
 const angularNonBindAble = require('./angular-nonbindable');
 // import {remark} from "remark";
 
@@ -33,7 +34,12 @@ module.exports = function parseDemoMd(file) {
   }
   return {
     meta: meta,
+    toc: toc(content).json,
     zh: angularNonBindAble(zhPart),
     en: angularNonBindAble(enPart)
   };
 };
+
+function extractToc(content){
+
+}

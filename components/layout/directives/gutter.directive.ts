@@ -10,7 +10,7 @@ import {
   OnInit,
   ReflectiveKey, Renderer2, SimpleChanges, ViewContainerRef
 } from '@angular/core';
-import {isSpacingSize, MediaBreakPoints, SpacingSize} from "layout/utils";
+import {isDefaultSpacingSize, MediaBreakPoints, SpacingSize} from "../utils";
 
 @Directive({
   selector: '[g]'
@@ -20,7 +20,7 @@ export class GDirective {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-g-' + this.size
     }
     return false
@@ -28,7 +28,7 @@ export class GDirective {
 
   @HostBinding('style.--bs-gutter-x')
   get x() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return null
@@ -36,7 +36,7 @@ export class GDirective {
 
   @HostBinding('style.--bs-gutter-y')
   get y() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return null
@@ -51,7 +51,7 @@ export class GXDirective {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-gx-' + this.size
     }
     return null
@@ -59,7 +59,7 @@ export class GXDirective {
 
   @HostBinding('style.--bs-gutter-x')
   get style() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return null
@@ -74,7 +74,7 @@ export class GYDirective {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-gy-' + this.size
     }
     return false
@@ -82,7 +82,7 @@ export class GYDirective {
 
   @HostBinding('style.--bs-gutter-y')
   get style() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return false
@@ -97,7 +97,7 @@ export class GSMDirective {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-g-sm-' + this.size
     }
     return false
@@ -105,7 +105,7 @@ export class GSMDirective {
 
   @HostBinding('style.--bs-gutter-x')
   get x() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return null
@@ -113,7 +113,7 @@ export class GSMDirective {
 
   @HostBinding('style.--bs-gutter-y')
   get y() {
-    if (!isSpacingSize(this.size)) {
+    if (!isDefaultSpacingSize(this.size)) {
       return this.size
     }
     return null
@@ -129,7 +129,7 @@ export class GXSMDirective implements OnInit {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-gx-sm-' + this.size
     }
     return null
@@ -139,7 +139,7 @@ export class GXSMDirective implements OnInit {
   }
 
   ngOnInit() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return
     }
     let style = this.renderer.createElement('style')
@@ -162,7 +162,7 @@ export class GXMDDirective implements OnInit, OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return 'bs-gx-md-' + this.size
     }
     return null
@@ -172,7 +172,7 @@ export class GXMDDirective implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    if (isSpacingSize(this.size)) {
+    if (isDefaultSpacingSize(this.size)) {
       return
     }
     let style = this.renderer.createElement('style')

@@ -8,6 +8,9 @@ import {FlexItemComponent} from './flex-item.component';
 import {MarginDirectives} from './directives/margin.directive';
 import {PaddingDirectives} from './directives/padding.directive';
 import {GutterDirectives} from './directives/gutter.directive'
+import {BGDirective} from "./directives/background.directive";
+import {HDirective, WDirective} from "./directives/size.directive";
+import {PositionDirectives} from "./directives/position.directive";
 
 const COMPONENTS = [
   NsRowComponent,
@@ -18,6 +21,10 @@ const COMPONENTS = [
   ...MarginDirectives,
   ...PaddingDirectives,
   ...GutterDirectives,
+  BGDirective,
+  WDirective,
+  HDirective,
+  ...PositionDirectives,
 ];
 
 @NgModule({
