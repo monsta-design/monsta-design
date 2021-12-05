@@ -37,7 +37,7 @@ function generateToc(meta, raw) {
     const child = ast.children[i];
     if (child.type === 'heading' && child.depth === 2) {
       const text = child.children[0].value;
-      const lowerText = text.toLowerCase().replace(/ /g, '-').replace(/\./g, '-').replace(/\?/g,'');
+      const lowerText = text.toLowerCase().replace(/ /g, '-').replace(/\./g, '-').replace(/\?/g, '');
       links += `<nz-link nzHref="#${lowerText}" nzTitle="${text}"></nz-link>`
     }
   }
@@ -54,10 +54,10 @@ function baseInfo(file, path) {
   const content = meta.__content;
   delete meta.__content;
   return {
-    meta   : meta,
-    path   : path,
+    meta: meta,
+    path: path,
     content: MD(content),
-    raw    : content
+    raw: content
   }
 }
 

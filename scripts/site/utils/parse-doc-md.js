@@ -1,7 +1,6 @@
 const MD = require('./marked');
 const getMeta = require('./get-meta');
 const angularNonBindAble = require('./angular-nonbindable');
-const toc = require('markdown-toc');
 
 module.exports = function parseDocMd(file, path) {
   // 获取meta信息
@@ -28,9 +27,19 @@ module.exports = function parseDocMd(file, path) {
       secondPart += MD(remark.stringify(child));
     }
   }
+  // 生成 TOC
+  let toc = []
+  for (let i = 0; i < ast.children.length; i++) {
+    const child = ast.children[i];
+    if (child.type === 'heading') {
+      const text = child.children[0].value;
+      const lowerText = text.toLowerCase().replace(/ /g, '-').replace(/\./g, '-').replace(/\?/g, '');
+      toc.push({content: text, slug: lowerText, lvl: child.depth})
+    }
+  }
   return {
     meta: meta,
-    toc: toc(content).json,
+    toc: toc,
     path: path,
     whenToUse: angularNonBindAble(firstPart),
     api: angularNonBindAble(secondPart),

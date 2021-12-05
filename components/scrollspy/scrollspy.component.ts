@@ -15,8 +15,12 @@ export class NSScrollspyComponent implements AfterViewInit {
   ngAfterViewInit() {
     for (let item of this.items) {
       item.trigger.subscribe((v: NSScrollspyItemComponent) => {
-        let target = this.container.querySelector('#' + item.target)
-        console.log(target)
+        let target = this.container.querySelector(`[id="${item.target}"]`)
+        if (!target) {
+          return
+        }
+        // @ts-ignore
+        window.scrollTo(0, target.offsetTop)
       })
     }
   }

@@ -5,7 +5,7 @@ title: 快速开始
 
 NG-ZORRO 允许开发者关闭动画效果，您可以通过添加对应指令或者配置来设置动画的开关，也可以通过全局配置关闭所有动画。
 
-### 在全局关闭
+## 在全局关闭
 
 在模块中使用 `NoopAnimationsModule` 替换 `BrowserAnimationsModule`。
 
@@ -18,7 +18,7 @@ NG-ZORRO 允许开发者关闭动画效果，您可以通过添加对应指令�
 })
 ```
 
-### 在模版中关闭
+## 在模版中关闭
 
 引入 `NzNoAnimationModule` 模块。
 
