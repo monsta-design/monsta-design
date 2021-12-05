@@ -7,6 +7,7 @@ import {tap} from "rxjs/operators";
   template: `
     <div>
       <div>
+        <h3 id="{{_id}}">{{_title}}</h3>
         <button (click)="getCode()">获取源码</button>
       </div>
       <ng-content></ng-content>

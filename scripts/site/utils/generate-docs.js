@@ -38,15 +38,16 @@ function generateToc(meta, raw) {
     if (child.type === 'heading' && child.depth === 2) {
       const text = child.children[0].value;
       const lowerText = text.toLowerCase().replace(/ /g, '-').replace(/\./g, '-').replace(/\?/g, '');
-      links += `<nz-link nzHref="#${lowerText}" nzTitle="${text}"></nz-link>`
+      links += `<a nzHref="#${lowerText}">${text}</a>`
     }
   }
-  return `
-<nz-affix class="toc-affix" [nzOffsetTop]="16">
-    <nz-anchor [nzAffix]="false" nzShowInkInFixed (nzClick)="goLink($event)">
-        ${links}
-    </nz-anchor>
-</nz-affix>`;
+//   return `
+// <nz-affix class="toc-affix" [nzOffsetTop]="16">
+//     <nz-anchor [nzAffix]="false" nzShowInkInFixed (nzClick)="goLink($event)">
+//         ${links}
+//     </nz-anchor>
+// </nz-affix>`;
+  return `${links}`;
 }
 
 function baseInfo(file, path) {

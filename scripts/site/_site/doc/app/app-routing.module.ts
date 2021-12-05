@@ -9,6 +9,10 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       ...DEMO_ROUTES,
+      {
+        'path': 'docs',
+        'loadChildren': () => import('./docs/index.module').then(m => m.NzDocsModule)
+      },
     ]
   },
 ];

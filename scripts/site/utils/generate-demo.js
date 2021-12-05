@@ -130,7 +130,7 @@ function wrapperHeader(title, whenToUse, language, example, hasPageDemo, name) {
 		${whenToUse}
 	</section>
 	${hasPageDemo ? `<section class="page-demo"><nz-page-demo-${name}-${language}></nz-page-demo-${name}-${language}></section>` : ''}
-	<h2>
+	<h2 id="demos">
 		<span>${language === 'zh' ? '代码演示' : 'Examples'}</span>
 		<i  class="code-box-expand-trigger" title="${
       language === 'zh' ? '展开全部代码' : 'Expand All Code'
