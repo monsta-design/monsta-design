@@ -11,6 +11,7 @@ import {GutterDirectives} from './directives/gutter.directive'
 import {BGDirective} from "./directives/background.directive";
 import {HDirective, WDirective} from "./directives/size.directive";
 import {PositionDirectives} from "./directives/position.directive";
+import {TextDirectives} from "./directives/text.directive";
 
 const COMPONENTS = [
   NsRowComponent,
@@ -25,6 +26,7 @@ const COMPONENTS = [
   WDirective,
   HDirective,
   ...PositionDirectives,
+  ...TextDirectives,
 ];
 
 @NgModule({

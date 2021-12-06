@@ -63,6 +63,7 @@ export class ElementStyle {
   size: string
   breakpoint: number
   gutter: any
+  type: 'x' | 'y' | 'xy'
 }
 
 // 插入 Angular Element 绑定的 style
@@ -79,16 +80,50 @@ export function insertGutterElementStyle(target: Element, container: HTMLElement
   const id = `${renderer.hostAttr}_${style.size}`
 
   // 构建CSS
-  const css = `@media (min-width: ${style.breakpoint}px){
-    #${scope}{
+  let media = null
+  if (style.breakpoint !== 0) {
+    media = `@media (min-width: ${style.breakpoint}px)`
+  }
+  let css = ''
+  switch (style.type) {
+    case 'x':
+      css = `
+      #${scope}{
           margin-right: calc(-.5 * ${style.gutter});
           margin-left: calc(-.5 * ${style.gutter});
        }
-    #${scope} > *{
+      #${scope} > *{
        padding-right: calc(${style.gutter} * .5);
        padding-left: calc(${style.gutter} * .5);
+       }`
+      break
+    case 'y':
+      css = `
+      #${scope}{
+          margin-top: calc(-1 * ${style.gutter});
        }
+      #${scope} > *{
+          margin-top: ${style.gutter};
+      }`
+      break
+    default:
+      css = `
+      #${scope}{
+          margin-right: calc(-.5 * ${style.gutter});
+          margin-left: calc(-.5 * ${style.gutter});
+          margin-top: calc(-1 * ${style.gutter});
+       }
+      #${scope} > *{
+       padding-right: calc(${style.gutter} * .5);
+       padding-left: calc(${style.gutter} * .5);
+       margin-top: ${style.gutter};
+      }`
+  }
+  if (media) {
+    css = `${media}{
+      ${css}
     }`
+  }
 
   // 查询节点是否已存在
   let exist = null;

@@ -7,7 +7,8 @@ en-US: Basic
 
 ## zh-CN
 
-常用的等宽布局
+gx 作为默认的水平间隔
+当 gx_xxl、gx_xl、gx_lg、gx_md、gx_sm、gx 全部设置时，在屏幕小于
 
 ## en-US
 
