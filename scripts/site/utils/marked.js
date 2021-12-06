@@ -116,7 +116,8 @@ renderer.heading = function (text, level) {
   const isComponent = isMarkedLabel && !isDirective;
   const isService = text.indexOf('Nz') === 0 && text.indexOf('Service') > -1;
   const head = `<h${level} id="${lowerText}"><span>${text}</span>`;
-  const link = `<a onclick="window.location.hash = '${lowerText}'" class="anchor">#</a></h${level}>`;
+  // const link = `<a onclick="window.location.hash = '${lowerText}'" class="anchor">#</a></h${level}>`;
+  const link = `</h${level}>`;
   if (isComponent) {
     return head + `<label class="api-type-label component">component</label>` + link;
   } else if (isDirective) {

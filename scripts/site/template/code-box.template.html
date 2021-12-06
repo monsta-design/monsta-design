@@ -9,7 +9,9 @@
     [_iframe_height]="{{iframeHeight}}"
     [_href]="'https://github.com/NG-ZORRO/ng-zorro-antd/edit/master/components/{{component}}/demo/{{key}}.md'"
 >
-	<ns-demo-{{component}}-{{key}}></ns-demo-{{component}}-{{key}}>
+	<div class="example">
+    <ns-demo-{{component}}-{{key}}></ns-demo-{{component}}-{{key}}>
+  </div>
 		<div class="markdown">
       {{doc}}
     </div>

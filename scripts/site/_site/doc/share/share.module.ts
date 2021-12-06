@@ -4,6 +4,7 @@ import {DemoComponent} from "./demo.component";
 import {HighlightComponent} from "./highlight.component";
 import {NSLayoutModule} from "@components/layout";
 import {NSScrollspyModule} from "@components/scrollspy";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import {NSScrollspyModule} from "@components/scrollspy";
   ],
   imports: [
     CommonModule,
+    FontAwesomeModule,
     NSLayoutModule,
     NSScrollspyModule,
   ],

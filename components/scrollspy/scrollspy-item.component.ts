@@ -6,11 +6,11 @@ import {Component, EventEmitter, HostBinding, HostListener, Input, OnInit, Outpu
 })
 export class NSScrollspyItemComponent implements OnInit {
 
-  @Input() level: number = null
+  @Input() level: number | string = null
   @Input() target: string = null
   @Output() trigger: EventEmitter<NSScrollspyItemComponent> = new EventEmitter<NSScrollspyItemComponent>()
 
-  @HostBinding('level') get getLevel(): number {
+  @HostBinding('level') get getLevel(): any {
     return this.level
   }
 

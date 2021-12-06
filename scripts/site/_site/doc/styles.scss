@@ -1,17 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~prismjs/themes/prism.css";
 @import "components/monsta-design";
+@import "~monsta-bootstrap/scss/tables";
 
 .article {
   position: relative;
   max-width: 960px;
   margin: 0 auto;
+
+  table {
+    @extend .bs-table
+  }
+
+  h2 {
+    margin-top: 15px;
+  }
+
+  p {
+    margin-bottom: 0.8rem;
+  }
 }
 
 .toc {
   position: absolute;
   right: -100px;
   top: 40px;
+
   a {
     display: block;
   }

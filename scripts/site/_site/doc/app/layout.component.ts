@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ROUTER_LIST} from './router';
+import {ROUTER_LIST, RouterList} from './router';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'ns-layout',
@@ -8,12 +9,22 @@ import {ROUTER_LIST} from './router';
 })
 export class LayoutComponent implements OnInit {
 
-  routes = ROUTER_LIST
+  routes: any
+  docs = false
 
-  constructor() {
+  constructor(
+    private router: Router,
+  ) {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    console.log(this.router.url, this.router.url.indexOf('/docs/') > -1)
+    if (this.router.url.indexOf('/docs/') > -1) {
+      this.routes = ROUTER_LIST.intro
+      this.docs = true
+    } else {
+      this.routes = ROUTER_LIST.components[0].children
+    }
   }
 
 }

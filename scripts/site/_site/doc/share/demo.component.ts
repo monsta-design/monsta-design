@@ -1,20 +1,23 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AppService} from "../app/app.service";
-import {tap} from "rxjs/operators";
+import {faCode} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'ns-demo',
   template: `
-    <div>
-      <div>
-        <h3 id="{{_id}}">{{_title}}</h3>
-        <button (click)="getCode()">获取源码</button>
+    <h3 class="ns-demo-title" id="{{_id}}">{{_title}}</h3>
+    <div class="ns-demo">
+      <div class="ns-demo-example">
+        <ng-content></ng-content>
       </div>
-      <ng-content></ng-content>
-      <div class="code" *ngIf="codeLoaded">
+      <div class="ns-demo-actions" (click)="getCode()">
+        <fa-icon [icon]="codeIcon"></fa-icon>
+      </div>
+      <div class="ns-demo-code" *ngIf="show">
         <ns-highlight [_code]="highlightCode"></ns-highlight>
       </div>
     </div>`,
+  styleUrls: ['./demo.component.scss']
 })
 export class DemoComponent implements OnInit {
 
@@ -28,8 +31,10 @@ export class DemoComponent implements OnInit {
   @Input() _iframe_height: string;
   @Input() _href: string;
 
+  codeIcon = faCode
   highlightCode: string;
   codeLoaded: boolean;
+  show: boolean;
 
   constructor(
     private appService: AppService,
@@ -40,12 +45,14 @@ export class DemoComponent implements OnInit {
   }
 
   getCode() {
-    if (this.codeLoaded) {
-      return
+    if (!this.codeLoaded) {
+      this.appService.getCode(this._id).subscribe((res: any) => {
+        this.highlightCode = res.highlightCode
+        this.codeLoaded = true
+        this.show = true
+      })
+    } else {
+      this.show = !this.show
     }
-    this.appService.getCode(this._id).subscribe((res: any) => {
-      this.highlightCode = res.highlightCode
-      this.codeLoaded = true
-    })
   }
 }

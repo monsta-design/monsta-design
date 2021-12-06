@@ -23,8 +23,8 @@ module.exports = function generateDocs(rootPath, docsMap) {
 };
 
 function wrapperDocs(toc, title, content) {
-  return `<article class="markdown">${title}${toc}
-  <section class="markdown" ngNonBindable>${content}</section>
+  return `<article class="article">${title}${toc}
+  ${content}
   </article>`
 }
 
@@ -38,7 +38,7 @@ function generateToc(meta, raw) {
     if (child.type === 'heading' && child.depth === 2) {
       const text = child.children[0].value;
       const lowerText = text.toLowerCase().replace(/ /g, '-').replace(/\./g, '-').replace(/\?/g, '');
-      links += `<a nzHref="#${lowerText}">${text}</a>`
+      links += `<ns-scrollspy-item target="${lowerText}" level="${child.depth}">${text}</ns-scrollspy-item>`
     }
   }
 //   return `
@@ -47,7 +47,7 @@ function generateToc(meta, raw) {
 //         ${links}
 //     </nz-anchor>
 // </nz-affix>`;
-  return `${links}`;
+  return `<ns-scrollspy class="toc">${links}</ns-scrollspy>`;
 }
 
 function baseInfo(file, path) {
