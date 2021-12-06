@@ -1,8 +1,8 @@
 ---
-order: 10
+order: 3
 title:
-zh-CN: 尺寸
-en-US: Size
+zh-CN: 间隔
+en-US: Gutter
 ---
 
 ## zh-CN
@@ -13,4 +13,3 @@ en-US: Size
 
 The simplest usage.
 
-尺寸

@@ -7,6 +7,7 @@ import {LayoutComponent} from './layout.component';
 import {NSMenuModule} from "@components/menu";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import {NSClientDetectorModule} from "@components/client-detector";
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {FormsModule} from "@angular/forms";
     NSMenuModule,
     FormsModule,
     HttpClientModule,
+    NSClientDetectorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

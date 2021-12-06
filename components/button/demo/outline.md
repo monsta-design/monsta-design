@@ -1,8 +1,8 @@
 ---
-order: 0
+order: 1
 title:
-zh-CN: 基础用法
-en-US: Basic
+zh-CN: 边框按钮
+en-US: Outline Button
 ---
 
 ## zh-CN

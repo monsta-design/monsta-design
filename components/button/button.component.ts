@@ -15,13 +15,11 @@ export class NSButtonComponent implements OnInit {
 
   @Input('type') _type: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'link';
   @Input('size') _size: 'sm' | 'md' | 'lg';
-  @Input('outline') _outline: boolean;
+  @Input('outline') _outline: boolean | 'false' | 'true';
   @HostBinding('class') class: string;
-
   ngOnInit() {
     this.class = this.makeClass()
   }
-
   private makeClass(): string {
     let classes = ['bs-btn']
     if (this._type) {

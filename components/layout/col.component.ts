@@ -1,4 +1,5 @@
 import {Component, HostBinding, Input, OnInit} from '@angular/core';
+import {SpacingSize} from "./utils";
 
 @Component({
   selector: 'ns-col',
@@ -8,11 +9,11 @@ import {Component, HostBinding, Input, OnInit} from '@angular/core';
 })
 export class NsColComponent implements OnInit {
 
-  @Input('span') _span: number;
+  @Input('span') span: number | string;
 
   @HostBinding('class') get hostBindingClass(): string {
     return [
-      this._span ? 'bs-col-' + this._span : 'bs-col'
+      this.span ? 'bs-col-' + this.span : 'bs-col'
     ].join('');
   }
 

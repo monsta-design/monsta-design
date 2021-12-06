@@ -1,16 +1,5 @@
-import {
-  APP_ID,
-  ComponentRef,
-  Directive,
-  ElementRef,
-  Host,
-  HostBinding, Inject, InjectionToken, Injector,
-  Input, OnChanges,
-  OnDestroy,
-  OnInit,
-  ReflectiveKey, Renderer2, SimpleChanges, ViewContainerRef
-} from '@angular/core';
-import {isDefaultSpacingSize, MediaBreakPoints, SpacingSize} from "../utils";
+import {Directive, ElementRef, HostBinding, Input, OnChanges, OnInit, Renderer2, SimpleChanges,} from '@angular/core';
+import {ElementStyle, insertGutterElementStyle, isDefaultSpacingSize, MediaBreakPoints, SpacingSize} from "../utils";
 
 @Directive({
   selector: '[g]'
@@ -124,7 +113,7 @@ export class GSMDirective {
 @Directive({
   selector: '[gx_sm]'
 })
-export class GXSMDirective implements OnInit {
+export class GXSMDirective implements OnInit, OnChanges {
   @Input('gx_sm') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
@@ -142,15 +131,24 @@ export class GXSMDirective implements OnInit {
     if (isDefaultSpacingSize(this.size)) {
       return
     }
-    let style = this.renderer.createElement('style')
-    // @ts-ignore
-    const attr = this.renderer.hostAttr
-    style.innerHTML = `@media (min-width: ${MediaBreakPoints.sm}px){
-    [${attr}] {
-          --bs-gutter-x: ${this.size};
-        }
-    }`
-    this.renderer.insertBefore(this.el.nativeElement.parentElement, style, this.el.nativeElement)
+    this.insertStyle()
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.insertStyle()
+  }
+
+  insertStyle() {
+    insertGutterElementStyle(
+      this.el.nativeElement,
+      this.el.nativeElement.parentElement,
+      this.renderer,
+      {
+        size: 'sm',
+        breakpoint: MediaBreakPoints.sm,
+        gutter: this.size,
+      },
+    )
   }
 }
 
@@ -175,20 +173,150 @@ export class GXMDDirective implements OnInit, OnChanges {
     if (isDefaultSpacingSize(this.size)) {
       return
     }
-    let style = this.renderer.createElement('style')
-    // @ts-ignore
-    const attr = this.renderer.hostAttr
-    style.innerHTML = `@media (min-width: ${MediaBreakPoints.md}px){
-    [${attr}] {
-          --bs-gutter-x: ${this.size} !important;
-        }
-    }`
-    this.renderer.insertBefore(this.el.nativeElement.parentElement, style, this.el.nativeElement)
+    this.insertStyle()
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes)
-    console.log(this.size)
+    this.insertStyle()
+  }
+
+  insertStyle() {
+    insertGutterElementStyle(
+      this.el.nativeElement,
+      this.el.nativeElement.parentElement,
+      this.renderer,
+      {
+        size: 'md',
+        breakpoint: MediaBreakPoints.md,
+        gutter: this.size,
+      },
+    )
+  }
+}
+
+@Directive({
+  selector: '[gx_lg]'
+})
+export class GXLGDirective implements OnInit, OnChanges {
+  @Input('gx_lg') size: SpacingSize | number | string = null;
+
+  @HostBinding('class')
+  get class() {
+    if (isDefaultSpacingSize(this.size)) {
+      return 'bs-gx-lg-' + this.size
+    }
+    return null
+  }
+
+  constructor(private el: ElementRef, private renderer: Renderer2) {
+  }
+
+  ngOnInit() {
+    if (isDefaultSpacingSize(this.size)) {
+      return
+    }
+    this.insertStyle()
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.insertStyle()
+  }
+
+  insertStyle() {
+    insertGutterElementStyle(
+      this.el.nativeElement,
+      this.el.nativeElement.parentElement,
+      this.renderer,
+      {
+        size: 'lg',
+        breakpoint: MediaBreakPoints.lg,
+        gutter: this.size,
+      },
+    )
+  }
+}
+
+@Directive({
+  selector: '[gx_xl]'
+})
+export class GXXLDirective implements OnInit, OnChanges {
+  @Input('gx_xl') size: SpacingSize | number | string = null;
+
+  @HostBinding('class')
+  get class() {
+    if (isDefaultSpacingSize(this.size)) {
+      return 'bs-gx-xl-' + this.size
+    }
+    return null
+  }
+
+  constructor(private el: ElementRef, private renderer: Renderer2) {
+  }
+
+  ngOnInit() {
+    if (isDefaultSpacingSize(this.size)) {
+      return
+    }
+    this.insertStyle()
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.insertStyle()
+  }
+
+  insertStyle() {
+    insertGutterElementStyle(
+      this.el.nativeElement,
+      this.el.nativeElement.parentElement,
+      this.renderer,
+      {
+        size: 'xl',
+        breakpoint: MediaBreakPoints.xl,
+        gutter: this.size,
+      },
+    )
+  }
+}
+
+@Directive({
+  selector: '[gx_xxl]'
+})
+export class GXXXLDirective implements OnInit, OnChanges {
+  @Input('gx_xxl') size: SpacingSize | number | string = null;
+
+  @HostBinding('class')
+  get class() {
+    if (isDefaultSpacingSize(this.size)) {
+      return 'bs-gx-xxl-' + this.size
+    }
+    return null
+  }
+
+  constructor(private el: ElementRef, private renderer: Renderer2) {
+  }
+
+  ngOnInit() {
+    if (isDefaultSpacingSize(this.size)) {
+      return
+    }
+    this.insertStyle()
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.insertStyle()
+  }
+
+  insertStyle() {
+    insertGutterElementStyle(
+      this.el.nativeElement,
+      this.el.nativeElement.parentElement,
+      this.renderer,
+      {
+        size: 'xxl',
+        breakpoint: MediaBreakPoints.xxl,
+        gutter: this.size,
+      },
+    )
   }
 }
 
@@ -200,4 +328,7 @@ export const GutterDirectives = [
   GSMDirective,
   GXSMDirective,
   GXMDDirective,
+  GXLGDirective,
+  GXXLDirective,
+  GXXXLDirective,
 ]

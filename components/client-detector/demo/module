@@ -1,0 +1,3 @@
+import {NSClientDetectorModule} from '@components/client-detector'
+export const moduleList = [NSClientDetectorModule];
+

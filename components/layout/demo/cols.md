@@ -1,13 +1,13 @@
 ---
-order: 0
+order: 2
 title:
-zh-CN: 基础用法
+zh-CN: 等宽列数
 en-US: Basic
 ---
 
 ## zh-CN
 
-最简单的用法4。
+常用的等宽布局
 
 ## en-US
 

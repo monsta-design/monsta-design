@@ -1,8 +1,8 @@
 ---
-order: 0
+order: 1
 title:
-zh-CN: 等宽布局
-en-US: Basic
+zh-CN: 响应式布局
+en-US: Responsive 
 ---
 
 ## zh-CN

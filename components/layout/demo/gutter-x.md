@@ -1,13 +1,13 @@
 ---
 order: 0
 title:
-zh-CN: 基础用法
+zh-CN: 水平间隔
 en-US: Basic
 ---
 
 ## zh-CN
 
-最简单的用法4。
+常用的等宽布局
 
 ## en-US
 

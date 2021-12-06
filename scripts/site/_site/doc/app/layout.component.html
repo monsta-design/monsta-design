@@ -21,7 +21,7 @@
   <ns-menu *ngIf="!docs">
     <ng-container *ngFor="let route of routes">
       <ns-menu-header>{{ route.name }}</ns-menu-header>
-      <ns-menu-item *ngFor="let item of route.children" [label]="item.label+ '' + item.zh" [link]="item.path"></ns-menu-item>
+      <ns-menu-item *ngFor="let item of route.children" [label]="item.label+ ' ' + item.zh" [link]="item.path"></ns-menu-item>
     </ng-container>
   </ns-menu>
   <ns-menu *ngIf="docs">
@@ -32,3 +32,5 @@
 <div style="padding-left: 250px;">
   <router-outlet></router-outlet>
 </div>
+
+<ns-client-detector></ns-client-detector>

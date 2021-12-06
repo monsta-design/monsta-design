@@ -1,19 +1,19 @@
 ---
 category: Components
-subtitle: 布局
-type: 布局
-title: Layout
+subtitle: 客户端探测器
+type: 导航
+title: Button
 cover: https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg
 ---
 
-布局组件及相关的辅助指令。
+用来呈现按钮操作
 
 ## 何时使用
 
-用来快速进行响应式布局。
+需要展示按钮的时候
 
 ```ts
-import { NSLayoutModule } from 'monsta-design/layout';
+import { NSButtonModule } from 'monsta-design/button';
 ```
 
 ## API

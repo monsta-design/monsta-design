@@ -10,12 +10,12 @@ type SpacingSize = 0 | 1 | 2 | 3 | 4 | 5 | '0' | '1' | '2' | '3' | '4' | '5' | '
   styleUrls: ['./layout.scss']
 })
 export class NsRowComponent implements OnInit {
-  @Input() cols: number;
-  @Input() cols_sm: number;
-  @Input() cols_md: number;
-  @Input() cols_lg: number;
-  @Input() cols_xl: number;
-  @Input() cols_xxl: number;
+  @Input() cols: number | string;
+  @Input() cols_sm: number | string;
+  @Input() cols_md: number | string;
+  @Input() cols_lg: number | string;
+  @Input() cols_xl: number | string;
+  @Input() cols_xxl: number | string;
 
   @HostBinding('class') get getClass(): string {
     let classes = ['bs-row']

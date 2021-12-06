@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'ns-demo-layout-basic',
+  selector: 'ns-demo-layout-cols',
   template: `
-    <ns-row>
+    <ns-row cols="3">
       <ns-col><div w="100" h="100" bg="primary">1</div></ns-col>
       <ns-col><div w="100" h="100" bg="secondary">2</div></ns-col>
       <ns-col><div w="100" h="100" bg="success">3</div></ns-col>
@@ -12,5 +12,5 @@ import {Component} from '@angular/core';
     </ns-row>
   `,
 })
-export class NSDemoLayoutBasicComponent {
+export class NSDemoLayoutColsComponent {
 }
