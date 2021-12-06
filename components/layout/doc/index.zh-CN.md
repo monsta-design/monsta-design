@@ -1,7 +1,7 @@
 ---
 category: Components
 subtitle: 布局
-type: 导航
+type: 布局
 title: Layout
 cover: https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg
 ---
@@ -15,7 +15,7 @@ cover: https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg
 页面可视范围过小时，慎用此功能以免遮挡页面内容。
 
 ```ts
-import { NzAffixModule } from 'ng-zorro-antd/affix';
+import { NSLayoutModule } from 'monsta-design/layout';
 ```
 
 ## API

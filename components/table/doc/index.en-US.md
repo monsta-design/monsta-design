@@ -1,6 +1,6 @@
 ---
 category: Components
-type: Navigation
+type: Table
 title: Affix
 cover: https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg
 ---

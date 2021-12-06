@@ -1,7 +1,7 @@
 ---
 category: Components
 subtitle: 表格
-type: 导航
+type: 表格
 title: Table
 cover: https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg
 ---
