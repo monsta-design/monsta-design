@@ -1,5 +1,59 @@
 import {Directive, ElementRef, HostBinding, Input, OnChanges, OnInit, Renderer2, SimpleChanges,} from '@angular/core';
-import {insertGutterElementStyle, isDefaultSpacingSize, BreakPoints, SpacingSize} from "../../types";
+import {
+  isDefaultSpacingSize,
+  BreakPoints,
+  SpacingSize,
+  insertElementStyle
+} from "../../types";
+
+export class GutterStyle {
+  media: string
+  breakpoint: number
+  gutter: any
+  type: 'x' | 'y' | 'xy'
+}
+
+// 插入 Angular element gutter style
+export function insertGutterElementStyle(target: Element, container: HTMLElement, renderer: Renderer2, style: GutterStyle) {
+  insertElementStyle(target, container, renderer, {
+    media: style.media,
+    breakpoint: style.breakpoint,
+    cssGetter: (scope: string): string => {
+      switch (style.type) {
+        case 'x':
+          return `
+          #${scope}{
+              margin-right: calc(-.5 * ${style.gutter});
+              margin-left: calc(-.5 * ${style.gutter});
+           }
+          #${scope} > *{
+           padding-right: calc(${style.gutter} * .5);
+           padding-left: calc(${style.gutter} * .5);
+          }`
+        case 'y':
+          return `
+          #${scope}{
+              margin-top: calc(-1 * ${style.gutter});
+           }
+          #${scope} > *{
+              margin-top: ${style.gutter};
+          }`
+        default:
+          return `
+          #${scope}{
+              margin-right: calc(-.5 * ${style.gutter});
+              margin-left: calc(-.5 * ${style.gutter});
+              margin-top: calc(-1 * ${style.gutter});
+           }
+          #${scope} > *{
+           padding-right: calc(${style.gutter} * .5);
+           padding-left: calc(${style.gutter} * .5);
+           margin-top: ${style.gutter};
+          }`
+      }
+    }
+  })
+}
 
 @Directive({
   selector: '[g]'
@@ -35,7 +89,7 @@ export class GDirective implements OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        size: 'default',
+        media: 'default',
         breakpoint: 0,
         gutter: this.size,
         type: 'xy',
@@ -78,7 +132,7 @@ export class GSMDirective implements OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        size: 'sm',
+        media: 'sm',
         breakpoint: BreakPoints.sm,
         gutter: this.size,
         type: 'xy',
@@ -121,7 +175,7 @@ export class GMDDirective implements OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        size: 'md',
+        media: 'md',
         breakpoint: BreakPoints.md,
         gutter: this.size,
         type: 'xy',
@@ -164,7 +218,7 @@ export class GLGDirective implements OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        size: 'lg',
+        media: 'lg',
         breakpoint: BreakPoints.lg,
         gutter: this.size,
         type: 'xy',
@@ -207,7 +261,7 @@ export class GXLDirective implements OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        size: 'xl',
+        media: 'xl',
         breakpoint: BreakPoints.xl,
         gutter: this.size,
         type: 'xy',
@@ -250,7 +304,7 @@ export class GXXLDirective implements OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        size: 'xxl',
+        media: 'xxl',
         breakpoint: BreakPoints.xxl,
         gutter: this.size,
         type: 'xy',
@@ -294,7 +348,7 @@ export class GxDirective implements OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        size: 'default',
+        media: 'default',
         breakpoint: 0,
         gutter: this.size,
         type: 'x',
@@ -338,7 +392,7 @@ export class GxSMDirective implements OnInit, OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        size: 'sm',
+        media: 'sm',
         breakpoint: BreakPoints.sm,
         gutter: this.size,
         type: 'x',
@@ -381,7 +435,7 @@ export class GxMDDirective implements OnInit, OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        size: 'md',
+        media: 'md',
         breakpoint: BreakPoints.md,
         gutter: this.size,
         type: 'x',
@@ -424,7 +478,7 @@ export class GxLGDirective implements OnInit, OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        size: 'lg',
+        media: 'lg',
         breakpoint: BreakPoints.lg,
         gutter: this.size,
         type: 'x',
@@ -467,7 +521,7 @@ export class GxXLDirective implements OnInit, OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        size: 'xl',
+        media: 'xl',
         breakpoint: BreakPoints.xl,
         gutter: this.size,
         type: 'x',
@@ -510,7 +564,7 @@ export class GxXXLDirective implements OnInit, OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        size: 'xxl',
+        media: 'xxl',
         breakpoint: BreakPoints.xxl,
         gutter: this.size,
         type: 'x',
@@ -553,7 +607,7 @@ export class GyDirective implements OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        size: 'default',
+        media: 'default',
         breakpoint: 0,
         gutter: this.size,
         type: 'y',
@@ -597,7 +651,7 @@ export class GySMDirective implements OnInit, OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        size: 'sm',
+        media: 'sm',
         breakpoint: BreakPoints.sm,
         gutter: this.size,
         type: 'y',
@@ -640,7 +694,7 @@ export class GyMDDirective implements OnInit, OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        size: 'md',
+        media: 'md',
         breakpoint: BreakPoints.md,
         gutter: this.size,
         type: 'y',
@@ -683,7 +737,7 @@ export class GyLGDirective implements OnInit, OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        size: 'lg',
+        media: 'lg',
         breakpoint: BreakPoints.lg,
         gutter: this.size,
         type: 'y',
@@ -726,7 +780,7 @@ export class GyXLDirective implements OnInit, OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        size: 'xl',
+        media: 'xl',
         breakpoint: BreakPoints.xl,
         gutter: this.size,
         type: 'y',
@@ -769,7 +823,7 @@ export class GyXXLDirective implements OnInit, OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        size: 'xxl',
+        media: 'xxl',
         breakpoint: BreakPoints.xxl,
         gutter: this.size,
         type: 'y',

@@ -3,7 +3,17 @@ import {Renderer2} from "@angular/core";
 
 export type NS_SIZE = 'default' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'fluid';
 export type NS_INPUT_TYPE = 'text' | 'password' | 'number' | 'file' | 'color';
-export type NS_COLOR = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'white' | 'transparent';
+export type NS_COLOR =
+  'primary'
+  | 'secondary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'info'
+  | 'light'
+  | 'dark'
+  | 'white'
+  | 'transparent';
 
 
 export type SpacingSize = '0' | '1' | '2' | '3' | '4' | '5' | 'auto';
@@ -65,16 +75,12 @@ export const BreakPoints = {
 }
 
 export class ElementStyle {
-  size: string
+  media: string
   breakpoint: number
-  gutter: any
-  type: 'x' | 'y' | 'xy'
+  cssGetter: (scope: string) => string
 }
 
-// 插入 Angular Element 绑定的 style
-export function insertGutterElementStyle(target: Element, container: HTMLElement, renderer: Renderer2, style: ElementStyle) {
-
-
+export function insertElementStyle(target: Element, container: HTMLElement, renderer: Renderer2, style: ElementStyle): Element {
   // 判断目标元素是否有ID，如果没有则伪随机生成一个
   let scope = target.getAttribute('id')
   if (!scope) {
@@ -82,54 +88,20 @@ export function insertGutterElementStyle(target: Element, container: HTMLElement
     target.setAttribute('id', scope)
   }
   // @ts-ignore
-  const id = `${renderer.hostAttr}_${style.size}`
+  const id = `${renderer.hostAttr}_${style.media}`
 
-  // 构建CSS
+  // 构建媒体查询
   let media = null
   if (style.breakpoint !== 0) {
     media = `@media (min-width: ${style.breakpoint}px)`
   }
-  let css = ''
-  switch (style.type) {
-    case 'x':
-      css = `
-      #${scope}{
-          margin-right: calc(-.5 * ${style.gutter});
-          margin-left: calc(-.5 * ${style.gutter});
-       }
-      #${scope} > *{
-       padding-right: calc(${style.gutter} * .5);
-       padding-left: calc(${style.gutter} * .5);
-       }`
-      break
-    case 'y':
-      css = `
-      #${scope}{
-          margin-top: calc(-1 * ${style.gutter});
-       }
-      #${scope} > *{
-          margin-top: ${style.gutter};
-      }`
-      break
-    default:
-      css = `
-      #${scope}{
-          margin-right: calc(-.5 * ${style.gutter});
-          margin-left: calc(-.5 * ${style.gutter});
-          margin-top: calc(-1 * ${style.gutter});
-       }
-      #${scope} > *{
-       padding-right: calc(${style.gutter} * .5);
-       padding-left: calc(${style.gutter} * .5);
-       margin-top: ${style.gutter};
-      }`
-  }
+  // 获取 CSS 代码
+  let css = style.cssGetter(scope)
   if (media) {
     css = `${media}{
       ${css}
     }`
   }
-
   // 查询节点是否已存在
   let exist = null;
   let current = target
@@ -168,6 +140,7 @@ export function insertGutterElementStyle(target: Element, container: HTMLElement
   node.id = id
   node.innerHTML = css
   node.setAttribute('breakpoint', style.breakpoint)
-  node.setAttribute('gutter', style.gutter)
   renderer.insertBefore(container, node, target)
+  return node
 }
+

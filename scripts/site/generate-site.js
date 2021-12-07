@@ -12,7 +12,6 @@ const generateRoutes = require('./utils/generate-routes');
 const capitalizeFirstLetter = require('./utils/capitalize-first-letter');
 const camelCase = require('./utils/camelcase');
 const getMeta = require('./utils/get-meta');
-const toc = require('markdown-toc')
 const arg = process.argv[2];
 // create site folder
 const showCasePath = path.resolve(__dirname, '../../site');

@@ -47,7 +47,7 @@ function generateToc(meta, raw) {
 //         ${links}
 //     </nz-anchor>
 // </nz-affix>`;
-  return `<ns-scrollspy class="toc">${links}</ns-scrollspy>`;
+  return `<ns-scrollspy #toc class="toc" [style.right]="scrollspyRight">${links}</ns-scrollspy>`;
 }
 
 function baseInfo(file, path) {

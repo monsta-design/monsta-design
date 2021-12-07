@@ -11,6 +11,7 @@ import {NSDemoLayoutGutterYComponent} from "./gutter-y";
 import {NSButtonModule} from "../../button";
 import {NSDemoLayoutGridComponent} from "./grid";
 import {NSDemoLayoutFlexComponent} from "./flex";
+import {NSDemoLayoutFlexJustifyContentComponent} from "./flex-justify-content";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {NSDemoLayoutFlexComponent} from "./flex";
     NSDemoLayoutGutterYComponent,
     NSDemoLayoutGridComponent,
     NSDemoLayoutFlexComponent,
+    NSDemoLayoutFlexJustifyContentComponent,
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,5 @@
-import { Component, QueryList, ViewChildren } from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {NSScrollspyComponent} from "@components/scrollspy";
 // import { NzCodeBoxComponent } from '../share/codebox/codebox.component';
 
 @Component({
@@ -6,9 +7,17 @@ import { Component, QueryList, ViewChildren } from '@angular/core';
   preserveWhitespaces: false,
   templateUrl  : './{{language}}.html'
 })
-export class {{componentName}} {
+export class {{componentName}} implements AfterViewInit {
   expanded = false;
   //@ViewChildren(NzCodeBoxComponent) codeBoxes!: QueryList<NzCodeBoxComponent>;
+  @ViewChild('toc') toc:NSScrollspyComponent;
+  scrollspyRight = '-100px'
+  constructor(private cdr:ChangeDetectorRef){
+  }
+  ngAfterViewInit() {
+    this.scrollspyRight = `-${this.toc.width}px`
+    this.cdr.detectChanges()
+  }
 
   goLink(link: string): void {
     if (window) {

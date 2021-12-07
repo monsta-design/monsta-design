@@ -1,8 +1,8 @@
 ---
 order: 0
 title:
-  zh-CN: Flex 布局
-  en-US: Basic
+  zh-CN: 方向
+  en-US: Direction
 module:
   zh-CN: Flex 布局
   en-US: Flex

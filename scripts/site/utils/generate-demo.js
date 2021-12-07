@@ -152,36 +152,42 @@ function wrapperAll(toc, content) {
 
 function generateToc(language, name, demoMap, toc) {
 
-
   let linkArray = [];
+  let modules = {}
   for (const key in demoMap) {
+    let lvl = 3
+    if (typeof demoMap[key].meta.module != "undefined") {
+      const moduleKey = demoMap[key].meta.module[language].toLowerCase().replace(/ /g, '-').replace(/\./g, '-').replace(/\?/g, '');
+      if (typeof modules[moduleKey] === 'undefined') {
+        modules[moduleKey] = false
+      }
+      lvl = 4
+      if (!modules[moduleKey]) {
+        modules[moduleKey] = true
+        linkArray.push({
+          content: `<ns-scrollspy-item target="components-${name}-demo-${moduleKey}" level="3">${demoMap[key].meta.module[language]}</ns-scrollspy-item>`,
+          order: demoMap[key].meta.order
+        });
+      }
+    }
     linkArray.push({
-      content: `<ns-scrollspy-item target="components-${name}-demo-${key}" level="3">${demoMap[key].meta.title[language]}</ns-scrollspy-item>`,
+      content: `<ns-scrollspy-item target="components-${name}-demo-${key}" level="${lvl}">${demoMap[key].meta.title[language]}</ns-scrollspy-item>`,
       order: demoMap[key].meta.order
     });
   }
-  linkArray.sort((pre, next) => pre.order - next.order);
 
+  linkArray.sort((pre, next) => pre.order - next.order);
   let mainLinks = []
   for (let i = 0; i < toc.length; i++) {
     const item = toc[i]
     if (item.slug === 'api') {
-      mainLinks.push(`<ns-scrollspy-item target="demos" level="2">Demo</ns-scrollspy-item>`);
+      mainLinks.push(`<ns-scrollspy-item target="demos" level="2">代码演示</ns-scrollspy-item>`);
       mainLinks.push(linkArray.map(link => link.content).join(''))
     }
     mainLinks.push(`<ns-scrollspy-item target="${item.slug}" level="${item.lvl}">${item.content}</ns-scrollspy-item>`)
   }
   const mainLinksHtml = mainLinks.join('\n')
-
-  // linkArray.push({content: `<a href="#api">API</a>`});
-  // const links = linkArray.map(link => link.content).join('');
-  return `<ns-scrollspy class="toc">${mainLinksHtml}</ns-scrollspy>`
-//   return `
-// <nz-affix class="toc-affix" [nzOffsetTop]="16">
-//     <nz-anchor [nzAffix]="false" nzShowInkInFixed (nzClick)="goLink($event)">
-//         ${links}
-//     </nz-anchor>
-// </nz-affix>`;
+  return `<ns-scrollspy #toc [style.right]="scrollspyRight" class="toc">${mainLinksHtml}</ns-scrollspy>`
 }
 
 function generateExample(result) {
