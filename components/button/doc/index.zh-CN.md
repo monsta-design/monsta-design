@@ -1,7 +1,7 @@
 ---
 category: Components
 subtitle: 按钮
-type: 导航
+type: 通用
 title: Button
 cover: https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg
 ---

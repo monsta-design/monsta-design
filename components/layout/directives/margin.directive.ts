@@ -1,5 +1,5 @@
 import {Directive, HostBinding, Input} from '@angular/core';
-import {isDefaultSpacingSize, SpacingSize} from "../utils";
+import {isDefaultSpacingSize, SpacingSize} from "../../types";
 
 @Directive({
   selector: '[m]'

@@ -1,8 +1,8 @@
 ---
 category: Components
-subtitle: 表格
-type: 数据录入
-title: Form
+subtitle: 加载中
+type: 反馈
+title: Loading
 cover: https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg
 ---
 

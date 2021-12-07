@@ -1,0 +1,3 @@
+import {NSStyleModule} from "@components/style";
+
+export const moduleList = [NSStyleModule];

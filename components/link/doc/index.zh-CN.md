@@ -1,7 +1,7 @@
 ---
 category: Components
 subtitle: 链接
-type: 导航
+type: 组件
 title: Link
 cover: https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg
 ---

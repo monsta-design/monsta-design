@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {NSDemoLayoutBasicComponent} from "./basic";
 import {NSLayoutModule} from "../layout.module";
-import {NSDemoLayoutBgComponent} from "./bg";
 import {NSDemoLayoutSizeComponent} from "./size";
 import {NSDemoLayoutGutterComponent} from "./gutter";
 import {NSDemoLayoutResponsiveComponent} from "./responsive";
@@ -15,7 +14,6 @@ import {NSDemoLayoutGridComponent} from "./grid";
 @NgModule({
   declarations: [
     NSDemoLayoutBasicComponent,
-    NSDemoLayoutBgComponent,
     NSDemoLayoutSizeComponent,
     NSDemoLayoutGutterComponent,
     NSDemoLayoutResponsiveComponent,

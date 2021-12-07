@@ -1,21 +1,19 @@
 ---
 category: Components
-subtitle: 表格
-type: 数据录入
-title: Form
+subtitle: 样式类
+type: 通用
+title: Style
 cover: https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg
 ---
-
-将页面元素钉在可视范围。
+ 
+布局组件及相关的辅助指令。
 
 ## 何时使用
 
-当内容区域比较长，需要滚动页面时，这部分内容对应的操作或者导航需要在滚动范围内始终展现。常用于侧边菜单和按钮组合。
-
-页面可视范围过小时，慎用此功能以免遮挡页面内容。
+用来快速进行响应式布局。
 
 ```ts
-import { NzAffixModule } from 'ng-zorro-antd/affix';
+import { NSStyleModule } from 'monsta-design/style';
 ```
 
 ## API

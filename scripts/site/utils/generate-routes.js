@@ -22,7 +22,7 @@ function generateLanguageData(itemData, language, reverseMap, key) {
     description
   };
   if (!reverseMap[type]) {
-    reverseMap[type] = { list: [content], language };
+    reverseMap[type] = {list: [content], language};
   } else {
     reverseMap[type].list.push(content);
   }
@@ -40,7 +40,7 @@ function generateNav(componentsDocMap) {
       experimental ? 'experimental' : 'components'
     }/${key}', 'loadChildren': () => import('./${key}/index.module').then(m => m.NSDemo${moduleName}Module)},\n`;
   }
-  return { reverseMap, routes };
+  return {reverseMap, routes};
 }
 
 module.exports = function generateRoutes(showCaseTargetPath, componentsDocMap, docsMeta) {
@@ -86,8 +86,8 @@ module.exports = function generateRoutes(showCaseTargetPath, componentsDocMap, d
     通用: 0,
     Layout: 1,
     布局: 1,
-    'Form': 2,
-    表单: 2,
+    'Data Input': 2,
+    数据录入: 2,
     'Table': 3,
     表格: 3,
     Navigation: 4,

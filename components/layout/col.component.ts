@@ -1,5 +1,5 @@
 import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {SpacingSize} from "./utils";
+import {SpacingSize} from "../types";
 
 @Component({
   selector: 'ns-col',

@@ -1,5 +1,5 @@
 import {Directive, ElementRef, HostBinding, Input, OnChanges, OnInit, Renderer2, SimpleChanges,} from '@angular/core';
-import {insertGutterElementStyle, isDefaultSpacingSize, MediaBreakPoints, SpacingSize} from "../utils";
+import {insertGutterElementStyle, isDefaultSpacingSize, BreakPoints, SpacingSize} from "../../types";
 
 @Directive({
   selector: '[g]'
@@ -79,7 +79,7 @@ export class GSMDirective implements OnChanges {
       this.renderer,
       {
         size: 'sm',
-        breakpoint: MediaBreakPoints.sm,
+        breakpoint: BreakPoints.sm,
         gutter: this.size,
         type: 'xy',
       },
@@ -122,7 +122,7 @@ export class GMDDirective implements OnChanges {
       this.renderer,
       {
         size: 'md',
-        breakpoint: MediaBreakPoints.md,
+        breakpoint: BreakPoints.md,
         gutter: this.size,
         type: 'xy',
       },
@@ -165,7 +165,7 @@ export class GLGDirective implements OnChanges {
       this.renderer,
       {
         size: 'lg',
-        breakpoint: MediaBreakPoints.lg,
+        breakpoint: BreakPoints.lg,
         gutter: this.size,
         type: 'xy',
       },
@@ -208,7 +208,7 @@ export class GXLDirective implements OnChanges {
       this.renderer,
       {
         size: 'xl',
-        breakpoint: MediaBreakPoints.xl,
+        breakpoint: BreakPoints.xl,
         gutter: this.size,
         type: 'xy',
       },
@@ -251,7 +251,7 @@ export class GXXLDirective implements OnChanges {
       this.renderer,
       {
         size: 'xxl',
-        breakpoint: MediaBreakPoints.xxl,
+        breakpoint: BreakPoints.xxl,
         gutter: this.size,
         type: 'xy',
       },
@@ -339,7 +339,7 @@ export class GxSMDirective implements OnInit, OnChanges {
       this.renderer,
       {
         size: 'sm',
-        breakpoint: MediaBreakPoints.sm,
+        breakpoint: BreakPoints.sm,
         gutter: this.size,
         type: 'x',
       },
@@ -382,7 +382,7 @@ export class GxMDDirective implements OnInit, OnChanges {
       this.renderer,
       {
         size: 'md',
-        breakpoint: MediaBreakPoints.md,
+        breakpoint: BreakPoints.md,
         gutter: this.size,
         type: 'x',
       },
@@ -425,7 +425,7 @@ export class GxLGDirective implements OnInit, OnChanges {
       this.renderer,
       {
         size: 'lg',
-        breakpoint: MediaBreakPoints.lg,
+        breakpoint: BreakPoints.lg,
         gutter: this.size,
         type: 'x',
       },
@@ -468,7 +468,7 @@ export class GxXLDirective implements OnInit, OnChanges {
       this.renderer,
       {
         size: 'xl',
-        breakpoint: MediaBreakPoints.xl,
+        breakpoint: BreakPoints.xl,
         gutter: this.size,
         type: 'x',
       },
@@ -511,7 +511,7 @@ export class GxXXLDirective implements OnInit, OnChanges {
       this.renderer,
       {
         size: 'xxl',
-        breakpoint: MediaBreakPoints.xxl,
+        breakpoint: BreakPoints.xxl,
         gutter: this.size,
         type: 'x',
       },
@@ -598,7 +598,7 @@ export class GySMDirective implements OnInit, OnChanges {
       this.renderer,
       {
         size: 'sm',
-        breakpoint: MediaBreakPoints.sm,
+        breakpoint: BreakPoints.sm,
         gutter: this.size,
         type: 'y',
       },
@@ -641,7 +641,7 @@ export class GyMDDirective implements OnInit, OnChanges {
       this.renderer,
       {
         size: 'md',
-        breakpoint: MediaBreakPoints.md,
+        breakpoint: BreakPoints.md,
         gutter: this.size,
         type: 'y',
       },
@@ -684,7 +684,7 @@ export class GyLGDirective implements OnInit, OnChanges {
       this.renderer,
       {
         size: 'lg',
-        breakpoint: MediaBreakPoints.lg,
+        breakpoint: BreakPoints.lg,
         gutter: this.size,
         type: 'y',
       },
@@ -727,7 +727,7 @@ export class GyXLDirective implements OnInit, OnChanges {
       this.renderer,
       {
         size: 'xl',
-        breakpoint: MediaBreakPoints.xl,
+        breakpoint: BreakPoints.xl,
         gutter: this.size,
         type: 'y',
       },
@@ -770,7 +770,7 @@ export class GyXXLDirective implements OnInit, OnChanges {
       this.renderer,
       {
         size: 'xxl',
-        breakpoint: MediaBreakPoints.xxl,
+        breakpoint: BreakPoints.xxl,
         gutter: this.size,
         type: 'y',
       },

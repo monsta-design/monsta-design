@@ -1,5 +1,5 @@
 import {Directive, HostBinding, Input} from '@angular/core';
-import {Color, isDefaultColor, randColor} from "../utils";
+import {Color, isDefaultColor, randColor} from "../../types";
 
 @Directive({
   selector: '[bg]',

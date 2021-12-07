@@ -1,7 +1,7 @@
 ---
 category: Components
 subtitle: 骨架
-type: 导航
+type: 反馈
 title: Skeleton
 cover: https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg
 ---

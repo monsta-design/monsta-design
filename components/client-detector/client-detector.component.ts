@@ -1,5 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {MediaBreakPoints} from '../layout/utils'
+import {BreakPoints} from '../types'
 
 @Component({
   selector: 'ns-client-detector',
@@ -22,15 +22,15 @@ export class NSClientDetectorComponent implements OnInit {
   }
 
   calcMediaSize() {
-    if (this.width < MediaBreakPoints.sm) {
+    if (this.width < BreakPoints.sm) {
       this.size = '< sm'
-    } else if (this.width >= MediaBreakPoints.sm && this.width < MediaBreakPoints.md) {
+    } else if (this.width >= BreakPoints.sm && this.width < BreakPoints.md) {
       this.size = '= sm'
-    } else if (this.width >= MediaBreakPoints.md && this.width < MediaBreakPoints.lg) {
+    } else if (this.width >= BreakPoints.md && this.width < BreakPoints.lg) {
       this.size = '= md'
-    } else if (this.width >= MediaBreakPoints.lg && this.width < MediaBreakPoints.xl) {
+    } else if (this.width >= BreakPoints.lg && this.width < BreakPoints.xl) {
       this.size = '= lg'
-    } else if (this.width >= MediaBreakPoints.xl && this.width < MediaBreakPoints.xxl) {
+    } else if (this.width >= BreakPoints.xl && this.width < BreakPoints.xxl) {
       this.size = '= xl'
     } else {
       this.size = '> xxl'
