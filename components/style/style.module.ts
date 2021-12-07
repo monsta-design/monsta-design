@@ -1,13 +1,9 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {BGDirective} from "./directives/background.directive";
-import {TextDirectives} from "./directives/text.directive";
-import {BorderDirectives} from "./directives/border.directive";
+import {StyleDirectives} from "./directives";
 
 const Components = [
-  BGDirective,
-  ...TextDirectives,
-  ...BorderDirectives
+  ...StyleDirectives,
 ]
 
 @NgModule({

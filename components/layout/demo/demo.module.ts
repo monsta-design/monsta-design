@@ -10,6 +10,7 @@ import {NSDemoLayoutGutterXComponent} from "./gutter-x";
 import {NSDemoLayoutGutterYComponent} from "./gutter-y";
 import {NSButtonModule} from "../../button";
 import {NSDemoLayoutGridComponent} from "./grid";
+import {NSDemoLayoutFlexComponent} from "./flex";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {NSDemoLayoutGridComponent} from "./grid";
     NSDemoLayoutGutterXComponent,
     NSDemoLayoutGutterYComponent,
     NSDemoLayoutGridComponent,
+    NSDemoLayoutFlexComponent,
   ],
   imports: [
     CommonModule,
