@@ -3,57 +3,91 @@ import {Directive, HostBinding, Input} from '@angular/core';
 export type FlexDirectionMode = 'row' | 'column' | 'row-reverse' | 'column-reverse';
 export type FlexJustifyMode = 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly';
 export type FlexAlignMode = 'start' | 'end' | 'center' | 'stretch';
+export type FlexAlignSelfMode = 'start' | 'end' | 'center' | 'stretch' | 'baseline';
 export type FlexWrapMode = 'wrap' | 'nowrap' | 'wrap-reverse';
 export type FlexGrow = 0 | 1 | '0' | '1';
 export type FlexShark = 0 | 1 | '0' | '1';
 
 interface FlexAttributes {
   inline: boolean,
-  size: string,
+  media: string,
   direction: FlexDirectionMode,
   justify_content: FlexJustifyMode,
   align_items: FlexAlignMode,
   align_content: FlexAlignMode,
+  wrap: FlexWrapMode,
+}
+
+interface FlexItemAttributes {
+  media: string,
   fill: boolean,
   grow: FlexGrow,
   shrink: FlexShark,
-  wrap: FlexWrapMode,
   order: number | string,
+  align_self: FlexAlignSelfMode,
+  mt_auto: boolean,
+  mb_auto: boolean,
+  ms_auto: boolean,
+  me_auto: boolean,
 }
 
 function calcFlexClasses(attributes: FlexAttributes): string {
 
-  attributes.size = attributes.size !== null ? '-' + attributes.size : ''
+  attributes.media = attributes.media !== null ? '-' + attributes.media : ''
 
   let classes = [
-    `bs-d${attributes.size}${attributes.inline ? '-inline' : ''}-flex`,
+    `bs-d${attributes.media}${attributes.inline ? '-inline' : ''}-flex`,
   ]
   if (attributes.direction !== null) {
-    classes.push(`bs-flex${attributes.size}-` + attributes.direction)
+    classes.push(`bs-flex${attributes.media}-` + attributes.direction)
   }
   if (attributes.justify_content !== null) {
-    classes.push(`bs-justify-content${attributes.size}-` + attributes.justify_content)
+    classes.push(`bs-justify-content${attributes.media}-` + attributes.justify_content)
   }
   if (attributes.align_items !== null) {
-    classes.push(`bs-align-items${attributes.size}-` + attributes.align_items)
+    classes.push(`bs-align-items${attributes.media}-` + attributes.align_items)
   }
   if (attributes.align_content !== null) {
-    classes.push(`bs-align-content${attributes.size}-` + attributes.align_content)
-  }
-  if (attributes.fill) {
-    classes.push(`bs-flex${attributes.size}-fill`)
-  }
-  if (attributes.grow !== null) {
-    classes.push(`bs-flex${attributes.size}-grow-` + attributes.grow)
-  }
-  if (attributes.shrink !== null) {
-    classes.push(`bs-flex${attributes.size}-shrink-` + attributes.shrink)
+    classes.push(`bs-align-content${attributes.media}-` + attributes.align_content)
   }
   if (attributes.wrap !== null) {
-    classes.push(`bs-flex${attributes.size}-` + attributes.wrap)
+    classes.push(`bs-flex${attributes.media}-` + attributes.wrap)
+  }
+
+  return classes.join(' ')
+}
+
+function calcFlexItemClasses(attributes: FlexItemAttributes): string {
+
+  attributes.media = attributes.media !== null ? '-' + attributes.media : ''
+
+  let classes = []
+  if (attributes.fill) {
+    classes.push(`bs-flex${attributes.media}-fill`)
+  }
+  if (attributes.grow !== null) {
+    classes.push(`bs-flex${attributes.media}-grow-` + attributes.grow)
+  }
+  if (attributes.shrink !== null) {
+    classes.push(`bs-flex${attributes.media}-shrink-` + attributes.shrink)
   }
   if (attributes.order !== null) {
-    classes.push(`bs-order${attributes.size}-` + attributes.order)
+    classes.push(`bs-order${attributes.media}-` + attributes.order)
+  }
+  if (attributes.align_self !== null) {
+    classes.push(`bs-align-self${attributes.media}-` + attributes.align_self)
+  }
+  if (attributes.mt_auto) {
+    classes.push(`bs-mt${attributes.media}-auto`)
+  }
+  if (attributes.mb_auto) {
+    classes.push(`bs-mb${attributes.media}-auto`)
+  }
+  if (attributes.ms_auto) {
+    classes.push(`bs-ms${attributes.media}-auto`)
+  }
+  if (attributes.me_auto) {
+    classes.push(`bs-me${attributes.media}-auto`)
   }
   return classes.join(' ')
 }
@@ -66,25 +100,17 @@ export class FlexDirective {
   @Input() flex_justify_content: FlexJustifyMode = null;
   @Input() flex_align_items: FlexAlignMode = null;
   @Input() flex_align_content: FlexAlignMode = null;
-  @Input() flex_fill: boolean = false;
-  @Input() flex_grow: FlexGrow = null;
-  @Input() flex_shrink: FlexShark = null;
   @Input() flex_wrap: FlexWrapMode = null;
-  @Input() flex_order: number | string = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: false,
-      size: null,
+      media: null,
       direction: this.flex_direction,
       justify_content: this.flex_justify_content,
       align_items: this.flex_align_items,
       align_content: this.flex_align_content,
-      fill: this.flex_fill,
-      grow: this.flex_grow,
-      shrink: this.flex_shrink,
       wrap: this.flex_wrap,
-      order: this.flex_order,
     })
   }
 }
@@ -93,29 +119,21 @@ export class FlexDirective {
   selector: '[flex_sm]',
 })
 export class FlexSmDirective {
-  @Input() flex_direction_sm: FlexDirectionMode = null;
-  @Input() flex_justify_content_sm: FlexJustifyMode = null;
-  @Input() flex_align_items_sm: FlexAlignMode = null;
-  @Input() flex_align_content_sm: FlexAlignMode = null;
-  @Input() flex_fill_sm: boolean = false;
-  @Input() flex_grow_sm: FlexGrow = null;
-  @Input() flex_shrink_sm: FlexShark = null;
-  @Input() flex_wrap_sm: FlexWrapMode = null;
-  @Input() flex_order_sm: number | string = null;
+  @Input() flex_sm_direction: FlexDirectionMode = null;
+  @Input() flex_sm_justify_content: FlexJustifyMode = null;
+  @Input() flex_sm_align_items: FlexAlignMode = null;
+  @Input() flex_sm_align_content: FlexAlignMode = null;
+  @Input() flex_sm_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: false,
-      size: 'sm',
-      direction: this.flex_direction_sm,
-      justify_content: this.flex_justify_content_sm,
-      align_items: this.flex_align_items_sm,
-      align_content: this.flex_align_content_sm,
-      fill: this.flex_fill_sm,
-      grow: this.flex_grow_sm,
-      shrink: this.flex_shrink_sm,
-      wrap: this.flex_wrap_sm,
-      order: this.flex_order_sm,
+      media: 'sm',
+      direction: this.flex_sm_direction,
+      justify_content: this.flex_sm_justify_content,
+      align_items: this.flex_sm_align_items,
+      align_content: this.flex_sm_align_content,
+      wrap: this.flex_sm_wrap,
     })
   }
 }
@@ -124,29 +142,21 @@ export class FlexSmDirective {
   selector: '[flex_md]',
 })
 export class FlexMdDirective {
-  @Input() flex_direction_md: FlexDirectionMode = null;
-  @Input() flex_justify_content_md: FlexJustifyMode = null;
-  @Input() flex_align_items_md: FlexAlignMode = null;
-  @Input() flex_align_content_md: FlexAlignMode = null;
-  @Input() flex_fill_md: boolean = false;
-  @Input() flex_grow_md: FlexGrow = null;
-  @Input() flex_shrink_md: FlexShark = null;
-  @Input() flex_wrap_md: FlexWrapMode = null;
-  @Input() flex_order_md: number | string = null;
+  @Input() flex_md_direction: FlexDirectionMode = null;
+  @Input() flex_md_justify_content: FlexJustifyMode = null;
+  @Input() flex_md_align_items: FlexAlignMode = null;
+  @Input() flex_md_align_content: FlexAlignMode = null;
+  @Input() flex_md_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: false,
-      size: 'md',
-      direction: this.flex_direction_md,
-      justify_content: this.flex_justify_content_md,
-      align_items: this.flex_align_items_md,
-      align_content: this.flex_align_content_md,
-      fill: this.flex_fill_md,
-      grow: this.flex_grow_md,
-      shrink: this.flex_shrink_md,
-      wrap: this.flex_wrap_md,
-      order: this.flex_order_md,
+      media: 'md',
+      direction: this.flex_md_direction,
+      justify_content: this.flex_md_justify_content,
+      align_items: this.flex_md_align_items,
+      align_content: this.flex_md_align_content,
+      wrap: this.flex_md_wrap,
     })
   }
 }
@@ -155,29 +165,21 @@ export class FlexMdDirective {
   selector: '[flex_lg]',
 })
 export class FlexLgDirective {
-  @Input() flex_direction_lg: FlexDirectionMode = null;
-  @Input() flex_justify_content_lg: FlexJustifyMode = null;
-  @Input() flex_align_items_lg: FlexAlignMode = null;
-  @Input() flex_align_content_lg: FlexAlignMode = null;
-  @Input() flex_fill_lg: boolean = false;
-  @Input() flex_grow_lg: FlexGrow = null;
-  @Input() flex_shrink_lg: FlexShark = null;
-  @Input() flex_wrap_lg: FlexWrapMode = null;
-  @Input() flex_order_lg: number | string = null;
+  @Input() flex_lg_direction: FlexDirectionMode = null;
+  @Input() flex_lg_justify_content: FlexJustifyMode = null;
+  @Input() flex_lg_align_items: FlexAlignMode = null;
+  @Input() flex_lg_align_content: FlexAlignMode = null;
+  @Input() flex_lg_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: false,
-      size: 'lg',
-      direction: this.flex_direction_lg,
-      justify_content: this.flex_justify_content_lg,
-      align_items: this.flex_align_items_lg,
-      align_content: this.flex_align_content_lg,
-      fill: this.flex_fill_lg,
-      grow: this.flex_grow_lg,
-      shrink: this.flex_shrink_lg,
-      wrap: this.flex_wrap_lg,
-      order: this.flex_order_lg,
+      media: 'lg',
+      direction: this.flex_lg_direction,
+      justify_content: this.flex_lg_justify_content,
+      align_items: this.flex_lg_align_items,
+      align_content: this.flex_lg_align_content,
+      wrap: this.flex_lg_wrap,
     })
   }
 }
@@ -186,29 +188,21 @@ export class FlexLgDirective {
   selector: '[flex_xl]',
 })
 export class FlexXlDirective {
-  @Input() flex_direction_xl: FlexDirectionMode = null;
-  @Input() flex_justify_content_xl: FlexJustifyMode = null;
-  @Input() flex_align_items_xl: FlexAlignMode = null;
-  @Input() flex_align_content_xl: FlexAlignMode = null;
-  @Input() flex_fill_xl: boolean = false;
-  @Input() flex_grow_xl: FlexGrow = null;
-  @Input() flex_shrink_xl: FlexShark = null;
-  @Input() flex_wrap_xl: FlexWrapMode = null;
-  @Input() flex_order_xl: number | string = null;
+  @Input() flex_xl_direction: FlexDirectionMode = null;
+  @Input() flex_xl_justify_content: FlexJustifyMode = null;
+  @Input() flex_xl_align_items: FlexAlignMode = null;
+  @Input() flex_xl_align_content: FlexAlignMode = null;
+  @Input() flex_xl_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: false,
-      size: 'xl',
-      direction: this.flex_direction_xl,
-      justify_content: this.flex_justify_content_xl,
-      align_items: this.flex_align_items_xl,
-      align_content: this.flex_align_content_xl,
-      fill: this.flex_fill_xl,
-      grow: this.flex_grow_xl,
-      shrink: this.flex_shrink_xl,
-      wrap: this.flex_wrap_xl,
-      order: this.flex_order_xl,
+      media: 'xl',
+      direction: this.flex_xl_direction,
+      justify_content: this.flex_xl_justify_content,
+      align_items: this.flex_xl_align_items,
+      align_content: this.flex_xl_align_content,
+      wrap: this.flex_xl_wrap,
     })
   }
 }
@@ -217,29 +211,21 @@ export class FlexXlDirective {
   selector: '[flex_xxl]',
 })
 export class FlexXxlDirective {
-  @Input() flex_direction_xxl: FlexDirectionMode = null;
-  @Input() flex_justify_content_xxl: FlexJustifyMode = null;
-  @Input() flex_align_items_xxl: FlexAlignMode = null;
-  @Input() flex_align_content_xxl: FlexAlignMode = null;
-  @Input() flex_fill_xxl: boolean = false;
-  @Input() flex_grow_xxl: FlexGrow = null;
-  @Input() flex_shrink_xxl: FlexShark = null;
-  @Input() flex_wrap_xxl: FlexWrapMode = null;
-  @Input() flex_order_xxl: number | string = null;
+  @Input() flex_xxl_direction: FlexDirectionMode = null;
+  @Input() flex_xxl_justify_content: FlexJustifyMode = null;
+  @Input() flex_xxl_align_items: FlexAlignMode = null;
+  @Input() flex_xxl_align_content: FlexAlignMode = null;
+  @Input() flex_xxl_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: false,
-      size: 'xxl',
-      direction: this.flex_direction_xxl,
-      justify_content: this.flex_justify_content_xxl,
-      align_items: this.flex_align_items_xxl,
-      align_content: this.flex_align_content_xxl,
-      fill: this.flex_fill_xxl,
-      grow: this.flex_grow_xxl,
-      shrink: this.flex_shrink_xxl,
-      wrap: this.flex_wrap_xxl,
-      order: this.flex_order_xxl,
+      media: 'xxl',
+      direction: this.flex_xxl_direction,
+      justify_content: this.flex_xxl_justify_content,
+      align_items: this.flex_xxl_align_items,
+      align_content: this.flex_xxl_align_content,
+      wrap: this.flex_xxl_wrap,
     })
   }
 }
@@ -248,29 +234,21 @@ export class FlexXxlDirective {
   selector: '[inline_flex]',
 })
 export class InlineFlexDirective {
-  @Input() flex_direction_sm: FlexDirectionMode = null;
-  @Input() flex_justify_content_sm: FlexJustifyMode = null;
-  @Input() flex_align_items_sm: FlexAlignMode = null;
-  @Input() flex_align_content_sm: FlexAlignMode = null;
-  @Input() flex_fill_sm: boolean = false;
-  @Input() flex_grow_sm: FlexGrow = null;
-  @Input() flex_shrink_sm: FlexShark = null;
-  @Input() flex_wrap_sm: FlexWrapMode = null;
-  @Input() flex_order_sm: number | string = null;
+  @Input() flex_inline_direction: FlexDirectionMode = null;
+  @Input() flex_inline_justify_content: FlexJustifyMode = null;
+  @Input() flex_inline_align_items: FlexAlignMode = null;
+  @Input() flex_inline_align_content: FlexAlignMode = null;
+  @Input() flex_inline_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: true,
-      size: null,
-      direction: this.flex_direction_sm,
-      justify_content: this.flex_justify_content_sm,
-      align_items: this.flex_align_items_sm,
-      align_content: this.flex_align_content_sm,
-      fill: this.flex_fill_sm,
-      grow: this.flex_grow_sm,
-      shrink: this.flex_shrink_sm,
-      wrap: this.flex_wrap_sm,
-      order: this.flex_order_sm,
+      media: null,
+      direction: this.flex_inline_direction,
+      justify_content: this.flex_inline_justify_content,
+      align_items: this.flex_inline_align_items,
+      align_content: this.flex_inline_align_content,
+      wrap: this.flex_inline_wrap,
     })
   }
 }
@@ -279,29 +257,21 @@ export class InlineFlexDirective {
   selector: '[inline_flex_sm]',
 })
 export class InlineFlexSmDirective {
-  @Input() flex_direction_sm: FlexDirectionMode = null;
-  @Input() flex_justify_content_sm: FlexJustifyMode = null;
-  @Input() flex_align_items_sm: FlexAlignMode = null;
-  @Input() flex_align_content_sm: FlexAlignMode = null;
-  @Input() flex_fill_sm: boolean = false;
-  @Input() flex_grow_sm: FlexGrow = null;
-  @Input() flex_shrink_sm: FlexShark = null;
-  @Input() flex_wrap_sm: FlexWrapMode = null;
-  @Input() flex_order_sm: number | string = null;
+  @Input() inline_flex_sm_direction: FlexDirectionMode = null;
+  @Input() inline_flex_sm_justify_content: FlexJustifyMode = null;
+  @Input() inline_flex_sm_align_items: FlexAlignMode = null;
+  @Input() inline_flex_sm_align_content: FlexAlignMode = null;
+  @Input() inline_flex_sm_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: true,
-      size: 'sm',
-      direction: this.flex_direction_sm,
-      justify_content: this.flex_justify_content_sm,
-      align_items: this.flex_align_items_sm,
-      align_content: this.flex_align_content_sm,
-      fill: this.flex_fill_sm,
-      grow: this.flex_grow_sm,
-      shrink: this.flex_shrink_sm,
-      wrap: this.flex_wrap_sm,
-      order: this.flex_order_sm,
+      media: 'sm',
+      direction: this.inline_flex_sm_direction,
+      justify_content: this.inline_flex_sm_justify_content,
+      align_items: this.inline_flex_sm_align_items,
+      align_content: this.inline_flex_sm_align_content,
+      wrap: this.inline_flex_sm_wrap,
     })
   }
 }
@@ -310,29 +280,21 @@ export class InlineFlexSmDirective {
   selector: '[inline_flex_md]',
 })
 export class InlineFlexMdDirective {
-  @Input() flex_direction_md: FlexDirectionMode = null;
-  @Input() flex_justify_content_md: FlexJustifyMode = null;
-  @Input() flex_align_items_md: FlexAlignMode = null;
-  @Input() flex_align_content_md: FlexAlignMode = null;
-  @Input() flex_fill_md: boolean = false;
-  @Input() flex_grow_md: FlexGrow = null;
-  @Input() flex_shrink_md: FlexShark = null;
-  @Input() flex_wrap_md: FlexWrapMode = null;
-  @Input() flex_order_md: number | string = null;
+  @Input() inline_flex_md_direction: FlexDirectionMode = null;
+  @Input() inline_flex_md_justify_content: FlexJustifyMode = null;
+  @Input() inline_flex_md_align_items: FlexAlignMode = null;
+  @Input() inline_flex_md_align_content: FlexAlignMode = null;
+  @Input() inline_flex_md_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: true,
-      size: 'md',
-      direction: this.flex_direction_md,
-      justify_content: this.flex_justify_content_md,
-      align_items: this.flex_align_items_md,
-      align_content: this.flex_align_content_md,
-      fill: this.flex_fill_md,
-      grow: this.flex_grow_md,
-      shrink: this.flex_shrink_md,
-      wrap: this.flex_wrap_md,
-      order: this.flex_order_md,
+      media: 'md',
+      direction: this.inline_flex_md_direction,
+      justify_content: this.inline_flex_md_justify_content,
+      align_items: this.inline_flex_md_align_items,
+      align_content: this.inline_flex_md_align_content,
+      wrap: this.inline_flex_md_wrap,
     })
   }
 }
@@ -341,29 +303,21 @@ export class InlineFlexMdDirective {
   selector: '[inline_flex_lg]',
 })
 export class InlineFlexLgDirective {
-  @Input() flex_direction_lg: FlexDirectionMode = null;
-  @Input() flex_justify_content_lg: FlexJustifyMode = null;
-  @Input() flex_align_items_lg: FlexAlignMode = null;
-  @Input() flex_align_content_lg: FlexAlignMode = null;
-  @Input() flex_fill_lg: boolean = false;
-  @Input() flex_grow_lg: FlexGrow = null;
-  @Input() flex_shrink_lg: FlexShark = null;
-  @Input() flex_wrap_lg: FlexWrapMode = null;
-  @Input() flex_order_lg: number | string = null;
+  @Input() inline_flex_lg_direction: FlexDirectionMode = null;
+  @Input() inline_flex_lg_justify_content: FlexJustifyMode = null;
+  @Input() inline_flex_lg_align_items: FlexAlignMode = null;
+  @Input() inline_flex_lg_align_content: FlexAlignMode = null;
+  @Input() inline_flex_lg_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: true,
-      size: 'lg',
-      direction: this.flex_direction_lg,
-      justify_content: this.flex_justify_content_lg,
-      align_items: this.flex_align_items_lg,
-      align_content: this.flex_align_content_lg,
-      fill: this.flex_fill_lg,
-      grow: this.flex_grow_lg,
-      shrink: this.flex_shrink_lg,
-      wrap: this.flex_wrap_lg,
-      order: this.flex_order_lg,
+      media: 'lg',
+      direction: this.inline_flex_lg_direction,
+      justify_content: this.inline_flex_lg_justify_content,
+      align_items: this.inline_flex_lg_align_items,
+      align_content: this.inline_flex_lg_align_content,
+      wrap: this.inline_flex_lg_wrap,
     })
   }
 }
@@ -372,29 +326,21 @@ export class InlineFlexLgDirective {
   selector: '[inline_flex_xl]',
 })
 export class InlineFlexXlDirective {
-  @Input() flex_direction_xl: FlexDirectionMode = null;
-  @Input() flex_justify_content_xl: FlexJustifyMode = null;
-  @Input() flex_align_items_xl: FlexAlignMode = null;
-  @Input() flex_align_content_xl: FlexAlignMode = null;
-  @Input() flex_fill_xl: boolean = false;
-  @Input() flex_grow_xl: FlexGrow = null;
-  @Input() flex_shrink_xl: FlexShark = null;
-  @Input() flex_wrap_xl: FlexWrapMode = null;
-  @Input() flex_order_xl: number | string = null;
+  @Input() inline_flex_xl_direction: FlexDirectionMode = null;
+  @Input() inline_flex_xl_justify_content: FlexJustifyMode = null;
+  @Input() inline_flex_xl_align_items: FlexAlignMode = null;
+  @Input() inline_flex_xl_align_content: FlexAlignMode = null;
+  @Input() inline_flex_xl_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: true,
-      size: 'xl',
-      direction: this.flex_direction_xl,
-      justify_content: this.flex_justify_content_xl,
-      align_items: this.flex_align_items_xl,
-      align_content: this.flex_align_content_xl,
-      fill: this.flex_fill_xl,
-      grow: this.flex_grow_xl,
-      shrink: this.flex_shrink_xl,
-      wrap: this.flex_wrap_xl,
-      order: this.flex_order_xl,
+      media: 'xl',
+      direction: this.inline_flex_xl_direction,
+      justify_content: this.inline_flex_xl_justify_content,
+      align_items: this.inline_flex_xl_align_items,
+      align_content: this.inline_flex_xl_align_content,
+      wrap: this.inline_flex_xl_wrap,
     })
   }
 }
@@ -403,33 +349,204 @@ export class InlineFlexXlDirective {
   selector: '[inline_flex_xxl]',
 })
 export class InlineFlexXxlDirective {
-  @Input() flex_direction_xxl: FlexDirectionMode = null;
-  @Input() flex_justify_content_xxl: FlexJustifyMode = null;
-  @Input() flex_align_items_xxl: FlexAlignMode = null;
-  @Input() flex_align_content_xxl: FlexAlignMode = null;
-  @Input() flex_fill_xxl: boolean = false;
-  @Input() flex_grow_xxl: FlexGrow = null;
-  @Input() flex_shrink_xxl: FlexShark = null;
-  @Input() flex_wrap_xxl: FlexWrapMode = null;
-  @Input() flex_order_xxl: number | string = null;
+  @Input() inline_flex_xxl_direction: FlexDirectionMode = null;
+  @Input() inline_flex_xxl_justify_content: FlexJustifyMode = null;
+  @Input() inline_flex_xxl_align_items: FlexAlignMode = null;
+  @Input() inline_flex_xxl_align_content: FlexAlignMode = null;
+  @Input() inline_flex_xxl_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: true,
-      size: 'xxl',
-      direction: this.flex_direction_xxl,
-      justify_content: this.flex_justify_content_xxl,
-      align_items: this.flex_align_items_xxl,
-      align_content: this.flex_align_content_xxl,
-      fill: this.flex_fill_xxl,
-      grow: this.flex_grow_xxl,
-      shrink: this.flex_shrink_xxl,
-      wrap: this.flex_wrap_xxl,
-      order: this.flex_order_xxl,
+      media: 'xxl',
+      direction: this.inline_flex_xxl_direction,
+      justify_content: this.inline_flex_xxl_justify_content,
+      align_items: this.inline_flex_xxl_align_items,
+      align_content: this.inline_flex_xxl_align_content,
+      wrap: this.inline_flex_xxl_wrap,
     })
   }
 }
 
+@Directive({
+  selector: '[flex_item]',
+})
+export class FlexItemDirective {
+  @Input() flex_item_fill: boolean = false;
+  @Input() flex_item_grow: FlexGrow = null;
+  @Input() flex_item_shrink: FlexShark = null;
+  @Input() flex_item_order: number | string = null;
+  @Input() flex_item_align_self: FlexAlignSelfMode = null;
+  @Input() flex_item_mt_auto: boolean;
+  @Input() flex_item_mb_auto: boolean;
+  @Input() flex_item_ms_auto: boolean;
+  @Input() flex_item_me_auto: boolean;
+
+  @HostBinding('class') get class() {
+    return calcFlexItemClasses({
+      media: 'md',
+      fill: this.flex_item_fill,
+      grow: this.flex_item_grow,
+      shrink: this.flex_item_shrink,
+      order: this.flex_item_order,
+      align_self: this.flex_item_align_self,
+      mt_auto: this.flex_item_mt_auto,
+      mb_auto: this.flex_item_mb_auto,
+      ms_auto: this.flex_item_ms_auto,
+      me_auto: this.flex_item_me_auto,
+    })
+  }
+}
+
+@Directive({
+  selector: '[flex_item_sm]',
+})
+export class FlexItemSmDirective {
+  @Input() flex_item_sm_fill: boolean = false;
+  @Input() flex_item_sm_grow: FlexGrow = null;
+  @Input() flex_item_sm_shrink: FlexShark = null;
+  @Input() flex_item_sm_order: number | string = null;
+  @Input() flex_item_sm_align_self: FlexAlignSelfMode = null;
+  @Input() flex_item_sm_mt_auto: boolean;
+  @Input() flex_item_sm_mb_auto: boolean;
+  @Input() flex_item_sm_ms_auto: boolean;
+  @Input() flex_item_sm_me_auto: boolean;
+
+  @HostBinding('class') get class() {
+    return calcFlexItemClasses({
+      media: 'sm',
+      fill: this.flex_item_sm_fill,
+      grow: this.flex_item_sm_grow,
+      shrink: this.flex_item_sm_shrink,
+      order: this.flex_item_sm_order,
+      align_self: this.flex_item_sm_align_self,
+      mt_auto: this.flex_item_sm_mt_auto,
+      mb_auto: this.flex_item_sm_mb_auto,
+      ms_auto: this.flex_item_sm_ms_auto,
+      me_auto: this.flex_item_sm_me_auto,
+    })
+  }
+}
+
+@Directive({
+  selector: '[flex_item_md]',
+})
+export class FlexItemMdDirective {
+  @Input() flex_item_md_fill: boolean = false;
+  @Input() flex_item_md_grow: FlexGrow = null;
+  @Input() flex_item_md_shrink: FlexShark = null;
+  @Input() flex_item_md_order: number | string = null;
+  @Input() flex_item_md_align_self: FlexAlignSelfMode = null;
+  @Input() flex_item_md_mt_auto: boolean;
+  @Input() flex_item_md_mb_auto: boolean;
+  @Input() flex_item_md_ms_auto: boolean;
+  @Input() flex_item_md_me_auto: boolean;
+
+  @HostBinding('class') get class() {
+    return calcFlexItemClasses({
+      media: 'md',
+      fill: this.flex_item_md_fill,
+      grow: this.flex_item_md_grow,
+      shrink: this.flex_item_md_shrink,
+      order: this.flex_item_md_order,
+      align_self: this.flex_item_md_align_self,
+      mt_auto: this.flex_item_md_mt_auto,
+      mb_auto: this.flex_item_md_mb_auto,
+      ms_auto: this.flex_item_md_ms_auto,
+      me_auto: this.flex_item_md_me_auto,
+    })
+  }
+}
+
+@Directive({
+  selector: '[flex_item_lg]',
+})
+export class FlexItemLgDirective {
+  @Input() flex_item_lg_fill: boolean = false;
+  @Input() flex_item_lg_grow: FlexGrow = null;
+  @Input() flex_item_lg_shrink: FlexShark = null;
+  @Input() flex_item_lg_order: number | string = null;
+  @Input() flex_item_lg_align_self: FlexAlignSelfMode = null;
+  @Input() flex_item_lg_mt_auto: boolean;
+  @Input() flex_item_lg_mb_auto: boolean;
+  @Input() flex_item_lg_ms_auto: boolean;
+  @Input() flex_item_lg_me_auto: boolean;
+
+  @HostBinding('class') get class() {
+    return calcFlexItemClasses({
+      media: 'lg',
+      fill: this.flex_item_lg_fill,
+      grow: this.flex_item_lg_grow,
+      shrink: this.flex_item_lg_shrink,
+      order: this.flex_item_lg_order,
+      align_self: this.flex_item_lg_align_self,
+      mt_auto: this.flex_item_lg_mt_auto,
+      mb_auto: this.flex_item_lg_mb_auto,
+      ms_auto: this.flex_item_lg_ms_auto,
+      me_auto: this.flex_item_lg_me_auto,
+    })
+  }
+}
+
+@Directive({
+  selector: '[flex_item_xl]',
+})
+export class FlexItemXlDirective {
+  @Input() flex_item_xl_fill: boolean = false;
+  @Input() flex_item_xl_grow: FlexGrow = null;
+  @Input() flex_item_xl_shrink: FlexShark = null;
+  @Input() flex_item_xl_order: number | string = null;
+  @Input() flex_item_xl_align_self: FlexAlignSelfMode = null;
+  @Input() flex_item_xl_mt_auto: boolean;
+  @Input() flex_item_xl_mb_auto: boolean;
+  @Input() flex_item_xl_ms_auto: boolean;
+  @Input() flex_item_xl_me_auto: boolean;
+
+  @HostBinding('class') get class() {
+    return calcFlexItemClasses({
+      media: 'xl',
+      fill: this.flex_item_xl_fill,
+      grow: this.flex_item_xl_grow,
+      shrink: this.flex_item_xl_shrink,
+      order: this.flex_item_xl_order,
+      align_self: this.flex_item_xl_align_self,
+      mt_auto: this.flex_item_xl_mt_auto,
+      mb_auto: this.flex_item_xl_mb_auto,
+      ms_auto: this.flex_item_xl_ms_auto,
+      me_auto: this.flex_item_xl_me_auto,
+    })
+  }
+}
+
+@Directive({
+  selector: '[flex_item_xxl]',
+})
+export class FlexItemXxlDirective {
+  @Input() flex_item_xxl_fill: boolean = false;
+  @Input() flex_item_xxl_grow: FlexGrow = null;
+  @Input() flex_item_xxl_shrink: FlexShark = null;
+  @Input() flex_item_xxl_order: number | string = null;
+  @Input() flex_item_xxl_align_self: FlexAlignSelfMode = null;
+  @Input() flex_item_xxl_mt_auto: boolean;
+  @Input() flex_item_xxl_mb_auto: boolean;
+  @Input() flex_item_xxl_ms_auto: boolean;
+  @Input() flex_item_xxl_me_auto: boolean;
+
+  @HostBinding('class') get class() {
+    return calcFlexItemClasses({
+      media: 'xxl',
+      fill: this.flex_item_xxl_fill,
+      grow: this.flex_item_xxl_grow,
+      shrink: this.flex_item_xxl_shrink,
+      order: this.flex_item_xxl_order,
+      align_self: this.flex_item_xxl_align_self,
+      mt_auto: this.flex_item_xxl_mt_auto,
+      mb_auto: this.flex_item_xxl_mb_auto,
+      ms_auto: this.flex_item_xxl_ms_auto,
+      me_auto: this.flex_item_xxl_me_auto,
+    })
+  }
+}
 
 export const FlexDirectives = [
   FlexDirective,
@@ -444,4 +561,10 @@ export const FlexDirectives = [
   InlineFlexLgDirective,
   InlineFlexXlDirective,
   InlineFlexXxlDirective,
+  FlexItemDirective,
+  FlexItemSmDirective,
+  FlexItemMdDirective,
+  FlexItemLgDirective,
+  FlexItemXlDirective,
+  FlexItemXxlDirective,
 ]

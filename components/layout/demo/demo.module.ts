@@ -12,6 +12,10 @@ import {NSButtonModule} from "../../button";
 import {NSDemoLayoutGridComponent} from "./grid";
 import {NSDemoLayoutFlexComponent} from "./flex";
 import {NSDemoLayoutFlexJustifyContentComponent} from "./flex-justify-content";
+import {NSDemoLayoutLayout1Component} from "./layout1";
+import {NSStyleModule} from "../../style";
+import {NSDemoLayoutLayout2Component} from "./layout2";
+import {NSDemoLayoutLayout3Component} from "./layout3";
 
 @NgModule({
   declarations: [
@@ -25,10 +29,14 @@ import {NSDemoLayoutFlexJustifyContentComponent} from "./flex-justify-content";
     NSDemoLayoutGridComponent,
     NSDemoLayoutFlexComponent,
     NSDemoLayoutFlexJustifyContentComponent,
+    NSDemoLayoutLayout1Component,
+    NSDemoLayoutLayout2Component,
+    NSDemoLayoutLayout3Component,
   ],
   imports: [
     CommonModule,
     NSLayoutModule,
+    NSStyleModule,
     NSButtonModule,
   ]
 })
