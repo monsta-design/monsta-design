@@ -15,9 +15,9 @@ import {Color} from "../types";
 export class BtnDirective implements AfterViewInit, OnChanges {
 
   @Input() nsButton: Color = 'primary';
-  @Input() nsButton_size: 'sm' | 'md' | 'lg';
-  @Input() nsButton_outline: boolean | 'false' | 'true' = null;
-  @Input() nsButton_loading: boolean | 'false' | 'true' = null;
+  @Input() nsButtonSize: 'sm' | 'md' | 'lg';
+  @Input() nsButtonOutline: boolean | 'false' | 'true' = null;
+  @Input() nsButtonLoading: boolean | 'false' | 'true' = null;
   @HostBinding('disabled') _disabled;
 
   private loadingSpan = null;
@@ -25,14 +25,14 @@ export class BtnDirective implements AfterViewInit, OnChanges {
   @HostBinding('class') get getClass(): string {
     let classes = ['bs-btn']
     if (this.nsButton) {
-      if (this.nsButton_outline) {
+      if (this.nsButtonOutline) {
         classes.push(`bs-btn-outline-${this.nsButton}`)
       } else {
         classes.push(`bs-btn-${this.nsButton}`)
       }
     }
-    if (this.nsButton_size) {
-      classes.push(`bs-btn-${this.nsButton_size}`)
+    if (this.nsButtonSize) {
+      classes.push(`bs-btn-${this.nsButtonSize}`)
     }
     return classes.join(' ')
   }
@@ -48,14 +48,14 @@ export class BtnDirective implements AfterViewInit, OnChanges {
 
 
   ngAfterViewInit() {
-    if (this.nsButton_loading !== null) {
+    if (this.nsButtonLoading !== null) {
       this.el.nativeElement.classList.add('bs-shadow-none')
       this.toggleLoading()
     }
   }
 
   toggleLoading() {
-    if (this.nsButton_loading === true || this.nsButton_loading === 'true') {
+    if (this.nsButtonLoading === true || this.nsButtonLoading === 'true') {
       if (this.loadingSpan === null) {
         this.loadingSpan = document.createElement('span')
         this.loadingSpan.classList.add('bs-spinner-border')
