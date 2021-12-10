@@ -4,21 +4,21 @@ import {Component} from '@angular/core';
   selector: 'ns-demo-layout-gutter-x',
   template: `
     <button _button (click)="addGutter()">+10px</button>
-    <div _row [_gx_lg]="lg+'px'" [_gx_xl]="xl+'px'" [_gx_xxl]="xxl+'px'" [_gx_md]="md+'px'" [_gx_sm]="sm+'px'" gx="0">
-      <div _col>
-        <div _w="100" _h="100" _bg="primary">1</div>
+    <div row [gx_lg]="lg+'px'" [gx_xl]="xl+'px'" [gx_xxl]="xxl+'px'" [gx_md]="md+'px'" [gx_sm]="sm+'px'" gx="0">
+      <div col>
+        <div w="100" h="100" nsBackground="primary">1</div>
       </div>
-      <div _col>
-        <div _w="100" _h="100" _bg="secondary">2</div>
+      <div col>
+        <div w="100" h="100" nsBackground="secondary">2</div>
       </div>
-      <div _col>
-        <div _w="100" _h="100" _bg="success">3</div>
+      <div col>
+        <div w="100" h="100" nsBackground="success">3</div>
       </div>
-      <div _col>
-        <div _w="100" _h="100" _bg="warning">4</div>
+      <div col>
+        <div w="100" h="100" nsBackground="warning">4</div>
       </div>
-      <div _col>
-        <div _w="100" _h="100" _bg="danger">5</div>
+      <div col>
+        <div w="100" h="100" nsBackground="danger">5</div>
       </div>
     </div>
   `,

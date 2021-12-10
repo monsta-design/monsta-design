@@ -95,457 +95,457 @@ function calcFlexItemClasses(attributes: FlexItemAttributes): string {
 }
 
 @Directive({
-  selector: '[_flex]',
+  selector: '[flex]',
 })
 export class FlexDirective {
-  @Input() _flex_direction: FlexDirectionMode = null;
-  @Input() _flex_justify_content: FlexJustifyMode = null;
-  @Input() _flex_align_items: FlexAlignMode = null;
-  @Input() _flex_align_content: FlexAlignMode = null;
-  @Input() _flex_wrap: FlexWrapMode = null;
+  @Input() flex_direction: FlexDirectionMode = null;
+  @Input() flex_justify_content: FlexJustifyMode = null;
+  @Input() flex_align_items: FlexAlignMode = null;
+  @Input() flex_align_content: FlexAlignMode = null;
+  @Input() flex_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: false,
       media: null,
-      direction: this._flex_direction,
-      justify_content: this._flex_justify_content,
-      align_items: this._flex_align_items,
-      align_content: this._flex_align_content,
-      wrap: this._flex_wrap,
+      direction: this.flex_direction,
+      justify_content: this.flex_justify_content,
+      align_items: this.flex_align_items,
+      align_content: this.flex_align_content,
+      wrap: this.flex_wrap,
     })
   }
 }
 
 @Directive({
-  selector: '[_flex_sm]',
+  selector: '[flex_sm]',
 })
 export class FlexSmDirective {
-  @Input() _flex_sm_direction: FlexDirectionMode = null;
-  @Input() _flex_sm_justify_content: FlexJustifyMode = null;
-  @Input() _flex_sm_align_items: FlexAlignMode = null;
-  @Input() _flex_sm_align_content: FlexAlignMode = null;
-  @Input() _flex_sm_wrap: FlexWrapMode = null;
+  @Input() flex_sm_direction: FlexDirectionMode = null;
+  @Input() flex_sm_justify_content: FlexJustifyMode = null;
+  @Input() flex_sm_align_items: FlexAlignMode = null;
+  @Input() flex_sm_align_content: FlexAlignMode = null;
+  @Input() flex_sm_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: false,
       media: 'sm',
-      direction: this._flex_sm_direction,
-      justify_content: this._flex_sm_justify_content,
-      align_items: this._flex_sm_align_items,
-      align_content: this._flex_sm_align_content,
-      wrap: this._flex_sm_wrap,
+      direction: this.flex_sm_direction,
+      justify_content: this.flex_sm_justify_content,
+      align_items: this.flex_sm_align_items,
+      align_content: this.flex_sm_align_content,
+      wrap: this.flex_sm_wrap,
     })
   }
 }
 
 @Directive({
-  selector: '[_flex_md]',
+  selector: '[flex_md]',
 })
 export class FlexMdDirective {
-  @Input() _flex_md_direction: FlexDirectionMode = null;
-  @Input() _flex_md_justify_content: FlexJustifyMode = null;
-  @Input() _flex_md_align_items: FlexAlignMode = null;
-  @Input() _flex_md_align_content: FlexAlignMode = null;
-  @Input() _flex_md_wrap: FlexWrapMode = null;
+  @Input() flex_md_direction: FlexDirectionMode = null;
+  @Input() flex_md_justify_content: FlexJustifyMode = null;
+  @Input() flex_md_align_items: FlexAlignMode = null;
+  @Input() flex_md_align_content: FlexAlignMode = null;
+  @Input() flex_md_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: false,
       media: 'md',
-      direction: this._flex_md_direction,
-      justify_content: this._flex_md_justify_content,
-      align_items: this._flex_md_align_items,
-      align_content: this._flex_md_align_content,
-      wrap: this._flex_md_wrap,
+      direction: this.flex_md_direction,
+      justify_content: this.flex_md_justify_content,
+      align_items: this.flex_md_align_items,
+      align_content: this.flex_md_align_content,
+      wrap: this.flex_md_wrap,
     })
   }
 }
 
 @Directive({
-  selector: '[_flex_lg]',
+  selector: '[flex_lg]',
 })
 export class FlexLgDirective {
-  @Input() _flex_lg_direction: FlexDirectionMode = null;
-  @Input() _flex_lg_justify_content: FlexJustifyMode = null;
-  @Input() _flex_lg_align_items: FlexAlignMode = null;
-  @Input() _flex_lg_align_content: FlexAlignMode = null;
-  @Input() _flex_lg_wrap: FlexWrapMode = null;
+  @Input() flex_lg_direction: FlexDirectionMode = null;
+  @Input() flex_lg_justify_content: FlexJustifyMode = null;
+  @Input() flex_lg_align_items: FlexAlignMode = null;
+  @Input() flex_lg_align_content: FlexAlignMode = null;
+  @Input() flex_lg_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: false,
       media: 'lg',
-      direction: this._flex_lg_direction,
-      justify_content: this._flex_lg_justify_content,
-      align_items: this._flex_lg_align_items,
-      align_content: this._flex_lg_align_content,
-      wrap: this._flex_lg_wrap,
+      direction: this.flex_lg_direction,
+      justify_content: this.flex_lg_justify_content,
+      align_items: this.flex_lg_align_items,
+      align_content: this.flex_lg_align_content,
+      wrap: this.flex_lg_wrap,
     })
   }
 }
 
 @Directive({
-  selector: '[_flex_xl]',
+  selector: '[flex_xl]',
 })
 export class FlexXlDirective {
-  @Input() _flex_xl_direction: FlexDirectionMode = null;
-  @Input() _flex_xl_justify_content: FlexJustifyMode = null;
-  @Input() _flex_xl_align_items: FlexAlignMode = null;
-  @Input() _flex_xl_align_content: FlexAlignMode = null;
-  @Input() _flex_xl_wrap: FlexWrapMode = null;
+  @Input() flex_xl_direction: FlexDirectionMode = null;
+  @Input() flex_xl_justify_content: FlexJustifyMode = null;
+  @Input() flex_xl_align_items: FlexAlignMode = null;
+  @Input() flex_xl_align_content: FlexAlignMode = null;
+  @Input() flex_xl_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: false,
       media: 'xl',
-      direction: this._flex_xl_direction,
-      justify_content: this._flex_xl_justify_content,
-      align_items: this._flex_xl_align_items,
-      align_content: this._flex_xl_align_content,
-      wrap: this._flex_xl_wrap,
+      direction: this.flex_xl_direction,
+      justify_content: this.flex_xl_justify_content,
+      align_items: this.flex_xl_align_items,
+      align_content: this.flex_xl_align_content,
+      wrap: this.flex_xl_wrap,
     })
   }
 }
 
 @Directive({
-  selector: '[_flex_xxl]',
+  selector: '[flex_xxl]',
 })
 export class FlexXxlDirective {
-  @Input() _flex_xxl_direction: FlexDirectionMode = null;
-  @Input() _flex_xxl_justify_content: FlexJustifyMode = null;
-  @Input() _flex_xxl_align_items: FlexAlignMode = null;
-  @Input() _flex_xxl_align_content: FlexAlignMode = null;
-  @Input() _flex_xxl_wrap: FlexWrapMode = null;
+  @Input() flex_xxl_direction: FlexDirectionMode = null;
+  @Input() flex_xxl_justify_content: FlexJustifyMode = null;
+  @Input() flex_xxl_align_items: FlexAlignMode = null;
+  @Input() flex_xxl_align_content: FlexAlignMode = null;
+  @Input() flex_xxl_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: false,
       media: 'xxl',
-      direction: this._flex_xxl_direction,
-      justify_content: this._flex_xxl_justify_content,
-      align_items: this._flex_xxl_align_items,
-      align_content: this._flex_xxl_align_content,
-      wrap: this._flex_xxl_wrap,
+      direction: this.flex_xxl_direction,
+      justify_content: this.flex_xxl_justify_content,
+      align_items: this.flex_xxl_align_items,
+      align_content: this.flex_xxl_align_content,
+      wrap: this.flex_xxl_wrap,
     })
   }
 }
 
 @Directive({
-  selector: '[inline_flex]',
+  selector: '[inlineflex]',
 })
 export class InlineFlexDirective {
-  @Input() _flex_inline_direction: FlexDirectionMode = null;
-  @Input() _flex_inline_justify_content: FlexJustifyMode = null;
-  @Input() _flex_inline_align_items: FlexAlignMode = null;
-  @Input() _flex_inline_align_content: FlexAlignMode = null;
-  @Input() _flex_inline_wrap: FlexWrapMode = null;
+  @Input() flex_inline_direction: FlexDirectionMode = null;
+  @Input() flex_inline_justify_content: FlexJustifyMode = null;
+  @Input() flex_inline_align_items: FlexAlignMode = null;
+  @Input() flex_inline_align_content: FlexAlignMode = null;
+  @Input() flex_inline_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: true,
       media: null,
-      direction: this._flex_inline_direction,
-      justify_content: this._flex_inline_justify_content,
-      align_items: this._flex_inline_align_items,
-      align_content: this._flex_inline_align_content,
-      wrap: this._flex_inline_wrap,
+      direction: this.flex_inline_direction,
+      justify_content: this.flex_inline_justify_content,
+      align_items: this.flex_inline_align_items,
+      align_content: this.flex_inline_align_content,
+      wrap: this.flex_inline_wrap,
     })
   }
 }
 
 @Directive({
-  selector: '[_inline_flex_sm]',
+  selector: '[_inlineflex_sm]',
 })
 export class InlineFlexSmDirective {
-  @Input() _inline_flex_sm_direction: FlexDirectionMode = null;
-  @Input() _inline_flex_sm_justify_content: FlexJustifyMode = null;
-  @Input() _inline_flex_sm_align_items: FlexAlignMode = null;
-  @Input() _inline_flex_sm_align_content: FlexAlignMode = null;
-  @Input() _inline_flex_sm_wrap: FlexWrapMode = null;
+  @Input() _inlineflex_sm_direction: FlexDirectionMode = null;
+  @Input() _inlineflex_sm_justify_content: FlexJustifyMode = null;
+  @Input() _inlineflex_sm_align_items: FlexAlignMode = null;
+  @Input() _inlineflex_sm_align_content: FlexAlignMode = null;
+  @Input() _inlineflex_sm_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: true,
       media: 'sm',
-      direction: this._inline_flex_sm_direction,
-      justify_content: this._inline_flex_sm_justify_content,
-      align_items: this._inline_flex_sm_align_items,
-      align_content: this._inline_flex_sm_align_content,
-      wrap: this._inline_flex_sm_wrap,
+      direction: this._inlineflex_sm_direction,
+      justify_content: this._inlineflex_sm_justify_content,
+      align_items: this._inlineflex_sm_align_items,
+      align_content: this._inlineflex_sm_align_content,
+      wrap: this._inlineflex_sm_wrap,
     })
   }
 }
 
 @Directive({
-  selector: '[_inline_flex_md]',
+  selector: '[_inlineflex_md]',
 })
 export class InlineFlexMdDirective {
-  @Input() _inline_flex_md_direction: FlexDirectionMode = null;
-  @Input() _inline_flex_md_justify_content: FlexJustifyMode = null;
-  @Input() _inline_flex_md_align_items: FlexAlignMode = null;
-  @Input() _inline_flex_md_align_content: FlexAlignMode = null;
-  @Input() _inline_flex_md_wrap: FlexWrapMode = null;
+  @Input() _inlineflex_md_direction: FlexDirectionMode = null;
+  @Input() _inlineflex_md_justify_content: FlexJustifyMode = null;
+  @Input() _inlineflex_md_align_items: FlexAlignMode = null;
+  @Input() _inlineflex_md_align_content: FlexAlignMode = null;
+  @Input() _inlineflex_md_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: true,
       media: 'md',
-      direction: this._inline_flex_md_direction,
-      justify_content: this._inline_flex_md_justify_content,
-      align_items: this._inline_flex_md_align_items,
-      align_content: this._inline_flex_md_align_content,
-      wrap: this._inline_flex_md_wrap,
+      direction: this._inlineflex_md_direction,
+      justify_content: this._inlineflex_md_justify_content,
+      align_items: this._inlineflex_md_align_items,
+      align_content: this._inlineflex_md_align_content,
+      wrap: this._inlineflex_md_wrap,
     })
   }
 }
 
 @Directive({
-  selector: '[_inline_flex_lg]',
+  selector: '[_inlineflex_lg]',
 })
 export class InlineFlexLgDirective {
-  @Input() _inline_flex_lg_direction: FlexDirectionMode = null;
-  @Input() _inline_flex_lg_justify_content: FlexJustifyMode = null;
-  @Input() _inline_flex_lg_align_items: FlexAlignMode = null;
-  @Input() _inline_flex_lg_align_content: FlexAlignMode = null;
-  @Input() _inline_flex_lg_wrap: FlexWrapMode = null;
+  @Input() _inlineflex_lg_direction: FlexDirectionMode = null;
+  @Input() _inlineflex_lg_justify_content: FlexJustifyMode = null;
+  @Input() _inlineflex_lg_align_items: FlexAlignMode = null;
+  @Input() _inlineflex_lg_align_content: FlexAlignMode = null;
+  @Input() _inlineflex_lg_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: true,
       media: 'lg',
-      direction: this._inline_flex_lg_direction,
-      justify_content: this._inline_flex_lg_justify_content,
-      align_items: this._inline_flex_lg_align_items,
-      align_content: this._inline_flex_lg_align_content,
-      wrap: this._inline_flex_lg_wrap,
+      direction: this._inlineflex_lg_direction,
+      justify_content: this._inlineflex_lg_justify_content,
+      align_items: this._inlineflex_lg_align_items,
+      align_content: this._inlineflex_lg_align_content,
+      wrap: this._inlineflex_lg_wrap,
     })
   }
 }
 
 @Directive({
-  selector: '[_inline_flex_xl]',
+  selector: '[_inlineflex_xl]',
 })
 export class InlineFlexXlDirective {
-  @Input() _inline_flex_xl_direction: FlexDirectionMode = null;
-  @Input() _inline_flex_xl_justify_content: FlexJustifyMode = null;
-  @Input() _inline_flex_xl_align_items: FlexAlignMode = null;
-  @Input() _inline_flex_xl_align_content: FlexAlignMode = null;
-  @Input() _inline_flex_xl_wrap: FlexWrapMode = null;
+  @Input() _inlineflex_xl_direction: FlexDirectionMode = null;
+  @Input() _inlineflex_xl_justify_content: FlexJustifyMode = null;
+  @Input() _inlineflex_xl_align_items: FlexAlignMode = null;
+  @Input() _inlineflex_xl_align_content: FlexAlignMode = null;
+  @Input() _inlineflex_xl_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: true,
       media: 'xl',
-      direction: this._inline_flex_xl_direction,
-      justify_content: this._inline_flex_xl_justify_content,
-      align_items: this._inline_flex_xl_align_items,
-      align_content: this._inline_flex_xl_align_content,
-      wrap: this._inline_flex_xl_wrap,
+      direction: this._inlineflex_xl_direction,
+      justify_content: this._inlineflex_xl_justify_content,
+      align_items: this._inlineflex_xl_align_items,
+      align_content: this._inlineflex_xl_align_content,
+      wrap: this._inlineflex_xl_wrap,
     })
   }
 }
 
 @Directive({
-  selector: '[_inline_flex_xxl]',
+  selector: '[_inlineflex_xxl]',
 })
 export class InlineFlexXxlDirective {
-  @Input() _inline_flex_xxl_direction: FlexDirectionMode = null;
-  @Input() _inline_flex_xxl_justify_content: FlexJustifyMode = null;
-  @Input() _inline_flex_xxl_align_items: FlexAlignMode = null;
-  @Input() _inline_flex_xxl_align_content: FlexAlignMode = null;
-  @Input() _inline_flex_xxl_wrap: FlexWrapMode = null;
+  @Input() _inlineflex_xxl_direction: FlexDirectionMode = null;
+  @Input() _inlineflex_xxl_justify_content: FlexJustifyMode = null;
+  @Input() _inlineflex_xxl_align_items: FlexAlignMode = null;
+  @Input() _inlineflex_xxl_align_content: FlexAlignMode = null;
+  @Input() _inlineflex_xxl_wrap: FlexWrapMode = null;
 
   @HostBinding('class') get class() {
     return calcFlexClasses({
       inline: true,
       media: 'xxl',
-      direction: this._inline_flex_xxl_direction,
-      justify_content: this._inline_flex_xxl_justify_content,
-      align_items: this._inline_flex_xxl_align_items,
-      align_content: this._inline_flex_xxl_align_content,
-      wrap: this._inline_flex_xxl_wrap,
+      direction: this._inlineflex_xxl_direction,
+      justify_content: this._inlineflex_xxl_justify_content,
+      align_items: this._inlineflex_xxl_align_items,
+      align_content: this._inlineflex_xxl_align_content,
+      wrap: this._inlineflex_xxl_wrap,
     })
   }
 }
 
 @Directive({
-  selector: '[_flex_item]',
+  selector: '[flex_item]',
 })
 export class FlexItemDirective {
-  @Input() _flex_item_fill: boolean = false;
-  @Input() _flex_item_grow: FlexGrow = null;
-  @Input() _flex_item_shrink: FlexShark = null;
-  @Input() _flex_item_order: number | string = null;
-  @Input() _flex_item_align_self: FlexAlignSelfMode = null;
-  @Input() _flex_item_mt_auto: boolean;
-  @Input() _flex_item_mb_auto: boolean;
-  @Input() _flex_item_ms_auto: boolean;
-  @Input() _flex_item_me_auto: boolean;
+  @Input() flex_item_fill: boolean = false;
+  @Input() flex_item_grow: FlexGrow = null;
+  @Input() flex_item_shrink: FlexShark = null;
+  @Input() flex_item_order: number | string = null;
+  @Input() flex_item_align_self: FlexAlignSelfMode = null;
+  @Input() flex_item_mt_auto: boolean;
+  @Input() flex_item_mb_auto: boolean;
+  @Input() flex_item_ms_auto: boolean;
+  @Input() flex_item_me_auto: boolean;
 
   @HostBinding('class') get class() {
     return calcFlexItemClasses({
       media: 'md',
-      fill: this._flex_item_fill,
-      grow: this._flex_item_grow,
-      shrink: this._flex_item_shrink,
-      order: this._flex_item_order,
-      align_self: this._flex_item_align_self,
-      mt_auto: this._flex_item_mt_auto,
-      mb_auto: this._flex_item_mb_auto,
-      ms_auto: this._flex_item_ms_auto,
-      me_auto: this._flex_item_me_auto,
+      fill: this.flex_item_fill,
+      grow: this.flex_item_grow,
+      shrink: this.flex_item_shrink,
+      order: this.flex_item_order,
+      align_self: this.flex_item_align_self,
+      mt_auto: this.flex_item_mt_auto,
+      mb_auto: this.flex_item_mb_auto,
+      ms_auto: this.flex_item_ms_auto,
+      me_auto: this.flex_item_me_auto,
     })
   }
 }
 
 @Directive({
-  selector: '[_flex_item_sm]',
+  selector: '[flex_item_sm]',
 })
 export class FlexItemSmDirective {
-  @Input() _flex_item_sm_fill: boolean = false;
-  @Input() _flex_item_sm_grow: FlexGrow = null;
-  @Input() _flex_item_sm_shrink: FlexShark = null;
-  @Input() _flex_item_sm_order: number | string = null;
-  @Input() _flex_item_sm_align_self: FlexAlignSelfMode = null;
-  @Input() _flex_item_sm_mt_auto: boolean;
-  @Input() _flex_item_sm_mb_auto: boolean;
-  @Input() _flex_item_sm_ms_auto: boolean;
-  @Input() _flex_item_sm_me_auto: boolean;
+  @Input() flex_item_sm_fill: boolean = false;
+  @Input() flex_item_sm_grow: FlexGrow = null;
+  @Input() flex_item_sm_shrink: FlexShark = null;
+  @Input() flex_item_sm_order: number | string = null;
+  @Input() flex_item_sm_align_self: FlexAlignSelfMode = null;
+  @Input() flex_item_sm_mt_auto: boolean;
+  @Input() flex_item_sm_mb_auto: boolean;
+  @Input() flex_item_sm_ms_auto: boolean;
+  @Input() flex_item_sm_me_auto: boolean;
 
   @HostBinding('class') get class() {
     return calcFlexItemClasses({
       media: 'sm',
-      fill: this._flex_item_sm_fill,
-      grow: this._flex_item_sm_grow,
-      shrink: this._flex_item_sm_shrink,
-      order: this._flex_item_sm_order,
-      align_self: this._flex_item_sm_align_self,
-      mt_auto: this._flex_item_sm_mt_auto,
-      mb_auto: this._flex_item_sm_mb_auto,
-      ms_auto: this._flex_item_sm_ms_auto,
-      me_auto: this._flex_item_sm_me_auto,
+      fill: this.flex_item_sm_fill,
+      grow: this.flex_item_sm_grow,
+      shrink: this.flex_item_sm_shrink,
+      order: this.flex_item_sm_order,
+      align_self: this.flex_item_sm_align_self,
+      mt_auto: this.flex_item_sm_mt_auto,
+      mb_auto: this.flex_item_sm_mb_auto,
+      ms_auto: this.flex_item_sm_ms_auto,
+      me_auto: this.flex_item_sm_me_auto,
     })
   }
 }
 
 @Directive({
-  selector: '[_flex_item_md]',
+  selector: '[flex_item_md]',
 })
 export class FlexItemMdDirective {
-  @Input() _flex_item_md_fill: boolean = false;
-  @Input() _flex_item_md_grow: FlexGrow = null;
-  @Input() _flex_item_md_shrink: FlexShark = null;
-  @Input() _flex_item_md_order: number | string = null;
-  @Input() _flex_item_md_align_self: FlexAlignSelfMode = null;
-  @Input() _flex_item_md_mt_auto: boolean;
-  @Input() _flex_item_md_mb_auto: boolean;
-  @Input() _flex_item_md_ms_auto: boolean;
-  @Input() _flex_item_md_me_auto: boolean;
+  @Input() flex_item_md_fill: boolean = false;
+  @Input() flex_item_md_grow: FlexGrow = null;
+  @Input() flex_item_md_shrink: FlexShark = null;
+  @Input() flex_item_md_order: number | string = null;
+  @Input() flex_item_md_align_self: FlexAlignSelfMode = null;
+  @Input() flex_item_md_mt_auto: boolean;
+  @Input() flex_item_md_mb_auto: boolean;
+  @Input() flex_item_md_ms_auto: boolean;
+  @Input() flex_item_md_me_auto: boolean;
 
   @HostBinding('class') get class() {
     return calcFlexItemClasses({
       media: 'md',
-      fill: this._flex_item_md_fill,
-      grow: this._flex_item_md_grow,
-      shrink: this._flex_item_md_shrink,
-      order: this._flex_item_md_order,
-      align_self: this._flex_item_md_align_self,
-      mt_auto: this._flex_item_md_mt_auto,
-      mb_auto: this._flex_item_md_mb_auto,
-      ms_auto: this._flex_item_md_ms_auto,
-      me_auto: this._flex_item_md_me_auto,
+      fill: this.flex_item_md_fill,
+      grow: this.flex_item_md_grow,
+      shrink: this.flex_item_md_shrink,
+      order: this.flex_item_md_order,
+      align_self: this.flex_item_md_align_self,
+      mt_auto: this.flex_item_md_mt_auto,
+      mb_auto: this.flex_item_md_mb_auto,
+      ms_auto: this.flex_item_md_ms_auto,
+      me_auto: this.flex_item_md_me_auto,
     })
   }
 }
 
 @Directive({
-  selector: '[_flex_item_lg]',
+  selector: '[flex_item_lg]',
 })
 export class FlexItemLgDirective {
-  @Input() _flex_item_lg_fill: boolean = false;
-  @Input() _flex_item_lg_grow: FlexGrow = null;
-  @Input() _flex_item_lg_shrink: FlexShark = null;
-  @Input() _flex_item_lg_order: number | string = null;
-  @Input() _flex_item_lg_align_self: FlexAlignSelfMode = null;
-  @Input() _flex_item_lg_mt_auto: boolean;
-  @Input() _flex_item_lg_mb_auto: boolean;
-  @Input() _flex_item_lg_ms_auto: boolean;
-  @Input() _flex_item_lg_me_auto: boolean;
+  @Input() flex_item_lg_fill: boolean = false;
+  @Input() flex_item_lg_grow: FlexGrow = null;
+  @Input() flex_item_lg_shrink: FlexShark = null;
+  @Input() flex_item_lg_order: number | string = null;
+  @Input() flex_item_lg_align_self: FlexAlignSelfMode = null;
+  @Input() flex_item_lg_mt_auto: boolean;
+  @Input() flex_item_lg_mb_auto: boolean;
+  @Input() flex_item_lg_ms_auto: boolean;
+  @Input() flex_item_lg_me_auto: boolean;
 
   @HostBinding('class') get class() {
     return calcFlexItemClasses({
       media: 'lg',
-      fill: this._flex_item_lg_fill,
-      grow: this._flex_item_lg_grow,
-      shrink: this._flex_item_lg_shrink,
-      order: this._flex_item_lg_order,
-      align_self: this._flex_item_lg_align_self,
-      mt_auto: this._flex_item_lg_mt_auto,
-      mb_auto: this._flex_item_lg_mb_auto,
-      ms_auto: this._flex_item_lg_ms_auto,
-      me_auto: this._flex_item_lg_me_auto,
+      fill: this.flex_item_lg_fill,
+      grow: this.flex_item_lg_grow,
+      shrink: this.flex_item_lg_shrink,
+      order: this.flex_item_lg_order,
+      align_self: this.flex_item_lg_align_self,
+      mt_auto: this.flex_item_lg_mt_auto,
+      mb_auto: this.flex_item_lg_mb_auto,
+      ms_auto: this.flex_item_lg_ms_auto,
+      me_auto: this.flex_item_lg_me_auto,
     })
   }
 }
 
 @Directive({
-  selector: '[_flex_item_xl]',
+  selector: '[flex_item_xl]',
 })
 export class FlexItemXlDirective {
-  @Input() _flex_item_xl_fill: boolean = false;
-  @Input() _flex_item_xl_grow: FlexGrow = null;
-  @Input() _flex_item_xl_shrink: FlexShark = null;
-  @Input() _flex_item_xl_order: number | string = null;
-  @Input() _flex_item_xl_align_self: FlexAlignSelfMode = null;
-  @Input() _flex_item_xl_mt_auto: boolean;
-  @Input() _flex_item_xl_mb_auto: boolean;
-  @Input() _flex_item_xl_ms_auto: boolean;
-  @Input() _flex_item_xl_me_auto: boolean;
+  @Input() flex_item_xl_fill: boolean = false;
+  @Input() flex_item_xl_grow: FlexGrow = null;
+  @Input() flex_item_xl_shrink: FlexShark = null;
+  @Input() flex_item_xl_order: number | string = null;
+  @Input() flex_item_xl_align_self: FlexAlignSelfMode = null;
+  @Input() flex_item_xl_mt_auto: boolean;
+  @Input() flex_item_xl_mb_auto: boolean;
+  @Input() flex_item_xl_ms_auto: boolean;
+  @Input() flex_item_xl_me_auto: boolean;
 
   @HostBinding('class') get class() {
     return calcFlexItemClasses({
       media: 'xl',
-      fill: this._flex_item_xl_fill,
-      grow: this._flex_item_xl_grow,
-      shrink: this._flex_item_xl_shrink,
-      order: this._flex_item_xl_order,
-      align_self: this._flex_item_xl_align_self,
-      mt_auto: this._flex_item_xl_mt_auto,
-      mb_auto: this._flex_item_xl_mb_auto,
-      ms_auto: this._flex_item_xl_ms_auto,
-      me_auto: this._flex_item_xl_me_auto,
+      fill: this.flex_item_xl_fill,
+      grow: this.flex_item_xl_grow,
+      shrink: this.flex_item_xl_shrink,
+      order: this.flex_item_xl_order,
+      align_self: this.flex_item_xl_align_self,
+      mt_auto: this.flex_item_xl_mt_auto,
+      mb_auto: this.flex_item_xl_mb_auto,
+      ms_auto: this.flex_item_xl_ms_auto,
+      me_auto: this.flex_item_xl_me_auto,
     })
   }
 }
 
 @Directive({
-  selector: '[_flex_item_xxl]',
+  selector: '[flex_item_xxl]',
 })
 export class FlexItemXxlDirective {
-  @Input() _flex_item_xxl_fill: boolean = false;
-  @Input() _flex_item_xxl_grow: FlexGrow = null;
-  @Input() _flex_item_xxl_shrink: FlexShark = null;
-  @Input() _flex_item_xxl_order: number | string = null;
-  @Input() _flex_item_xxl_align_self: FlexAlignSelfMode = null;
-  @Input() _flex_item_xxl_mt_auto: boolean;
-  @Input() _flex_item_xxl_mb_auto: boolean;
-  @Input() _flex_item_xxl_ms_auto: boolean;
-  @Input() _flex_item_xxl_me_auto: boolean;
+  @Input() flex_item_xxl_fill: boolean = false;
+  @Input() flex_item_xxl_grow: FlexGrow = null;
+  @Input() flex_item_xxl_shrink: FlexShark = null;
+  @Input() flex_item_xxl_order: number | string = null;
+  @Input() flex_item_xxl_align_self: FlexAlignSelfMode = null;
+  @Input() flex_item_xxl_mt_auto: boolean;
+  @Input() flex_item_xxl_mb_auto: boolean;
+  @Input() flex_item_xxl_ms_auto: boolean;
+  @Input() flex_item_xxl_me_auto: boolean;
 
   @HostBinding('class') get class() {
     return calcFlexItemClasses({
       media: 'xxl',
-      fill: this._flex_item_xxl_fill,
-      grow: this._flex_item_xxl_grow,
-      shrink: this._flex_item_xxl_shrink,
-      order: this._flex_item_xxl_order,
-      align_self: this._flex_item_xxl_align_self,
-      mt_auto: this._flex_item_xxl_mt_auto,
-      mb_auto: this._flex_item_xxl_mb_auto,
-      ms_auto: this._flex_item_xxl_ms_auto,
-      me_auto: this._flex_item_xxl_me_auto,
+      fill: this.flex_item_xxl_fill,
+      grow: this.flex_item_xxl_grow,
+      shrink: this.flex_item_xxl_shrink,
+      order: this.flex_item_xxl_order,
+      align_self: this.flex_item_xxl_align_self,
+      mt_auto: this.flex_item_xxl_mt_auto,
+      mb_auto: this.flex_item_xxl_mb_auto,
+      ms_auto: this.flex_item_xxl_ms_auto,
+      me_auto: this.flex_item_xxl_me_auto,
     })
   }
 }

@@ -3,10 +3,10 @@ import {Color, isDefaultColor, randColor} from "../types";
 import {isNumeric} from "rxjs/internal-compatibility";
 
 @Directive({
-  selector: '[_color]',
+  selector: '[nsColor]',
 })
 export class ColorDirective {
-  @Input('_color') color: Color = null;
+  @Input('nsColor') color: Color = null;
   private rand: string = null;
 
   @HostBinding('class')
@@ -34,10 +34,10 @@ export class ColorDirective {
 }
 
 @Directive({
-  selector: '[_overflow]',
+  selector: '[nsOverflow]',
 })
 export class OverflowDirective {
-  @Input('_overflow') overflow: 'auto' | 'hidden' | 'visible' | 'scroll' = 'auto';
+  @Input('overflow') overflow: 'auto' | 'hidden' | 'visible' | 'scroll' = 'auto';
 
   @HostBinding('class')
   get class() {
@@ -46,10 +46,10 @@ export class OverflowDirective {
 }
 
 @Directive({
-  selector: '[_shadow]',
+  selector: '[nsShadow]',
 })
 export class ShadowDirective {
-  @Input('_shadow') shadow: 'none' | 'sm' | 'lg' | '' = '';
+  @Input('nsShadow') shadow: 'none' | 'sm' | 'lg' | '' = '';
 
   @HostBinding('class')
   get class() {
@@ -61,10 +61,10 @@ export class ShadowDirective {
 }
 
 @Directive({
-  selector: '[_user_select]',
+  selector: '[nsUserSelect]',
 })
 export class UserSelectDirective {
-  @Input('_user_select') user_select: 'all' | 'none' | 'auto' = 'auto';
+  @Input('nsUserSelect') user_select: 'all' | 'none' | 'auto' = 'auto';
 
   @HostBinding('class')
   get class() {
@@ -74,13 +74,13 @@ export class UserSelectDirective {
 
 
 @Directive({
-  selector: '[_border]',
+  selector: '[nsBorder]',
 })
 export class BorderDirective {
 
-  @Input('_border') border: 'all' | 'top' | 'bottom' | 'start' | 'end' | 'none' | 'no-top' | 'no-bottom' | 'no-start' | 'no-end' = 'all'
-  @Input('_border_color') border_color: Color = null
-  @Input('_border_width') border_width: 1 | 2 | 3 | 4 | 5 | string = null
+  @Input('nsBorder') border: 'all' | 'top' | 'bottom' | 'start' | 'end' | 'none' | 'no-top' | 'no-bottom' | 'no-start' | 'no-end' = 'all'
+  @Input('nsBorderColor') border_color: Color = null
+  @Input('nsBorderWidth') border_width: 1 | 2 | 3 | 4 | 5 | string = null
 
   @HostBinding('class')
   get class(): string {
@@ -148,12 +148,12 @@ export class BorderDirective {
 }
 
 @Directive({
-  selector: '[_rounded]',
+  selector: '[nsRounded]',
 })
 export class RoundedDirective {
 
-  @Input('_rounded') rounded: 'all' | 'top' | 'bottom' | 'start' | 'end' | 'circle' | 'pill' = 'all'
-  @Input('_rounded_size') rounded_size: 0 | 1 | 2 | 3 | 4 | 5 | string = null
+  @Input('nsRounded') rounded: 'all' | 'top' | 'bottom' | 'start' | 'end' | 'circle' | 'pill' = 'all'
+  @Input('nsRoundedSize') rounded_size: 0 | 1 | 2 | 3 | 4 | 5 | string = null
 
   @HostBinding('class')
   get class(): string {
@@ -199,11 +199,11 @@ export class RoundedDirective {
 }
 
 @Directive({
-  selector: '[_bg]',
+  selector: '[nsBackground]',
 
 })
 export class BGDirective {
-  @Input('_bg') color: Color = null;
+  @Input('nsBackground') color: Color = null;
   private rand: string = null;
 
   @HostBinding('class')

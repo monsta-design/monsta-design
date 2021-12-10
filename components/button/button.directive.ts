@@ -2,39 +2,37 @@ import {
   AfterViewInit,
   Directive,
   ElementRef,
-  EventEmitter,
   HostBinding,
   Input, OnChanges,
-  Output,
   SimpleChanges
 } from '@angular/core';
 import {Color} from "../types";
 
 
 @Directive({
-  selector: '[_button]'
+  selector: '[nsButton]'
 })
 export class BtnDirective implements AfterViewInit, OnChanges {
 
-  @Input() _button: Color = 'primary';
-  @Input() _button_size: 'sm' | 'md' | 'lg';
-  @Input() _button_outline: boolean | 'false' | 'true' = null;
-  @Input() _button_loading: boolean | 'false' | 'true' = null;
+  @Input() nsButton: Color = 'primary';
+  @Input() nsButton_size: 'sm' | 'md' | 'lg';
+  @Input() nsButton_outline: boolean | 'false' | 'true' = null;
+  @Input() nsButton_loading: boolean | 'false' | 'true' = null;
   @HostBinding('disabled') _disabled;
 
   private loadingSpan = null;
 
   @HostBinding('class') get getClass(): string {
     let classes = ['bs-btn']
-    if (this._button) {
-      if (this._button_outline) {
-        classes.push(`bs-btn-outline-${this._button}`)
+    if (this.nsButton) {
+      if (this.nsButton_outline) {
+        classes.push(`bs-btn-outline-${this.nsButton}`)
       } else {
-        classes.push(`bs-btn-${this._button}`)
+        classes.push(`bs-btn-${this.nsButton}`)
       }
     }
-    if (this._button_size) {
-      classes.push(`bs-btn-${this._button_size}`)
+    if (this.nsButton_size) {
+      classes.push(`bs-btn-${this.nsButton_size}`)
     }
     return classes.join(' ')
   }
@@ -50,14 +48,14 @@ export class BtnDirective implements AfterViewInit, OnChanges {
 
 
   ngAfterViewInit() {
-    if (this._button_loading !== null) {
+    if (this.nsButton_loading !== null) {
       this.el.nativeElement.classList.add('bs-shadow-none')
       this.toggleLoading()
     }
   }
 
   toggleLoading() {
-    if (this._button_loading === true || this._button_loading === 'true') {
+    if (this.nsButton_loading === true || this.nsButton_loading === 'true') {
       if (this.loadingSpan === null) {
         this.loadingSpan = document.createElement('span')
         this.loadingSpan.classList.add('bs-spinner-border')

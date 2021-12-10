@@ -56,10 +56,10 @@ export function insertGutterElementStyle(target: Element, container: HTMLElement
 }
 
 @Directive({
-  selector: '[_g]'
+  selector: '[g]'
 })
 export class GDirective implements OnChanges {
-  @Input('_g') size: SpacingSize | number | string = null;
+  @Input('g') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -99,10 +99,10 @@ export class GDirective implements OnChanges {
 }
 
 @Directive({
-  selector: '[_g_sm]'
+  selector: '[g_sm]'
 })
 export class GSMDirective implements OnChanges {
-  @Input('_g_sm') size: SpacingSize | number | string = null;
+  @Input('g_sm') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -142,10 +142,10 @@ export class GSMDirective implements OnChanges {
 }
 
 @Directive({
-  selector: '[_g_md]'
+  selector: '[g_md]'
 })
 export class GMDDirective implements OnChanges {
-  @Input('_g_md') size: SpacingSize | number | string = null;
+  @Input('g_md') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -185,10 +185,10 @@ export class GMDDirective implements OnChanges {
 }
 
 @Directive({
-  selector: '[_g_lg]'
+  selector: '[g_lg]'
 })
 export class GLGDirective implements OnChanges {
-  @Input('_g_lg') size: SpacingSize | number | string = null;
+  @Input('g_lg') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -228,10 +228,10 @@ export class GLGDirective implements OnChanges {
 }
 
 @Directive({
-  selector: '[_g_xl]'
+  selector: '[g_xl]'
 })
 export class GXLDirective implements OnChanges {
-  @Input('_g_xl') size: SpacingSize | number | string = null;
+  @Input('g_xl') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -271,10 +271,10 @@ export class GXLDirective implements OnChanges {
 }
 
 @Directive({
-  selector: '[_g_xxl]'
+  selector: '[g_xxl]'
 })
 export class GXXLDirective implements OnChanges {
-  @Input('_g_xxl') size: SpacingSize | number | string = null;
+  @Input('g_xxl') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -315,10 +315,10 @@ export class GXXLDirective implements OnChanges {
 
 
 @Directive({
-  selector: '[_gx]'
+  selector: '[gx]'
 })
 export class GxDirective implements OnChanges {
-  @Input('_gx') size: SpacingSize | number | string = null;
+  @Input('gx') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -359,10 +359,10 @@ export class GxDirective implements OnChanges {
 
 
 @Directive({
-  selector: '[_gx_sm]'
+  selector: '[gx_sm]'
 })
 export class GxSMDirective implements OnInit, OnChanges {
-  @Input('_gx_sm') size: SpacingSize | number | string = null;
+  @Input('gx_sm') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -402,10 +402,10 @@ export class GxSMDirective implements OnInit, OnChanges {
 }
 
 @Directive({
-  selector: '[_gx_md]'
+  selector: '[gx_md]'
 })
 export class GxMDDirective implements OnInit, OnChanges {
-  @Input('_gx_md') size: SpacingSize | number | string = null;
+  @Input('gx_md') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -445,10 +445,10 @@ export class GxMDDirective implements OnInit, OnChanges {
 }
 
 @Directive({
-  selector: '[_gx_lg]'
+  selector: '[gx_lg]'
 })
 export class GxLGDirective implements OnInit, OnChanges {
-  @Input('_gx_lg') size: SpacingSize | number | string = null;
+  @Input('gx_lg') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -488,10 +488,10 @@ export class GxLGDirective implements OnInit, OnChanges {
 }
 
 @Directive({
-  selector: '[_gx_xl]'
+  selector: '[gx_xl]'
 })
 export class GxXLDirective implements OnInit, OnChanges {
-  @Input('_gx_xl') size: SpacingSize | number | string = null;
+  @Input('gx_xl') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -531,10 +531,10 @@ export class GxXLDirective implements OnInit, OnChanges {
 }
 
 @Directive({
-  selector: '[_gx_xxl]'
+  selector: '[gx_xxl]'
 })
 export class GxXXLDirective implements OnInit, OnChanges {
-  @Input('_gx_xxl') size: SpacingSize | number | string = null;
+  @Input('gx_xxl') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -574,10 +574,10 @@ export class GxXXLDirective implements OnInit, OnChanges {
 }
 
 @Directive({
-  selector: '[_gy]'
+  selector: '[gy]'
 })
 export class GyDirective implements OnChanges {
-  @Input('_gy') size: SpacingSize | number | string = null;
+  @Input('gy') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -618,10 +618,10 @@ export class GyDirective implements OnChanges {
 
 
 @Directive({
-  selector: '[_gy_sm]'
+  selector: '[gy_sm]'
 })
 export class GySMDirective implements OnInit, OnChanges {
-  @Input('_gy_sm') size: SpacingSize | number | string = null;
+  @Input('gy_sm') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -661,10 +661,10 @@ export class GySMDirective implements OnInit, OnChanges {
 }
 
 @Directive({
-  selector: '[_gx_md]'
+  selector: '[gx_md]'
 })
 export class GyMDDirective implements OnInit, OnChanges {
-  @Input('_gy_md') size: SpacingSize | number | string = null;
+  @Input('gy_md') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -704,10 +704,10 @@ export class GyMDDirective implements OnInit, OnChanges {
 }
 
 @Directive({
-  selector: '[_gy_lg]'
+  selector: '[gy_lg]'
 })
 export class GyLGDirective implements OnInit, OnChanges {
-  @Input('_gy_lg') size: SpacingSize | number | string = null;
+  @Input('gy_lg') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -747,10 +747,10 @@ export class GyLGDirective implements OnInit, OnChanges {
 }
 
 @Directive({
-  selector: '[_gy_xl]'
+  selector: '[gy_xl]'
 })
 export class GyXLDirective implements OnInit, OnChanges {
-  @Input('_gy_xl') size: SpacingSize | number | string = null;
+  @Input('gy_xl') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -790,10 +790,10 @@ export class GyXLDirective implements OnInit, OnChanges {
 }
 
 @Directive({
-  selector: '[_gy_xxl]'
+  selector: '[gy_xxl]'
 })
 export class GyXXLDirective implements OnInit, OnChanges {
-  @Input('_gy_xxl') size: SpacingSize | number | string = null;
+  @Input('gy_xxl') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {

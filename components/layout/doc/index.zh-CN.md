@@ -18,6 +18,14 @@ import { NSLayoutModule } from 'monsta-design/layout';
 
 ## API
 
+## 指令
+
+| 指令 | 说明 
+| --- | --- |
+`row` | 用于 grid 布局
+`col` | 用于 grid 布局
+`flex` | 显示为 flex 盒子
+`inline_flex` | 显示为 flex 盒子
 
 ### ns-row
 

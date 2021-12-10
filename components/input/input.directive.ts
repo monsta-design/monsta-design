@@ -1,11 +1,11 @@
 import {Directive, HostBinding, Input} from '@angular/core';
 
 @Directive({
-  selector: '[_input]'
+  selector: '[nsInput]'
 })
 export class InputDirective {
-  @Input() _input_size: 'sm' | 'lg' | 'default';
-  @Input() _input_loading: boolean;
+  @Input('nsSize') nsSize: 'sm' | 'lg' | 'default';
+  @Input() nsLoading: boolean;
 
   @HostBinding('class') get getClass() {
     let classes = ['bs-form-control']
@@ -14,7 +14,7 @@ export class InputDirective {
 }
 
 @Directive({
-  selector: '[_label]'
+  selector: '[nsLabel]'
 })
 export class LabelDirective {
   @HostBinding('class') get getClass() {
@@ -24,7 +24,7 @@ export class LabelDirective {
 }
 
 @Directive({
-  selector: '[_check]'
+  selector: '[nsCheck]'
 })
 export class CheckDirective {
   @Input() _check_inline: boolean

@@ -5,9 +5,9 @@ import {Component} from '@angular/core';
   template: `
     <a href="javascript:;" (click)="addMargin()">添加间距</a>
     <a href="javascript:;" (click)="subMargin()">减少间距</a>
-    <div class="container" _border="all">
-      <div [m]="m" [m_sm]="m_sm" [m_md]="m_md" [m_lg]="m_lg" [m_xl]="m_xl" [m_xxl]="m_xxl" _w="20px" _h="20px"
-           _bg="light">
+    <div class="container" nsBorder="all">
+      <div [m]="m" [m_sm]="m_sm" [m_md]="m_md" [m_lg]="m_lg" [m_xl]="m_xl" [m_xxl]="m_xxl" w="20px" h="20px"
+           nsBackground="light">
       </div>
     </div>
   `,
@@ -19,10 +19,6 @@ import {Component} from '@angular/core';
       /*linear-gradient(white 1px, transparent 0),*/
       /*linear-gradient(90deg, white 1px, transparent 0);*/
       /*background-size: 15px 15px, 15px 15px, 75px 75px, 75px 75px;*/
-    }
-
-    .box {
-      background: #fff;
     }
   `]
 })

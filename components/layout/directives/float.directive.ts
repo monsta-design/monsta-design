@@ -3,97 +3,97 @@ import {Directive, HostBinding, Input} from '@angular/core';
 export type FloatValue = 'start' | 'end' | 'none';
 
 @Directive({
-  selector: '[_float]',
+  selector: '[float]',
 })
 export class FloatDirective {
-  @Input() _float: FloatValue = null;
+  @Input() float: FloatValue = null;
 
   @HostBinding('class')
   get class() {
-    if (this._float === null) {
+    if (this.float === null) {
       return null
     }
-    return 'bs-float-' + this._float
+    return 'bs-float-' + this.float
   }
 }
 
 @Directive({
-  selector: '[_float_sm]',
+  selector: '[float_sm]',
 })
 export class FloatSmDirective {
-  @Input() _float_sm: FloatValue = null;
+  @Input() float_sm: FloatValue = null;
 
   @HostBinding('class')
   get class() {
-    if (this._float_sm === null) {
+    if (this.float_sm === null) {
       return null
     }
-    return 'bs-float-sm-' + this._float_sm
+    return 'bs-float-sm-' + this.float_sm
   }
 }
 
 @Directive({
-  selector: '[_float_md]',
+  selector: '[float_md]',
 })
 export class FloatMdDirective {
-  @Input() _float_md: FloatValue = null;
+  @Input() float_md: FloatValue = null;
 
   @HostBinding('class')
   get class() {
-    if (this._float_md === null) {
+    if (this.float_md === null) {
       return null
     }
-    return 'bs-float-md-' + this._float_md
+    return 'bs-float-md-' + this.float_md
   }
 }
 
 @Directive({
-  selector: '[_float_lg]',
+  selector: '[float_lg]',
 })
 export class FloatLgDirective {
-  @Input() _float_lg: FloatValue = null;
+  @Input() float_lg: FloatValue = null;
 
   @HostBinding('class')
   get class() {
-    if (this._float_lg === null) {
+    if (this.float_lg === null) {
       return null
     }
-    return 'bs-float-lg-' + this._float_lg
+    return 'bs-float-lg-' + this.float_lg
   }
 }
 
 @Directive({
-  selector: '[_float_xl]',
+  selector: '[float_xl]',
 })
 export class FloatXlDirective {
-  @Input() _float_xl: FloatValue = null;
+  @Input() float_xl: FloatValue = null;
 
   @HostBinding('class')
   get class() {
-    if (this._float_xl === null) {
+    if (this.float_xl === null) {
       return null
     }
-    return 'bs-float-xl-' + this._float_xl
+    return 'bs-float-xl-' + this.float_xl
   }
 }
 
 @Directive({
-  selector: '[_float_xxl]',
+  selector: '[float_xxl]',
 })
 export class FloatXxlDirective {
-  @Input() _float_xxl: FloatValue = null;
+  @Input() float_xxl: FloatValue = null;
 
   @HostBinding('class')
   get class() {
-    if (this._float_xxl === null) {
+    if (this.float_xxl === null) {
       return null
     }
-    return 'bs-float-xxl-' + this._float_xxl
+    return 'bs-float-xxl-' + this.float_xxl
   }
 }
 
 @Directive({
-  selector: '[_clearfix]',
+  selector: '[clearfix]',
   host: {
     class: 'bs-clearfix'
   }

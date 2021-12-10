@@ -48,47 +48,47 @@ function insertVrs(elem: Element, children: Element[], value: FlexAlignSelfMode,
 }
 
 @Directive({
-  selector: '[_h_stack]',
+  selector: '[h_stack]',
   host: {
     class: 'bs-hstack'
   }
 })
 export class HStackDirective implements AfterContentInit {
-  @Input() _h_split: FlexAlignSelfMode | 'none' = 'none';
+  @Input() h_stack: FlexAlignSelfMode = '';
 
   constructor(private el: ElementRef) {
   }
 
   ngAfterContentInit() {
-    if (this._h_split === 'none') {
+    if (this.h_stack === '') {
       return
     }
-    insertVrs(this.el.nativeElement, [...this.el.nativeElement.children], this._h_split)
+    insertVrs(this.el.nativeElement, [...this.el.nativeElement.children], this.h_stack)
   }
 }
 
 @Directive({
-  selector: '[_v_stack]',
+  selector: '[v_stack]',
   host: {
     class: 'bs-vstack'
   }
 })
 export class VStackDirective implements AfterContentInit {
-  @Input() _v_split: FlexAlignSelfMode | 'none' = 'none';
+  @Input() v_stack: FlexAlignSelfMode = '';
 
   constructor(private el: ElementRef) {
   }
 
   ngAfterContentInit() {
-    if (this._v_split === 'none') {
+    if (this.v_stack === '') {
       return
     }
-    insertVrs(this.el.nativeElement, [...this.el.nativeElement.children], this._v_split, true)
+    insertVrs(this.el.nativeElement, [...this.el.nativeElement.children], this.v_stack, true)
   }
 }
 
 @Directive({
-  selector: '[_vr]',
+  selector: '[vr]',
   host: {
     class: 'bs-vr'
   }
@@ -105,10 +105,10 @@ export class VRDirective {
 }
 
 @Directive({
-  selector: '[_gap]',
+  selector: '[gap]',
 })
 export class GapDirective implements OnChanges {
-  @Input('_gap') gap: number | string;
+  @Input('gap') gap: number | string;
 
   @HostBinding('class') get getClass() {
     if (this.gap !== null && isNumeric(this.gap)) {
@@ -146,10 +146,10 @@ export class GapDirective implements OnChanges {
 }
 
 @Directive({
-  selector: '[_gap_sm]',
+  selector: '[gap_sm]',
 })
 export class GapSmDirective implements OnChanges {
-  @Input('_gap_sm') gap: number | string;
+  @Input('gap_sm') gap: number | string;
 
   @HostBinding('class') get getClass() {
     if (this.gap !== null && isNumeric(this.gap)) {
@@ -187,10 +187,10 @@ export class GapSmDirective implements OnChanges {
 }
 
 @Directive({
-  selector: '[_gap_md]',
+  selector: '[gap_md]',
 })
 export class GapMdDirective implements OnChanges {
-  @Input('_gap_md') gap: number | string;
+  @Input('gap_md') gap: number | string;
 
   @HostBinding('class') get getClass() {
     if (this.gap !== null && isNumeric(this.gap)) {
@@ -228,10 +228,10 @@ export class GapMdDirective implements OnChanges {
 }
 
 @Directive({
-  selector: '[_gap_lg]',
+  selector: '[gap_lg]',
 })
 export class GapLgDirective implements OnChanges {
-  @Input('_gap_lg') gap: number | string;
+  @Input('gap_lg') gap: number | string;
 
   @HostBinding('class') get getClass() {
     if (this.gap !== null && isNumeric(this.gap)) {
@@ -272,7 +272,7 @@ export class GapLgDirective implements OnChanges {
   selector: '[gap_xl]',
 })
 export class GapXlDirective implements OnChanges {
-  @Input('_gap_xl') gap: number | string;
+  @Input('gap_xl') gap: number | string;
 
   @HostBinding('class') get getClass() {
     if (this.gap !== null && isNumeric(this.gap)) {
@@ -313,7 +313,7 @@ export class GapXlDirective implements OnChanges {
   selector: '[gap_xxl]',
 })
 export class GapXxlDirective implements OnChanges {
-  @Input('_gap_xxl') gap: number | string;
+  @Input('gap_xxl') gap: number | string;
 
   @HostBinding('class') get getClass() {
     if (this.gap !== null && isNumeric(this.gap)) {

@@ -77,10 +77,11 @@ export const BreakPoints = {
 export type FlexDirectionMode = 'row' | 'column' | 'row-reverse' | 'column-reverse';
 export type FlexJustifyMode = 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly';
 export type FlexAlignMode = 'start' | 'end' | 'center' | 'stretch';
-export type FlexAlignSelfMode = 'start' | 'end' | 'center' | 'stretch' | 'baseline';
+export type FlexAlignSelfMode = 'start' | 'end' | 'center' | 'stretch' | 'baseline' | '';
 export type FlexWrapMode = 'wrap' | 'nowrap' | 'wrap-reverse';
 export type FlexGrow = 0 | 1 | '0' | '1';
 export type FlexShark = 0 | 1 | '0' | '1';
+
 export class ElementStyle {
   media: string
   breakpoint: number

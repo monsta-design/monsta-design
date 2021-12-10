@@ -13,60 +13,60 @@ export type DisplayMode =
   | 'inline-flex';
 
 @Directive({
-  selector: '[_display]',
+  selector: '[display]',
 })
 export class DisplayDirective {
-  @Input('display') _display: DisplayMode = null;
+  @Input('display') display: DisplayMode = null;
 
   @HostBinding('class') get class() {
-    if (this._display === null) {
+    if (this.display === null) {
       return null
     }
-    return 'bs-d-' + this._display
+    return 'bs-d-' + this.display
   }
 }
 
 @Directive({
-  selector: '[_display_sm]',
+  selector: '[display_sm]',
 })
 export class DisplaySmDirective {
-  @Input() _display_sm: DisplayMode = null
+  @Input() display_sm: DisplayMode = null
 
   @HostBinding('class') get class() {
-    if (this._display_sm === null) {
+    if (this.display_sm === null) {
       return null
     }
-    return 'bs-d-sm-' + this._display_sm
+    return 'bs-d-sm-' + this.display_sm
   }
 }
 
 
 @Directive({
-  selector: '[_display_md]',
+  selector: '[display_md]',
 })
 export class DisplayMdDirective {
-  @Input() _display_md: DisplayMode = null
+  @Input() display_md: DisplayMode = null
 
   @HostBinding('class') get class() {
-    if (this._display_md === null) {
+    if (this.display_md === null) {
       return null
     }
-    return 'bs-d-md-' + this._display_md
+    return 'bs-d-md-' + this.display_md
   }
 }
 
 
 @Directive({
-  selector: '[_display_lg]',
+  selector: '[display_lg]',
 })
 export class DisplayLgDirective {
-  @Input() _display_lg: DisplayMode = null
+  @Input() display_lg: DisplayMode = null
 
   @HostBinding('class') get class() {
-    if (this._display_lg === null) {
+    if (this.display_lg === null) {
       return null
     }
-    return 'bs-d-lg-' + this._display_lg
+    return 'bs-d-lg-' + this.display_lg
   }
 }
 
@@ -75,28 +75,28 @@ export class DisplayLgDirective {
   selector: '[display_xl]',
 })
 export class DisplayXlDirective {
-  @Input() _display_xl: DisplayMode = null
+  @Input() display_xl: DisplayMode = null
 
   @HostBinding('class') get class() {
-    if (this._display_xl === null) {
+    if (this.display_xl === null) {
       return null
     }
-    return 'bs-d-xl-' + this._display_xl
+    return 'bs-d-xl-' + this.display_xl
   }
 }
 
 
 @Directive({
-  selector: '[_display_xxl]',
+  selector: '[display_xxl]',
 })
 export class DisplayXxlDirective {
-  @Input() _display_xxl: DisplayMode = null
+  @Input() display_xxl: DisplayMode = null
 
   @HostBinding('class') get class() {
-    if (this._display_xxl === null) {
+    if (this.display_xxl === null) {
       return null
     }
-    return 'bs-d-xxl-' + this._display_xxl
+    return 'bs-d-xxl-' + this.display_xxl
   }
 }
 

@@ -3,28 +3,28 @@ import {Component} from '@angular/core';
 @Component({
   selector: 'ns-demo-layout-flex-direction',
   template: `
-    <div _flex>
-      <div _p="2">Flex item 1</div>
-      <div _p="2">Flex item 2</div>
-      <div _p="2">Flex item 3</div>
+    <div flex>
+      <div p="2">Flex item 1</div>
+      <div p="2">Flex item 2</div>
+      <div p="2">Flex item 3</div>
     </div>
     <hr>
-    <div _flex _flex_direction="row-reverse">
-      <div _p="2">Flex item 1</div>
-      <div _p="2">Flex item 2</div>
-      <div _p="2">Flex item 3</div>
+    <div flex flex_direction="row-reverse">
+      <div p="2">Flex item 1</div>
+      <div p="2">Flex item 2</div>
+      <div p="2">Flex item 3</div>
     </div>
     <hr>
-    <div _flex _flex_direction="column">
-      <div _p="2">Flex item 1</div>
-      <div _p="2">Flex item 2</div>
-      <div _p="2">Flex item 3</div>
+    <div flex flex_direction="column">
+      <div p="2">Flex item 1</div>
+      <div p="2">Flex item 2</div>
+      <div p="2">Flex item 3</div>
     </div>
     <hr>
-    <div _flex _flex_direction="column-reverse">
-      <div _p="2">Flex item 1</div>
-      <div _p="2">Flex item 2</div>
-      <div _p="2">Flex item 3</div>
+    <div flex flex_direction="column-reverse">
+      <div p="2">Flex item 1</div>
+      <div p="2">Flex item 2</div>
+      <div p="2">Flex item 3</div>
     </div>
   `,
   styles: [`

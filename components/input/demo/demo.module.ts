@@ -4,6 +4,7 @@ import {NSDemoInputBasicComponent} from "./basic";
 import {NSInputModule} from "../input.module";
 import {NSDemoInputLabelComponent} from "./label";
 import {NSLayoutModule} from "../../layout";
+import {NSStyleModule} from "../../style";
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import {NSLayoutModule} from "../../layout";
     CommonModule,
     NSInputModule,
     NSLayoutModule,
+    NSStyleModule,
   ]
 })
 export class DemoModule {
