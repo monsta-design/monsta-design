@@ -1,4 +1,5 @@
 import {NSButtonModule} from "@components/button";
 import {NSLayoutModule} from "@components/layout";
+import {NSStyleModule} from "@components/style";
 
-export const moduleList = [NSButtonModule, NSLayoutModule];
+export const moduleList = [NSButtonModule, NSLayoutModule,NSStyleModule];

@@ -17,19 +17,11 @@ import {
     }
   `]
 })
-export class NSLayoutComponent implements OnInit, AfterViewInit, AfterContentInit {
-
-
+export class NSLayoutComponent implements AfterContentInit {
   constructor(private el: ElementRef) {
   }
 
   @HostBinding('style.flex-direction') direction = 'column';
-
-  ngOnInit() {
-  }
-
-  ngAfterViewInit(): void {
-  }
 
   ngAfterContentInit() {
     for (let elem of this.el.nativeElement.children) {

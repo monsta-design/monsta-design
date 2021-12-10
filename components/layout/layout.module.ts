@@ -1,27 +1,26 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {NsRowComponent} from './row.component';
-import {NsColComponent} from './col.component';
 import {ContainerComponent} from './container.component';
+import {NSLayoutComponent} from './layout.component';
+import {NSHeaderComponent} from './header.component';
+import {NSAsideComponent} from './aside.component';
+import {NSFooterComponent} from './footer.component';
+import {NSContentComponent} from './content.component';
+import {NSSpaceComponent} from './space.component';
 import {MarginDirectives} from './directives/margin.directive';
 import {PaddingDirectives} from './directives/padding.directive';
 import {GutterDirectives} from './directives/gutter.directive'
 import {SizeDirectives} from "./directives/size.directive";
 import {PositionDirectives} from "./directives/position.directive";
-import {SpaceDirectives} from "./directives/space.directive";
+import {SpaceDirectives} from "./directives/align.directive";
 import {DisplayDirectives} from "./directives/display.directive";
 import {FlexDirectives} from "./directives/flex.directive";
-import {NSLayoutComponent} from './layout.component';
-import { NSHeaderComponent } from './header.component';
-import { NSAsideComponent } from './aside.component';
-import { NSFooterComponent } from './footer.component';
-import { NSContentComponent } from './content.component';
+import {FloatDirectives} from "./directives/float.directive";
+import {StackDirectives} from "./directives/stack.directive";
+import {NSGridDirectives} from "./directives/grid.directive";
 
 const COMPONENTS = [
-  NsRowComponent,
-  NsColComponent,
-  ContainerComponent,
-  NSLayoutComponent,
+  ...NSGridDirectives,
   ...MarginDirectives,
   ...PaddingDirectives,
   ...GutterDirectives,
@@ -30,25 +29,26 @@ const COMPONENTS = [
   ...SpaceDirectives,
   ...DisplayDirectives,
   ...FlexDirectives,
+  ...FloatDirectives,
+  ...StackDirectives,
+  ContainerComponent,
+  NSLayoutComponent,
+  NSHeaderComponent,
+  NSAsideComponent,
+  NSFooterComponent,
+  NSContentComponent,
+  NSSpaceComponent,
 ];
 
 @NgModule({
   declarations: [
     ...COMPONENTS,
-    NSHeaderComponent,
-    NSAsideComponent,
-    NSFooterComponent,
-    NSContentComponent,
   ],
   imports: [
     CommonModule
   ],
   exports: [
     ...COMPONENTS,
-    NSAsideComponent,
-    NSHeaderComponent,
-    NSFooterComponent,
-    NSContentComponent
   ]
 })
 export class NSLayoutModule {

@@ -2,10 +2,10 @@ import {Directive, HostBinding, Input} from '@angular/core';
 import {isNumeric} from "rxjs/internal-compatibility";
 
 @Directive({
-  selector: '[position]',
+  selector: '[_position]',
 })
 export class PositionDirective {
-  @Input('position') position: 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky' = null;
+  @Input('_position') position: 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky' = null;
 
   @HostBinding('class')
   get class() {
@@ -17,10 +17,10 @@ export class PositionDirective {
 }
 
 @Directive({
-  selector: '[top]',
+  selector: '[_top]',
 })
 export class TopDirective {
-  @Input('top') d: 0 | 50 | 100 | string = null;
+  @Input('_top') d: 0 | 50 | 100 | string = null;
 
   @HostBinding('class')
   get class() {
@@ -32,10 +32,10 @@ export class TopDirective {
 }
 
 @Directive({
-  selector: '[bottom]',
+  selector: '[_bottom]',
 })
 export class BottomDirective {
-  @Input('bottom') d: 0 | 50 | 100 | string = null;
+  @Input('_bottom') d: 0 | 50 | 100 | string = null;
 
   @HostBinding('class')
   get class() {
@@ -47,10 +47,10 @@ export class BottomDirective {
 }
 
 @Directive({
-  selector: '[start]',
+  selector: '[_start]',
 })
 export class StartDirective {
-  @Input('start') d: 0 | 50 | 100 | string = null;
+  @Input('_start') d: 0 | 50 | 100 | string = null;
 
   @HostBinding('class')
   get class() {
@@ -62,10 +62,10 @@ export class StartDirective {
 }
 
 @Directive({
-  selector: '[end]',
+  selector: '[_end]',
 })
 export class EndDirective {
-  @Input('end') d: 0 | 50 | 100 | string = null;
+  @Input('_end') d: 0 | 50 | 100 | string = null;
 
   @HostBinding('class')
   get class() {
@@ -77,10 +77,10 @@ export class EndDirective {
 }
 
 @Directive({
-  selector: '[middle]',
+  selector: '[_middle]',
 })
 export class MiddleDirective {
-  @Input('middle') d: 0 | 50 | 100 | string = null;
+  @Input('_middle') d: 0 | 50 | 100 | string = null;
 
   @HostBinding('class')
   get class() {

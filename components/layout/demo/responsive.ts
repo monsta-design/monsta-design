@@ -3,12 +3,12 @@ import {Component} from '@angular/core';
 @Component({
   selector: 'ns-demo-layout-responsive',
   template: `
-    <ns-row>
-      <ns-col span="1"><div w="100" h="100" bg="primary">1</div></ns-col>
-      <ns-col span="2"><div w="100" h="100" bg="secondary">2</div></ns-col>
-      <ns-col span="3"><div w="100" h="100" bg="success">3</div></ns-col>
-      <ns-col span="6"><div w="100" h="100" bg="warning">4</div></ns-col>
-    </ns-row>
+    <div _row>
+      <div _col="1"><div _w="100" _h="100" _bg="primary">1</div></div>
+      <div _col="2"><div _w="100" _h="100" _bg="secondary">2</div></div>
+      <div _col="3"><div _w="100" _h="100" _bg="success">3</div></div>
+      <div _col="6"><div _w="100" _h="100" _bg="warning">4</div></div>
+    </div>
   `,
 })
 export class NSDemoLayoutResponsiveComponent {

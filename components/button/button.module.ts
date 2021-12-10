@@ -1,24 +1,24 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {NSButtonComponent} from './button.component';
 import {NSButtonGroupComponent} from './button-group.component';
+import {ButtonDirectives} from "./button.directive";
 
 
 const COMPONENTS = [
-  NSButtonComponent,
   NSButtonGroupComponent,
+  ...ButtonDirectives
 ];
 
 @NgModule({
   declarations: [
     ...COMPONENTS,
   ],
+  exports: [
+    ...COMPONENTS
+  ],
   imports: [
     CommonModule
   ],
-  exports: [
-    ...COMPONENTS
-  ]
 })
 export class NSButtonModule {
 

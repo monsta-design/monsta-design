@@ -10,8 +10,8 @@ import anime from 'animejs/lib/anime.es.js';
 })
 export class NSMenuComponent implements AfterViewInit {
 
-  @Input('accordion') _accordion: boolean;
-  @Input() interval: Number = 150;
+  @Input() nsAccordion: boolean;
+  @Input() nsInterval: Number = 150;
   @ContentChildren(NSMenuItemComponent) items: NSMenuItemComponent[];
   lock = false
 
@@ -29,7 +29,7 @@ export class NSMenuComponent implements AfterViewInit {
     for (let item of items) {
       item.init(`${prefix}${i++}`, deep, items, this.el.nativeElement)
       this.parse(item.id, item.items, true)
-      item._stateChange.subscribe((v: NSMenuItemComponent) => {
+      item.nsStateChange.subscribe((v: NSMenuItemComponent) => {
         if (v.sub) {
           if (v.expand) {
             this.close(v)
@@ -37,7 +37,7 @@ export class NSMenuComponent implements AfterViewInit {
             this.open(v)
           }
         }
-        if (this._accordion === false) {
+        if (this.nsAccordion === false) {
           return
         }
         for (const vv of item.siblings) {
@@ -76,7 +76,7 @@ export class NSMenuComponent implements AfterViewInit {
     anime({
       targets: item.sub.nativeElement,
       height: item.height,
-      duration: this.interval,
+      duration: this.nsInterval,
       easing: 'easeInOutSine',
       complete: (anim) => {
         item.sub.nativeElement.style.removeProperty('overflow')
@@ -94,7 +94,7 @@ export class NSMenuComponent implements AfterViewInit {
     anime({
       targets: item.sub.nativeElement,
       height: 0,
-      duration: this.interval,
+      duration: this.nsInterval,
       easing: 'easeInOutSine',
       complete: (anim) => {
         item.expand = false

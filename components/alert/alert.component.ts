@@ -10,7 +10,7 @@ import {AfterViewInit, Component, ElementRef, HostBinding, Input, OnInit, ViewCh
 })
 export class NSAlertComponent implements AfterViewInit {
 
-  @Input('type') nsType: string = 'primary';
+  @Input() nsType: string = 'primary';
   @HostBinding() class = 'bs-alert';
   @HostBinding() role = 'alert';
 

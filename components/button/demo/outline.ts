@@ -3,18 +3,18 @@ import {Component} from '@angular/core';
 @Component({
   selector: 'ns-demo-button-outline',
   template: `
-    <ns-button outline="true" type="primary">Primary</ns-button>
-    <ns-button outline="true" type="secondary">Secondary</ns-button>
-    <ns-button outline="true" type="success">Success</ns-button>
-    <ns-button outline="true" type="danger">Danger</ns-button>
-    <ns-button outline="true" type="warning">Warning</ns-button>
-    <ns-button outline="true" type="info">Info</ns-button>
-    <ns-button outline="true" type="light">Light</ns-button>
-    <ns-button outline="true" type="dark">Dark</ns-button>
-    <ns-button outline="true" type="link">Link</ns-button>
+    <button _button="primary" _button_outline="true">Primary</button>
+    <button _button="secondary" _button_outline="true">Secondary</button>
+    <button _button="success" _button_outline="true">Success</button>
+    <button _button="danger" _button_outline="true">Danger</button>
+    <button _button="warning" _button_outline="true">Warning</button>
+    <button _button="info" _button_outline="true">Info</button>
+    <button _button="light" _button_outline="true">Light</button>
+    <button _button="dark" _button_outline="true">Dark</button>
+    <button _button="link" _button_outline="true">Link</button>
   `,
   styles: [`
-    ns-button {
+    button {
       margin-right: 5px;
     }
   `]

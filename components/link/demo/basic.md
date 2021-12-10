@@ -1,8 +1,8 @@
 ---
 order: 0
 title:
-zh-CN: 等宽布局
-en-US: Basic
+  zh-CN: 基础示例
+  en-US: Basic
 ---
 
 ## zh-CN

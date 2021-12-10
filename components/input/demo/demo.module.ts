@@ -1,14 +1,19 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {NSDemoSpaceBasicComponent} from "./basic";
+import {NSDemoInputBasicComponent} from "./basic";
+import {NSInputModule} from "../input.module";
+import {NSDemoInputLabelComponent} from "./label";
 import {NSLayoutModule} from "../../layout";
+
 
 @NgModule({
   declarations: [
-    NSDemoSpaceBasicComponent,
+    NSDemoInputBasicComponent,
+    NSDemoInputLabelComponent,
   ],
   imports: [
     CommonModule,
+    NSInputModule,
     NSLayoutModule,
   ]
 })

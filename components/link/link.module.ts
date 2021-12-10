@@ -1,12 +1,20 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {NSLayoutModule} from "../layout";
+import { LinkDirectives} from './link.directive';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ...LinkDirectives
+  ],
+  exports: [
+    ...LinkDirectives
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    NSLayoutModule
   ]
 })
-export class LinkModule { }
+export class NSLinkModule {
+}

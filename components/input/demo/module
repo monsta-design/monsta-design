@@ -1,0 +1,4 @@
+import { NSInputModule } from "@components/input"
+import { NSLayoutModule } from "@components/layout"
+
+export const moduleList = [NSInputModule,NSLayoutModule];

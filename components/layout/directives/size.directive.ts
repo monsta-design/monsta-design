@@ -25,19 +25,19 @@ export function insertSizeElementStyle(target: Element, container: HTMLElement, 
         case 'width':
           return `
           #${scope}{
-              width: ${this.width} !important;
+              width: ${style.width} !important;
           }
           `
         case 'height':
           return `
           #${scope}{
-              height: ${this.height} !important;
+              height: ${style.height} !important;
           }`
         default:
           return `
           #${scope}{
-              width: ${this.width} !important;
-              height: ${this.height} !important;
+              width: ${style.width} !important;
+              height: ${style.height} !important;
           }
           `
       }
@@ -48,10 +48,10 @@ export function insertSizeElementStyle(target: Element, container: HTMLElement, 
 export type SizeValue = 25 | 50 | 75 | 100 | 'auto' | string;
 
 @Directive({
-  selector: '[w]',
+  selector: '[_w]',
 })
 export class WDirective {
-  @Input('w') size: SizeValue = null;
+  @Input('_w') size: SizeValue = null;
 
   @HostBinding('class') get class() {
     if (isDefaultSize(this.size)) {
@@ -69,10 +69,10 @@ export class WDirective {
 }
 
 @Directive({
-  selector: '[w_sm]',
+  selector: '[_w_sm]',
 })
 export class WSmDirective implements OnChanges {
-  @Input('w_sm') size: SizeValue = null;
+  @Input('_w_sm') size: SizeValue = null;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
   }
@@ -102,10 +102,10 @@ export class WSmDirective implements OnChanges {
 
 
 @Directive({
-  selector: '[w_md]',
+  selector: '[_w_md]',
 })
 export class WMdDirective implements OnChanges {
-  @Input('w_md') size: SizeValue = null;
+  @Input('_w_md') size: SizeValue = null;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
   }
@@ -134,10 +134,10 @@ export class WMdDirective implements OnChanges {
 }
 
 @Directive({
-  selector: '[w_lg]',
+  selector: '[_w_lg]',
 })
 export class WLgDirective implements OnChanges {
-  @Input('w_lg') size: SizeValue = null;
+  @Input('_w_lg') size: SizeValue = null;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
   }
@@ -166,10 +166,10 @@ export class WLgDirective implements OnChanges {
 }
 
 @Directive({
-  selector: '[w_xl]',
+  selector: '[_w_xl]',
 })
 export class WXlDirective implements OnChanges {
-  @Input('w_xl') size: SizeValue = null;
+  @Input('_w_xl') size: SizeValue = null;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
   }
@@ -198,10 +198,10 @@ export class WXlDirective implements OnChanges {
 }
 
 @Directive({
-  selector: '[w_xxl]',
+  selector: '[_w_xxl]',
 })
 export class WXxlDirective implements OnChanges {
-  @Input('w_xxl') size: SizeValue = null;
+  @Input('_w_xxl') size: SizeValue = null;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
   }
@@ -231,10 +231,10 @@ export class WXxlDirective implements OnChanges {
 
 
 @Directive({
-  selector: '[h]',
+  selector: '[_h]',
 })
 export class HDirective {
-  @Input('h') size: 25 | 50 | 75 | 100 | 'auto' | string = null;
+  @Input('_h') size: 25 | 50 | 75 | 100 | 'auto' | string = null;
 
   @HostBinding('class') get class() {
     if (isNumeric(this.size)) {
@@ -252,10 +252,10 @@ export class HDirective {
 }
 
 @Directive({
-  selector: '[h_sm]',
+  selector: '[_h_sm]',
 })
 export class HSmDirective implements OnChanges {
-  @Input('h_sm') size: SizeValue = null;
+  @Input('_h_sm') size: SizeValue = null;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
   }
@@ -284,10 +284,10 @@ export class HSmDirective implements OnChanges {
 }
 
 @Directive({
-  selector: '[h_md]',
+  selector: '[_h_md]',
 })
 export class HMdDirective implements OnChanges {
-  @Input('h_md') size: SizeValue = null;
+  @Input('_h_md') size: SizeValue = null;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
   }
@@ -316,10 +316,10 @@ export class HMdDirective implements OnChanges {
 }
 
 @Directive({
-  selector: '[h_lg]',
+  selector: '[_h_lg]',
 })
 export class HLgDirective implements OnChanges {
-  @Input('h_lg') size: SizeValue = null;
+  @Input('_h_lg') size: SizeValue = null;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
   }
@@ -348,10 +348,10 @@ export class HLgDirective implements OnChanges {
 }
 
 @Directive({
-  selector: '[h_xl]',
+  selector: '[_h_xl]',
 })
 export class HXlDirective implements OnChanges {
-  @Input('h_xl') size: SizeValue = null;
+  @Input('_h_xl') size: SizeValue = null;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
   }
@@ -380,10 +380,10 @@ export class HXlDirective implements OnChanges {
 }
 
 @Directive({
-  selector: '[h_xxl]',
+  selector: '[_h_xxl]',
 })
 export class HXxlDirective implements OnChanges {
-  @Input('h_xxl') size: SizeValue = null;
+  @Input('_h_xxl') size: SizeValue = null;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
   }

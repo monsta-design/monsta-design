@@ -3,102 +3,102 @@ import {Component} from '@angular/core';
 @Component({
   selector: 'ns-demo-layout-flex',
   template: `
-    <div flex>
-      <div p="2">Flex item 1</div>
-      <div p="2">Flex item 2</div>
-      <div p="2">Flex item 3</div>
+    <div _flex>
+      <div _p="2">Flex item 1</div>
+      <div _p="2">Flex item 2</div>
+      <div _p="2">Flex item 3</div>
     </div>
     <hr>
-    <div flex flex_direction="row-reverse">
-      <div p="2">Flex item 1</div>
-      <div p="2">Flex item 2</div>
-      <div p="2">Flex item 3</div>
+    <div _flex _flex_direction="row-reverse">
+      <div _p="2">Flex item 1</div>
+      <div _p="2">Flex item 2</div>
+      <div _p="2">Flex item 3</div>
     </div>
     <hr>
-    <div flex flex_direction="column">
-      <div p="2">Flex item 1</div>
-      <div p="2">Flex item 2</div>
-      <div p="2">Flex item 3</div>
+    <div _flex _flex_direction="column">
+      <div _p="2">Flex item 1</div>
+      <div _p="2">Flex item 2</div>
+      <div _p="2">Flex item 3</div>
     </div>
     <hr>
-    <div flex flex_direction="column-reverse">
-      <div p="2">Flex item 1</div>
-      <div p="2">Flex item 2</div>
-      <div p="2">Flex item 3</div>
+    <div _flex _flex_direction="column-reverse">
+      <div _p="2">Flex item 1</div>
+      <div _p="2">Flex item 2</div>
+      <div _p="2">Flex item 3</div>
     </div>
     <hr>
-    <div flex flex_justify_content="start">
-      <div p="2">Flex item 1</div>
-      <div p="2">Flex item 2</div>
-      <div p="2">Flex item 3</div>
+    <div _flex _flex_justify_content="start">
+      <div _p="2">Flex item 1</div>
+      <div _p="2">Flex item 2</div>
+      <div _p="2">Flex item 3</div>
     </div>
-    <div flex flex_justify_content="end">
-      <div p="2">Flex item 1</div>
-      <div p="2">Flex item 2</div>
-      <div p="2">Flex item 3</div>
+    <div _flex _flex_justify_content="end">
+      <div _p="2">Flex item 1</div>
+      <div _p="2">Flex item 2</div>
+      <div _p="2">Flex item 3</div>
     </div>
-    <div flex flex_justify_content="center">
-      <div p="2">Flex item 1</div>
-      <div p="2">Flex item 2</div>
-      <div p="2">Flex item 3</div>
+    <div _flex _flex_justify_content="center">
+      <div _p="2">Flex item 1</div>
+      <div _p="2">Flex item 2</div>
+      <div _p="2">Flex item 3</div>
     </div>
-    <div flex flex_justify_content="between">
-      <div p="2">Flex item 1</div>
-      <div p="2">Flex item 2</div>
-      <div p="2">Flex item 3</div>
+    <div _flex _flex_justify_content="between">
+      <div _p="2">Flex item 1</div>
+      <div _p="2">Flex item 2</div>
+      <div _p="2">Flex item 3</div>
     </div>
-    <div flex flex_justify_content="around">
-      <div p="2">Flex item 1</div>
-      <div p="2">Flex item 2</div>
-      <div p="2">Flex item 3</div>
+    <div _flex _flex_justify_content="around">
+      <div _p="2">Flex item 1</div>
+      <div _p="2">Flex item 2</div>
+      <div _p="2">Flex item 3</div>
     </div>
-    <div flex flex_justify_content="evenly">
-      <div p="2">Flex item 1</div>
-      <div p="2">Flex item 2</div>
-      <div p="2">Flex item 3</div>
-    </div>
-    <hr>
-    <div flex h="100px" flex_align_items="start">
-      <div p="2">Flex item 1</div>
-      <div p="2">Flex item 2</div>
-      <div p="2">Flex item 3</div>
-    </div>
-    <div flex h="100px" flex_align_items="end">
-      <div p="2">Flex item 1</div>
-      <div p="2">Flex item 2</div>
-      <div p="2">Flex item 3</div>
-    </div>
-    <div flex h="100px" flex_align_items="center">
-      <div p="2">Flex item 1</div>
-      <div p="2">Flex item 2</div>
-      <div p="2">Flex item 3</div>
-    </div>
-    <div flex h="100px" flex_align_items="stretch">
-      <div p="2">Flex item 1</div>
-      <div p="2">Flex item 2</div>
-      <div p="2">Flex item 3</div>
+    <div _flex _flex_justify_content="evenly">
+      <div _p="2">Flex item 1</div>
+      <div _p="2">Flex item 2</div>
+      <div _p="2">Flex item 3</div>
     </div>
     <hr>
-    <div flex>
-      <div p="2" me="auto">Flex item</div>
-      <div p="2">Flex item</div>
-      <div p="2">Flex item</div>
+    <div _flex _h="100px" _flex_align_items="start">
+      <div _p="2">Flex item 1</div>
+      <div _p="2">Flex item 2</div>
+      <div _p="2">Flex item 3</div>
     </div>
-    <div flex>
-      <div p="2">Flex item</div>
-      <div p="2">Flex item</div>
-      <div p="2" ms="auto">Flex item</div>
+    <div _flex _h="100px" _flex_align_items="end">
+      <div _p="2">Flex item 1</div>
+      <div _p="2">Flex item 2</div>
+      <div _p="2">Flex item 3</div>
+    </div>
+    <div _flex _h="100px" _flex_align_items="center">
+      <div _p="2">Flex item 1</div>
+      <div _p="2">Flex item 2</div>
+      <div _p="2">Flex item 3</div>
+    </div>
+    <div _flex _h="100px" _flex_align_items="stretch">
+      <div _p="2">Flex item 1</div>
+      <div _p="2">Flex item 2</div>
+      <div _p="2">Flex item 3</div>
     </div>
     <hr>
-    <div h="200px" flex flex_direction="column" flex_align_items="start">
-      <div p="2" mb="auto">Flex item</div>
-      <div p="2">Flex item</div>
-      <div p="2">Flex item</div>
+    <div _flex>
+      <div _p="2" _me="auto">Flex item</div>
+      <div _p="2">Flex item</div>
+      <div _p="2">Flex item</div>
     </div>
-    <div h="200px" flex flex_direction="column" flex_align_items="end">
-      <div p="2">Flex item</div>
-      <div p="2">Flex item</div>
-      <div p="2" mt="auto">Flex item</div>
+    <div _flex>
+      <div _p="2">Flex item</div>
+      <div _p="2">Flex item</div>
+      <div _p="2" _ms="auto">Flex item</div>
+    </div>
+    <hr>
+    <div _h="200px" _flex _flex_direction="column" _flex_align_items="start">
+      <div _p="2" _mb="auto">Flex item</div>
+      <div _p="2">Flex item</div>
+      <div _p="2">Flex item</div>
+    </div>
+    <div _h="200px" _flex _flex_direction="column" _flex_align_items="end">
+      <div _p="2">Flex item</div>
+      <div _p="2">Flex item</div>
+      <div _p="2" _mt="auto">Flex item</div>
     </div>
   `,
   styles: [`

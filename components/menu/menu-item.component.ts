@@ -16,8 +16,8 @@ import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
   selector: 'ns-menu-item',
   template: `
     <a #a class="ns-menu-link" [ngClass]="{'has-caret':items.length>0}" (click)="toggle()">
-      <span class="ns-menu-icon" *ngIf="_icon"><fa-icon [icon]="_icon"></fa-icon></span>
-      <span class="ns-menu-label">{{ _label }}</span>
+      <span class="ns-menu-icon" *ngIf="nsIcon"><fa-icon [icon]="nsIcon"></fa-icon></span>
+      <span class="ns-menu-label">{{ nsLabel }}</span>
       <span class="ns-menu-caret" *ngIf="items.length>0"><fa-icon [icon]="caret"></fa-icon></span>
     </a>
     <div class="ns-menu-sub" #sub *ngIf="items.length>0">
@@ -28,10 +28,10 @@ import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
   }
 })
 export class NSMenuItemComponent implements AfterViewInit {
-  @Input('label') _label: string;
-  @Input('link') _link: string;
-  @Input('icon') _icon: IconDefinition;
-  @Output() _stateChange: EventEmitter<NSMenuItemComponent> = new EventEmitter<NSMenuItemComponent>();
+  @Input() nsLabel: string;
+  @Input() nsLink: string;
+  @Input() nsIcon: IconDefinition;
+  @Output() nsStateChange: EventEmitter<NSMenuItemComponent> = new EventEmitter<NSMenuItemComponent>();
   @ViewChild('a') a: ElementRef;
   @ViewChild('sub') sub: ElementRef;
   @ContentChildren(NSMenuItemComponent) items: NSMenuItemComponent[];
@@ -53,7 +53,7 @@ export class NSMenuItemComponent implements AfterViewInit {
   siblings: NSMenuItemComponent[]
 
   ngAfterViewInit() {
-    if (this._link) {
+    if (this.nsLink) {
       this.setLink()
     }
   }
@@ -81,11 +81,11 @@ export class NSMenuItemComponent implements AfterViewInit {
   }
 
   toggle() {
-    this._stateChange.emit(this)
+    this.nsStateChange.emit(this)
   }
 
   setLink() {
-    this.a.nativeElement.setAttribute('href', this._link)
+    this.a.nativeElement.setAttribute('href', this.nsLink)
   }
 
 }

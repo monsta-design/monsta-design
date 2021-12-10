@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 @Component({
   selector: 'ns-demo-alert-second',
   template: `
-    <ns-alert [type]="'danger'">
+    <ns-alert [nsType]="'danger'">
       A simple primary alert—check it out!
     </ns-alert>
   `,

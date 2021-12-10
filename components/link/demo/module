@@ -1,1 +1,4 @@
-export const moduleList = [];
+import {NSLinkModule} from '@components/link'
+import {NSButtonModule} from '@components/button'
+
+export const moduleList = [NSLinkModule,NSButtonModule];

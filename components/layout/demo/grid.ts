@@ -3,17 +3,17 @@ import {Component} from '@angular/core';
 @Component({
   selector: 'ns-demo-layout-grid',
   template: `
-    <ns-row cols="3" gx="10px" gy="10px">
-      <ns-col><div w="100" h="100" bg="primary">1</div></ns-col>
-      <ns-col><div w="100" h="100" bg="secondary">2</div></ns-col>
-      <ns-col><div w="100" h="100" bg="success">3</div></ns-col>
-      <ns-col><div w="100" h="100" bg="warning">4</div></ns-col>
-      <ns-col><div w="100" h="100" bg="danger">5</div></ns-col>
-      <ns-col><div w="100" h="100" bg="info">6</div></ns-col>
-      <ns-col><div w="100" h="100" bg="light">7</div></ns-col>
-      <ns-col><div w="100" h="100" bg="dark" color="light">8</div></ns-col>
-      <ns-col><div w="100" h="100" bg="body">9</div></ns-col>
-    </ns-row>
+    <div _row _row_cols="3" _gx="10px" _gy="10px">
+      <div _col><div _w="100" _h="100" _bg="primary">1</div></div>
+      <div _col><div _w="100" _h="100" _bg="secondary">2</div></div>
+      <div _col><div _w="100" _h="100" _bg="success">3</div></div>
+      <div _col><div _w="100" _h="100" _bg="warning">4</div></div>
+      <div _col><div _w="100" _h="100" _bg="danger">5</div></div>
+      <div _col><div _w="100" _h="100" _bg="info">6</div></div>
+      <div _col><div _w="100" _h="100" _bg="light">7</div></div>
+      <div _col><div _w="100" _h="100" _bg="dark" _color="light">8</div></div>
+      <div _col><div _w="100" _h="100" _bg="body">9</div></div>
+    </div>
   `,
 })
 export class NSDemoLayoutGridComponent {

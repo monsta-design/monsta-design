@@ -1,7 +1,7 @@
 ---
 category: Components
 subtitle: 布局
-type: 布局
+type: 通用
 title: Layout
 cover: https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg
 ---

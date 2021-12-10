@@ -20,12 +20,12 @@
 <div style="position: absolute;">
   <ns-menu *ngIf="!docs">
     <ng-container *ngFor="let route of routes">
-      <ns-menu-header>{{ route.name }}</ns-menu-header>
-      <ns-menu-item *ngFor="let item of route.children" [label]="item.label+ ' ' + item.zh" [link]="item.path"></ns-menu-item>
+      <ns-menu-header [nsLabel]="route.name"></ns-menu-header>
+      <ns-menu-item *ngFor="let item of route.children" [nsLabel]="item.label+ ' ' + item.zh" [nsLink]="item.path"></ns-menu-item>
     </ng-container>
   </ns-menu>
   <ns-menu *ngIf="docs">
-    <ns-menu-item *ngFor="let item of routes" [label]="item.label" [link]="item.path"></ns-menu-item>
+    <ns-menu-item *ngFor="let item of routes" [nsLabel]="item.label" [nsLink]="item.path"></ns-menu-item>
   </ns-menu>
 </div>
 

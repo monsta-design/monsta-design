@@ -1,16 +1,17 @@
-import {Component} from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
+import {faCode} from "@fortawesome/free-solid-svg-icons";
+import {IconDefinition} from "@fortawesome/fontawesome-common-types";
 
 @Component({
   selector: 'ns-demo-icon-basic',
-  template: `
-    <ns-row>
-      <ns-col><div w="100" h="100" bg="primary">1</div></ns-col>
-      <ns-col><div w="100" h="100" bg="secondary">2</div></ns-col>
-      <ns-col><div w="100" h="100" bg="success">3</div></ns-col>
-      <ns-col><div w="100" h="100" bg="warning">4</div></ns-col>
-      <ns-col><div w="100" h="100" bg="danger">5</div></ns-col>
-    </ns-row>
-  `,
+  template: ``,
 })
-export class NSDemoIconBasicComponent {
+export class NSDemoIconBasicComponent implements AfterViewInit {
+
+  code: IconDefinition = faCode;
+
+  ngAfterViewInit() {
+    let a = faCode
+    console.log(a)
+  }
 }

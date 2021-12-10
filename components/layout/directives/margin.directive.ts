@@ -2,10 +2,10 @@ import {Directive, HostBinding, Input} from '@angular/core';
 import {isDefaultSpacingSize, SpacingSize} from "../../types";
 
 @Directive({
-  selector: '[m]'
+  selector: '[_m]'
 })
 export class MDirective {
-  @Input('m') size: SpacingSize | number | string = null;
+  @Input('_m') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -25,10 +25,10 @@ export class MDirective {
 }
 
 @Directive({
-  selector: '[mt]'
+  selector: '[_mt]'
 })
 export class MTDirective {
-  @Input('mt') size: SpacingSize | number | string = null;
+  @Input('_mt') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -48,10 +48,10 @@ export class MTDirective {
 }
 
 @Directive({
-  selector: '[mb]'
+  selector: '[_mb]'
 })
 export class MBDirective {
-  @Input('mb') size: SpacingSize | number | string = null;
+  @Input('_mb') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -71,10 +71,10 @@ export class MBDirective {
 }
 
 @Directive({
-  selector: '[ms]'
+  selector: '[_ms]'
 })
 export class MSDirective {
-  @Input('ms') size: SpacingSize | number | string = null;
+  @Input('_ms') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -94,10 +94,10 @@ export class MSDirective {
 }
 
 @Directive({
-  selector: '[me]'
+  selector: '[_me]'
 })
 export class MEDirective {
-  @Input('me') size: SpacingSize | number | string = null;
+  @Input('_me') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -117,10 +117,10 @@ export class MEDirective {
 }
 
 @Directive({
-  selector: '[mx]'
+  selector: '[_mx]'
 })
 export class MXDirective {
-  @Input('mx') size: SpacingSize | number | string = null;
+  @Input('_mx') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -148,10 +148,10 @@ export class MXDirective {
 }
 
 @Directive({
-  selector: '[my]'
+  selector: '[_my]'
 })
 export class MYDirective {
-  @Input('my') size: SpacingSize | number | string = null;
+  @Input('_my') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {

@@ -2,10 +2,10 @@ import {Directive, HostBinding, Input} from '@angular/core';
 import {isDefaultSpacingSize, SpacingSize} from "../../types";
 
 @Directive({
-  selector: '[p]'
+  selector: '[_p]'
 })
 export class PDirective {
-  @Input('p') size: SpacingSize | number | string = null;
+  @Input('_p') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -25,10 +25,10 @@ export class PDirective {
 }
 
 @Directive({
-  selector: '[pt]'
+  selector: '[_pt]'
 })
 export class PTDirective {
-  @Input('pt') size: SpacingSize | number | string = null;
+  @Input('_pt') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -48,10 +48,10 @@ export class PTDirective {
 }
 
 @Directive({
-  selector: '[pb]'
+  selector: '[_pb]'
 })
 export class PBDirective {
-  @Input('pb') size: SpacingSize | number | string = null;
+  @Input('_pb') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -71,10 +71,10 @@ export class PBDirective {
 }
 
 @Directive({
-  selector: '[ps]'
+  selector: '[_ps]'
 })
 export class PSDirective {
-  @Input('ps') size: SpacingSize | number | string = null;
+  @Input('_ps') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -94,10 +94,10 @@ export class PSDirective {
 }
 
 @Directive({
-  selector: '[pe]'
+  selector: '[_pe]'
 })
 export class PEDirective {
-  @Input('pe') size: SpacingSize | number | string = null;
+  @Input('_pe') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -117,10 +117,10 @@ export class PEDirective {
 }
 
 @Directive({
-  selector: '[px]'
+  selector: '[_px]'
 })
 export class PXDirective {
-  @Input('px') size: SpacingSize | number | string = null;
+  @Input('_px') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
@@ -148,10 +148,10 @@ export class PXDirective {
 }
 
 @Directive({
-  selector: '[py]'
+  selector: '[_py]'
 })
 export class PYDirective {
-  @Input('py') size: SpacingSize | number | string = null;
+  @Input('_py') size: SpacingSize | number | string = null;
 
   @HostBinding('class')
   get class() {
