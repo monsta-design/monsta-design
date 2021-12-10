@@ -3,19 +3,19 @@ import {Component, OnInit} from '@angular/core';
 @Component({
   selector: 'ns-demo-style-bg',
   template: `
-    <span bg="primary">primary</span>
-    <span bg="secondary">secondary</span>
-    <span bg="success">success</span>
-    <span bg="danger">danger</span>
-    <span bg="warning">warning</span>
-    <span bg="info">info</span>
-    <span bg="light">light</span>
-    <span bg="danger">danger</span>
-    <span bg="body">body</span>
-    <span bg="white">white</span>
-    <span bg="transparent">transparent</span>
-    <span bg="rand">rand</span>
-    <span bg="#868e96">#868e96</span>
+    <span _bg="primary">primary</span>
+    <span _bg="secondary">secondary</span>
+    <span _bg="success">success</span>
+    <span _bg="danger">danger</span>
+    <span _bg="warning">warning</span>
+    <span _bg="info">info</span>
+    <span _bg="light">light</span>
+    <span _bg="danger">danger</span>
+    <span _bg="body">body</span>
+    <span _bg="white">white</span>
+    <span _bg="transparent">transparent</span>
+    <span _bg="rand">rand</span>
+    <span _bg="#868e96">#868e96</span>
   `,
   styles: [`
     hr {

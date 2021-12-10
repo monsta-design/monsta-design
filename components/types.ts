@@ -95,7 +95,7 @@ export function insertElementStyle(target: Element, container: HTMLElement, rend
     target.setAttribute('id', scope)
   }
   // @ts-ignore
-  const id = `${renderer.hostAttr}_${style.media}`
+  const id = `${scope}_${style.media}`
 
   // 构建媒体查询
   let media = null
