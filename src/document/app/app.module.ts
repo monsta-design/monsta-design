@@ -22,6 +22,7 @@ import {NSPageModule} from "../../../components/page/page.module";
     DocumentLayoutComponent
   ],
   imports: [
+
     BrowserModule,
     AppRoutingModule,
     NSLayoutModule,

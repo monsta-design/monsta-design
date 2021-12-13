@@ -1,0 +1,90 @@
+//@import "~monsta-bootstrap/scss/bootstrap-utilities";
+//@import "~monsta-bootstrap/scss/forms";
+//
+////@import "~monsta-bootstrap/scss/forms/floating-labels";
+////@import "~monsta-bootstrap/scss/forms/input-group";
+////@import "~monsta-bootstrap/scss/forms/form-control";
+////@import "~monsta-bootstrap/scss/forms/form-text";
+////@import "~monsta-bootstrap/scss/forms/labels";
+////@import "~monsta-bootstrap/scss/forms/validation";
+//
+:host {
+  display: flex;
+}
+//
+//:host.ns-input-group {
+//  @extend .bs-input-group
+//}
+//
+//@import "~monsta-bootstrap/scss/monsta";
+//
+//:host.ns-form-floating {
+//  position: relative;
+//
+//  > .#{$prefix}form-control,
+//  > .#{$prefix}form-select {
+//    height: $form-floating-height;
+//    line-height: $form-floating-line-height;
+//  }
+//
+//  > label {
+//    position: absolute;
+//    top: 0;
+//    left: 0;
+//    height: 100%; // allow textareas
+//    padding: $form-floating-padding-y $form-floating-padding-x;
+//    pointer-events: none;
+//    border: $input-border-width solid transparent; // Required for aligning label's text with the input as it affects inner box model
+//    transform-origin: 0 0;
+//    @include transition($form-floating-transition);
+//  }
+//
+//  // stylelint-disable no-duplicate-selectors
+//  > .#{$prefix}form-control {
+//    padding: $form-floating-padding-y $form-floating-padding-x;
+//
+//    &::placeholder {
+//      color: transparent;
+//    }
+//
+//    &:focus,
+//    &:not(:placeholder-shown) {
+//      padding-top: $form-floating-input-padding-t;
+//      padding-bottom: $form-floating-input-padding-b;
+//    }
+//
+//    // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
+//    &:-webkit-autofill {
+//      padding-top: $form-floating-input-padding-t;
+//      padding-bottom: $form-floating-input-padding-b;
+//    }
+//  }
+//
+//  > .#{$prefix}form-select {
+//    padding-top: $form-floating-input-padding-t;
+//    padding-bottom: $form-floating-input-padding-b;
+//  }
+//
+//  > .#{$prefix}form-control:focus,
+//  > .#{$prefix}form-control:not(:placeholder-shown),
+//  > .#{$prefix}form-select {
+//    ~ label {
+//      opacity: $form-floating-label-opacity;
+//      transform: $form-floating-label-transform;
+//    }
+//  }
+//
+//  // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
+//  > .#{$prefix}form-control:-webkit-autofill {
+//    ~ label {
+//      opacity: $form-floating-label-opacity;
+//      transform: $form-floating-label-transform;
+//    }
+//  }
+//
+//  // stylelint-enable no-duplicate-selectors
+//}
+//
+//
+//
+

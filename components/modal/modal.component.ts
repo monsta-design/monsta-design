@@ -10,9 +10,7 @@ import {
   SimpleChanges,
   TemplateRef
 } from '@angular/core';
-// import Modal from 'projects/lib/src/js/modal.js';
 import Modal from 'monsta-bootstrap/js/src/modal.js';
-// import {NS_SIZE} from 'src/types';
 
 @Component({
   selector: 'ns-modal',
@@ -39,7 +37,6 @@ export class NSModalComponent implements AfterViewInit, OnChanges, OnInit {
   @Output() nsOnClose: EventEmitter<null> = new EventEmitter<null>();
   @Output() nsOnOK: EventEmitter<null> = new EventEmitter<null>();
   @Output() nsOnCancel: EventEmitter<null> = new EventEmitter<null>();
-
   isTplTitle: boolean = false;
 
   modal: Modal = null;
@@ -56,15 +53,18 @@ export class NSModalComponent implements AfterViewInit, OnChanges, OnInit {
 
   ngAfterViewInit() {
     this.modal = new Modal(this.el.nativeElement);
+    if (this.nsShow) {
+      this.modal.show()
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (typeof changes.nsShow != 'undefined' && this.modal) {
-    if (changes.nsShow) {
-      this.modal.show();
-    } else {
-      this.modal.hide();
-    }
+      if (changes.nsShow) {
+        this.modal.show();
+      } else {
+        this.modal.hide();
+      }
     }
   }
 

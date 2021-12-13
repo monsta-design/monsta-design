@@ -1,1 +1,2 @@
-export const moduleList = [];
+import {NSModalModule} from '@components/modal'
+export const moduleList = [NSModalModule];

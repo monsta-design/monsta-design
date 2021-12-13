@@ -1,0 +1,2 @@
+import {NSRangeModule} from '@components/range'
+export const moduleList = [NSRangeModule];

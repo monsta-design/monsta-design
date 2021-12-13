@@ -1,0 +1,2 @@
+import {NSSelectModule} from '@components/select'
+export const moduleList = [NSSelectModule];

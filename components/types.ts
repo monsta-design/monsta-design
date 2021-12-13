@@ -1,6 +1,8 @@
 import {isNumeric} from "rxjs/internal-compatibility";
 import {Renderer2} from "@angular/core";
 
+
+export type NS_BOOL = boolean | 'false' | 'true'
 export type NS_SIZE = 'default' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'fluid';
 export type NS_INPUT_TYPE = 'text' | 'password' | 'number' | 'file' | 'color';
 export type NS_COLOR =
@@ -15,6 +17,9 @@ export type NS_COLOR =
   | 'white'
   | 'transparent';
 
+export function isTrue(v): boolean {
+  return v === true || v === 'true'
+}
 
 export type SpacingSize = '0' | '1' | '2' | '3' | '4' | '5' | 'auto';
 
@@ -88,11 +93,15 @@ export class ElementStyle {
   cssGetter: (scope: string) => string
 }
 
+export function generateID(): string {
+  return 's' + Math.random().toString(36).substr(2, 9)
+}
+
 export function insertElementStyle(target: Element, container: HTMLElement, renderer: Renderer2, style: ElementStyle): Element {
   // 判断目标元素是否有ID，如果没有则伪随机生成一个
   let scope = target.getAttribute('id')
   if (!scope) {
-    scope = 's' + Math.random().toString(36).substr(2, 9)
+    scope = generateID()
     target.setAttribute('id', scope)
   }
   // @ts-ignore

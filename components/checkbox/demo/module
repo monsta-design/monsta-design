@@ -1,0 +1,2 @@
+import {NSCheckboxModule} from '@components/checkbox'
+export const moduleList = [NSCheckboxModule];

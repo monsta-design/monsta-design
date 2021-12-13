@@ -1,0 +1,2 @@
+import {NSSwitchModule} from '@components/switch'
+export const moduleList = [NSSwitchModule];

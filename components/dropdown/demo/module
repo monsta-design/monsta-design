@@ -1,1 +1,2 @@
-export const moduleList = [];
+import {NSDropdownModule} from '@components/dropdown'
+export const moduleList = [NSDropdownModule];

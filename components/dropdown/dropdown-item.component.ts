@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 
 @Component({
@@ -9,12 +9,6 @@ import {Component, OnInit} from '@angular/core';
     </div>`,
   styleUrls: ['./dropdown.scss']
 })
-export class DropdownItemComponent implements OnInit {
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
+export class DropdownItemComponent {
+  @Input() value: any
 }

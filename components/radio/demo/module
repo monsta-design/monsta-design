@@ -1,0 +1,2 @@
+import {NSRadioModule} from '@components/radio'
+export const moduleList = [NSRadioModule];

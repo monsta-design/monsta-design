@@ -2,12 +2,16 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {NSModalComponent} from './modal.component';
 
+const Components = [
+  NSModalComponent
+]
+
 @NgModule({
   declarations: [
-    NSModalComponent
+    ...Components
   ],
   exports: [
-    NSModalComponent
+    ...Components
   ],
   imports: [
     CommonModule
