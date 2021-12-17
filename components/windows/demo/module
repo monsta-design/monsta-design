@@ -1,0 +1,2 @@
+import {NSWindowsModule} from '@components/windows'
+export const moduleList = [NSWindowsModule];

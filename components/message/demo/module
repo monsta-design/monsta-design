@@ -1,0 +1,2 @@
+import {NSMessageModule} from '@components/message'
+export const moduleList = [NSMessageModule];

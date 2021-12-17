@@ -3,23 +3,19 @@ import {Component, OnInit} from '@angular/core';
 @Component({
   selector: 'ns-demo-modal-basic',
   template: `
-    <button (click)="show=!show">打开</button>
-    <ns-modal [nsShow]="show" [nsTitle]="title">
-      <ng-template #title></ng-template>
+    <button (click)="toggle()">打开</button>
+    <ns-modal [(nsShow)]="show" [nsTitle]="'登录'" (nsOnClose)="show=false">
       Content...
     </ns-modal>
   `,
   styles: [`
   `]
 })
-export class NSDemoModalBasicComponent implements OnInit {
+export class NSDemoModalBasicComponent {
 
   show = false
 
-  constructor() {
+  toggle() {
+    this.show = !this.show
   }
-
-  ngOnInit(): void {
-  }
-
 }

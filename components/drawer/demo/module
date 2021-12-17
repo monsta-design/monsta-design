@@ -1,0 +1,3 @@
+import {NSDrawerModule} from "@components/drawer";
+
+export const moduleList = [NSDrawerModule];

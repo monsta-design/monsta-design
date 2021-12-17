@@ -26,4 +26,22 @@ export class LayoutComponent implements OnInit {
     }
   }
 
+  tabMetaGetter = (path: string) => {
+    for (let v of this.routes) {
+      for (let vv of v.children) {
+        let _path = vv.path;
+        if (_path && _path.substr(0, 1) != '/') {
+          _path = '/' + _path
+        }
+        if (_path === path) {
+          return {
+            title: `${vv.label} ${vv.zh}`
+          }
+        }
+      }
+    }
+    return {
+      title: 'undefined'
+    }
+  }
 }

@@ -1,0 +1,33 @@
+:host {
+}
+
+.ns-tabs-wrap {
+  display: flex;
+  white-space: nowrap;
+  overflow: scroll;
+}
+
+.ns-router-tab {
+  cursor: default;
+  margin-right: 10px;
+  display: flex;
+  float: left;
+  height: 36px;
+  width: 180px;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 5px;
+  background: #eee;
+  border-radius: 5px;
+  border: 1px solid #eee;
+
+  button {
+    background-size: 12px;
+  }
+
+  &.active, &:hover {
+    background: #89d5fa;
+  }
+}
+
+

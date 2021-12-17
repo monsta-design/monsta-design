@@ -1,1 +1,2 @@
-export const moduleList = [];
+import {NSBreadcrumbModule} from '@components/breadcrumb'
+export const moduleList = [NSBreadcrumbModule];

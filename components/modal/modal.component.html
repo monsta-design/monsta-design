@@ -1,15 +1,16 @@
+<div class="bs-modal-backdrop bs-fade bs-show" style="z-index: 0;"></div>
 <div class="bs-modal-dialog">
   <div class="bs-modal-content">
     <div class="bs-modal-header">
       <h5 class="bs-modal-title">
         <ng-template [ngIf]="isTplTitle">
-          <ng-container [ngTemplateOutlet]="nsTitle"></ng-container>
+          <!--          <ng-container [ngTemplateOutlet]="nsTitle"></ng-container>-->
         </ng-template>
         <ng-template [ngIf]="!isTplTitle">
           {{ nsTitle }}
         </ng-template>
       </h5>
-      <button *ngIf="nsClose" type="button" class="bs-btn-close" (click)="close()"></button>
+      <button *ngIf="nsClose" type="button" class="bs-btn-close" (click)="hide()"></button>
     </div>
     <div class="bs-modal-body">
       <ng-content></ng-content>

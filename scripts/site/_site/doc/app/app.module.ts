@@ -8,6 +8,7 @@ import {NSMenuModule} from "@components/menu";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {NSClientDetectorModule} from "@components/client-detector";
+import {NSRouterTabsModule} from "@components/router-tabs";
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {NSClientDetectorModule} from "@components/client-detector";
     FormsModule,
     HttpClientModule,
     NSClientDetectorModule,
+    NSRouterTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

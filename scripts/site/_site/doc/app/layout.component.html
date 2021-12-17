@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Monsta</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -14,6 +15,9 @@
         </li>
       </ul>
     </div>
+    <div style="width: 1460px">
+      <ns-router-tabs [nsTabMetaGetter]="tabMetaGetter" [nsView]="routerView"></ns-router-tabs>
+    </div>
   </div>
 </nav>
 
@@ -21,7 +25,8 @@
   <ns-menu *ngIf="!docs">
     <ng-container *ngFor="let route of routes">
       <ns-menu-header [nsLabel]="route.name"></ns-menu-header>
-      <ns-menu-item *ngFor="let item of route.children" [nsLabel]="item.label+ ' ' + item.zh" [nsLink]="item.path"></ns-menu-item>
+      <ns-menu-item *ngFor="let item of route.children" [nsLabel]="item.label+ ' ' + item.zh"
+                    [nsLink]="item.path" [nsState]="{nsTabTitle: item.label+ ' ' + item.zh}"></ns-menu-item>
     </ng-container>
   </ns-menu>
   <ns-menu *ngIf="docs">
@@ -30,7 +35,8 @@
 </div>
 
 <div style="padding-left: 250px;">
-  <router-outlet></router-outlet>
+  <!--  <router-outlet></router-outlet>-->
+  <ns-router-view #routerView></ns-router-view>
 </div>
 
 <ns-client-detector></ns-client-detector>

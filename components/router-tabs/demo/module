@@ -1,0 +1,2 @@
+import {NSRouterTabsModule} from '@components/router-tabs'
+export const moduleList = [NSRouterTabsModule];

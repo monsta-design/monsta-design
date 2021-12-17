@@ -8,14 +8,16 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-  TemplateRef
+  TemplateRef, ViewChild
 } from '@angular/core';
 import Modal from 'monsta-bootstrap/js/src/modal.js';
+import {isTrue, NS_BOOL} from "../types";
+import {InputBoolean} from "../convert";
 
 @Component({
   selector: 'ns-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css'],
+  styleUrls: ['./modal.component.scss'],
 })
 export class NSModalComponent implements AfterViewInit, OnChanges, OnInit {
 
@@ -30,14 +32,17 @@ export class NSModalComponent implements AfterViewInit, OnChanges, OnInit {
   @Input() nsOkText: string;
   @Input() nsCancel: boolean = true;
   @Input() nsCancelText: string;
-  @Input() nsShow: boolean = false;
+  @Input() @InputBoolean() nsShow: boolean = false;
   @Input() scrollable: boolean = true;
   @Input() centered: boolean = false;
   @Input() nsSize: string | null = null;
   @Output() nsOnClose: EventEmitter<null> = new EventEmitter<null>();
   @Output() nsOnOK: EventEmitter<null> = new EventEmitter<null>();
   @Output() nsOnCancel: EventEmitter<null> = new EventEmitter<null>();
+  @Output() nsShowChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   isTplTitle: boolean = false;
+
+  // @ViewChild('modal') modal: ElementRef;
 
   modal: Modal = null;
 
@@ -45,47 +50,48 @@ export class NSModalComponent implements AfterViewInit, OnChanges, OnInit {
   }
 
   ngOnInit() {
-    this.isTplTitle = this.nsTitle instanceof TemplateRef;
-
-    console.log(this.nsTitle, this.isTplTitle);
+    // this.isTplTitle = this.nsTitle instanceof TemplateRef;
   }
 
 
   ngAfterViewInit() {
-    this.modal = new Modal(this.el.nativeElement);
     if (this.nsShow) {
-      this.modal.show()
+      // this.modal.show()
+      this.show()
     }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (typeof changes.nsShow != 'undefined' && this.modal) {
-      if (changes.nsShow) {
-        this.modal.show();
+    if (typeof changes.nsShow !== 'undefined') {
+      if (isTrue(changes.nsShow.currentValue)) {
+        this.show();
       } else {
-        this.modal.hide();
+        this.hide();
       }
     }
   }
 
-  close() {
-    // if (this.modal) {
-    //   this.modal.hide();
-    //   this.nsOnClose.emit();
-    // }
+  getModal() {
+    if (this.modal == null) {
+      this.modal = new Modal(this.el.nativeElement);
+    }
+    return this.modal
   }
 
-  handleUpdate() {
-    // if (this.modal) {
-    //   this.modal.handleUpdate();
-    // }
+  show() {
+    this.getModal().show()
+  }
+
+  hide() {
+    this.getModal().hide()
+    this.nsOnClose.emit()
   }
 
   cancel() {
-    this.close();
+    this.hide();
   }
 
   ok() {
-    this.close();
+    this.hide();
   }
 }

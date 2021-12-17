@@ -6,7 +6,7 @@ import {
   Input, OnChanges,
   SimpleChanges
 } from '@angular/core';
-import {Color} from "../types";
+import {Color, isTrue, NS_BOOL} from "../types";
 
 
 @Directive({
@@ -77,9 +77,24 @@ export class BtnDirective implements AfterViewInit, OnChanges {
       }
     }
   }
+}
 
+@Directive({
+  selector: '[nsCloseButton]'
+})
+export class CloseBtnDirective {
+  @Input() nsWhite: NS_BOOL
+
+  @HostBinding('class') get getClass() {
+    let classes = ['bs-btn-close']
+    if (isTrue(this.nsWhite)) {
+      classes.push('bs-btn-close-white')
+    }
+    return classes.join(' ')
+  }
 }
 
 export const ButtonDirectives = [
-  BtnDirective
+  BtnDirective,
+  CloseBtnDirective
 ]

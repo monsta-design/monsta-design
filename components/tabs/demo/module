@@ -1,0 +1,2 @@
+import {NSTabsModule} from '@components/tabs'
+export const moduleList = [NSTabsModule];

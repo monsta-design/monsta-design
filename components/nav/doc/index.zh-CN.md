@@ -1,8 +1,8 @@
 ---
 category: Components
-subtitle: 选项
+subtitle: 
 type: 导航
-title: Tab
+title: Nav
 cover: https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg
 ---
 

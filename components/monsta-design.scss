@@ -6,7 +6,26 @@
 @import "../node_modules/monsta-bootstrap/scss/button-group";
 @import "../node_modules/monsta-bootstrap/scss/spinners";
 
+// 关闭按钮
+@import "../node_modules/monsta-bootstrap/scss/close";
+
+// 表单
 @import "../node_modules/monsta-bootstrap/scss/forms";
+
+// 骨架
+@import "../node_modules/monsta-bootstrap/scss/placeholders";
+
+// 分页
+@import "../node_modules/monsta-bootstrap/scss/pagination";
+
+// 消息提示
+@import "../node_modules/monsta-bootstrap/scss/toasts";
+
+// 选项卡
+@import "../node_modules/monsta-bootstrap/scss/nav";
+
+// 路径
+@import "../node_modules/monsta-bootstrap/scss/breadcrumb";
 
 html, body {
   height: 100%;
