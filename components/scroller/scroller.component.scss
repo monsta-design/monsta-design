@@ -3,6 +3,7 @@
   display: block;
   width: 100%;
   overflow: scroll;
+  overscroll-behavior: none;
 }
 
 //.ns-scroller-wrap {
