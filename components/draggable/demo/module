@@ -1,0 +1,2 @@
+import { NSDraggableModule } from '@components/draggable';
+export const moduleList = [NSDraggableModule];

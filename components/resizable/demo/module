@@ -1,0 +1,2 @@
+import { NSResizableModule } from '@components/resizable';
+export const moduleList = [NSResizableModule];

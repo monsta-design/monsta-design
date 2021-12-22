@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy} from '@angular/core';
+import {Component, ElementRef} from '@angular/core';
 
 @Component({
   selector: 'ns-scroller',
