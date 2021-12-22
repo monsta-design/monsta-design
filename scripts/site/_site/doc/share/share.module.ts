@@ -18,10 +18,11 @@ import {NSScrollspyModule} from "@components/scrollspy";
     NSScrollspyModule,
   ],
   exports: [
-    DemoComponent,
-    HighlightComponent,
+    CommonModule,
     NSLayoutModule,
     NSScrollspyModule,
+    DemoComponent,
+    HighlightComponent,
   ]
 })
 export class ShareModule {
