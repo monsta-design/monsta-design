@@ -1,7 +1,7 @@
 ---
 order: 0
 title:
-  zh-CN: 水平滚动
+  zh-CN: 垂直滚动
   en-US: Basic
 ---
 

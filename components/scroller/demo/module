@@ -1,3 +1,4 @@
 import {NSScrollerModule} from '@components/scroller'
+import {NSButtonModule} from '@components/button'
 
-export const moduleList = [NSScrollerModule];
+export const moduleList = [NSButtonModule,NSScrollerModule];
