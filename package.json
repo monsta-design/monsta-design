@@ -40,6 +40,7 @@
     "rxjs": "~6.6.0",
     "sass": "^1.34.0",
     "simplebar-angular": "^2.3.6",
+    "smooth-scrollbar": "^8.7.0",
     "tslib": "^2.0.0",
     "yaml-front-matter": "^4.1.1",
     "zone.js": "~0.10.2"

@@ -1,5 +1,8 @@
 import {AfterViewInit, Component, ElementRef, Input, OnDestroy} from '@angular/core';
-import PerfectScrollbar from 'perfect-scrollbar';
+import Scrollbar from 'smooth-scrollbar';
+import OverscrollPlugin from "smooth-scrollbar/plugins/overscroll";
+
+Scrollbar.use(OverscrollPlugin)
 
 @Component({
   selector: 'ns-scroller',
@@ -9,37 +12,46 @@ import PerfectScrollbar from 'perfect-scrollbar';
 export class NSScrollerComponent implements AfterViewInit, OnDestroy {
 
   @Input() nsDirection: 'x' | 'y' | 'none' = 'none';
-  private ps: PerfectScrollbar;
+  private ps: Scrollbar;
 
   constructor(private el: ElementRef) {
   }
 
   ngAfterViewInit(): void {
-    this.ps = new PerfectScrollbar(this.el.nativeElement);
+    this.ps = Scrollbar.init(this.el.nativeElement, {
+      plugins: {
+        overscroll: {
+          effect: 'glow',
+          damping: 0.2,
+          maxOverscroll: 150,
+          glowColor: '#222a2d',
+        }
+      }
+    })
   }
 
   scrollX(distance: number, smooth?: boolean) {
-    this.el.nativeElement.scrollLeft = this.el.nativeElement.scrollLeft + distance
+    this.ps.scrollTo(this.ps.scrollLeft + distance, this.ps.scrollTop, 500)
   }
 
   scrollY(distance: number, smooth?: boolean) {
-    this.el.nativeElement.scrollTop = this.el.nativeElement.scrollTop + distance
+    this.ps.scrollTo(this.ps.scrollLeft, this.ps.scrollTop + distance, 500)
   }
 
   scrollStart() {
-    this.el.nativeElement.scrollLeft = 0
+    this.ps.scrollTo(0, this.ps.scrollTop, 500)
   }
 
   scrollEnd() {
-    this.el.nativeElement.scrollLeft = this.el.nativeElement.scrollWidth
+    this.ps.scrollTo(this.el.nativeElement.scrollWidth, this.ps.scrollTop, 500)
   }
 
   scrollTop() {
-    this.el.nativeElement.scrollTop = 0
+    this.ps.scrollTo(this.ps.scrollLeft, 0, 500)
   }
 
   scrollBottom() {
-    this.el.nativeElement.scrollTop = this.el.nativeElement.scrollHeight
+    this.ps.scrollTo(this.ps.scrollLeft, this.el.nativeElement.scrollHeight, 500)
   }
 
   ngOnDestroy() {
