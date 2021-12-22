@@ -42,7 +42,7 @@ export class NSDemoScrollerVerticalComponent implements AfterViewInit {
   }
 
   scrollTo(d: number) {
-    this.scroller.scrollY(d, true)
+    this.scroller.scrollY(d)
   }
 
   scrollTop() {

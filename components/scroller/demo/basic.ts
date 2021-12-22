@@ -45,7 +45,7 @@ export class NSDemoScrollerBasicComponent {
   items = new Array(100)
 
   scrollTo(d: number) {
-    this.scroller.scrollX(d, true)
+    this.scroller.scrollX(d)
   }
 
   scrollStart() {
