@@ -27,7 +27,8 @@
 // 路径
 @import "../node_modules/monsta-bootstrap/scss/breadcrumb";
 
-@import "~ngx-draggable-resize/css/resizable.min.css";
+// Resizable
+@import "resizable/resizeable";
 
 html, body {
   height: 100%;
