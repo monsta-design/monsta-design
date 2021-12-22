@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input, OnDestroy} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostListener, Input, OnDestroy} from '@angular/core';
 import Scrollbar from 'smooth-scrollbar';
 import OverscrollPlugin from "smooth-scrollbar/plugins/overscroll";
 
@@ -13,16 +13,36 @@ export class NSScrollerComponent implements AfterViewInit, OnDestroy {
 
   @Input() nsDirection: 'x' | 'y' | 'none' = 'none';
   private ps: Scrollbar;
+  private leaveTimeStamp: number = undefined;
 
   constructor(private el: ElementRef) {
   }
 
+  preventScroll = (e) => {
+    if (this.leaveTimeStamp !== undefined) {
+      const now = Date.now();
+      if (now - this.leaveTimeStamp < 50) {
+        this.leaveTimeStamp = now
+        e.preventDefault()
+      } else {
+        this.leaveTimeStamp = undefined
+      }
+    }
+  }
+
+  @HostListener('mouseleave', ['$event']) mousewheel(e) {
+    this.leaveTimeStamp = Date.now();
+  }
+
   ngAfterViewInit(): void {
+    window.addEventListener('wheel', this.preventScroll, {passive: false})
     this.ps = Scrollbar.init(this.el.nativeElement, {
+      damping: 0.3,
+      continuousScrolling: false,
       plugins: {
         overscroll: {
           effect: 'glow',
-          damping: 0.2,
+          damping: 0.3,
           maxOverscroll: 150,
           glowColor: '#222a2d',
         }
@@ -55,6 +75,7 @@ export class NSScrollerComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    window.removeEventListener('wheel', this.preventScroll)
     this.ps.destroy()
   }
 }
