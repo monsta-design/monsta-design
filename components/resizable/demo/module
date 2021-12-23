@@ -1,2 +1,2 @@
-import { NSResizableModule } from '@components/resizable';
+import { NSResizableModule } from 'monsta-design/resizable';
 export const moduleList = [NSResizableModule];

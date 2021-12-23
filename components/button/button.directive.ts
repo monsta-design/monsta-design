@@ -6,7 +6,7 @@ import {
   Input, OnChanges,
   SimpleChanges
 } from '@angular/core';
-import {Color, isTrue, NS_BOOL} from "../types";
+import {Color, isTrue, NS_BOOL} from "monsta-design/core";
 
 
 @Directive({

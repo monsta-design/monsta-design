@@ -1,3 +1,4 @@
-import {NSDrawerModule} from "@components/drawer";
+import {NSDrawerModule} from "monsta-design/drawer";
+import {NSButtonModule} from "monsta-design/button";
 
-export const moduleList = [NSDrawerModule];
+export const moduleList = [NSDrawerModule,NSButtonModule];

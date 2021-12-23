@@ -1,5 +1,5 @@
 import {Directive, HostBinding, Input} from '@angular/core';
-import {Color, isDefaultColor, randColor} from "../types";
+import {Color, isDefaultColor, randColor} from 'monsta-design/core';
 import {isNumeric} from "rxjs/internal-compatibility";
 
 @Directive({

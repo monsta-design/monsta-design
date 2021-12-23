@@ -1,5 +1,5 @@
 import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {InputBoolean} from "../convert";
+import {InputBoolean} from "monsta-design/core";
 
 @Component({
   selector: 'ns-breadcrumb-item',

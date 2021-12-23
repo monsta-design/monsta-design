@@ -15,25 +15,18 @@ cover: https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg
 页面可视范围过小时，慎用此功能以免遮挡页面内容。
 
 ```ts
-import { NSInputModule } from 'monsta-design/input';
+import { NSResizableModule } from 'monsta-design/resizable';
 ```
 
 ## API
 
+ 
+### [nsResizable]
 
-### nz-affix
+| 参数 | 说明 | 类型 | 默认值 | 
+| --- | --- | --- | --- | 
+| `[nsResizableHandles]` | 设置拖动句柄 | `s,e,t,b,ts,te,bs,be,string` | `e,b,be`  |
 
-| 成员 | 说明 | 类型 | 默认值 | 全局配置 |
-| --- | --- | --- | --- | --- |
-| `[nzOffsetBottom]` | 距离窗口底部达到指定偏移量后触发 | `number` | - | ✅ |
-| `[nzOffsetTop]` | 距离窗口顶部达到指定偏移量后触发 | `number` | `0` | ✅ |
-| `[nzTarget]` | 设置 `nz-affix` 需要监听其滚动事件的元素，值为一个返回对应 DOM 元素的函数 | `string \| HTMLElement` | `window` |
-| `(nzChange)` | 固定状态改变时触发的回调函数 | `EventEmitter<boolean>` | - |
+s,e,t,b 符合 Bootstrap 的布局方向定义，分布代表开始位置，结束位置，上，下。
+ 
 
-**注意：**`nz-affix` 内的元素不要使用绝对定位，如需要绝对定位的效果，可以直接设置 `nz-affix` 为绝对定位：
-
-```jsx
-<nz-affix style="position: absolute; top: 10px, left: 10px">
-  ...
-</nz-affix>
-```

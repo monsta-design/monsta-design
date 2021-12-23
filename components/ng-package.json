@@ -1,7 +1,18 @@
 {
   "$schema": "../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/monsta-design",
+  "dest": "../dist/monsta-design",
   "lib": {
     "entryFile": "./public-api.ts"
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "tslib",
+    "angular",
+    "monsta-bootstrap",
+    "animejs",
+    "sortablejs",
+    "@popperjs/core",
+    "@fortawesome/angular-fontawesome",
+    "@fortawesome/fontawesome-svg-core",
+    "@fortawesome/free-solid-svg-icons"
+  ]
 }

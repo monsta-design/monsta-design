@@ -14,18 +14,13 @@
     "lib": [
       "es2018",
       "dom"
-    ],
-    "paths": {
-      "@components/*": [
-        "./src/components/*"
-      ]
-    }
+    ]
   },
   "allowSyntheticDefaultImports": true,
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-//    "strictTemplates": true
+    "strictInputAccessModifiers": true
+    //    "strictTemplates": true
   }
 }

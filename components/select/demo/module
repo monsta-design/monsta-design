@@ -1,2 +1,2 @@
-import {NSSelectModule} from '@components/select'
+import {NSSelectModule} from 'monsta-design/select'
 export const moduleList = [NSSelectModule];

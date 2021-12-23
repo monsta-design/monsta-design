@@ -1,5 +1,5 @@
 import {Directive, HostBinding, Input} from '@angular/core';
-import {Color} from "../types";
+import {Color} from 'monsta-design/core';
 
 @Directive({
   selector: '[nsLink]'

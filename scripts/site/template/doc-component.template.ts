@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, ViewChild} from '@angular/core';
-import {NSScrollspyComponent} from "@components/scrollspy";
+import {NSScrollspyComponent} from "monsta-design/scrollspy";
 
 @Component({
   selector     : 'nz-doc-{{component}}-{{language}}',

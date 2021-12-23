@@ -1,2 +1,2 @@
-import {NSMessageModule} from '@components/message'
+import {NSMessageModule} from 'monsta-design/message'
 export const moduleList = [NSMessageModule];

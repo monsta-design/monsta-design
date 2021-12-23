@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import Dropdown from 'monsta-bootstrap/js/src/dropdown.js';
-import {Color} from "../types";
+import {Color} from 'monsta-design/core';
 
 @Component({
   selector: 'ns-dropdown',

@@ -1,2 +1,2 @@
-import {NSRangeModule} from '@components/range'
+import {NSRangeModule} from 'monsta-design/range'
 export const moduleList = [NSRangeModule];

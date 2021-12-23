@@ -342,3 +342,9 @@ export class NSPosition implements NSIPosition {
     return this;
   }
 }
+
+export type NSAny = any;
+
+export interface NSStyleInterface {
+  [klass: string]: NSAny;
+}

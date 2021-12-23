@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 
 // // @ts-ignore
-// import doc from '!raw-loader!@components/readme.md';
+// import doc from '!raw-loader!monsta-design/readme.md';
 // // @ts-ignore
-// import basicDoc from '!raw-loader!@components/demo/basic.md';
+// import basicDoc from '!raw-loader!monsta-design/demo/basic.md';
 // // @ts-ignore
-// import basicCode from '!raw-loader!@components/demo/basic.component';
-// import {NSDemoCardBasicComponent} from '@components/card/demo/basic.component';
+// import basicCode from '!raw-loader!monsta-design/demo/basic.component';
+// import {NSDemoCardBasicComponent} from 'monsta-design/card/demo/basic.component';
 
 @Component({
   selector: 'app-card',

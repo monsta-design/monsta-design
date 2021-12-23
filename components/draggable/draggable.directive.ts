@@ -14,7 +14,7 @@ import {
 } from "@angular/core";
 
 import {Subscription, fromEvent} from "rxjs";
-import {NSShadow, NSIPosition, NSPosition} from "../types";
+import {NSShadow, NSIPosition, NSPosition} from 'monsta-design/core';
 
 @Directive({
   selector: "[nsDraggable]",

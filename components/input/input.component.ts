@@ -1,16 +1,20 @@
 import {Component, HostBinding, Input} from '@angular/core';
-import {generateID} from "../types";
+import {generateID} from 'monsta-design/core';
 
 
 @Component({
   selector: 'ns-input',
   template: `
+    <label *ngIf="nsLabel" [for]="id" class="bs-form-label">{{nsLabel}}</label>
     <span *ngIf="nsPrefix!==null" class="bs-input-group-text">{{ nsPrefix }}</span>
     <input [type]="nsType" class="bs-form-control" [ngClass]="getInputSize" [id]="id"
-           [placeholder]="nsPlaceholder">
+           [placeholder]="nsPlaceholder||''">
     <span *ngIf="nsSuffix!==null" class="bs-input-group-text">{{ nsSuffix }}</span>
   `,
-  styleUrls: ['./input.component.scss']
+  styleUrls: ['./input.component.scss'],
+  host: {
+    class: 'bs-mb-3' // 需要和 Size 联动
+  }
 })
 export class NSInputComponent {
   @Input() nsLabel: string = null

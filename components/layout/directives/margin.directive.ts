@@ -1,5 +1,5 @@
 import {Directive, ElementRef, HostBinding, Input, OnChanges, Renderer2, SimpleChanges} from '@angular/core';
-import {BreakPoints, insertElementStyle, isDefaultSpacingSize, SpacingSize} from "../../types";
+import {BreakPoints, insertElementStyle, isDefaultSpacingSize, SpacingSize} from 'monsta-design/core';
 
 type MarginType = 'm' | 'mt' | 'mb' | 'ms' | 'me' | 'mx' | 'my'
 

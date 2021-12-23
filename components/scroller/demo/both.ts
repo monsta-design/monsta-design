@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ViewChild,} from '@angular/core';
 // @ts-ignore
-import {NSScrollerComponent} from "@components/scroller";
+import {NSScrollerComponent} from "monsta-design/scroller";
 
 @Component({
   selector: 'ns-demo-scroller-both',

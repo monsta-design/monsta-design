@@ -1,11 +1,11 @@
 import {Component, HostBinding, Input} from '@angular/core';
 
 @Component({
-  selector: 'ns-header',
+  selector: 'ns-layout-footer',
   template: `
     <ng-content></ng-content>`,
 })
-export class NSHeaderComponent {
+export class NSLayoutFooterComponent {
   @Input() nsZoom: boolean | 'false' | 'true' = false
 
   @HostBinding('style') get getStyle() {

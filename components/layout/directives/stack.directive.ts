@@ -9,7 +9,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import {isNumeric} from "rxjs/internal-compatibility";
-import {BreakPoints, FlexAlignSelfMode, insertElementStyle} from "../../types";
+import {BreakPoints, FlexAlignSelfMode, insertElementStyle} from 'monsta-design/core';
 
 export class GupStyle {
   media: string

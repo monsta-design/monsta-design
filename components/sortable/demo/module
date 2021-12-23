@@ -1,3 +1,3 @@
-import { NSSortableModule } from '@components/sortable';
+import { NSSortableModule } from 'monsta-design/sortable';
 
 export const moduleList = [ NSSortableModule ];

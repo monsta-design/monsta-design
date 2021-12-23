@@ -1,4 +1,4 @@
-import {NSLinkModule} from '@components/link'
-import {NSButtonModule} from '@components/button'
+import {NSLinkModule} from 'monsta-design/link'
+import {NSButtonModule} from 'monsta-design/button'
 
 export const moduleList = [NSLinkModule,NSButtonModule];

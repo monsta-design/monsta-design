@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {NSWindowsComponent} from "@components/windows";
+import {NSWindowsComponent} from "monsta-design/windows";
 
 @Component({
   selector: 'ns-demo-windows-basic',

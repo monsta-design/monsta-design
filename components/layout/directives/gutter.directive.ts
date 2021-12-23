@@ -4,7 +4,7 @@ import {
   BreakPoints,
   SpacingSize,
   insertElementStyle
-} from "../../types";
+} from 'monsta-design/core';
 
 export class GutterStyle {
   media: string

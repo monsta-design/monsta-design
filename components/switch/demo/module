@@ -1,2 +1,2 @@
-import {NSSwitchModule} from '@components/switch'
+import {NSSwitchModule} from 'monsta-design/switch'
 export const moduleList = [NSSwitchModule];

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'ns-content',
+  selector: 'ns-layout-content',
   template: `<ng-content></ng-content>`,
   styleUrls: ['./layout.scss']
 })
-export class NSContentComponent implements OnInit {
+export class NSLayoutContentComponent implements OnInit {
 
   constructor() { }
 

@@ -1,5 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {BreakPoints} from '../types'
+import {BreakPoints} from 'monsta-design/core'
 
 @Component({
   selector: 'ns-client-detector',

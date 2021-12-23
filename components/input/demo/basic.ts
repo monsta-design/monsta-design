@@ -5,8 +5,6 @@ import {Component, OnInit} from '@angular/core';
   template: `
     <ns-input nsPlaceholder="Example input placeholder"></ns-input>
   `,
-  styles: [`
-  `]
 })
 export class NSDemoInputBasicComponent implements OnInit {
 

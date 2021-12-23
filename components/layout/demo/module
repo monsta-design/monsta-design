@@ -1,5 +1,5 @@
-import {NSStyleModule} from "@components/style";
-import {NSButtonModule} from "@components/button";
-import {NSLayoutModule} from "@components/layout";
+import {NSStyleModule} from "monsta-design/style";
+import {NSButtonModule} from "monsta-design/button";
+import {NSLayoutModule} from "monsta-design/layout";
 
 export const moduleList = [NSStyleModule,NSButtonModule, NSLayoutModule];

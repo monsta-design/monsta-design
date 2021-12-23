@@ -1,5 +1,5 @@
 import {AfterContentInit, Component, ContentChildren, ElementRef, HostBinding, Input, OnInit} from '@angular/core';
-import {isTrue, NS_BOOL} from "../types";
+import {isTrue, NS_BOOL} from 'monsta-design/core';
 
 @Component({
   selector: 'ns-skeletons',

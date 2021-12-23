@@ -1,7 +1,7 @@
 ---
 category: Components
 subtitle: 抽屉
-type: 导航
+type: 布局
 title: Drawer
 cover: https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg
 ---

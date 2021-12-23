@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {generateID} from "../types";
+import {generateID} from 'monsta-design/core';
 
 @Component({
   selector: 'ns-switch',

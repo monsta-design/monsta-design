@@ -1,2 +1,2 @@
-import {NSModalModule} from '@components/modal'
+import {NSModalModule} from 'monsta-design/modal'
 export const moduleList = [NSModalModule];

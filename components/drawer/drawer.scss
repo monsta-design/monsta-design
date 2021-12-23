@@ -1,0 +1,33 @@
+:host {
+  flex-shrink: 0;
+  flex-grow: 0;
+
+  &.ns-open {
+    .ns-drawer-mask {
+      display: block;
+    }
+
+    .ns-drawer-content {
+      width: 200px;
+      transform: translateX(0);
+    }
+  }
+
+  .ns-drawer-mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,.45);
+    display: none;
+  }
+
+  .ns-drawer-content {
+    width: 0;
+    height: 100%;
+    //transition: width .3s cubic-bezier(.7, .3, .1, 1), height 0s ease .3s, width 0s ease .3s;
+    transition: width .3s cubic-bezier(.7, .3, .1, 1);
+    background: #4183C4;
+  }
+}

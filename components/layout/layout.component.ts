@@ -26,10 +26,10 @@ export class NSLayoutComponent implements AfterContentInit {
   ngAfterContentInit() {
     for (let elem of this.el.nativeElement.children) {
       switch (elem.tagName.toLowerCase()) {
-        case 'ns-aside':
+        case 'ns-layout-aside':
           this.direction = 'row'
           break
-        case 'ns-footer':
+        case 'ns-layout-footer':
           elem.style.setProperty('margin-top', 'auto')
           break
       }

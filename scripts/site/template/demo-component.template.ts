@@ -1,5 +1,5 @@
 import {AfterViewInit, ChangeDetectorRef, Component, QueryList, ViewChild, ViewChildren} from '@angular/core';
-import {NSScrollspyComponent} from "@components/scrollspy";
+import {NSScrollspyComponent} from "monsta-design/scrollspy";
 // import { NzCodeBoxComponent } from '../share/codebox/codebox.component';
 
 @Component({

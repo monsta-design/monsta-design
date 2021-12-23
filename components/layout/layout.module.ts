@@ -2,10 +2,10 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ContainerComponent} from './container.component';
 import {NSLayoutComponent} from './layout.component';
-import {NSHeaderComponent} from './header.component';
-import {NSAsideComponent} from './aside.component';
-import {NSFooterComponent} from './footer.component';
-import {NSContentComponent} from './content.component';
+import {NSLayoutHeaderComponent} from './layout-header.component';
+import {NSLayoutAsideComponent} from './layout-aside.component';
+import {NSLayoutFooterComponent} from './layout-footer.component';
+import {NSLayoutContentComponent} from './layout-content.component';
 import {NSSpaceComponent} from './space.component';
 import {MarginDirectives} from './directives/margin.directive';
 import {PaddingDirectives} from './directives/padding.directive';
@@ -33,10 +33,10 @@ const COMPONENTS = [
   ...StackDirectives,
   ContainerComponent,
   NSLayoutComponent,
-  NSHeaderComponent,
-  NSAsideComponent,
-  NSFooterComponent,
-  NSContentComponent,
+  NSLayoutHeaderComponent,
+  NSLayoutAsideComponent,
+  NSLayoutFooterComponent,
+  NSLayoutContentComponent,
   NSSpaceComponent,
 ];
 

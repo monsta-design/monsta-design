@@ -7,7 +7,7 @@ import {
   FlexJustifyMode,
   FlexShark,
   FlexWrapMode
-} from '../../types';
+} from 'monsta-design/core';
 
 
 interface FlexAttributes {

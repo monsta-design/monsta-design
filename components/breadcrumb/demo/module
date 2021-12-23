@@ -1,2 +1,2 @@
-import {NSBreadcrumbModule} from '@components/breadcrumb'
+import {NSBreadcrumbModule} from 'monsta-design/breadcrumb'
 export const moduleList = [NSBreadcrumbModule];

@@ -1,2 +1,2 @@
-import {NSTabsModule} from '@components/tabs'
+import {NSTabsModule} from 'monsta-design/tabs'
 export const moduleList = [NSTabsModule];

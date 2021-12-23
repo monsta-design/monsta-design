@@ -1,28 +1,6 @@
 import {AfterViewInit, ChangeDetectorRef, Component, Injector, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, ActivationEnd, Route, Router} from "@angular/router";
-import {BehaviorSubject} from "rxjs";
-
-export interface Tab {
-  id: string,
-  title: string,
-  url: string,
-  name?: string;
-  component: any;
-  active: boolean;
-  route?: Route;
-  key?: string;
-  count?: BehaviorSubject<number>;
-}
-
-export interface TabMeta {
-  title: string,
-}
-
-export declare interface NSRouterTab {
-  onTabFocus();
-
-  nsGetTabTitle(): string;
-}
+import {ActivatedRoute, ActivationEnd, Router} from "@angular/router";
+import {Tab, NSRouterTabMeta} from "./types";
 
 
 @Component({
@@ -63,7 +41,7 @@ export class NSRouterViewComponent {
         this.switchTab(showTab)
       }
     }
-    this.cd.markForCheck();
+    this.cd.detectChanges();
   }
 
   switchTab(tab: Tab) {
@@ -112,7 +90,7 @@ export class NSRouterViewComponent {
 })
 export class NSRouterTabsComponent implements AfterViewInit {
 
-  @Input() nsTabMetaGetter: (path: string) => TabMeta
+  @Input() nsTabMetaGetter: (path: string) => NSRouterTabMeta
   @Input() nsView: NSRouterViewComponent;
 
   private lastActivationEnd: ActivationEnd;
@@ -159,6 +137,11 @@ export class NSRouterTabsComponent implements AfterViewInit {
       url: this.router.url,
     }
     this.nsView.showTab(tab)
+    this.cd.detectChanges();
+  }
+
+  tabs() {
+    return this.nsView.tabs;
   }
 
   show(tab: Tab) {

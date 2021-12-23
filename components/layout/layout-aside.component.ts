@@ -1,13 +1,12 @@
 import {Component, HostBinding, Input} from '@angular/core';
 
 @Component({
-  selector: 'ns-footer',
+  selector: 'ns-layout-aside',
   template: `
     <ng-content></ng-content>`,
 })
-export class NSFooterComponent {
+export class NSLayoutAsideComponent {
   @Input() nsZoom: boolean | 'false' | 'true' = false
-
   @HostBinding('style') get getStyle() {
     if (this.nsZoom === false || this.nsZoom === 'false') {
       return {

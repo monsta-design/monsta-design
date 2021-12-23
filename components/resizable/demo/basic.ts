@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 @Component({
   selector: 'ns-demo-resizable-basic',
   template: `
-    <div nsResizable [nsMinHeight]="60" [nsMinWidth]="60"> I'm now resizable</div>
+    <div nsResizable [nsResizableMinHeight]="60" [nsResizableMinWidth]="60" nsResizableHandles="b"> I'm now resizable</div>
   `,
   styles: [`
     div {

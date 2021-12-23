@@ -1,4 +1,4 @@
-import {NSScrollerModule} from '@components/scroller'
-import {NSButtonModule} from '@components/button'
+import {NSScrollerModule} from 'monsta-design/scroller'
+import {NSButtonModule} from 'monsta-design/button'
 
 export const moduleList = [NSButtonModule,NSScrollerModule];

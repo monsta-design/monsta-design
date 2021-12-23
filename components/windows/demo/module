@@ -1,2 +1,2 @@
-import {NSWindowsModule} from '@components/windows'
+import {NSWindowsModule} from 'monsta-design/windows'
 export const moduleList = [NSWindowsModule];

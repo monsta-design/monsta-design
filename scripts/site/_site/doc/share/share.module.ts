@@ -3,8 +3,8 @@ import {CommonModule} from '@angular/common';
 import {DemoComponent} from "./demo.component";
 import {HighlightComponent} from "./highlight.component";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {NSLayoutModule} from "@components/layout";
-import {NSScrollspyModule} from "@components/scrollspy";
+import {NSLayoutModule} from "monsta-design/layout";
+import {NSScrollspyModule} from "monsta-design/scrollspy";
 
 @NgModule({
   declarations: [

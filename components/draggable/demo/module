@@ -1,2 +1,2 @@
-import { NSDraggableModule } from '@components/draggable';
+import { NSDraggableModule } from 'monsta-design/draggable';
 export const moduleList = [NSDraggableModule];

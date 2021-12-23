@@ -9,7 +9,7 @@ import {NSResizeHandle} from './widgets/resize-handle';
 import {NSResizeHandleType} from './models/resize-handle-type';
 import {NSSize} from './models/size';
 import {NSIResizeEvent} from './models/resize-event';
-import {NSShadow, NSIPosition, NSPosition} from "../types";
+import {NSShadow, NSIPosition, NSPosition} from 'monsta-design/core';
 
 @Directive({
   selector: '[nsResizable]',
@@ -28,10 +28,24 @@ export class NSResizableDirective implements OnInit, OnChanges, OnDestroy, After
    * Which handles can be used for resizing.
    * @example
    * [rzHandles] = "'n,e,s,w,se,ne,sw,nw'"
+   * 使用 bootstrap 坐标系替换：s,e,t,b,ts,te,bs,be
    * equals to: [rzHandles] = "'all'"
    *
    * */
-  @Input() nsHandles: NSResizeHandleType = 'e,s,se';
+    // private _nsResizableHandles: NSResizeHandleType = 'e,s,se';
+  private _nsResizableHandles: NSResizeHandleType = 'e,s,se';
+  @Input()
+  set nsResizableHandles(v: NSResizeHandleType) {
+    this._nsResizableHandles = `${v}`.
+    replace(/t/g, 'n').
+    replace(/s/g, 'w').
+    replace(/b/g, 's').
+    replace(/e/g, 'e')
+  };
+
+  get nsResizableHandles() {
+    return this._nsResizableHandles;
+  }
 
   /**
    * Whether the element should be constrained to a specific aspect ratio.
@@ -39,7 +53,7 @@ export class NSResizableDirective implements OnInit, OnChanges, OnDestroy, After
    *  boolean: When set to true, the element will maintain its original aspect ratio.
    *  number: Force the element to maintain a specific aspect ratio during resizing.
    */
-  @Input() nsAspectRatio: boolean | number = false;
+  @Input() nsResizableAspectRatio: boolean | number = false;
 
   /**
    * Constrains resizing to within the bounds of the specified element or region.
@@ -49,37 +63,37 @@ export class NSResizableDirective implements OnInit, OnChanges, OnDestroy, After
    *  Element: The resizable element will be contained to the bounding box of this element.
    *  String: Possible values: "parent".
    */
-  @Input() nsContainment: string | HTMLElement = null;
+  @Input() nsResizableContainer: string | HTMLElement = null;
 
   /**
    * Snaps the resizing element to a grid, every x and y pixels.
    * A number for both width and height or an array values like [ x, y ]
    */
-  @Input() nsGrid: number | number[] = null;
+  @Input() nsResizableGrid: number | number[] = null;
 
   /** The minimum width the resizable should be allowed to resize to. */
-  @Input() nsMinWidth: number = null;
+  @Input() nsResizableMinWidth: number = null;
 
   /** The minimum height the resizable should be allowed to resize to. */
-  @Input() nsMinHeight: number = null;
+  @Input() nsResizableMinHeight: number = null;
 
   /** The maximum width the resizable should be allowed to resize to. */
-  @Input() nsMaxWidth: number = null;
+  @Input() nsResizableMaxWidth: number = null;
 
   /** The maximum height the resizable should be allowed to resize to. */
-  @Input() nsMaxHeight: number = null;
+  @Input() nsResizableMaxHeight: number = null;
 
   /** Whether to prevent default event */
-  @Input() nsPreventDefaultEvent = true;
+  @Input() nsResizablePreventDefaultEvent = true;
 
   /** emitted when start resizing */
-  @Output() nsOnStart = new EventEmitter<NSIResizeEvent>();
+  @Output() nsResizableOnStart = new EventEmitter<NSIResizeEvent>();
 
   /** emitted when start resizing */
-  @Output() nsOnResizing = new EventEmitter<NSIResizeEvent>();
+  @Output() nsResizableOnResizing = new EventEmitter<NSIResizeEvent>();
 
   /** emitted when stop resizing */
-  @Output() nsOnStop = new EventEmitter<NSIResizeEvent>();
+  @Output() nsResizableOnStop = new EventEmitter<NSIResizeEvent>();
 
   private _resizable = true;
   private _handles: { [key: string]: NSResizeHandle } = {};
@@ -198,48 +212,48 @@ export class NSResizableDirective implements OnInit, OnChanges, OnDestroy, After
 
   /** Use it to update aspect */
   private updateAspectRatio() {
-    if (typeof this.nsAspectRatio === 'boolean') {
-      if (this.nsAspectRatio && this._currSize.height) {
+    if (typeof this.nsResizableAspectRatio === 'boolean') {
+      if (this.nsResizableAspectRatio && this._currSize.height) {
         this._aspectRatio = (this._currSize.width / this._currSize.height);
       } else {
         this._aspectRatio = 0;
       }
     } else {
-      let r = Number(this.nsAspectRatio);
+      let r = Number(this.nsResizableAspectRatio);
       this._aspectRatio = isNaN(r) ? 0 : r;
     }
   }
 
   /** Use it to update containment */
   private updateContainment() {
-    if (!this.nsContainment) {
+    if (!this.nsResizableContainer) {
       this._containment = null;
       return;
     }
 
-    if (typeof this.nsContainment === 'string') {
-      if (this.nsContainment === 'parent') {
+    if (typeof this.nsResizableContainer === 'string') {
+      if (this.nsResizableContainer === 'parent') {
         this._containment = this.el.nativeElement.parentElement;
       } else {
-        this._containment = document.querySelector<HTMLElement>(this.nsContainment);
+        this._containment = document.querySelector<HTMLElement>(this.nsResizableContainer);
       }
     } else {
-      this._containment = this.nsContainment;
+      this._containment = this.nsResizableContainer;
     }
   }
 
   /** Use it to create handle divs */
   private createHandles() {
-    if (!this.nsHandles) {
+    if (!this._nsResizableHandles) {
       return;
     }
 
     let tmpHandleTypes: string[];
-    if (typeof this.nsHandles === 'string') {
-      if (this.nsHandles === 'all') {
+    if (typeof this._nsResizableHandles === 'string') {
+      if (this._nsResizableHandles === 'all') {
         tmpHandleTypes = ['n', 'e', 's', 'w', 'ne', 'se', 'nw', 'sw'];
       } else {
-        tmpHandleTypes = this.nsHandles.replace(/ /g, '').toLowerCase().split(',');
+        tmpHandleTypes = this._nsResizableHandles.replace(/ /g, '').toLowerCase().split(',');
       }
 
       for (let type of tmpHandleTypes) {
@@ -251,10 +265,10 @@ export class NSResizableDirective implements OnInit, OnChanges, OnDestroy, After
         }
       }
     } else {
-      tmpHandleTypes = Object.keys(this.nsHandles);
+      tmpHandleTypes = Object.keys(this._nsResizableHandles);
       for (let type of tmpHandleTypes) {
         // custom handle theme.
-        let handle = this.createHandleByType(type, this.nsHandles[type]);
+        let handle = this.createHandleByType(type, this._nsResizableHandles[type]);
         if (handle) {
           this._handleType.push(type);
           this._handles[type] = handle;
@@ -291,7 +305,7 @@ export class NSResizableDirective implements OnInit, OnChanges, OnDestroy, After
       return;
     }
 
-    if (this.nsPreventDefaultEvent) {
+    if (this.nsResizablePreventDefaultEvent) {
       // prevent default events
       event.stopPropagation();
       event.preventDefault();
@@ -353,13 +367,13 @@ export class NSResizableDirective implements OnInit, OnChanges, OnDestroy, After
     this._helperBlock.add();
     this._handleResizing = handle;
     this.updateDirection();
-    this.nsOnStart.emit(this.getResizingEvent());
+    this.nsResizableOnStart.emit(this.getResizingEvent());
   }
 
   private stopResize() {
     // Remove the helper div:
     this._helperBlock.remove();
-    this.nsOnStop.emit(this.getResizingEvent());
+    this.nsResizableOnStop.emit(this.getResizingEvent());
     this._handleResizing = null;
     this._direction = null;
     this._origSize = null;
@@ -370,7 +384,7 @@ export class NSResizableDirective implements OnInit, OnChanges, OnDestroy, After
   }
 
   private onResizing() {
-    this.nsOnResizing.emit(this.getResizingEvent());
+    this.nsResizableOnResizing.emit(this.getResizingEvent());
   }
 
   private getResizingEvent(): NSIResizeEvent {
@@ -400,7 +414,7 @@ export class NSResizableDirective implements OnInit, OnChanges, OnDestroy, After
     this._directionChanged = {...this._direction};
 
     // if aspect ration should be preserved:
-    if (this.nsAspectRatio) {
+    if (this.nsResizableAspectRatio) {
 
       // if north then west (unless ne)
       if (this._directionChanged.n && !this._directionChanged.e) {
@@ -548,8 +562,8 @@ export class NSResizableDirective implements OnInit, OnChanges, OnDestroy, After
   }
 
   private checkSize() {
-    const minHeight = !this.nsMinHeight ? 1 : this.nsMinHeight;
-    const minWidth = !this.nsMinWidth ? 1 : this.nsMinWidth;
+    const minHeight = !this.nsResizableMinHeight ? 1 : this.nsResizableMinHeight;
+    const minWidth = !this.nsResizableMinWidth ? 1 : this.nsResizableMinWidth;
 
     if (this._currSize.height < minHeight) {
       this._currSize.height = minHeight;
@@ -567,19 +581,19 @@ export class NSResizableDirective implements OnInit, OnChanges, OnDestroy, After
       }
     }
 
-    if (this.nsMaxHeight && this._currSize.height > this.nsMaxHeight) {
-      this._currSize.height = this.nsMaxHeight;
+    if (this.nsResizableMaxHeight && this._currSize.height > this.nsResizableMaxHeight) {
+      this._currSize.height = this.nsResizableMaxHeight;
 
       if (this._direction.n) {
-        this._currPos.y = this._origPos.y + (this._origSize.height - this.nsMaxHeight);
+        this._currPos.y = this._origPos.y + (this._origSize.height - this.nsResizableMaxHeight);
       }
     }
 
-    if (this.nsMaxWidth && this._currSize.width > this.nsMaxWidth) {
-      this._currSize.width = this.nsMaxWidth;
+    if (this.nsResizableMaxWidth && this._currSize.width > this.nsResizableMaxWidth) {
+      this._currSize.width = this.nsResizableMaxWidth;
 
       if (this._direction.w) {
-        this._currPos.x = this._origPos.x + (this._origSize.width - this.nsMaxWidth);
+        this._currPos.x = this._origPos.x + (this._origSize.width - this.nsResizableMaxWidth);
       }
     }
   }
@@ -628,11 +642,11 @@ export class NSResizableDirective implements OnInit, OnChanges, OnDestroy, After
     // set default value:
     this._gridSize = {x: 1, y: 1};
 
-    if (this.nsGrid) {
-      if (typeof this.nsGrid === 'number') {
-        this._gridSize = {x: this.nsGrid, y: this.nsGrid};
-      } else if (Array.isArray(this.nsGrid)) {
-        this._gridSize = {x: this.nsGrid[0], y: this.nsGrid[1]};
+    if (this.nsResizableGrid) {
+      if (typeof this.nsResizableGrid === 'number') {
+        this._gridSize = {x: this.nsResizableGrid, y: this.nsResizableGrid};
+      } else if (Array.isArray(this.nsResizableGrid)) {
+        this._gridSize = {x: this.nsResizableGrid[0], y: this.nsResizableGrid[1]};
       }
     }
   }

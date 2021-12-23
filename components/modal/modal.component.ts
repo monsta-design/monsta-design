@@ -11,8 +11,7 @@ import {
   TemplateRef, ViewChild
 } from '@angular/core';
 import Modal from 'monsta-bootstrap/js/src/modal.js';
-import {isTrue, NS_BOOL} from "../types";
-import {InputBoolean} from "../convert";
+import {isTrue, NS_BOOL, InputBoolean} from 'monsta-design/core';
 
 @Component({
   selector: 'ns-modal',

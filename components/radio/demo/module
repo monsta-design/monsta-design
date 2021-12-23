@@ -1,2 +1,2 @@
-import {NSRadioModule} from '@components/radio'
+import {NSRadioModule} from 'monsta-design/radio'
 export const moduleList = [NSRadioModule];

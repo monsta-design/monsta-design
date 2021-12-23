@@ -1,2 +1,2 @@
-import {NSRouterTabsModule} from '@components/router-tabs'
+import {NSRouterTabsModule} from 'monsta-design/router-tabs'
 export const moduleList = [NSRouterTabsModule];

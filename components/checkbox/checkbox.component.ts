@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, EventEmitter, HostBinding, Input, OnInit, Output} from '@angular/core';
-import {generateID, isTrue, NS_BOOL} from "../types";
+import {generateID, isTrue, NS_BOOL} from 'monsta-design/core';
 
 @Component({
   selector: 'ns-checkbox',

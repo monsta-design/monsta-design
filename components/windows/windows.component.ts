@@ -7,7 +7,7 @@ import {
   ViewChildren,
   ViewContainerRef
 } from '@angular/core';
-import {uuid} from "../types";
+import {uuid} from 'monsta-design/core';
 
 export class Page {
   id: string

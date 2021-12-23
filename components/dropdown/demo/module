@@ -1,2 +1,2 @@
-import {NSDropdownModule} from '@components/dropdown'
+import {NSDropdownModule} from 'monsta-design/dropdown'
 export const moduleList = [NSDropdownModule];

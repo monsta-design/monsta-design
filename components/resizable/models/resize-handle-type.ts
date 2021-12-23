@@ -9,4 +9,5 @@ export interface ResizeHandleStyle {
   'sw'?: string;
 }
 
-export type NSResizeHandleType = string|ResizeHandleStyle;
+// export type NSResizeHandleType = string|ResizeHandleStyle;
+export type NSResizeHandleType = 's' | 'e' | 't' | 'b' | 'ts' | 'te' | 'bs' | 'be' | string;

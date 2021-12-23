@@ -1,5 +1,5 @@
 import {Component, HostBinding, Input} from '@angular/core';
-import {generateID} from "../types";
+import {generateID} from 'monsta-design/core';
 
 
 @Component({
@@ -14,6 +14,7 @@ export class NSFloatingInputComponent {
   @Input() nsLabel: string
   @Input() id: string = null
   @Input() nsType: 'text' | 'password' = 'text'
+  @HostBinding('class.bs-d-flex') flex = true;
 
   // @Input() nsSize: 'sm' | 'lg' | '' = ''
 

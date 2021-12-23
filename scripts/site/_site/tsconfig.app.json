@@ -6,7 +6,7 @@
     "module": "esnext",
     "types": [],
     "paths": {
-      "@components/*": [
+      "monsta-design/*": [
         "../components/*"
       ]
     }

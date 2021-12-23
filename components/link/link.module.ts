@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {NSLayoutModule} from "../layout";
-import { LinkDirectives} from './link.directive';
+import {LinkDirectives} from './link.directive';
 
 
 @NgModule({
@@ -13,7 +12,6 @@ import { LinkDirectives} from './link.directive';
   ],
   imports: [
     CommonModule,
-    NSLayoutModule
   ]
 })
 export class NSLinkModule {

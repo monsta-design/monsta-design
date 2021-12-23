@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {InputBoolean} from "../convert";
+import {InputBoolean} from "monsta-design/core";
 
 @Component({
   selector: 'ns-pagination',

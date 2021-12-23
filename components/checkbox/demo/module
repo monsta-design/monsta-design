@@ -1,2 +1,2 @@
-import {NSCheckboxModule} from '@components/checkbox'
+import {NSCheckboxModule} from 'monsta-design/checkbox'
 export const moduleList = [NSCheckboxModule];

@@ -10,7 +10,8 @@
     "e2e": "ng e2e",
     "build:lib": "nodemon --ignore dist/ --ignore node_modules/ --watch components -e ts,html,less,scss -x \\\"yarn build:component && yarn build:style && cd dist/monsta-design && yalc push\\\"",
     "build:component": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build library --prod",
-    "build:style": "scss-bundle -p scss-bundle.config.json"
+    "build:style": "scss-bundle -p scss-bundle.config.json",
+    "push": "ng build library --prod && scss-bundle -p scss-bundle.config.json && cd dist/monsta-design && yalc push && cd -"
   },
   "private": false,
   "dependencies": {
@@ -70,7 +71,7 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "markdown-toc": "^1.2.0",
     "marked-toc": "^0.3.0",
-    "ng-packagr": "^11.0.0",
+    "ng-packagr": "^12.1.0",
     "node-prismjs": "^0.1.2",
     "parse5": "^6.0.1",
     "protractor": "~7.0.0",

@@ -1,2 +1,2 @@
-import {NSSkeletonModule} from '@components/skeleton'
+import {NSSkeletonModule} from 'monsta-design/skeleton'
 export const moduleList = [NSSkeletonModule];

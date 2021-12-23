@@ -1,6 +1,6 @@
 import {Directive, ElementRef, HostBinding, Input, OnChanges, Renderer2, SimpleChanges} from '@angular/core';
 import {isNumeric} from "rxjs/internal-compatibility";
-import {BreakPoints, insertElementStyle} from "../../types";
+import {BreakPoints, insertElementStyle} from 'monsta-design/core';
 
 export function isDefaultSize(v: any): boolean {
   return isNumeric(v) || v === 'auto'
