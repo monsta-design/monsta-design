@@ -71,7 +71,7 @@ export class GDirective implements OnChanges {
     if (isAuto(this.size)) {
       return 'bs-g-' + this.size
     }
-    return false
+    return null
   }
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
@@ -114,7 +114,7 @@ export class GSMDirective implements OnChanges {
     if (isAuto(this.size)) {
       return 'bs-g-sm-' + this.size
     }
-    return false
+    return null
   }
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
@@ -157,7 +157,7 @@ export class GMDDirective implements OnChanges {
     if (isAuto(this.size)) {
       return 'bs-g-md-' + this.size
     }
-    return false
+    return null
   }
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
@@ -200,7 +200,7 @@ export class GLGDirective implements OnChanges {
     if (isAuto(this.size)) {
       return 'bs-g-lg-' + this.size
     }
-    return false
+    return null
   }
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
@@ -243,7 +243,7 @@ export class GXLDirective implements OnChanges {
     if (isAuto(this.size)) {
       return 'bs-g-xl-' + this.size
     }
-    return false
+    return null
   }
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
@@ -286,7 +286,7 @@ export class GXXLDirective implements OnChanges {
     if (isAuto(this.size)) {
       return 'bs-g-xxl-' + this.size
     }
-    return false
+    return null
   }
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
