@@ -8,13 +8,23 @@ cover: https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg
 
 布局组件及相关的辅助指令。
 
-## 何时使用
-
-用来快速进行响应式布局。
+## 模块引入
 
 ```ts
 import { NSLayoutModule } from 'monsta-design/layout';
 ```
+
+## 尺寸指令
+
+* Width、Height、Gutter、Gap、Offset、Margin、Padding
+
+## 显示类型
+
+* block
+* grid
+* flex
+
+## 对齐方式
 
 ## API
 

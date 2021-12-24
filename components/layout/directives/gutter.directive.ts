@@ -3,7 +3,7 @@ import {
   isGapClass,
   BreakPoints,
   BootstrapGapSize,
-  insertElementStyle, NSGapSize, toGapClass
+  insertElementStyle, NSGapValue, toGapClass
 } from 'monsta-design/core';
 import {isNumeric} from "rxjs/internal-compatibility";
 
@@ -66,7 +66,7 @@ export type NSGutterType = 'gx' | 'gy' | 'g';
   selector: '[g]'
 })
 export class GDirective implements OnChanges {
-  @Input('g') size: NSGapSize
+  @Input('g') size: NSGapValue
   protected media: string = 'default'
   protected breakpoint: number = 0
   protected type: NSGutterType = 'g'
@@ -115,7 +115,7 @@ export class GDirective implements OnChanges {
   selector: '[g_sm]'
 })
 export class GSMDirective extends GDirective {
-  @Input('g_sm') size: NSGapSize
+  @Input('g_sm') size: NSGapValue
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer);
@@ -129,7 +129,7 @@ export class GSMDirective extends GDirective {
   selector: '[g_md]'
 })
 export class GMDDirective extends GDirective {
-  @Input('g_md') size: NSGapSize
+  @Input('g_md') size: NSGapValue
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer);
@@ -143,7 +143,7 @@ export class GMDDirective extends GDirective {
   selector: '[g_lg]'
 })
 export class GLGDirective extends GDirective {
-  @Input('g_lg') size: NSGapSize
+  @Input('g_lg') size: NSGapValue
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer);
@@ -157,7 +157,7 @@ export class GLGDirective extends GDirective {
   selector: '[g_xl]'
 })
 export class GXLDirective extends GDirective {
-  @Input('g_xl') size: NSGapSize
+  @Input('g_xl') size: NSGapValue
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer);
@@ -171,7 +171,7 @@ export class GXLDirective extends GDirective {
   selector: '[g_xxl]'
 })
 export class GXXLDirective extends GDirective {
-  @Input('g_xxl') size: NSGapSize
+  @Input('g_xxl') size: NSGapValue
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer);
@@ -186,7 +186,7 @@ export class GXXLDirective extends GDirective {
   selector: '[gx]'
 })
 export class GxDirective extends GDirective {
-  @Input('gx') size: NSGapSize
+  @Input('gx') size: NSGapValue
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer);
@@ -200,7 +200,7 @@ export class GxDirective extends GDirective {
   selector: '[gx_sm]'
 })
 export class GxSMDirective extends GDirective {
-  @Input('gx_sm') size: NSGapSize
+  @Input('gx_sm') size: NSGapValue
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer);
@@ -214,7 +214,7 @@ export class GxSMDirective extends GDirective {
   selector: '[gx_md]'
 })
 export class GxMDDirective extends GDirective {
-  @Input('gx_md') size: NSGapSize
+  @Input('gx_md') size: NSGapValue
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer);
@@ -228,7 +228,7 @@ export class GxMDDirective extends GDirective {
   selector: '[gx_lg]'
 })
 export class GxLGDirective extends GDirective {
-  @Input('gx_lg') size: NSGapSize
+  @Input('gx_lg') size: NSGapValue
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer);
@@ -242,7 +242,7 @@ export class GxLGDirective extends GDirective {
   selector: '[gx_xl]'
 })
 export class GxXLDirective extends GDirective {
-  @Input('gx_xl') size: NSGapSize
+  @Input('gx_xl') size: NSGapValue
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer);
@@ -256,7 +256,7 @@ export class GxXLDirective extends GDirective {
   selector: '[gx_xxl]'
 })
 export class GxXXLDirective extends GDirective {
-  @Input('gx_xxl') size: NSGapSize
+  @Input('gx_xxl') size: NSGapValue
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer);
@@ -270,7 +270,7 @@ export class GxXXLDirective extends GDirective {
   selector: '[gy]'
 })
 export class GyDirective extends GDirective {
-  @Input('gy') size: NSGapSize
+  @Input('gy') size: NSGapValue
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer);
@@ -285,7 +285,7 @@ export class GyDirective extends GDirective {
   selector: '[gy_sm]'
 })
 export class GySMDirective extends GDirective {
-  @Input('gy_sm') size: NSGapSize
+  @Input('gy_sm') size: NSGapValue
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer);
@@ -299,7 +299,7 @@ export class GySMDirective extends GDirective {
   selector: '[gy_md]'
 })
 export class GyMDDirective extends GDirective {
-  @Input('gy_md') size: NSGapSize
+  @Input('gy_md') size: NSGapValue
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer);
@@ -313,7 +313,7 @@ export class GyMDDirective extends GDirective {
   selector: '[gy_lg]'
 })
 export class GyLGDirective extends GDirective {
-  @Input('gy_lg') size: NSGapSize
+  @Input('gy_lg') size: NSGapValue
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer);
@@ -327,7 +327,7 @@ export class GyLGDirective extends GDirective {
   selector: '[gy_xl]'
 })
 export class GyXLDirective extends GDirective {
-  @Input('gy_md') size: NSGapSize
+  @Input('gy_md') size: NSGapValue
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer);
@@ -341,7 +341,7 @@ export class GyXLDirective extends GDirective {
   selector: '[gy_xxl]'
 })
 export class GyXXLDirective extends GDirective {
-  @Input('gy_xxl') size: NSGapSize
+  @Input('gy_xxl') size: NSGapValue
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer);

@@ -40,7 +40,7 @@ import {Component, OnInit} from '@angular/core';
         </div>
       </fieldset>
       <div row mb="1rem">
-        <div col="10" class="bs-offset-2">
+        <div col="10" offset="2">
           <div class="bs-form-check">
             <input class="bs-form-check-input" type="checkbox" id="gridCheck1">
             <label class="bs-form-check-label" for="gridCheck1">
@@ -50,7 +50,7 @@ import {Component, OnInit} from '@angular/core';
         </div>
       </div>
       <div row mb="1rem">
-        <div col="10" class="bs-offset-2">
+        <div col="10" offset="2">
           <button type="submit" nsButton="primary">Sign in</button>
         </div>
       </div>

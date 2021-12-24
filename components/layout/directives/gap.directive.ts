@@ -12,7 +12,7 @@ import {isNumeric} from "rxjs/internal-compatibility";
 import {
   BreakPoints,
   FlexAlignSelfMode,
-  NSGapSize,
+  NSGapValue,
   insertElementStyle,
   isGapClass,
   toGapClass
@@ -47,7 +47,7 @@ export function insertGapElementStyle(target: Element, container: HTMLElement, r
   selector: '[gap]',
 })
 export class GapDirective implements OnChanges {
-  @Input('gap') gap: NSGapSize;
+  @Input('gap') gap: NSGapValue;
   protected media: string = 'default';
   protected breakpoint: number = 0;
 
@@ -93,7 +93,7 @@ export class GapDirective implements OnChanges {
   selector: '[gap_sm]',
 })
 export class GapSmDirective extends GapDirective {
-  @Input('gap_sm') gap: NSGapSize;
+  @Input('gap_sm') gap: NSGapValue;
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer)
@@ -106,7 +106,7 @@ export class GapSmDirective extends GapDirective {
   selector: '[gap_md]',
 })
 export class GapMdDirective extends GapDirective {
-  @Input('gap_md') gap: NSGapSize;
+  @Input('gap_md') gap: NSGapValue;
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer)
@@ -119,7 +119,7 @@ export class GapMdDirective extends GapDirective {
   selector: '[gap_lg]',
 })
 export class GapLgDirective extends GapDirective {
-  @Input('gap_lg') gap: NSGapSize;
+  @Input('gap_lg') gap: NSGapValue;
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer)
@@ -132,7 +132,7 @@ export class GapLgDirective extends GapDirective {
   selector: '[gap_xl]',
 })
 export class GapXlDirective extends GapDirective {
-  @Input('gap_xl') gap: NSGapSize;
+  @Input('gap_xl') gap: NSGapValue;
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer)
@@ -145,7 +145,7 @@ export class GapXlDirective extends GapDirective {
   selector: '[gap_xxl]',
 })
 export class GapXxlDirective extends GapDirective {
-  @Input('gap_xxl') gap: NSGapSize;
+  @Input('gap_xxl') gap: NSGapValue;
 
   constructor(protected el: ElementRef, protected renderer: Renderer2) {
     super(el, renderer)

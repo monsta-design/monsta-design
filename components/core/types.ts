@@ -21,8 +21,62 @@ export function isTrue(v): boolean {
   return v === true || v === 'true'
 }
 
-export type BootstrapGapSize = '0' | '1gap' | '2gap' | '3gap' | '4gap' | '5gap' | 'auto';
-export type NSGapSize = BootstrapGapSize | number | string;
+export type BootstrapGapSize =
+  '0'
+  | '1gap'
+  | '2gap'
+  | '3gap'
+  | '4gap'
+  | '5gap'
+  | '-1gap'
+  | '-2gap'
+  | '-3gap'
+  | '-4gap'
+  | '-5gap'
+  | 'auto';
+
+export type NSDisplayValue =
+  'none'
+  | 'inline'
+  | 'inline-block'
+  | 'block'
+  | 'grid'
+  | 'table'
+  | 'table-cell'
+  | 'table-row'
+  | 'flex'
+  | 'inline-flex';
+
+export type NSGridValue =
+  1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | '1'
+  | '2'
+  | '3'
+  | '4'
+  | '5'
+  | '6'
+  | '7'
+  | '8'
+  | '9'
+  | '10'
+  | '11'
+  | '12'
+  | ''
+  | 'auto'
+  | 'none';
+
+export type NSGapValue = BootstrapGapSize | number | string;
 
 // 判断是否是默认的尺寸
 export function isGapClass(v): boolean {

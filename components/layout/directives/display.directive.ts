@@ -1,22 +1,12 @@
 import {Directive, HostBinding, Input} from "@angular/core";
+import {NSDisplayValue} from "monsta-design/core";
 
-export type DisplayMode =
-  'none'
-  | 'inline'
-  | 'inline-block'
-  | 'block'
-  | 'grid'
-  | 'table'
-  | 'table-cell'
-  | 'table-row'
-  | 'flex'
-  | 'inline-flex';
 
 @Directive({
   selector: '[display]',
 })
 export class DisplayDirective {
-  @Input('display') display: DisplayMode = null;
+  @Input('display') display: NSDisplayValue = null;
 
   @HostBinding('class') get class() {
     if (this.display === null) {
@@ -30,7 +20,7 @@ export class DisplayDirective {
   selector: '[display_sm]',
 })
 export class DisplaySmDirective {
-  @Input() display_sm: DisplayMode = null
+  @Input() display_sm: NSDisplayValue = null
 
   @HostBinding('class') get class() {
     if (this.display_sm === null) {
@@ -45,7 +35,7 @@ export class DisplaySmDirective {
   selector: '[display_md]',
 })
 export class DisplayMdDirective {
-  @Input() display_md: DisplayMode = null
+  @Input() display_md: NSDisplayValue = null
 
   @HostBinding('class') get class() {
     if (this.display_md === null) {
@@ -60,7 +50,7 @@ export class DisplayMdDirective {
   selector: '[display_lg]',
 })
 export class DisplayLgDirective {
-  @Input() display_lg: DisplayMode = null
+  @Input() display_lg: NSDisplayValue = null
 
   @HostBinding('class') get class() {
     if (this.display_lg === null) {
@@ -75,7 +65,7 @@ export class DisplayLgDirective {
   selector: '[display_xl]',
 })
 export class DisplayXlDirective {
-  @Input() display_xl: DisplayMode = null
+  @Input() display_xl: NSDisplayValue = null
 
   @HostBinding('class') get class() {
     if (this.display_xl === null) {
@@ -90,7 +80,7 @@ export class DisplayXlDirective {
   selector: '[display_xxl]',
 })
 export class DisplayXxlDirective {
-  @Input() display_xxl: DisplayMode = null
+  @Input() display_xxl: NSDisplayValue = null
 
   @HostBinding('class') get class() {
     if (this.display_xxl === null) {
