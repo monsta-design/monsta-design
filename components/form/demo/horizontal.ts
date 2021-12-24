@@ -4,19 +4,19 @@ import {Component, OnInit} from '@angular/core';
   selector: 'ns-demo-form-horizontal',
   template: `
     <form>
-      <div row mb="3">
+      <div row mb="1rem">
         <label col="2" nsFormLabel for="inputEmail3">Email</label>
         <div col="10">
           <input nsInput type="email" id="inputEmail3">
         </div>
       </div>
-      <div row mb="3">
+      <div row mb="1rem">
         <label nsFormLabel col="2" for="inputPassword3">Password</label>
         <div col="10">
           <input nsInput type="password" id="inputPassword3">
         </div>
       </div>
-      <fieldset row mb="3">
+      <fieldset row mb="1rem">
         <legend class="bs-col-form-label" col="2" pt="0">Radios</legend>
         <div col="10">
           <div class="bs-form-check">
@@ -39,7 +39,7 @@ import {Component, OnInit} from '@angular/core';
           </div>
         </div>
       </fieldset>
-      <div row mb="3">
+      <div row mb="1rem">
         <div col="10" class="bs-offset-2">
           <div class="bs-form-check">
             <input class="bs-form-check-input" type="checkbox" id="gridCheck1">
@@ -49,7 +49,7 @@ import {Component, OnInit} from '@angular/core';
           </div>
         </div>
       </div>
-      <div row mb="3">
+      <div row mb="1rem">
         <div col="10" class="bs-offset-2">
           <button type="submit" nsButton="primary">Sign in</button>
         </div>

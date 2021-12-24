@@ -1,10 +1,11 @@
 import {Directive, ElementRef, HostBinding, Input, OnChanges, OnInit, Renderer2, SimpleChanges,} from '@angular/core';
 import {
-  isDefaultSpacingSize,
+  isAuto,
   BreakPoints,
   SpacingSize,
   insertElementStyle
 } from 'monsta-design/core';
+import {isNumeric} from "rxjs/internal-compatibility";
 
 export class GutterStyle {
   media: string
@@ -15,7 +16,11 @@ export class GutterStyle {
 
 // 插入 Angular element gutter style
 export function insertGutterElementStyle(target: Element, container: HTMLElement, renderer: Renderer2, style: GutterStyle) {
+  if (isNumeric(style.gutter)) {
+    style.gutter += 'px'
+  }
   insertElementStyle(target, container, renderer, {
+    name: `gutter_${style.type}`,
     media: style.media,
     breakpoint: style.breakpoint,
     cssGetter: (scope: string): string => {
@@ -63,7 +68,7 @@ export class GDirective implements OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return 'bs-g-' + this.size
     }
     return false
@@ -73,7 +78,7 @@ export class GDirective implements OnChanges {
   }
 
   ngOnInit() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()
@@ -106,7 +111,7 @@ export class GSMDirective implements OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return 'bs-g-sm-' + this.size
     }
     return false
@@ -116,7 +121,7 @@ export class GSMDirective implements OnChanges {
   }
 
   ngOnInit() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()
@@ -149,7 +154,7 @@ export class GMDDirective implements OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return 'bs-g-md-' + this.size
     }
     return false
@@ -159,7 +164,7 @@ export class GMDDirective implements OnChanges {
   }
 
   ngOnInit() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()
@@ -192,7 +197,7 @@ export class GLGDirective implements OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return 'bs-g-lg-' + this.size
     }
     return false
@@ -202,7 +207,7 @@ export class GLGDirective implements OnChanges {
   }
 
   ngOnInit() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()
@@ -235,7 +240,7 @@ export class GXLDirective implements OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return 'bs-g-xl-' + this.size
     }
     return false
@@ -245,7 +250,7 @@ export class GXLDirective implements OnChanges {
   }
 
   ngOnInit() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()
@@ -278,7 +283,7 @@ export class GXXLDirective implements OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return 'bs-g-xxl-' + this.size
     }
     return false
@@ -288,7 +293,7 @@ export class GXXLDirective implements OnChanges {
   }
 
   ngOnInit() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()
@@ -322,7 +327,7 @@ export class GxDirective implements OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return 'bs-gx-' + this.size
     }
     return null
@@ -332,7 +337,7 @@ export class GxDirective implements OnChanges {
   }
 
   ngOnInit() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()
@@ -366,7 +371,7 @@ export class GxSMDirective implements OnInit, OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return 'bs-gx-sm-' + this.size
     }
     return null
@@ -376,7 +381,7 @@ export class GxSMDirective implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()
@@ -409,7 +414,7 @@ export class GxMDDirective implements OnInit, OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return 'bs-gx-md-' + this.size
     }
     return null
@@ -419,7 +424,7 @@ export class GxMDDirective implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()
@@ -452,7 +457,7 @@ export class GxLGDirective implements OnInit, OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return 'bs-gx-lg-' + this.size
     }
     return null
@@ -462,7 +467,7 @@ export class GxLGDirective implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()
@@ -495,7 +500,7 @@ export class GxXLDirective implements OnInit, OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return 'bs-gx-xl-' + this.size
     }
     return null
@@ -505,7 +510,7 @@ export class GxXLDirective implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()
@@ -538,7 +543,7 @@ export class GxXXLDirective implements OnInit, OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return 'bs-gx-xxl-' + this.size
     }
     return null
@@ -548,7 +553,7 @@ export class GxXXLDirective implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()
@@ -581,7 +586,7 @@ export class GyDirective implements OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return 'bs-gy-' + this.size
     }
     return null
@@ -591,7 +596,7 @@ export class GyDirective implements OnChanges {
   }
 
   ngOnInit() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()
@@ -625,7 +630,7 @@ export class GySMDirective implements OnInit, OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return 'bs-gy-sm-' + this.size
     }
     return null
@@ -635,7 +640,7 @@ export class GySMDirective implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()
@@ -668,7 +673,7 @@ export class GyMDDirective implements OnInit, OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return 'bs-gy-md-' + this.size
     }
     return null
@@ -678,7 +683,7 @@ export class GyMDDirective implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()
@@ -711,7 +716,7 @@ export class GyLGDirective implements OnInit, OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return 'bs-gy-lg-' + this.size
     }
     return null
@@ -721,7 +726,7 @@ export class GyLGDirective implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()
@@ -754,7 +759,7 @@ export class GyXLDirective implements OnInit, OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return 'bs-gy-xl-' + this.size
     }
     return null
@@ -764,7 +769,7 @@ export class GyXLDirective implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()
@@ -797,7 +802,7 @@ export class GyXXLDirective implements OnInit, OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return 'bs-gy-xxl-' + this.size
     }
     return null
@@ -807,7 +812,7 @@ export class GyXXLDirective implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()

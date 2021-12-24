@@ -17,7 +17,14 @@ export class SizeStyle {
 // 插入 Angular element size style
 export function insertSizeElementStyle(target: Element, container: HTMLElement, renderer: Renderer2, style: SizeStyle) {
   // TODO 转换 Bootstrap Class
+  if (isNumeric(style.width)) {
+    style.width += 'px'
+  }
+  if (isNumeric(style.height)) {
+    style.height += 'px'
+  }
   insertElementStyle(target, container, renderer, {
+    name: `size_${style.type}`,
     media: style.media,
     breakpoint: style.breakpoint,
     cssGetter: (scope: string): string => {

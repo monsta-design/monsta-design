@@ -33,17 +33,7 @@ export class ColorDirective {
   }
 }
 
-@Directive({
-  selector: '[nsOverflow]',
-})
-export class OverflowDirective {
-  @Input('overflow') overflow: 'auto' | 'hidden' | 'visible' | 'scroll' = 'auto';
 
-  @HostBinding('class')
-  get class() {
-    return 'bs-overflow-' + this.overflow
-  }
-}
 
 @Directive({
   selector: '[nsShadow]',
@@ -233,7 +223,6 @@ export class BGDirective {
 
 export const StyleDirectives = [
   ColorDirective,
-  OverflowDirective,
   ShadowDirective,
   UserSelectDirective,
   BorderDirective,

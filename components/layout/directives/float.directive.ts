@@ -101,6 +101,18 @@ export class FloatXxlDirective {
 export class ClearfixDirective {
 }
 
+@Directive({
+  selector: '[overflow]',
+})
+export class OverflowDirective {
+  @Input('overflow') overflow: 'auto' | 'hidden' | 'visible' | 'scroll' = 'auto';
+
+  @HostBinding('class')
+  get class() {
+    return 'bs-overflow-' + this.overflow
+  }
+}
+
 export const FloatDirectives = [
   FloatDirective,
   FloatSmDirective,
@@ -108,5 +120,6 @@ export const FloatDirectives = [
   FloatLgDirective,
   FloatXlDirective,
   FloatXxlDirective,
-  ClearfixDirective
+  ClearfixDirective,
+  OverflowDirective
 ]

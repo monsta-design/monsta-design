@@ -24,8 +24,8 @@ export function isTrue(v): boolean {
 export type SpacingSize = '0' | '1' | '2' | '3' | '4' | '5' | 'auto';
 
 // 判断是否是默认的尺寸
-export function isDefaultSpacingSize(v): boolean {
-  return isNumeric(v) || v === 'auto';
+export function isAuto(v): boolean {
+  return v === 'auto';
 }
 
 // 预设的系统颜色
@@ -88,6 +88,7 @@ export type FlexGrow = 0 | 1 | '0' | '1';
 export type FlexShark = 0 | 1 | '0' | '1';
 
 export class ElementStyle {
+  name: string
   media: string
   breakpoint: number
   cssGetter: (scope: string) => string
@@ -105,8 +106,7 @@ export function insertElementStyle(target: Element, container: HTMLElement, rend
     target.setAttribute('id', scope)
   }
   // @ts-ignore
-  const id = `${scope}_${style.media}`
-
+  const styleId = `${scope}_${style.name}_${style.media}`
   // 构建媒体查询
   let media = null
   if (style.breakpoint !== 0) {
@@ -127,7 +127,7 @@ export function insertElementStyle(target: Element, container: HTMLElement, rend
       break;
     }
     current = current.previousElementSibling
-    if (current.id == id) {
+    if (current.id == styleId) {
       exist = current
       break
     }
@@ -154,7 +154,7 @@ export function insertElementStyle(target: Element, container: HTMLElement, rend
 
   // 插入 style 节点
   let node = renderer.createElement('style')
-  node.id = id
+  node.id = styleId
   node.innerHTML = css
   node.setAttribute('breakpoint', style.breakpoint)
   renderer.insertBefore(container, node, target)

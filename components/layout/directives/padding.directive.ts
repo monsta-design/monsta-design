@@ -1,5 +1,6 @@
 import {Directive, ElementRef, HostBinding, Input, OnChanges, Renderer2, SimpleChanges} from '@angular/core';
-import {BreakPoints, insertElementStyle, isDefaultSpacingSize, SpacingSize} from 'monsta-design/core';
+import {BreakPoints, insertElementStyle, isAuto, SpacingSize} from 'monsta-design/core';
+import {isNumeric} from "rxjs/internal-compatibility";
 
 type PaddingType = 'p' | 'pt' | 'pb' | 'ps' | 'pe' | 'px' | 'py'
 
@@ -12,7 +13,11 @@ export class PaddingStyle {
 
 // 插入 Angular element padding style
 export function insertPaddingElementStyle(target: Element, container: HTMLElement, renderer: Renderer2, style: PaddingStyle) {
+  if (isNumeric(style.size)) {
+    style.size += 'px'
+  }
   insertElementStyle(target, container, renderer, {
+    name: `p_${style.type}`,
     media: style.media,
     breakpoint: style.breakpoint,
     cssGetter: (scope: string): string => {
@@ -72,7 +77,7 @@ export class PDirective implements OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       if (this.media !== 'default') {
         return `bs-${this.type}-${this.media}-${this.size}`
       }
@@ -88,7 +93,7 @@ export class PDirective implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()

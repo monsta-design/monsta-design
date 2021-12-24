@@ -10,15 +10,18 @@ import {Component} from '@angular/core';
            nsBackground="light">
       </div>
     </div>
+    <hr>
+    <div class="container" nsBorder="all">
+      <div w="50px" h="50px" mt="20px" ms="50px" nsBackground="light"></div>
+    </div>
+    <hr>
+    <div class="container" nsBorder="all" overflow="hidden">
+      <div float="end" w="50px" h="50px" me="50px" mb="20px" nsBackground="light"></div>
+    </div>
   `,
   styles: [`
     .container {
       background: #58a;
-      /*background-image: linear-gradient(rgba(255, 255, 255, .3) 1px, transparent 0),*/
-      /*linear-gradient(90deg, rgba(255, 255, 255, .3) 1px, transparent 0),*/
-      /*linear-gradient(white 1px, transparent 0),*/
-      /*linear-gradient(90deg, white 1px, transparent 0);*/
-      /*background-size: 15px 15px, 15px 15px, 75px 75px, 75px 75px;*/
     }
   `]
 })

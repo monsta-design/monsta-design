@@ -9,7 +9,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import {isNumeric} from "rxjs/internal-compatibility";
-import {BreakPoints, FlexAlignSelfMode, insertElementStyle} from 'monsta-design/core';
+import {BreakPoints, FlexAlignSelfMode, insertElementStyle, isAuto} from 'monsta-design/core';
 
 export class GupStyle {
   media: string
@@ -19,7 +19,11 @@ export class GupStyle {
 
 // 插入 Angular element gap style
 export function insertGapElementStyle(target: Element, container: HTMLElement, renderer: Renderer2, style: GupStyle) {
+  if (isNumeric(style.gap)) {
+    style.gap += 'px'
+  }
   insertElementStyle(target, container, renderer, {
+    name: `gap`,
     media: style.media,
     breakpoint: style.breakpoint,
     cssGetter: (scope: string): string => {
@@ -111,7 +115,7 @@ export class GapDirective implements OnChanges {
   @Input('gap') gap: number | string;
 
   @HostBinding('class') get getClass() {
-    if (this.gap !== null && isNumeric(this.gap)) {
+    if (isAuto(this.gap)) {
       return 'bs-gap-' + this.gap
     }
     return null
@@ -121,7 +125,7 @@ export class GapDirective implements OnChanges {
   }
 
   ngOnInit() {
-    if (this.gap === null || isNumeric(this.gap)) {
+    if (!isAuto(this.gap)) {
       return
     }
     this.insertStyle()
@@ -152,7 +156,7 @@ export class GapSmDirective implements OnChanges {
   @Input('gap_sm') gap: number | string;
 
   @HostBinding('class') get getClass() {
-    if (this.gap !== null && isNumeric(this.gap)) {
+    if (isAuto(this.gap)) {
       return 'bs-gap-sm-' + this.gap
     }
     return null
@@ -162,7 +166,7 @@ export class GapSmDirective implements OnChanges {
   }
 
   ngOnInit() {
-    if (this.gap === null || isNumeric(this.gap)) {
+    if (!isAuto(this.gap)) {
       return
     }
     this.insertStyle()
@@ -193,7 +197,7 @@ export class GapMdDirective implements OnChanges {
   @Input('gap_md') gap: number | string;
 
   @HostBinding('class') get getClass() {
-    if (this.gap !== null && isNumeric(this.gap)) {
+    if (isAuto(this.gap)) {
       return 'bs-gap-md-' + this.gap
     }
     return null
@@ -203,7 +207,7 @@ export class GapMdDirective implements OnChanges {
   }
 
   ngOnInit() {
-    if (this.gap === null || isNumeric(this.gap)) {
+    if (!isAuto(this.gap)) {
       return
     }
     this.insertStyle()
@@ -234,7 +238,7 @@ export class GapLgDirective implements OnChanges {
   @Input('gap_lg') gap: number | string;
 
   @HostBinding('class') get getClass() {
-    if (this.gap !== null && isNumeric(this.gap)) {
+    if (isAuto(this.gap)) {
       return 'bs-gap-lg-' + this.gap
     }
     return null
@@ -244,7 +248,7 @@ export class GapLgDirective implements OnChanges {
   }
 
   ngOnInit() {
-    if (this.gap === null || isNumeric(this.gap)) {
+    if (!isAuto(this.gap)) {
       return
     }
     this.insertStyle()
@@ -275,7 +279,7 @@ export class GapXlDirective implements OnChanges {
   @Input('gap_xl') gap: number | string;
 
   @HostBinding('class') get getClass() {
-    if (this.gap !== null && isNumeric(this.gap)) {
+    if (isAuto(this.gap)) {
       return 'bs-gap-xl-' + this.gap
     }
     return null
@@ -285,7 +289,7 @@ export class GapXlDirective implements OnChanges {
   }
 
   ngOnInit() {
-    if (this.gap === null || isNumeric(this.gap)) {
+    if (!isAuto(this.gap)) {
       return
     }
     this.insertStyle()
@@ -316,7 +320,7 @@ export class GapXxlDirective implements OnChanges {
   @Input('gap_xxl') gap: number | string;
 
   @HostBinding('class') get getClass() {
-    if (this.gap !== null && isNumeric(this.gap)) {
+    if (isAuto(this.gap)) {
       return 'bs-gap-xxl-' + this.gap
     }
     return null
@@ -326,7 +330,7 @@ export class GapXxlDirective implements OnChanges {
   }
 
   ngOnInit() {
-    if (this.gap === null || isNumeric(this.gap)) {
+    if (!isAuto(this.gap)) {
       return
     }
     this.insertStyle()

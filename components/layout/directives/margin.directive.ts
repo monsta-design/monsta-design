@@ -1,5 +1,6 @@
 import {Directive, ElementRef, HostBinding, Input, OnChanges, Renderer2, SimpleChanges} from '@angular/core';
-import {BreakPoints, insertElementStyle, isDefaultSpacingSize, SpacingSize} from 'monsta-design/core';
+import {BreakPoints, insertElementStyle, isAuto, SpacingSize} from 'monsta-design/core';
+import {isNumeric} from "rxjs/internal-compatibility";
 
 type MarginType = 'm' | 'mt' | 'mb' | 'ms' | 'me' | 'mx' | 'my'
 
@@ -12,7 +13,11 @@ export class MarginStyle {
 
 // 插入 Angular element margin style
 export function insertMarginElementStyle(target: Element, container: HTMLElement, renderer: Renderer2, style: MarginStyle) {
+  if (isNumeric(style.size)) {
+    style.size += 'px'
+  }
   insertElementStyle(target, container, renderer, {
+    name: `m_${style.type}`,
     media: style.media,
     breakpoint: style.breakpoint,
     cssGetter: (scope: string): string => {
@@ -59,7 +64,7 @@ export function insertMarginElementStyle(target: Element, container: HTMLElement
   })
 }
 
-export  type MarginSize = SpacingSize | number | string
+export  type MarginSize = number | 'auto' | string
 
 @Directive({
   selector: '[m]'
@@ -72,11 +77,11 @@ export class MDirective implements OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       if (this.media !== 'default') {
-        return `bs-m-${this.media}-${this.size}`
+        return `bs-${this.type}-${this.media}-${this.size}`
       }
-      return `bs-m-${this.size}`
+      return `bs-${this.type}-${this.size}`
     }
     return null
   }
@@ -88,7 +93,7 @@ export class MDirective implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (isDefaultSpacingSize(this.size)) {
+    if (isAuto(this.size)) {
       return
     }
     this.insertStyle()
