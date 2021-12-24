@@ -1,13 +1,13 @@
 ---
-order: 0
+order: 4
 title:
-  zh-CN: Floating Input
+  zh-CN: 输入框组尺寸
   en-US: Basic
 ---
 
 ## zh-CN
 
-浮动标签
+输入框组
 
 ## en-US
 

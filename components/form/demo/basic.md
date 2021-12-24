@@ -1,13 +1,13 @@
 ---
-order: 0
+order: 1
 title:
-  zh-CN: 前后缀
+  zh-CN: 基本
   en-US: Basic
 ---
 
 ## zh-CN
 
-最简单的用法4。
+输入框基本的用法，通过指令使用
 
 ## en-US
 

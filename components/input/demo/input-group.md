@@ -1,13 +1,13 @@
 ---
-order: 1
+order: 3
 title:
-  zh-CN: 基本
+  zh-CN: 输入框组
   en-US: Basic
 ---
 
 ## zh-CN
 
-输入框基本的用法，通过指令使用
+输入框组
 
 ## en-US
 

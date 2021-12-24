@@ -1,19 +1,24 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {NSFormComponent} from './form.component';
-import { FormControlComponent } from './form-control.component';
+import { NSFormDirective } from './form.directive';
+import { NSFormLabelDirective } from './form-label.directive';
+import {NSFormFloatingDirective} from "./form-floating.directive";
 
+const Components = [
+  NSFormDirective,
+  NSFormLabelDirective,
+  NSFormFloatingDirective
+]
 
 @NgModule({
   declarations: [
-    NSFormComponent,
-    FormControlComponent
+    ...Components
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    NSFormComponent,
+    ...Components
   ]
 })
 export class NSFormModule {

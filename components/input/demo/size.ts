@@ -3,12 +3,12 @@ import {Component, OnInit} from '@angular/core';
 @Component({
   selector: 'ns-demo-input-size',
   template: `
-    <ns-input nsSize="lg" nsPlaceholder="lg"></ns-input>
-    <ns-input nsPlaceholder="default"></ns-input>
-    <ns-input nsSize="sm" nsPlaceholder="sm"></ns-input>
+    <input nsInput nsInputSize="lg" placeholder="lg"/>
+    <input nsInput nsInputSize="default" placeholder="default"/>
+    <input nsInput nsInputSize="sm" placeholder="sm"/>
   `,
   styles: [`
-    ns-input {
+    input {
       margin-bottom: 1rem;
     }
   `]

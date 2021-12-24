@@ -1,1 +1,11 @@
-export const moduleList = [];
+import {NSFormModule} from 'monsta-design/form';
+import {NSLayoutModule} from 'monsta-design/layout';
+import {NSInputModule} from 'monsta-design/input';
+import {NSButtonModule} from 'monsta-design/button';
+
+export const moduleList = [
+  NSFormModule,
+  NSLayoutModule,
+  NSInputModule,
+  NSButtonModule,
+];

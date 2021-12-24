@@ -1,18 +1,20 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-
-import {NSInputComponent} from './input.component';
-import {NSFloatingInputComponent} from "./floating.component";
+import {InputDirective} from './input.directive';
+import {NSInputGroupComponent} from './input-group.component';
+import {NSInputGroupTextComponent} from "./input-group-text.component";
 
 
 const Components = [
-  NSInputComponent,
-  NSFloatingInputComponent,
+  InputDirective,
+  NSInputGroupComponent,
+  NSInputGroupTextComponent,
 ]
 
 @NgModule({
   declarations: [
     ...Components,
+
   ],
   exports: [
     ...Components

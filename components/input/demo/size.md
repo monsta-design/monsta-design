@@ -1,5 +1,5 @@
 ---
-order: 0
+order: 2
 title:
   zh-CN: 尺寸
   en-US: Basic
@@ -7,7 +7,7 @@ title:
 
 ## zh-CN
 
-最简单的用法4。
+设置输入框尺寸
 
 ## en-US
 

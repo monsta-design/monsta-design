@@ -1,7 +1,7 @@
 ---
 order: 1
 title:
-  zh-CN: 基本
+  zh-CN: 横向表单
   en-US: Basic
 ---
 
