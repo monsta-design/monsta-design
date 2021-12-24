@@ -1,9 +1,9 @@
 import {Directive, ElementRef, HostBinding, Input, OnChanges, OnInit, Renderer2, SimpleChanges,} from '@angular/core';
 import {
-  isAuto,
+  isGapClass,
   BreakPoints,
-  SpacingSize,
-  insertElementStyle
+  BootstrapGapSize,
+  insertElementStyle, NSGapSize, toGapClass
 } from 'monsta-design/core';
 import {isNumeric} from "rxjs/internal-compatibility";
 
@@ -11,7 +11,7 @@ export class GutterStyle {
   media: string
   breakpoint: number
   gutter: any
-  type: 'x' | 'y' | 'xy'
+  type: NSGutterType
 }
 
 // 插入 Angular element gutter style
@@ -25,7 +25,7 @@ export function insertGutterElementStyle(target: Element, container: HTMLElement
     breakpoint: style.breakpoint,
     cssGetter: (scope: string): string => {
       switch (style.type) {
-        case 'x':
+        case 'gx':
           return `
           #${scope}{
               margin-right: calc(-.5 * ${style.gutter});
@@ -35,7 +35,7 @@ export function insertGutterElementStyle(target: Element, container: HTMLElement
            padding-right: calc(${style.gutter} * .5);
            padding-left: calc(${style.gutter} * .5);
           }`
-        case 'y':
+        case 'gy':
           return `
           #${scope}{
               margin-top: calc(-1 * ${style.gutter});
@@ -60,25 +60,33 @@ export function insertGutterElementStyle(target: Element, container: HTMLElement
   })
 }
 
+export type NSGutterType = 'gx' | 'gy' | 'g';
+
 @Directive({
   selector: '[g]'
 })
 export class GDirective implements OnChanges {
-  @Input('g') size: SpacingSize | number | string = null;
+  @Input('g') size: NSGapSize
+  protected media: string = 'default'
+  protected breakpoint: number = 0
+  protected type: NSGutterType = 'g'
 
   @HostBinding('class')
   get class() {
-    if (isAuto(this.size)) {
-      return 'bs-g-' + this.size
+    if (isGapClass(this.size)) {
+      if (this.media !== 'default') {
+        return `bs-${this.type}-${this.media}-${toGapClass(this.size)}`
+      }
+      return `bs-${this.type}-${toGapClass(this.size)}`
     }
     return null
   }
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
   }
 
   ngOnInit() {
-    if (isAuto(this.size)) {
+    if (isGapClass(this.size)) {
       return
     }
     this.insertStyle()
@@ -94,10 +102,10 @@ export class GDirective implements OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        media: 'default',
-        breakpoint: 0,
+        media: this.media,
+        breakpoint: this.breakpoint,
         gutter: this.size,
-        type: 'xy',
+        type: this.type,
       },
     )
   }
@@ -106,215 +114,70 @@ export class GDirective implements OnChanges {
 @Directive({
   selector: '[g_sm]'
 })
-export class GSMDirective implements OnChanges {
-  @Input('g_sm') size: SpacingSize | number | string = null;
+export class GSMDirective extends GDirective {
+  @Input('g_sm') size: NSGapSize
 
-  @HostBinding('class')
-  get class() {
-    if (isAuto(this.size)) {
-      return 'bs-g-sm-' + this.size
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (isAuto(this.size)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGutterElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'sm',
-        breakpoint: BreakPoints.sm,
-        gutter: this.size,
-        type: 'xy',
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'sm'
+    this.breakpoint = BreakPoints.sm
+    this.type = 'g'
   }
 }
 
 @Directive({
   selector: '[g_md]'
 })
-export class GMDDirective implements OnChanges {
-  @Input('g_md') size: SpacingSize | number | string = null;
+export class GMDDirective extends GDirective {
+  @Input('g_md') size: NSGapSize
 
-  @HostBinding('class')
-  get class() {
-    if (isAuto(this.size)) {
-      return 'bs-g-md-' + this.size
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (isAuto(this.size)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGutterElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'md',
-        breakpoint: BreakPoints.md,
-        gutter: this.size,
-        type: 'xy',
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'md'
+    this.breakpoint = BreakPoints.md
+    this.type = 'g'
   }
 }
 
 @Directive({
   selector: '[g_lg]'
 })
-export class GLGDirective implements OnChanges {
-  @Input('g_lg') size: SpacingSize | number | string = null;
+export class GLGDirective extends GDirective {
+  @Input('g_lg') size: NSGapSize
 
-  @HostBinding('class')
-  get class() {
-    if (isAuto(this.size)) {
-      return 'bs-g-lg-' + this.size
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (isAuto(this.size)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGutterElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'lg',
-        breakpoint: BreakPoints.lg,
-        gutter: this.size,
-        type: 'xy',
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'lg'
+    this.breakpoint = BreakPoints.lg
+    this.type = 'g'
   }
 }
 
 @Directive({
   selector: '[g_xl]'
 })
-export class GXLDirective implements OnChanges {
-  @Input('g_xl') size: SpacingSize | number | string = null;
+export class GXLDirective extends GDirective {
+  @Input('g_xl') size: NSGapSize
 
-  @HostBinding('class')
-  get class() {
-    if (isAuto(this.size)) {
-      return 'bs-g-xl-' + this.size
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (isAuto(this.size)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGutterElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'xl',
-        breakpoint: BreakPoints.xl,
-        gutter: this.size,
-        type: 'xy',
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'xl'
+    this.breakpoint = BreakPoints.xl
+    this.type = 'g'
   }
 }
 
 @Directive({
   selector: '[g_xxl]'
 })
-export class GXXLDirective implements OnChanges {
-  @Input('g_xxl') size: SpacingSize | number | string = null;
+export class GXXLDirective extends GDirective {
+  @Input('g_xxl') size: NSGapSize
 
-  @HostBinding('class')
-  get class() {
-    if (isAuto(this.size)) {
-      return 'bs-g-xxl-' + this.size
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (isAuto(this.size)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGutterElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'xxl',
-        breakpoint: BreakPoints.xxl,
-        gutter: this.size,
-        type: 'xy',
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'xxl'
+    this.breakpoint = BreakPoints.xxl
+    this.type = 'g'
   }
 }
 
@@ -322,302 +185,98 @@ export class GXXLDirective implements OnChanges {
 @Directive({
   selector: '[gx]'
 })
-export class GxDirective implements OnChanges {
-  @Input('gx') size: SpacingSize | number | string = null;
+export class GxDirective extends GDirective {
+  @Input('gx') size: NSGapSize
 
-  @HostBinding('class')
-  get class() {
-    if (isAuto(this.size)) {
-      return 'bs-gx-' + this.size
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (isAuto(this.size)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGutterElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'default',
-        breakpoint: 0,
-        gutter: this.size,
-        type: 'x',
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'default'
+    this.breakpoint = 0
+    this.type = 'gx'
   }
 }
-
 
 @Directive({
   selector: '[gx_sm]'
 })
-export class GxSMDirective implements OnInit, OnChanges {
-  @Input('gx_sm') size: SpacingSize | number | string = null;
+export class GxSMDirective extends GDirective {
+  @Input('gx_sm') size: NSGapSize
 
-  @HostBinding('class')
-  get class() {
-    if (isAuto(this.size)) {
-      return 'bs-gx-sm-' + this.size
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (isAuto(this.size)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGutterElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'sm',
-        breakpoint: BreakPoints.sm,
-        gutter: this.size,
-        type: 'x',
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'sm'
+    this.breakpoint = BreakPoints.sm
+    this.type = 'gx'
   }
 }
 
 @Directive({
   selector: '[gx_md]'
 })
-export class GxMDDirective implements OnInit, OnChanges {
-  @Input('gx_md') size: SpacingSize | number | string = null;
+export class GxMDDirective extends GDirective {
+  @Input('gx_md') size: NSGapSize
 
-  @HostBinding('class')
-  get class() {
-    if (isAuto(this.size)) {
-      return 'bs-gx-md-' + this.size
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (isAuto(this.size)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGutterElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'md',
-        breakpoint: BreakPoints.md,
-        gutter: this.size,
-        type: 'x',
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'md'
+    this.breakpoint = BreakPoints.md
+    this.type = 'gx'
   }
 }
 
 @Directive({
   selector: '[gx_lg]'
 })
-export class GxLGDirective implements OnInit, OnChanges {
-  @Input('gx_lg') size: SpacingSize | number | string = null;
+export class GxLGDirective extends GDirective {
+  @Input('gx_lg') size: NSGapSize
 
-  @HostBinding('class')
-  get class() {
-    if (isAuto(this.size)) {
-      return 'bs-gx-lg-' + this.size
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (isAuto(this.size)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGutterElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'lg',
-        breakpoint: BreakPoints.lg,
-        gutter: this.size,
-        type: 'x',
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'lg'
+    this.breakpoint = BreakPoints.lg
+    this.type = 'gx'
   }
 }
 
 @Directive({
   selector: '[gx_xl]'
 })
-export class GxXLDirective implements OnInit, OnChanges {
-  @Input('gx_xl') size: SpacingSize | number | string = null;
+export class GxXLDirective extends GDirective {
+  @Input('gx_xl') size: NSGapSize
 
-  @HostBinding('class')
-  get class() {
-    if (isAuto(this.size)) {
-      return 'bs-gx-xl-' + this.size
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (isAuto(this.size)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGutterElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'xl',
-        breakpoint: BreakPoints.xl,
-        gutter: this.size,
-        type: 'x',
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'xl'
+    this.breakpoint = BreakPoints.xl
+    this.type = 'gx'
   }
 }
 
 @Directive({
   selector: '[gx_xxl]'
 })
-export class GxXXLDirective implements OnInit, OnChanges {
-  @Input('gx_xxl') size: SpacingSize | number | string = null;
+export class GxXXLDirective extends GDirective {
+  @Input('gx_xxl') size: NSGapSize
 
-  @HostBinding('class')
-  get class() {
-    if (isAuto(this.size)) {
-      return 'bs-gx-xxl-' + this.size
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (isAuto(this.size)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGutterElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'xxl',
-        breakpoint: BreakPoints.xxl,
-        gutter: this.size,
-        type: 'x',
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'xxl'
+    this.breakpoint = BreakPoints.xxl
+    this.type = 'gx'
   }
 }
 
 @Directive({
   selector: '[gy]'
 })
-export class GyDirective implements OnChanges {
-  @Input('gy') size: SpacingSize | number | string = null;
+export class GyDirective extends GDirective {
+  @Input('gy') size: NSGapSize
 
-  @HostBinding('class')
-  get class() {
-    if (isAuto(this.size)) {
-      return 'bs-gy-' + this.size
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (isAuto(this.size)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGutterElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'default',
-        breakpoint: 0,
-        gutter: this.size,
-        type: 'y',
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'default'
+    this.breakpoint = 0
+    this.type = 'gy'
   }
 }
 
@@ -625,231 +284,89 @@ export class GyDirective implements OnChanges {
 @Directive({
   selector: '[gy_sm]'
 })
-export class GySMDirective implements OnInit, OnChanges {
-  @Input('gy_sm') size: SpacingSize | number | string = null;
+export class GySMDirective extends GDirective {
+  @Input('gy_sm') size: NSGapSize
 
-  @HostBinding('class')
-  get class() {
-    if (isAuto(this.size)) {
-      return 'bs-gy-sm-' + this.size
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (isAuto(this.size)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGutterElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'sm',
-        breakpoint: BreakPoints.sm,
-        gutter: this.size,
-        type: 'y',
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'sm'
+    this.breakpoint = BreakPoints.sm
+    this.type = 'gy'
   }
 }
 
 @Directive({
-  selector: '[gx_md]'
+  selector: '[gy_md]'
 })
-export class GyMDDirective implements OnInit, OnChanges {
-  @Input('gy_md') size: SpacingSize | number | string = null;
+export class GyMDDirective extends GDirective {
+  @Input('gy_md') size: NSGapSize
 
-  @HostBinding('class')
-  get class() {
-    if (isAuto(this.size)) {
-      return 'bs-gy-md-' + this.size
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (isAuto(this.size)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGutterElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'md',
-        breakpoint: BreakPoints.md,
-        gutter: this.size,
-        type: 'y',
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'md'
+    this.breakpoint = BreakPoints.md
+    this.type = 'gy'
   }
 }
 
 @Directive({
   selector: '[gy_lg]'
 })
-export class GyLGDirective implements OnInit, OnChanges {
-  @Input('gy_lg') size: SpacingSize | number | string = null;
+export class GyLGDirective extends GDirective {
+  @Input('gy_lg') size: NSGapSize
 
-  @HostBinding('class')
-  get class() {
-    if (isAuto(this.size)) {
-      return 'bs-gy-lg-' + this.size
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (isAuto(this.size)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGutterElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'lg',
-        breakpoint: BreakPoints.lg,
-        gutter: this.size,
-        type: 'y',
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'lg'
+    this.breakpoint = BreakPoints.lg
+    this.type = 'gy'
   }
 }
 
 @Directive({
   selector: '[gy_xl]'
 })
-export class GyXLDirective implements OnInit, OnChanges {
-  @Input('gy_xl') size: SpacingSize | number | string = null;
+export class GyXLDirective extends GDirective {
+  @Input('gy_md') size: NSGapSize
 
-  @HostBinding('class')
-  get class() {
-    if (isAuto(this.size)) {
-      return 'bs-gy-xl-' + this.size
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (isAuto(this.size)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGutterElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'xl',
-        breakpoint: BreakPoints.xl,
-        gutter: this.size,
-        type: 'y',
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'xl'
+    this.breakpoint = BreakPoints.xl
+    this.type = 'gy'
   }
 }
 
 @Directive({
   selector: '[gy_xxl]'
 })
-export class GyXXLDirective implements OnInit, OnChanges {
-  @Input('gy_xxl') size: SpacingSize | number | string = null;
+export class GyXXLDirective extends GDirective {
+  @Input('gy_xxl') size: NSGapSize
 
-  @HostBinding('class')
-  get class() {
-    if (isAuto(this.size)) {
-      return 'bs-gy-xxl-' + this.size
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (isAuto(this.size)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGutterElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'xxl',
-        breakpoint: BreakPoints.xxl,
-        gutter: this.size,
-        type: 'y',
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'xxl'
+    this.breakpoint = BreakPoints.xxl
+    this.type = 'gy'
   }
 }
 
 export const GutterDirectives = [
+  // g
   GDirective,
   GSMDirective,
   GMDDirective,
   GLGDirective,
   GXLDirective,
   GXXLDirective,
+  // gx
   GxDirective,
   GxSMDirective,
   GxMDDirective,
   GxLGDirective,
   GxXLDirective,
   GxXXLDirective,
+  // gy
   GyDirective,
   GySMDirective,
   GyMDDirective,

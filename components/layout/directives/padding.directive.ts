@@ -1,5 +1,5 @@
 import {Directive, ElementRef, HostBinding, Input, OnChanges, Renderer2, SimpleChanges} from '@angular/core';
-import {BreakPoints, insertElementStyle, isAuto, SpacingSize} from 'monsta-design/core';
+import {BreakPoints, insertElementStyle, isGapClass, BootstrapGapSize, toGapClass} from 'monsta-design/core';
 import {isNumeric} from "rxjs/internal-compatibility";
 
 type PaddingType = 'p' | 'pt' | 'pb' | 'ps' | 'pe' | 'px' | 'py'
@@ -64,7 +64,7 @@ export function insertPaddingElementStyle(target: Element, container: HTMLElemen
   })
 }
 
-export  type PaddingSize = SpacingSize | number | string
+export  type PaddingSize = BootstrapGapSize | number | string
 
 @Directive({
   selector: '[p]'
@@ -77,11 +77,11 @@ export class PDirective implements OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isAuto(this.size)) {
+    if (isGapClass(this.size)) {
       if (this.media !== 'default') {
-        return `bs-${this.type}-${this.media}-${this.size}`
+        return `bs-${this.type}-${this.media}-${toGapClass(this.size)}`
       }
-      return `bs-${this.type}-${this.size}`
+      return `bs-${this.type}-${toGapClass(this.size)}`
     }
     return null
   }
@@ -93,7 +93,7 @@ export class PDirective implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (isAuto(this.size)) {
+    if (isGapClass(this.size)) {
       return
     }
     this.insertStyle()

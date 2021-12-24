@@ -1,5 +1,5 @@
 import {Directive, ElementRef, HostBinding, Input, OnChanges, Renderer2, SimpleChanges} from '@angular/core';
-import {BreakPoints, insertElementStyle, isAuto, SpacingSize} from 'monsta-design/core';
+import {BreakPoints, insertElementStyle, isGapClass, toGapClass} from 'monsta-design/core';
 import {isNumeric} from "rxjs/internal-compatibility";
 
 type MarginType = 'm' | 'mt' | 'mb' | 'ms' | 'me' | 'mx' | 'my'
@@ -77,11 +77,11 @@ export class MDirective implements OnChanges {
 
   @HostBinding('class')
   get class() {
-    if (isAuto(this.size)) {
+    if (isGapClass(this.size)) {
       if (this.media !== 'default') {
-        return `bs-${this.type}-${this.media}-${this.size}`
+        return `bs-${this.type}-${this.media}-${toGapClass(this.size)}`
       }
-      return `bs-${this.type}-${this.size}`
+      return `bs-${this.type}-${toGapClass(this.size)}`
     }
     return null
   }
@@ -93,7 +93,7 @@ export class MDirective implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (isAuto(this.size)) {
+    if (isGapClass(this.size)) {
       return
     }
     this.insertStyle()

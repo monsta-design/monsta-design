@@ -21,11 +21,16 @@ export function isTrue(v): boolean {
   return v === true || v === 'true'
 }
 
-export type SpacingSize = '0' | '1' | '2' | '3' | '4' | '5' | 'auto';
+export type BootstrapGapSize = '0' | '1gap' | '2gap' | '3gap' | '4gap' | '5gap' | 'auto';
+export type NSGapSize = BootstrapGapSize | number | string;
 
 // 判断是否是默认的尺寸
-export function isAuto(v): boolean {
-  return v === 'auto';
+export function isGapClass(v): boolean {
+  return v == 0 || v === 'auto' || `${v}`.endsWith('gap');
+}
+
+export function toGapClass(v): string {
+  return `${parseInt(v)}`
 }
 
 // 预设的系统颜色

@@ -1,13 +1,16 @@
 import {Directive, ElementRef, HostBinding, Input, OnChanges, Renderer2, SimpleChanges} from '@angular/core';
 import {isNumeric} from "rxjs/internal-compatibility";
 import {BreakPoints, insertElementStyle} from 'monsta-design/core';
+import {retry} from "rxjs/operators";
 
-export function isDefaultSize(v: any): boolean {
-  return isNumeric(v) || v === 'auto'
+export function isSizeClass(v: any): boolean {
+  return v === 'auto'
 }
 
+export type NSSizeType = 'w' | 'h';
+
 export class SizeStyle {
-  type: 'width' | 'height' | 'all'
+  type: NSSizeType
   media: string
   width?: any
   height?: string
@@ -16,7 +19,6 @@ export class SizeStyle {
 
 // 插入 Angular element size style
 export function insertSizeElementStyle(target: Element, container: HTMLElement, renderer: Renderer2, style: SizeStyle) {
-  // TODO 转换 Bootstrap Class
   if (isNumeric(style.width)) {
     style.width += 'px'
   }
@@ -29,13 +31,13 @@ export function insertSizeElementStyle(target: Element, container: HTMLElement, 
     breakpoint: style.breakpoint,
     cssGetter: (scope: string): string => {
       switch (style.type) {
-        case 'width':
+        case 'w':
           return `
           #${scope}{
               width: ${style.width} !important;
           }
           `
-        case 'height':
+        case 'h':
           return `
           #${scope}{
               height: ${style.height} !important;
@@ -52,24 +54,52 @@ export function insertSizeElementStyle(target: Element, container: HTMLElement, 
   })
 }
 
-export type SizeValue = 25 | 50 | 75 | 100 | 'auto' | string;
+export type NSSize = 'auto' | number | string;
 
 @Directive({
   selector: '[w]',
 })
 export class WDirective {
-  @Input('w') size: SizeValue = null;
+  @Input('w') size: NSSize;
 
   @HostBinding('class') get class() {
-    if (isDefaultSize(this.size)) {
+    if (isSizeClass(this.size)) {
       return 'bs-w-' + this.size
     }
     return null
   }
 
   @HostBinding('style.width') get style() {
-    if (isDefaultSize(this.size)) {
+    if (isSizeClass(this.size)) {
       return null
+    }
+    if (isNumeric(this.size)) {
+      return `${this.size}px`
+    }
+    return this.size
+  }
+}
+
+
+@Directive({
+  selector: '[h]',
+})
+export class HDirective {
+  @Input('h') size: NSSize;
+
+  @HostBinding('class') get class() {
+    if (isSizeClass(this.size)) {
+      return 'bs-h-' + this.size
+    }
+    return null
+  }
+
+  @HostBinding('style.height') get style() {
+    if (isSizeClass(this.size)) {
+      return null
+    }
+    if (isNumeric(this.size)) {
+      return `${this.size}px`
     }
     return this.size
   }
@@ -79,9 +109,12 @@ export class WDirective {
   selector: '[w_sm]',
 })
 export class WSmDirective implements OnChanges {
-  @Input('w_sm') size: SizeValue = null;
+  @Input('w_sm') size: NSSize;
+  protected media: string = 'sm'
+  protected breakpoint: number = BreakPoints.sm
+  protected type: NSSizeType = 'w'
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
   }
 
   ngOnInit() {
@@ -98,9 +131,9 @@ export class WSmDirective implements OnChanges {
       this.el.nativeElement.parentElement,
       this.renderer,
       {
-        media: 'sm',
-        breakpoint: BreakPoints.sm,
-        type: 'width',
+        media: this.media,
+        breakpoint: this.breakpoint,
+        type: this.type,
         width: this.size,
       },
     )
@@ -111,310 +144,126 @@ export class WSmDirective implements OnChanges {
 @Directive({
   selector: '[w_md]',
 })
-export class WMdDirective implements OnChanges {
-  @Input('w_md') size: SizeValue = null;
+export class WMdDirective extends WSmDirective {
+  @Input('w_md') size: NSSize;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertSizeElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'md',
-        breakpoint: BreakPoints.md,
-        type: 'width',
-        width: this.size,
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'md'
+    this.breakpoint = BreakPoints.md
+    this.type = 'w'
   }
 }
 
 @Directive({
   selector: '[w_lg]',
 })
-export class WLgDirective implements OnChanges {
-  @Input('w_lg') size: SizeValue = null;
+export class WLgDirective extends WSmDirective {
+  @Input('w_lg') size: NSSize;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertSizeElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'lg',
-        breakpoint: BreakPoints.lg,
-        type: 'width',
-        width: this.size,
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'lg'
+    this.breakpoint = BreakPoints.lg
+    this.type = 'w'
   }
 }
 
 @Directive({
   selector: '[w_xl]',
 })
-export class WXlDirective implements OnChanges {
-  @Input('w_xl') size: SizeValue = null;
+export class WXlDirective extends WSmDirective {
+  @Input('w_xl') size: NSSize;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertSizeElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'xl',
-        breakpoint: BreakPoints.xl,
-        type: 'width',
-        width: this.size,
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'xl'
+    this.breakpoint = BreakPoints.xl
+    this.type = 'w'
   }
 }
 
 @Directive({
   selector: '[w_xxl]',
 })
-export class WXxlDirective implements OnChanges {
-  @Input('w_xxl') size: SizeValue = null;
+export class WXxlDirective extends WSmDirective {
+  @Input('w_xxl') size: NSSize;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertSizeElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'xxl',
-        breakpoint: BreakPoints.xxl,
-        type: 'width',
-        width: this.size,
-      },
-    )
-  }
-}
-
-
-@Directive({
-  selector: '[h]',
-})
-export class HDirective {
-  @Input('h') size: 25 | 50 | 75 | 100 | 'auto' | string = null;
-
-  @HostBinding('class') get class() {
-    if (isNumeric(this.size)) {
-      return 'bs-h-' + this.size
-    }
-    return null
-  }
-
-  @HostBinding('style.height') get style() {
-    if (isNumeric(this.size)) {
-      return null
-    }
-    return this.size
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'xxl'
+    this.breakpoint = BreakPoints.xxl
+    this.type = 'w'
   }
 }
 
 @Directive({
   selector: '[h_sm]',
 })
-export class HSmDirective implements OnChanges {
-  @Input('h_sm') size: SizeValue = null;
+export class HSmDirective extends WSmDirective {
+  @Input('h_sm') size: NSSize;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertSizeElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'sm',
-        breakpoint: BreakPoints.sm,
-        type: 'height',
-        width: this.size,
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'sm'
+    this.breakpoint = BreakPoints.sm
+    this.type = 'h'
   }
 }
 
 @Directive({
   selector: '[h_md]',
 })
-export class HMdDirective implements OnChanges {
-  @Input('h_md') size: SizeValue = null;
+export class HMdDirective extends WSmDirective {
+  @Input('h_md') size: NSSize;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertSizeElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'md',
-        breakpoint: BreakPoints.md,
-        type: 'height',
-        width: this.size,
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'md'
+    this.breakpoint = BreakPoints.md
+    this.type = 'h'
   }
 }
 
 @Directive({
   selector: '[h_lg]',
 })
-export class HLgDirective implements OnChanges {
-  @Input('h_lg') size: SizeValue = null;
+export class HLgDirective extends WSmDirective {
+  @Input('h_lg') size: NSSize;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertSizeElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'lg',
-        breakpoint: BreakPoints.lg,
-        type: 'height',
-        width: this.size,
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'lg'
+    this.breakpoint = BreakPoints.lg
+    this.type = 'h'
   }
 }
 
 @Directive({
   selector: '[h_xl]',
 })
-export class HXlDirective implements OnChanges {
-  @Input('h_xl') size: SizeValue = null;
+export class HXlDirective extends WSmDirective {
+  @Input('h_xl') size: NSSize;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertSizeElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'xl',
-        breakpoint: BreakPoints.xl,
-        type: 'height',
-        width: this.size,
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'xl'
+    this.breakpoint = BreakPoints.xl
+    this.type = 'h'
   }
 }
 
 @Directive({
   selector: '[h_xxl]',
 })
-export class HXxlDirective implements OnChanges {
-  @Input('h_xxl') size: SizeValue = null;
+export class HXxlDirective extends WSmDirective {
+  @Input('h_xxl') size: NSSize;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertSizeElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'xxl',
-        breakpoint: BreakPoints.xxl,
-        type: 'height',
-        width: this.size,
-      },
-    )
+  constructor(protected el: ElementRef, protected renderer: Renderer2) {
+    super(el, renderer);
+    this.media = 'xxl'
+    this.breakpoint = BreakPoints.xxl
+    this.type = 'h'
   }
 }
 

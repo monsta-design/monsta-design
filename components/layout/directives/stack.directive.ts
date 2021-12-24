@@ -9,7 +9,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import {isNumeric} from "rxjs/internal-compatibility";
-import {BreakPoints, FlexAlignSelfMode, insertElementStyle, isAuto} from 'monsta-design/core';
+import {BreakPoints, FlexAlignSelfMode, insertElementStyle, isGapClass} from 'monsta-design/core';
 
 export class GupStyle {
   media: string
@@ -115,7 +115,7 @@ export class GapDirective implements OnChanges {
   @Input('gap') gap: number | string;
 
   @HostBinding('class') get getClass() {
-    if (isAuto(this.gap)) {
+    if (isGapClass(this.gap)) {
       return 'bs-gap-' + this.gap
     }
     return null
@@ -125,7 +125,7 @@ export class GapDirective implements OnChanges {
   }
 
   ngOnInit() {
-    if (!isAuto(this.gap)) {
+    if (!isGapClass(this.gap)) {
       return
     }
     this.insertStyle()
@@ -149,219 +149,8 @@ export class GapDirective implements OnChanges {
   }
 }
 
-@Directive({
-  selector: '[gap_sm]',
-})
-export class GapSmDirective implements OnChanges {
-  @Input('gap_sm') gap: number | string;
-
-  @HostBinding('class') get getClass() {
-    if (isAuto(this.gap)) {
-      return 'bs-gap-sm-' + this.gap
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (!isAuto(this.gap)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGapElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'sm',
-        breakpoint: BreakPoints.sm,
-        gap: this.gap
-      },
-    )
-  }
-}
-
-@Directive({
-  selector: '[gap_md]',
-})
-export class GapMdDirective implements OnChanges {
-  @Input('gap_md') gap: number | string;
-
-  @HostBinding('class') get getClass() {
-    if (isAuto(this.gap)) {
-      return 'bs-gap-md-' + this.gap
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (!isAuto(this.gap)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGapElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'md',
-        breakpoint: BreakPoints.md,
-        gap: this.gap
-      },
-    )
-  }
-}
-
-@Directive({
-  selector: '[gap_lg]',
-})
-export class GapLgDirective implements OnChanges {
-  @Input('gap_lg') gap: number | string;
-
-  @HostBinding('class') get getClass() {
-    if (isAuto(this.gap)) {
-      return 'bs-gap-lg-' + this.gap
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (!isAuto(this.gap)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGapElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'lg',
-        breakpoint: BreakPoints.lg,
-        gap: this.gap
-      },
-    )
-  }
-}
-
-@Directive({
-  selector: '[gap_xl]',
-})
-export class GapXlDirective implements OnChanges {
-  @Input('gap_xl') gap: number | string;
-
-  @HostBinding('class') get getClass() {
-    if (isAuto(this.gap)) {
-      return 'bs-gap-xl-' + this.gap
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (!isAuto(this.gap)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGapElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'xl',
-        breakpoint: BreakPoints.xl,
-        gap: this.gap
-      },
-    )
-  }
-}
-
-@Directive({
-  selector: '[gap_xxl]',
-})
-export class GapXxlDirective implements OnChanges {
-  @Input('gap_xxl') gap: number | string;
-
-  @HostBinding('class') get getClass() {
-    if (isAuto(this.gap)) {
-      return 'bs-gap-xxl-' + this.gap
-    }
-    return null
-  }
-
-  constructor(private el: ElementRef, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
-    if (!isAuto(this.gap)) {
-      return
-    }
-    this.insertStyle()
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.insertStyle()
-  }
-
-  insertStyle() {
-    insertGapElementStyle(
-      this.el.nativeElement,
-      this.el.nativeElement.parentElement,
-      this.renderer,
-      {
-        media: 'xxl',
-        breakpoint: BreakPoints.xxl,
-        gap: this.gap
-      },
-    )
-  }
-}
-
 export const StackDirectives = [
   VStackDirective,
   HStackDirective,
   VRDirective,
-  GapDirective,
-  GapSmDirective,
-  GapMdDirective,
-  GapLgDirective,
-  GapXlDirective,
-  GapXxlDirective,
 ]
