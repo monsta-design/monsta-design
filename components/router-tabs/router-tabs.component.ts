@@ -77,13 +77,15 @@ export class NSRouterViewComponent {
   selector: 'ns-router-tabs',
   template: `
     <div class="ns-tabs-wrap">
-    <span *ngFor="let tab of nsView.tabs"
-          class="ns-router-tab bs-user-select-none"
-          [ngClass]="{active:tab.active}"
-          (click)="show(tab)">
-        {{tab.title || '-'}}
-      <button class="bs-btn-close" (click)="close(tab.id)"></button>
-      </span>
+      <div *ngFor="let tab of nsView.tabs"
+           class="ns-router-tab"
+           [ngClass]="{active:tab.active}"
+           (click)="show(tab)">
+        <span>
+          {{tab.title || '-'}}
+        </span>
+        <button class="bs-btn-close" (click)="close(tab.id)"></button>
+      </div>
     </div>
   `,
   styleUrls: ['./router-tabs.component.scss']

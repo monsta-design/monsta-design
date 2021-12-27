@@ -5,28 +5,41 @@
   display: flex;
   white-space: nowrap;
   overflow: scroll;
+  height: 2.25rem;
+  border: 1px solid rgba(0, 0, 0, .04);
 }
 
 .ns-router-tab {
-  cursor: default;
-  margin-right: 10px;
+  min-width: 5.625rem;
+  max-width: 11.25rem;
+  padding: 0 0.5rem 0 0.5rem;
+  height: 100%;
   display: flex;
-  float: left;
-  height: 36px;
-  width: 180px;
-  justify-content: space-between;
   align-items: center;
-  padding-left: 5px;
-  background: #eee;
-  border-radius: 5px;
-  border: 1px solid #eee;
+  white-space: nowrap;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  position: relative;
+  transition: background-color .3s;
+  border-right: 1px solid rgba(0, 0, 0, .04);
+  justify-content: space-between;
 
   button {
+    margin-left: 0.5rem;
     background-size: 12px;
+    visibility: hidden;
+  }
+
+  &:hover {
+    button {
+      visibility: visible;
+    }
   }
 
   &.active, &:hover {
-    background: #89d5fa;
+    background: #fff;
   }
 }
 

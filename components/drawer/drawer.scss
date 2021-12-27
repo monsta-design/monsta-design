@@ -19,15 +19,21 @@
     height: 100%;
     left: 0;
     top: 0;
-    background-color: rgba(0,0,0,.45);
-    display: none;
+    background-color: rgba(0, 0, 0, .45);
+    //display: none;
+  }
+
+  .ns-drawer-content {
+    //overflow: hidden;
   }
 
   .ns-drawer-content {
     width: 0;
     height: 100%;
     //transition: width .3s cubic-bezier(.7, .3, .1, 1), height 0s ease .3s, width 0s ease .3s;
-    transition: width .3s cubic-bezier(.7, .3, .1, 1);
+    //transition: width .3s cubic-bezier(.7, .3, .1, 1);
     background: #4183C4;
+    //transform: translateX(100%);
+    display: none;
   }
 }

@@ -1,0 +1,2 @@
+import {NSFlipModule} from 'monsta-design/flip'
+export const moduleList = [NSFlipModule];

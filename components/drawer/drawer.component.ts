@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   EventEmitter,
@@ -7,32 +8,36 @@ import {
   OnChanges,
   OnInit,
   Output,
-  SimpleChanges
+  SimpleChanges, ViewChild
 } from '@angular/core';
 import {InputBoolean} from "monsta-design/core";
-import {coerceCssPixelValue} from "@angular/cdk/coercion";
+import anime from "animejs/lib/anime.es.js";
 
 
 @Component({
   selector: 'ns-drawer',
   template: `
-    <div class="ns-drawer-mask" (click)="close()"></div>
-    <div class="ns-drawer-content">
+    <div class="ns-drawer-mask" (click)="close()" [style.display]="nsMask&&nsVisible?'block':'none'"></div>
+    <div #contentRef class="ns-drawer-content" [style.width.px]="nsWidth">
       <ng-content></ng-content>
     </div>
   `,
-  styleUrls: ['./drawer.scss']
+  styleUrls: ['./drawer.scss'],
+  host: {}
 })
-export class NSDrawerComponent implements OnInit, OnChanges {
+export class NSDrawerComponent implements OnInit, OnChanges, AfterViewInit {
 
   @Input() @InputBoolean() nsFloat: boolean = true;
   @Input() @InputBoolean() nsVisible: boolean = false;
-
+  @Input() @InputBoolean() nsMask: boolean = false;
+  @Input() nsDuration: number = 200;
   @Input() nsMode: 'float' | 'embed' = 'float';
 
   @Input()
   set nsWidth(val: number | string) {
-    this._nsWidth = coerceCssPixelValue(val)
+    if (typeof val === "string") {
+      this._nsWidth = parseInt(val, 10)
+    }
   };
 
   get nsWidth() {
@@ -41,7 +46,9 @@ export class NSDrawerComponent implements OnInit, OnChanges {
 
   @Input()
   set nsHeight(val: number | string) {
-    this._nsHeight = coerceCssPixelValue(val)
+    if (typeof val === "string") {
+      this._nsHeight = parseInt(val, 10)
+    }
   };
 
   get nsHeight() {
@@ -49,15 +56,20 @@ export class NSDrawerComponent implements OnInit, OnChanges {
   }
 
   @Output() nsOnClose: EventEmitter<any> = new EventEmitter<any>();
+  @ViewChild('contentRef') contentRef: ElementRef;
+  // @HostBinding('class.ns-open') get getOpen() {
+  //   return this.nsVisible
+  // }
 
-  @HostBinding('class.ns-open') get getOpen() {
-    return this.nsVisible
-  }
-
-  private _nsWidth: string = '256px';
-  private _nsHeight: string;
+  private _nsWidth: number = 256;
+  private _nsHeight: number;
 
   constructor(private el: ElementRef) {
+  }
+
+  ngAfterViewInit(): void {
+    // this.contentRef.nativeElement.style.display = 'none';
+    this.contentRef.nativeElement.style.transform = `translateX(${this._nsWidth + 'px'})`;
   }
 
   ngOnInit(): void {
@@ -69,14 +81,27 @@ export class NSDrawerComponent implements OnInit, OnChanges {
     if (nsVisible) {
       if (nsVisible.currentValue) {
         // this.el.nativeElement.style.transform = 'translateX(0)'
+        this.open()
       } else {
         // this.el.nativeElement.style.transform = 'translateX(100%)'
+        this.close()
       }
     }
   }
 
   open() {
+    if (!this.contentRef) {
+      return
+    }
+    this.contentRef.nativeElement.style.display = 'block';
+    // this.contentRef.nativeElement.style.translateX = this._nsWidth;
 
+    anime({
+      targets: this.contentRef.nativeElement,
+      translateX: 0,
+      duration: this.nsDuration,
+      easing: 'cubicBezier(.7, .3, .1, 1)'
+    })
   }
 
   private _show() {
@@ -88,7 +113,22 @@ export class NSDrawerComponent implements OnInit, OnChanges {
   }
 
   close() {
-    this.nsVisible = false;
-    this.nsOnClose.emit(null);
+    if (!this.contentRef) {
+      return
+    }
+    // this.contentRef.nativeElement.style.width = 0;
+    anime({
+      targets: this.contentRef.nativeElement,
+      translateX: this._nsWidth,
+      duration: this.nsDuration,
+      easing: 'cubicBezier(.7, .3, .1, 1)',
+      complete: () => {
+        // setTimeout(() => {
+        this.contentRef.nativeElement.style.display = 'none';
+        // }, this.nsDuration * 2)
+        this.nsVisible = false;
+        this.nsOnClose.emit(null);
+      }
+    })
   }
 }
