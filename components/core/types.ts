@@ -1,6 +1,14 @@
 import {isNumeric} from "rxjs/internal-compatibility";
 import {Renderer2} from "@angular/core";
 
+export type NSAny = any;
+
+export interface NSStyleInterface {
+  [klass: string]: NSAny;
+}
+
+export type OnTouchedType = () => NSAny;
+export type OnChangeType = (value: NSAny) => void;
 
 export type NS_BOOL = boolean | 'false' | 'true'
 export type NS_SIZE = 'default' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'fluid';
@@ -402,8 +410,3 @@ export class NSPosition implements NSIPosition {
   }
 }
 
-export type NSAny = any;
-
-export interface NSStyleInterface {
-  [klass: string]: NSAny;
-}

@@ -18,7 +18,7 @@ import {FlexDirectives} from "./directives/flex.directive";
 import {FloatDirectives} from "./directives/float.directive";
 import {StackDirectives} from "./directives/stack.directive";
 import {NSGridDirectives} from "./directives/grid.directive";
-import {GapDirectives} from "monsta-design/layout/directives/gap.directive";
+import {GapDirectives} from "./directives/gap.directive";
 
 const COMPONENTS = [
   ...NSGridDirectives,

@@ -18,6 +18,31 @@ cover: https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg
 import { NSWindowsModule } from 'monsta-desing/windows';
 ```
 
+## 路由导航
+
+```html
+<a routerLink="/page/welcome"></a>
+```
+
+## 同一页面多次使用
+
+需要定义路由参数来区分不同的页面，如：
+
+```ts
+const routes: Routes = [
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      {
+        path: 'page/:name',
+        component: PageComponent,
+      },
+    ]
+  }
+];
+```
+
 ## API
 
 

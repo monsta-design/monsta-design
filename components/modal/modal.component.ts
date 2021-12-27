@@ -61,12 +61,14 @@ export class NSModalComponent implements AfterViewInit, OnChanges, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (typeof changes.nsShow !== 'undefined') {
+    const {nsShow} = changes;
+    if (nsShow) {
       if (isTrue(changes.nsShow.currentValue)) {
         this.show();
       } else {
         this.hide();
       }
+      // this.nsShowChange.emit(nsShow.currentValue)
     }
   }
 
@@ -83,7 +85,7 @@ export class NSModalComponent implements AfterViewInit, OnChanges, OnInit {
 
   hide() {
     this.getModal().hide()
-    this.nsOnClose.emit()
+    this.nsShowChange.emit(false)
   }
 
   cancel() {

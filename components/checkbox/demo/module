@@ -1,2 +1,3 @@
-import {NSCheckboxModule} from 'monsta-design/checkbox'
-export const moduleList = [NSCheckboxModule];
+import {NSCheckboxModule} from 'monsta-design/checkbox';
+import {FormsModule}   from '@angular/forms';
+export const moduleList = [NSCheckboxModule,FormsModule];

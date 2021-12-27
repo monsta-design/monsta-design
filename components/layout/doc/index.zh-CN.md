@@ -21,8 +21,8 @@ import { NSLayoutModule } from 'monsta-design/layout';
 ## 显示类型
 
 * block
-* grid
-* flex
+* flex(grid) => row、col、gutter
+* grid => gap 
 
 ## 对齐方式
 

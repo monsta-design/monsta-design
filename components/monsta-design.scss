@@ -1,34 +1,37 @@
-@import "../node_modules/monsta-bootstrap/scss/bootstrap-utilities";
-@import "../node_modules/monsta-bootstrap/scss/reboot";
-@import "../node_modules/monsta-bootstrap/scss/bootstrap-grid";
-@import "../node_modules/monsta-bootstrap/scss/utilities";
-@import "../node_modules/monsta-bootstrap/scss/buttons";
-@import "../node_modules/monsta-bootstrap/scss/button-group";
-@import "../node_modules/monsta-bootstrap/scss/spinners";
+@import "~monsta-bootstrap/scss/bootstrap-utilities";
+@import "~monsta-bootstrap/scss/reboot";
+@import "~monsta-bootstrap/scss/bootstrap-grid";
+@import "~monsta-bootstrap/scss/utilities";
+@import "~monsta-bootstrap/scss/buttons";
+@import "~monsta-bootstrap/scss/button-group";
+@import "~monsta-bootstrap/scss/spinners";
 
 // 关闭按钮
-@import "../node_modules/monsta-bootstrap/scss/close";
+@import "~monsta-bootstrap/scss/close";
 
 // 表单
-@import "../node_modules/monsta-bootstrap/scss/forms";
+@import "~monsta-bootstrap/scss/forms";
 
 // 骨架
-@import "../node_modules/monsta-bootstrap/scss/placeholders";
+@import "~monsta-bootstrap/scss/placeholders";
 
 // 分页
-@import "../node_modules/monsta-bootstrap/scss/pagination";
+@import "~monsta-bootstrap/scss/pagination";
 
 // 消息提示
-@import "../node_modules/monsta-bootstrap/scss/toasts";
+@import "~monsta-bootstrap/scss/toasts";
 
 // 选项卡
-@import "../node_modules/monsta-bootstrap/scss/nav";
+@import "~monsta-bootstrap/scss/nav";
 
 // 路径
-@import "../node_modules/monsta-bootstrap/scss/breadcrumb";
+@import "~monsta-bootstrap/scss/breadcrumb";
 
 // Resizable
 @import "resizable/resizeable";
+
+// 表格
+@import "~monsta-bootstrap/scss/tables";
 
 html, body {
   height: 100%;

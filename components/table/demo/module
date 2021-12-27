@@ -1,1 +1,2 @@
-export const moduleList = [];
+import {NSTableModule} from 'monsta-design/table';
+export const moduleList = [NSTableModule];

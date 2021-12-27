@@ -3,8 +3,8 @@ import {Component, OnInit} from '@angular/core';
 @Component({
   selector: 'ns-demo-modal-basic',
   template: `
-    <button (click)="toggle()">打开</button>
-    <ns-modal [(nsShow)]="show" [nsTitle]="'登录'" (nsOnClose)="show=false">
+    <button (click)="toggle()">打开</button>{{show}}
+    <ns-modal [(nsShow)]="show" [nsTitle]="'登录'">
       Content...
     </ns-modal>
   `,

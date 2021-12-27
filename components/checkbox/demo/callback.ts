@@ -1,14 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 
 @Component({
   selector: 'ns-demo-checkbox-callback',
   template: `
-    <ns-checkbox nsLabel="是否同意" [nsToggle]="check"></ns-checkbox>
+    <!--    <input nsCheckbox [checked]="checked" [nsCheckboxCheck]="check">-->
+    <!--    {{ checked }}-->
+<!--    <input nsCheckbox [checked]="checked" >-->
+<!--    {{ checked }}-->
   `,
   styles: [`
   `]
 })
-export class NSDemoCheckboxCallbackComponent implements OnInit {
+export class NSDemoCheckboxCallbackComponent implements OnInit, OnChanges {
+
+  checked = false;
 
   constructor() {
   }
@@ -16,8 +21,13 @@ export class NSDemoCheckboxCallbackComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  check(): boolean {
-    return true
+  check(val): boolean {
+    console.log(`收到值:${val}，但是要禁用选它，返回了 false`)
+    return false
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
   }
 
 }
