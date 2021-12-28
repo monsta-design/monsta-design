@@ -3,6 +3,8 @@ import {
   Input, OnDestroy, Output,
   TemplateRef, ViewChild,
 } from '@angular/core';
+import {InputBoolean} from "monsta-design/core";
+import {ENTER} from "@angular/cdk/keycodes";
 
 @Component({
   selector: 'ns-flip',
@@ -17,11 +19,14 @@ import {
 })
 export class NSFlipComponent implements OnDestroy {
   showBack = false;
+  private elem;
   @Input() nsBack: TemplateRef<any>;
   @Input() nsBlurSelector: string;
-  @Input() nsBlurCallback: (data) => boolean;
+  @Input() nsBlurCallback: ((escape: boolean, data: any) => boolean) | ((escape: boolean, data: any) => Promise<boolean>); // TODO 判断同步调用
+  @Input() @InputBoolean() nsKeyup: boolean = true;
   @Input() nsTabindex: number = -1;
   @Input() nsData: any;
+  @Input() nsFocusCallback: (data: any) => void
   @Output() nsOnRecover: EventEmitter<void> = new EventEmitter<void>()
 
   @HostBinding('class') get getClass() {
@@ -47,13 +52,20 @@ export class NSFlipComponent implements OnDestroy {
     if (!this.showBack && !this._nsTrigger) {
       this.showBack = true
     }
+    this.triggerClick()
+  }
+
+  private triggerClick() {
+    if (this.nsFocusCallback) {
+      this.nsFocusCallback(this.nsData)
+    }
   }
 
   @HostListener('blur') onBlur() {
     if (this.nsBlurSelector) {
       return
     }
-    if (this.nsBlurCallback && !this.nsBlurCallback(this.nsData)) {
+    if (this.nsBlurCallback && !this.nsBlurCallback(false, this.nsData)) {
       return;
     }
     this.showBack = false
@@ -64,8 +76,6 @@ export class NSFlipComponent implements OnDestroy {
     return this.nsTabindex
   }
 
-  private elem;
-
   @ViewChild('container') set userContent(element) {
     if (element && this.nsBlurSelector) {
       this.elem = this.el.nativeElement.querySelector(this.nsBlurSelector);
@@ -74,21 +84,49 @@ export class NSFlipComponent implements OnDestroy {
       }
       this.elem.focus()
       this.elem.addEventListener('blur', this.blurListener)
+      if (this.nsKeyup) {
+        this.elem.addEventListener('keyup', this.elemKeyupHandler)
+      }
     }
   }
 
   private triggerClickHandler = () => {
     this.showBack = true
+    this.triggerClick()
+  }
+
+  private elemKeyupHandler = (event) => {
+    switch (event.code) {
+      case 'Enter':
+        this.recover(false)
+        break;
+      case 'Escape':
+        this.recover(true)
+        break;
+    }
+  }
+
+
+  recover(escape: boolean) {
+    if (this.nsBlurCallback && !this.nsBlurCallback(escape, this.nsData)) {
+      return;
+    }
+    if (this.nsBlurCallback && !this.nsBlurCallback(escape, this.nsData)) {
+      return;
+    }
+    if (this.elem) {
+      this.elem.removeEventListener('blur', this.blurListener)
+      if (this.nsKeyup) {
+        this.elem.removeEventListener('keyup', this.elemKeyupHandler)
+      }
+      this.elem = null
+    }
+    this.showBack = false;
+    this.nsOnRecover.emit();
   }
 
   private blurListener = () => {
-    if (this.nsBlurCallback && !this.nsBlurCallback(this.nsData)) {
-      return;
-    }
-    this.elem.removeEventListener('blur', this.blurListener)
-    this.elem = null
-    this.showBack = false;
-    this.nsOnRecover.emit();
+    this.recover(false)
   }
 
   ngOnDestroy(): void {
