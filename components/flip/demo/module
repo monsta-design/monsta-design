@@ -1,2 +1,3 @@
-import {NSFlipModule} from 'monsta-design/flip'
-export const moduleList = [NSFlipModule];
+import {NSFlipModule} from 'monsta-design/flip';
+import {FormsModule} from "@angular/forms";
+export const moduleList = [NSFlipModule,FormsModule];

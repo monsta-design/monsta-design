@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {NSFlipComponent} from './flip.component';
+import {PortalModule} from "@angular/cdk/portal";
 
 
 @NgModule({
@@ -10,9 +11,10 @@ import {NSFlipComponent} from './flip.component';
   exports: [
     NSFlipComponent
   ],
-  imports: [
-    CommonModule
-  ]
+    imports: [
+        CommonModule,
+        PortalModule
+    ]
 })
 export class NSFlipModule {
 }

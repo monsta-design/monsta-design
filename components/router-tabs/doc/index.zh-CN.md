@@ -43,6 +43,14 @@ const routes: Routes = [
 ];
 ```
 
+## 多次订阅
+同一 Component 多次打开会触发多次订阅
+```ts
+ this.route.queryParams.subscribe(res => {
+  console.log('queryParams:', res)
+})
+```
+
 ## API
 
 

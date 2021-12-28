@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {NSRouterTabsComponent, NSRouterViewComponent} from './router-tabs.component';
+import {RouterModule} from "@angular/router";
 
 const Components = [
   NSRouterTabsComponent,
@@ -14,9 +15,10 @@ const Components = [
   exports: [
     ...Components
   ],
-  imports: [
-    CommonModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule
+    ]
 })
 export class NSRouterTabsModule {
 }

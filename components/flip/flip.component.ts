@@ -1,18 +1,91 @@
-import {Component, Input, OnInit, TemplateRef} from '@angular/core';
-import {InputBoolean} from "monsta-design/core";
+import {
+  Component, ElementRef, EventEmitter, HostBinding, HostListener,
+  Input, OnDestroy, Output,
+  TemplateRef, ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'ns-flip',
   template: `
-    <ng-container *ngIf="!nsShowBack;else flipBackTpl">
+    <ng-container *ngIf="!showBack;else flipBackTpl">
       <ng-content></ng-content>
     </ng-container>
     <ng-template #flipBackTpl>
-      <ng-container [ngTemplateOutlet]="nsBack"></ng-container>
+      <ng-container #container [ngTemplateOutlet]="nsBack"></ng-container>
     </ng-template>
-  `
+  `,
 })
-export class NSFlipComponent {
-  @Input() @InputBoolean() nsShowBack: boolean = false;
+export class NSFlipComponent implements OnDestroy {
+  showBack = false;
   @Input() nsBack: TemplateRef<any>;
+  @Input() nsBlurSelector: string;
+  @Input() nsBlurCheck: () => boolean;
+  @Input() nsTabindex: number = -1;
+  @Output() nsOnRecover: EventEmitter<void> = new EventEmitter<void>()
+
+  @Input() set nsTrigger(val: Element) {
+    if (val) {
+      this._nsTrigger = val
+      this._nsTrigger.addEventListener('click', this.triggerClickHandler)
+    }
+  };
+
+  private _nsTrigger;
+
+  constructor(private el: ElementRef) {
+  }
+
+  @HostListener('click') onClick() {
+    if (!this.showBack && !this._nsTrigger) {
+      this.showBack = true
+    }
+  }
+
+  @HostListener('blur') onBlur() {
+    if (this.nsBlurSelector) {
+      return
+    }
+    if (this.nsBlurCheck && !this.nsBlurCheck()) {
+      return;
+    }
+    this.showBack = false
+    this.nsOnRecover.emit()
+  }
+
+  @HostBinding('tabindex') get getTabindex() {
+    return this.nsTabindex
+  }
+
+  private elem;
+
+  @ViewChild('container') set userContent(element) {
+    if (element && this.nsBlurSelector) {
+      this.elem = this.el.nativeElement.querySelector(this.nsBlurSelector);
+      if (!this.elem) {
+        throw new Error(`not found element by nsBlurSelector: ${this.nsBlurSelector}`)
+      }
+      this.elem.focus()
+      this.elem.addEventListener('blur', this.blurListener)
+    }
+  }
+
+  private triggerClickHandler = () => {
+    this.showBack = true
+  }
+
+  private blurListener = () => {
+    if (this.nsBlurCheck && !this.nsBlurCheck()) {
+      return;
+    }
+    this.elem.removeEventListener('blur', this.blurListener)
+    this.elem = null
+    this.showBack = false;
+    this.nsOnRecover.emit();
+  }
+
+  ngOnDestroy(): void {
+    if (this._nsTrigger) {
+      this._nsTrigger.removeEventListener('click', this.triggerClickHandler)
+    }
+  }
 }

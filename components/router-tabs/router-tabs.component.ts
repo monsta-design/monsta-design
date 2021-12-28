@@ -10,6 +10,7 @@ import {Tab, NSRouterTabMeta} from "./types";
       <div [style.display]="tab.active?'block':'none'" [id]="tab.id"
            role="tabpanel">
         <ng-container *ngComponentOutlet="tab.component"></ng-container>
+        <!--        <router-outlet *ngComponentOutlet="tab.component"></router-outlet>-->
       </div>
     </ng-container>`,
   styleUrls: ['./router-tabs.component.scss']
