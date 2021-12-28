@@ -1,16 +1,12 @@
-import {Route} from "@angular/router";
-import {BehaviorSubject} from "rxjs";
+import {ComponentRef} from "@angular/core";
 
 export interface Tab {
   id: string,
-  title: string,
   url: string,
-  name?: string;
   component: any;
   active: boolean;
-  route?: Route;
-  key?: string;
-  count?: BehaviorSubject<number>;
+  title?: string,
+  instance?: any;
 }
 
 export interface NSRouterTabMeta {

@@ -1,7 +1,58 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Injector, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, ActivationEnd, Router} from "@angular/router";
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component, ComponentFactoryResolver, ComponentRef, ContentChild, ContentChildren,
+  Directive, EventEmitter,
+  Injector,
+  Input, OnDestroy,
+  OnInit, Output, QueryList, Type, ViewChildren,
+  ViewContainerRef
+} from '@angular/core';
+import {ActivatedRoute, ActivationEnd, Router, RouterOutlet} from "@angular/router";
 import {Tab, NSRouterTabMeta} from "./types";
+import {NSWindowDirective} from "monsta-design/windows";
 
+// @Directive({
+//   selector: 'inner-ns-routers-tab-ref'
+// })
+// export class NSRouterTabRefDirective {
+//   constructor(
+//     public viewContainerRef: ViewContainerRef,
+//   ) {
+//   }
+// }
+
+@Component({
+  selector: 'ns-render',
+  template: ``,
+})
+export class NSRenderComponent implements OnInit, OnDestroy {
+  @Input() nsContext: any;
+  @Input() nsComponent: any;
+  @Input() nsAfterRender: (context: any, componentRef: ComponentRef<any>) => void
+  private componentRef;
+
+  constructor(
+    public viewContainerRef: ViewContainerRef,
+    private componentFactoryResolver: ComponentFactoryResolver
+  ) {
+  }
+
+  ngOnInit(): void {
+    let cFactory = this.componentFactoryResolver.resolveComponentFactory(this.nsComponent);
+    this.componentRef = this.viewContainerRef.createComponent(cFactory);
+    if (this.nsAfterRender) {
+      this.nsAfterRender(this.nsContext, this.componentRef)
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.componentRef) {
+      this.componentRef.destroy();
+    }
+  }
+
+}
 
 @Component({
   selector: 'ns-router-view',
@@ -9,19 +60,28 @@ import {Tab, NSRouterTabMeta} from "./types";
     <ng-container *ngFor="let tab of tabs">
       <div [style.display]="tab.active?'block':'none'" [id]="tab.id"
            role="tabpanel">
-        <ng-container *ngComponentOutlet="tab.component" (change)="change($event)"></ng-container>
-        <!--        <router-outlet *ngComponentOutlet="tab.component" (activate)="onRouterOutletActivate($event)"></router-outlet>-->
+        <ns-render [nsContext]="tab" [nsComponent]="tab.component" [nsAfterRender]="afterComponentRender"></ns-render>
       </div>
     </ng-container>`,
   styleUrls: ['./router-tabs.component.scss']
 })
 export class NSRouterViewComponent {
   public tabs: Tab[] = [];
+  nsTabMetaGetter: ((path: string) => NSRouterTabMeta) | ((path: string) => Promise<NSRouterTabMeta>);
+  @Output() nsOnAfterRendered: EventEmitter<Tab> = new EventEmitter<Tab>();
 
   constructor(
     private cd: ChangeDetectorRef,
     private router: Router,
   ) {
+  }
+
+  afterComponentRender = (tab: Tab, componentRef: ComponentRef<any>) => {
+    tab.instance = componentRef.instance
+    this.getTitle(tab.instance).then(title => {
+      tab.title = title
+    })
+    this.nsOnAfterRendered.emit(tab)
   }
 
   deactivateTabs() {
@@ -39,19 +99,49 @@ export class NSRouterViewComponent {
       // if the tab exists, activate it
       const tabToActivate = this.tabs.find(tab => tab.id == id);
       if (tabToActivate) {
-        this.switchTab(showTab)
+        this.switchTab(showTab).then()
       }
     }
     this.cd.detectChanges();
   }
 
-  private triggerOnTabFocus(component): Promise<void> {
+  private getTitle(instance: any): Promise<string> {
+    return new Promise<string>(resolve => {
+      const nsRouterTabTitle = instance.nsRouterTabTitle
+      if (nsRouterTabTitle) {
+        if (typeof typeof nsRouterTabTitle == 'function') {
+          let v = nsRouterTabTitle()
+          if (typeof v.then == 'function') {
+            v.then(vv => {
+              resolve(vv)
+            })
+          } else {
+            resolve(v)
+          }
+        } else {
+          resolve(nsRouterTabTitle)
+        }
+        return
+      } else if (this.nsTabMetaGetter) {
+        console.log('this.router.url', this.router.url)
+        let v: any = this.nsTabMetaGetter(this.router.url)
+        if (typeof v.then == 'function') {
+          v.then(vv => {
+            resolve(vv.title)
+          })
+        } else {
+          resolve(v.title)
+        }
+        return
+      }
+      resolve('')
+    })
+  }
+
+  private triggerOnTabFocus(instance: any): Promise<void> {
     return new Promise<void>(resolve => {
-      const prototype = component
-      console.log(typeof prototype.nsRouterTabOnFocus, prototype)
-      console.log('component', component, component.nsRouterTabOnFocus)
-      if (typeof prototype.nsRouterTabOnFocus == 'function') {
-        const v = prototype.nsRouterTabOnFocus()
+      if (typeof instance.nsRouterTabOnFocus == 'function') {
+        const v = instance.nsRouterTabOnFocus()
         if (typeof v?.then == 'function') {
           v.then(() => {
             resolve()
@@ -70,7 +160,7 @@ export class NSRouterViewComponent {
       if (item.id === tab.id) {
         item.active = true
         history.pushState({}, tab.title, tab.url)
-        this.triggerOnTabFocus(item.component).then()
+        this.triggerOnTabFocus(item.instance).then()
         break
       }
     }
@@ -85,20 +175,12 @@ export class NSRouterViewComponent {
           if (i + 1 < this.tabs.length) {
             this.switchTab(this.tabs[i + 1]).then()
           } else if (i - 1 >= 0) {
-            console.log(this.tabs, i)
             this.switchTab(this.tabs[i - 1]).then()
           }
         }
         break
       }
     }
-  }
-
-  // onRouterOutletActivate($event: any) {
-  //   console.log('onRouterOutletActivate', $event)
-  // }
-  change($event: Event) {
-    console.log("change", $event)
   }
 }
 
@@ -140,40 +222,10 @@ export class NSRouterTabsComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.nsView.nsTabMetaGetter = this.nsTabMetaGetter
     this.checkAndAddRouteTab(this.lastActivationEnd).then();
   }
 
-  private getTitle(prototype): Promise<string> {
-    return new Promise<string>(resolve => {
-      const nsRouterTabTitle = prototype.nsRouterTabTitle
-      if (nsRouterTabTitle) {
-        if (typeof typeof nsRouterTabTitle == 'function') {
-          let v = nsRouterTabTitle()
-          if (typeof v.then == 'function') {
-            v.then(vv => {
-              resolve(vv)
-            })
-          } else {
-            resolve(v)
-          }
-        } else {
-          resolve(nsRouterTabTitle)
-        }
-        return
-      } else if (this.nsTabMetaGetter) {
-        let v: any = this.nsTabMetaGetter(this.router.url)
-        if (typeof v.then == 'function') {
-          v.then(vv => {
-            resolve(vv.title)
-          })
-        } else {
-          resolve(v.title)
-        }
-        return
-      }
-      resolve('')
-    })
-  }
 
   async checkAndAddRouteTab(ve: ActivationEnd) {
     const component = ve?.snapshot?.component;
@@ -188,12 +240,10 @@ export class NSRouterTabsComponent implements AfterViewInit {
       return;
     }
     this.lastActivationEnd = ve;
-    console.log(ve)
-    console.log(this.injector)
     let tab = {
       id: this.router.url,
       // @ts-ignore
-      title: await this.getTitle(component.prototype),
+      // title: await this.getTitle(component.prototype),
       component: component,
       active: true,
       url: this.router.url,
