@@ -47,24 +47,25 @@ export class NSColDirective {
   @Input() col_lg: NSGridValue
   @Input() col_xl: NSGridValue
   @Input() col_xxl: NSGridValue
-  private classes = []
 
-  @HostBinding('class') get hostBindingClass(): string {
-    this.addClass('', 'col')
-    this.addClass('-sm', 'col_sm')
-    this.addClass('-md', 'col_md')
-    this.addClass('-lg', 'col_lg')
-    this.addClass('-xl', 'col_xl')
-    this.addClass('-xxl', 'col_xxl')
-    return this.classes.join(' ')
+
+  @HostBinding('class') get getClass(): string {
+    let classes = [];
+    this.addClass(classes, '', 'col')
+    this.addClass(classes, '-sm', 'col_sm')
+    this.addClass(classes, '-md', 'col_md')
+    this.addClass(classes, '-lg', 'col_lg')
+    this.addClass(classes, '-xl', 'col_xl')
+    this.addClass(classes, '-xxl', 'col_xxl')
+    return classes.join(' ')
   }
 
-  addClass(media: string, field: string) {
+  addClass(classes: string[], media: string, field: string) {
     if (this[field] != 'none') {
       if (this[field] == '') {
-        this.classes.push(`bs-col${media}`)
-      } else {
-        this.classes.push(`bs-col${media}-${this[field]}`)
+        classes.push(`bs-col${media}`)
+      } else if (this[field]) {
+        classes.push(`bs-col${media}-${this[field]}`)
       }
     }
   }
