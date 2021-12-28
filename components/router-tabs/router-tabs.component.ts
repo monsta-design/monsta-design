@@ -235,8 +235,8 @@ export class NSRouterTabsComponent implements AfterViewInit {
     if (!component || ve.snapshot.children.length > 0 || !this.nsView) {
       return
     }
-    const {RoutesTabIgnore} = ve.snapshot.data
-    if (RoutesTabIgnore) {
+    const {RouterTabsIgnore} = ve.snapshot.data
+    if (RouterTabsIgnore) {
       return;
     }
     this.lastActivationEnd = ve;
