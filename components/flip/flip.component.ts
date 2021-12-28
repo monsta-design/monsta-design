@@ -107,13 +107,13 @@ export class NSFlipComponent implements OnDestroy {
 
   private execBlurCallback(escape: boolean, data: any): Promise<boolean> {
     return new Promise<boolean>(resolve => {
-      let res: any = this.nsBlurCallback(escape, data)
-      if (typeof res.then === 'function') {
-        res.then(r => {
-          resolve(r)
+      let v: any = this.nsBlurCallback(escape, data)
+      if (typeof v.then === 'function') {
+        v.then(vv => {
+          resolve(vv)
         })
       } else {
-        resolve(res)
+        resolve(v)
       }
     })
   }

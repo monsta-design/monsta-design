@@ -18,7 +18,6 @@ export interface NSRouterTabMeta {
 }
 
 export declare interface NSRouterTab {
-  onTabFocus();
-
-  nsGetTabTitle(): string;
+  nsRouterTabOnFocus: () => void
+  nsRouterTabTitle: string;
 }

@@ -16,7 +16,7 @@ import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
   selector: 'ns-menu-item',
   template: `
     <a #a class="ns-menu-link" [ngClass]="{'has-caret':items.length>0}" (click)="toggle()"
-       [routerLink]="nsLink" [state]="nsState">
+       [routerLink]="nsLink" [state]="nsState" routerLinkActive="active">
       <span class="ns-menu-icon" *ngIf="nsIcon"><fa-icon [icon]="nsIcon"></fa-icon></span>
       <span class="ns-menu-label">{{ nsLabel }}</span>
       <span class="ns-menu-caret" *ngIf="items.length>0"><fa-icon [icon]="caret"></fa-icon></span>

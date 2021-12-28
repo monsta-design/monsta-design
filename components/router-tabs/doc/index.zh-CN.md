@@ -1,8 +1,8 @@
 ---
 category: Components
-subtitle: 窗口
-type: 导航
-title: Windows 
+subtitle: 路由标签页
+type: 布局
+title: RoutesTab 
 cover: https://gw.alipayobjects.com/zos/alicdn/tX6-md4H6/Affix.svg
 ---
 
@@ -49,6 +49,23 @@ const routes: Routes = [
  this.route.queryParams.subscribe(res => {
   console.log('queryParams:', res)
 })
+```
+
+## Ignore
+
+```ts
+const routes: Routes = [
+  {
+    path: '',
+    component: LayoutComponent,
+    data: {
+      routesTabIgnore: true,
+    },
+    children: [
+      // ...
+    ]
+  },
+];
 ```
 
 ## API
