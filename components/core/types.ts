@@ -9,6 +9,7 @@ export interface NSStyleInterface {
 
 export type OnTouchedType = () => NSAny;
 export type OnChangeType = (value: NSAny) => void;
+// export const AsyncFunction = (async () => {}).constructor;
 
 export type NS_BOOL = boolean | 'false' | 'true'
 export type NS_SIZE = 'default' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'fluid';

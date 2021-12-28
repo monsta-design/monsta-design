@@ -4,7 +4,6 @@ import {
   TemplateRef, ViewChild,
 } from '@angular/core';
 import {InputBoolean} from "monsta-design/core";
-import {ENTER} from "@angular/cdk/keycodes";
 
 @Component({
   selector: 'ns-flip',
@@ -76,7 +75,7 @@ export class NSFlipComponent implements OnDestroy {
     return this.nsTabindex
   }
 
-  @ViewChild('container') set userContent(element) {
+  @ViewChild('container') set container(element) {
     if (element && this.nsBlurSelector) {
       this.elem = this.el.nativeElement.querySelector(this.nsBlurSelector);
       if (!this.elem) {
@@ -98,20 +97,29 @@ export class NSFlipComponent implements OnDestroy {
   private elemKeyupHandler = (event) => {
     switch (event.code) {
       case 'Enter':
-        this.recover(false)
+        this.recover(false).then()
         break;
       case 'Escape':
-        this.recover(true)
+        this.recover(true).then()
         break;
     }
   }
 
+  private execBlurCallback(escape: boolean, data: any): Promise<boolean> {
+    return new Promise<boolean>(resolve => {
+      let res: any = this.nsBlurCallback(escape, data)
+      if (typeof res.then === 'function') {
+        res.then(r => {
+          resolve(r)
+        })
+      } else {
+        resolve(res)
+      }
+    })
+  }
 
-  recover(escape: boolean) {
-    if (this.nsBlurCallback && !this.nsBlurCallback(escape, this.nsData)) {
-      return;
-    }
-    if (this.nsBlurCallback && !this.nsBlurCallback(escape, this.nsData)) {
+  async recover(escape: boolean) {
+    if (this.nsBlurCallback && !await this.execBlurCallback(escape, this.nsData)) {
       return;
     }
     if (this.elem) {
@@ -126,7 +134,7 @@ export class NSFlipComponent implements OnDestroy {
   }
 
   private blurListener = () => {
-    this.recover(false)
+    this.recover(false).then()
   }
 
   ngOnDestroy(): void {

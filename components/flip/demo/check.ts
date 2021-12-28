@@ -19,7 +19,8 @@ import {Component} from '@angular/core';
 })
 export class NSDemoFlipCheckComponent {
   value = ''
-  check = (data) => {
+  check = async (esc, data) => {
+    console.log(data == '2')
     return data == '2'
   }
 }
