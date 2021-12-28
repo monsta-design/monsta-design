@@ -19,9 +19,17 @@ export class NSFlipComponent implements OnDestroy {
   showBack = false;
   @Input() nsBack: TemplateRef<any>;
   @Input() nsBlurSelector: string;
-  @Input() nsBlurCheck: () => boolean;
+  @Input() nsBlurCallback: (data) => boolean;
   @Input() nsTabindex: number = -1;
+  @Input() nsData: any;
   @Output() nsOnRecover: EventEmitter<void> = new EventEmitter<void>()
+
+  @HostBinding('class') get getClass() {
+    if (this.showBack) {
+      return 'active'
+    }
+    return null
+  }
 
   @Input() set nsTrigger(val: Element) {
     if (val) {
@@ -45,7 +53,7 @@ export class NSFlipComponent implements OnDestroy {
     if (this.nsBlurSelector) {
       return
     }
-    if (this.nsBlurCheck && !this.nsBlurCheck()) {
+    if (this.nsBlurCallback && !this.nsBlurCallback(this.nsData)) {
       return;
     }
     this.showBack = false
@@ -74,7 +82,7 @@ export class NSFlipComponent implements OnDestroy {
   }
 
   private blurListener = () => {
-    if (this.nsBlurCheck && !this.nsBlurCheck()) {
+    if (this.nsBlurCallback && !this.nsBlurCallback(this.nsData)) {
       return;
     }
     this.elem.removeEventListener('blur', this.blurListener)

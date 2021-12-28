@@ -3,7 +3,11 @@ import {Component} from '@angular/core';
 @Component({
   selector: 'ns-demo-flip-check',
   template: `
-    <ns-flip [nsBack]="backTpl" [nsTrigger]="link" nsBlurSelector="input" [nsBlurCheck]="check">
+    <ns-flip [nsBack]="backTpl"
+             [nsTrigger]="link"
+             nsBlurSelector="input"
+             [nsData]="value"
+             [nsBlurCallback]="check">
       我是一段很长的话！<a #link href="javascript:;">点击我编辑</a>
     </ns-flip>
     <ng-template #backTpl>
@@ -15,8 +19,7 @@ import {Component} from '@angular/core';
 })
 export class NSDemoFlipCheckComponent {
   value = ''
-  check = () => {
-    // alert('请输入2')
-    return this.value == '2'
+  check = (data) => {
+    return data == '2'
   }
 }
