@@ -61,10 +61,10 @@ export class NSColDirective {
   }
 
   addClass(classes: string[], media: string, field: string) {
-    if (this[field] != 'none') {
+    if (this[field] && this[field] != 'none') {
       if (this[field] == '') {
         classes.push(`bs-col${media}`)
-      } else if (this[field]) {
+      } else {
         classes.push(`bs-col${media}-${this[field]}`)
       }
     }
@@ -81,24 +81,24 @@ export class NSOffsetDirective {
   @Input() offset_lg: number | string;
   @Input() offset_xl: number | string;
   @Input() offset_xxl: number | string;
-  private classes = [];
 
   @HostBinding('class') get hostBindingClass(): string {
-    this.addClass('', 'offset')
-    this.addClass('-sm', 'offset_sm')
-    this.addClass('-md', 'offset_md')
-    this.addClass('-lg', 'offset_lg')
-    this.addClass('-xl', 'offset_xl')
-    this.addClass('-xxl', 'offset_xxl')
-    return this.classes.join(' ')
+    let classes = []
+    this.addClass(classes, '', 'offset')
+    this.addClass(classes, '-sm', 'offset_sm')
+    this.addClass(classes, '-md', 'offset_md')
+    this.addClass(classes, '-lg', 'offset_lg')
+    this.addClass(classes, '-xl', 'offset_xl')
+    this.addClass(classes, '-xxl', 'offset_xxl')
+    return classes.join(' ')
   }
 
-  addClass(media: string, field: string) {
-    if (this[field] != 'none') {
+  addClass(classes: string[], media: string, field: string) {
+    if (this[field] && this[field] != 'none') {
       if (this[field] == '') {
-        this.classes.push(`bs-offset${media}`)
+        classes.push(`bs-offset${media}`)
       } else {
-        this.classes.push(`bs-offset${media}-${this[field]}`)
+        classes.push(`bs-offset${media}-${this[field]}`)
       }
     }
   }
