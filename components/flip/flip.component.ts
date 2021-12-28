@@ -5,7 +5,7 @@ import {InputBoolean} from "monsta-design/core";
   selector: 'ns-flip',
   template: `
     <ng-container *ngIf="!nsShowBack;else flipBackTpl">
-      <ng-container [ngTemplateOutlet]="nsFront"></ng-container>
+      <ng-content></ng-content>
     </ng-container>
     <ng-template #flipBackTpl>
       <ng-container [ngTemplateOutlet]="nsBack"></ng-container>
@@ -14,6 +14,5 @@ import {InputBoolean} from "monsta-design/core";
 })
 export class NSFlipComponent {
   @Input() @InputBoolean() nsShowBack: boolean = false;
-  @Input() nsFront: TemplateRef<any>;
   @Input() nsBack: TemplateRef<any>;
 }

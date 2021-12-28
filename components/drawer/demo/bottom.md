@@ -1,7 +1,7 @@
 ---
 order: 0
 title:
-zh-CN: End
+zh-CN: Bottom
 en-US: Basic
 ---
 
