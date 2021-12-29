@@ -11,6 +11,7 @@ import {
 import {ActivatedRoute, ActivationEnd, Router, RouterOutlet} from "@angular/router";
 import {Tab, NSRouterTabMeta} from "./types";
 import {NSWindowDirective} from "monsta-design/windows";
+import {InputBoolean} from "monsta-design/core";
 
 // @Directive({
 //   selector: 'inner-ns-routers-tab-ref'
@@ -26,7 +27,7 @@ import {NSWindowDirective} from "monsta-design/windows";
   selector: 'ns-render',
   template: ``,
 })
-export class NSRenderComponent implements OnInit, OnDestroy {
+export class NSRenderComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() nsContext: any;
   @Input() nsComponent: any;
   @Input() nsAfterRender: (context: any, componentRef: ComponentRef<any>) => void
@@ -41,14 +42,17 @@ export class NSRenderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     let cFactory = this.componentFactoryResolver.resolveComponentFactory(this.nsComponent);
     this.componentRef = this.viewContainerRef.createComponent(cFactory);
-    if (this.nsAfterRender) {
-      this.nsAfterRender(this.nsContext, this.componentRef)
-    }
   }
 
   ngOnDestroy(): void {
     if (this.componentRef) {
       this.componentRef.destroy();
+    }
+  }
+
+  ngAfterViewInit() {
+    if (this.nsAfterRender) {
+      this.nsAfterRender(this.nsContext, this.componentRef)
     }
   }
 
@@ -63,7 +67,7 @@ export class NSRenderComponent implements OnInit, OnDestroy {
         <ns-render [nsContext]="tab" [nsComponent]="tab.component" [nsAfterRender]="afterComponentRender"></ns-render>
       </div>
     </ng-container>`,
-  styleUrls: ['./router-tabs.component.scss']
+  styleUrls: ['./router-tabs.scss']
 })
 export class NSRouterViewComponent {
   public tabs: Tab[] = [];
@@ -77,10 +81,18 @@ export class NSRouterViewComponent {
   }
 
   afterComponentRender = (tab: Tab, componentRef: ComponentRef<any>) => {
+    tab.componentRef = componentRef
     tab.instance = componentRef.instance
-    this.getTitle(tab.instance).then(title => {
-      tab.title = title
+    this.getTitle(tab.instance).then(meta => {
+      tab.title = meta?.title
     })
+    if (typeof tab.instance.nsSetRouterTabMetaEmitter == 'function') {
+      tab.metaEmitter = new EventEmitter<NSRouterTabMeta>();
+      tab.instance.nsSetRouterTabMetaEmitter(tab.metaEmitter)
+      tab.metaEmitter.subscribe(meta => {
+        tab.title = meta?.title
+      })
+    }
     this.nsOnAfterRendered.emit(tab)
   }
 
@@ -105,12 +117,12 @@ export class NSRouterViewComponent {
     this.cd.detectChanges();
   }
 
-  private getTitle(instance: any): Promise<string> {
-    return new Promise<string>(resolve => {
-      const nsRouterTabTitle = instance.nsRouterTabTitle
-      if (nsRouterTabTitle) {
-        if (typeof typeof nsRouterTabTitle == 'function') {
-          let v = nsRouterTabTitle()
+  private getTitle(instance: any): Promise<NSRouterTabMeta> {
+    return new Promise<NSRouterTabMeta>(resolve => {
+      const nsGetRouterTabMeta = instance.nsGetRouterTabMeta
+      if (nsGetRouterTabMeta) {
+        if (typeof nsGetRouterTabMeta == 'function') {
+          let v = nsGetRouterTabMeta()
           if (typeof v.then == 'function') {
             v.then(vv => {
               resolve(vv)
@@ -119,29 +131,30 @@ export class NSRouterViewComponent {
             resolve(v)
           }
         } else {
-          resolve(nsRouterTabTitle)
+          resolve(nsGetRouterTabMeta)
         }
         return
       } else if (this.nsTabMetaGetter) {
-        console.log('this.router.url', this.router.url)
         let v: any = this.nsTabMetaGetter(this.router.url)
         if (typeof v.then == 'function') {
           v.then(vv => {
-            resolve(vv.title)
+            resolve(vv)
           })
         } else {
-          resolve(v.title)
+          resolve(v)
         }
         return
       }
-      resolve('')
+      resolve({
+        title: 'undefined',
+      })
     })
   }
 
   private triggerOnTabFocus(instance: any): Promise<void> {
     return new Promise<void>(resolve => {
-      if (typeof instance.nsRouterTabOnFocus == 'function') {
-        const v = instance.nsRouterTabOnFocus()
+      if (typeof instance.nsOnRouterTabFocus == 'function') {
+        const v = instance.nsOnRouterTabFocus()
         if (typeof v?.then == 'function') {
           v.then(() => {
             resolve()
@@ -166,10 +179,16 @@ export class NSRouterViewComponent {
     }
   }
 
+  private static cleanComponent(closeTab: Tab) {
+    closeTab.componentRef?.destroy();
+    closeTab.metaEmitter?.unsubscribe();
+  }
+
   closeTab(tabId: string) {
     for (let i = 0; i < this.tabs.length; i++) {
       if (this.tabs[i].id === tabId) {
         let closeTab = this.tabs[i]
+        NSRouterViewComponent.cleanComponent(closeTab)
         this.tabs.splice(i, 1)
         if (closeTab.active) {
           if (i + 1 < this.tabs.length) {
@@ -192,19 +211,20 @@ export class NSRouterViewComponent {
            class="ns-router-tab"
            [ngClass]="{active:tab.active}"
            (click)="show(tab)">
-        <span>
-          {{tab.title || '-'}}
+        <span class="bs-text-truncate" [title]="(nsTitle && tab.title) || ''">
+          {{tab.title}}
         </span>
         <button class="bs-btn-close" (click)="close(tab.id)"></button>
       </div>
     </div>
   `,
-  styleUrls: ['./router-tabs.component.scss']
+  styleUrls: ['./router-tabs.scss']
 })
 export class NSRouterTabsComponent implements AfterViewInit {
 
   @Input() nsTabMetaGetter: ((path: string) => NSRouterTabMeta) | ((path: string) => Promise<NSRouterTabMeta>)
   @Input() nsView: NSRouterViewComponent;
+  @Input() @InputBoolean() nsTitle: boolean = true;
 
   private lastActivationEnd: ActivationEnd;
 

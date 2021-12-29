@@ -1,4 +1,4 @@
-import {ComponentRef} from "@angular/core";
+import {ComponentRef, EventEmitter} from "@angular/core";
 
 export interface Tab {
   id: string,
@@ -7,13 +7,18 @@ export interface Tab {
   active: boolean;
   title?: string,
   instance?: any;
+  componentRef?: ComponentRef<any>;
+  metaEmitter?: EventEmitter<NSRouterTabMeta>;
 }
 
 export interface NSRouterTabMeta {
   title: string,
 }
 
+export type NSRouterTabMetaGetter = (() => NSRouterTabMeta) | (() => Promise<NSRouterTabMeta>);
+
 export declare interface NSRouterTab {
-  nsRouterTabOnFocus: () => void
-  nsRouterTabTitle: string;
+  nsOnRouterTabFocus: () => void
+  nsGetRouterTabMeta: NSRouterTabMetaGetter,
+  nsSetRouterTabMetaEmitter: (emitter: EventEmitter<NSRouterTabMeta>) => void
 }

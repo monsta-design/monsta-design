@@ -1,1 +1,2 @@
-export const moduleList = [];
+import {NSBadgeModule} from 'monsta-design/badge';
+export const moduleList = [NSBadgeModule];

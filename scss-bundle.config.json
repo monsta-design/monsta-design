@@ -1,6 +1,6 @@
 {
   "bundlerOptions": {
-    "entryFile": "./components/monsta-design.scss",
+    "entryFile": "./components/scss/monsta-design.scss",
     "outFile": "./dist/monsta-design/monsta-design.scss"
   }
 }

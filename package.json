@@ -11,7 +11,8 @@
     "build:lib": "nodemon --ignore dist/ --ignore node_modules/ --watch components -e ts,html,less,scss -x \\\"yarn build:component && yarn build:style && cd dist/monsta-design && yalc push\\\"",
     "build:component": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build library --prod",
     "build:style": "scss-bundle -p scss-bundle.config.json",
-    "push": "ng build library --prod && scss-bundle -p scss-bundle.config.json && cd dist/monsta-design && yalc push && cd -"
+    "cp:style": "mkdir -p dist/monsta-design/scss && rm -rf dist/monsta-design/scss/* && cp components/scss/* dist/monsta-design/scss/",
+    "push": "ng build library --prod && yarn build:style && yarn cp:style && cd dist/monsta-design && yalc push && cd -"
   },
   "private": false,
   "dependencies": {

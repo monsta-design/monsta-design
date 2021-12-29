@@ -1,3 +1,5 @@
+@import "../scss/varibales";
+
 :host {
 }
 
@@ -6,13 +8,13 @@
   white-space: nowrap;
   overflow: scroll;
   height: 2.25rem;
-  border: 1px solid rgba(0, 0, 0, .04);
+  //border: 1px solid rgba(0, 0, 0, .04);
 }
 
 .ns-router-tab {
   min-width: 5.625rem;
   max-width: 11.25rem;
-  padding: 0 0.5rem 0 0.5rem;
+  padding: 0 0.6rem;
   height: 100%;
   display: flex;
   align-items: center;
@@ -32,14 +34,19 @@
     visibility: hidden;
   }
 
-  &:hover {
-    button {
-      visibility: visible;
-    }
+  &.active {
+    background: $primary;
+    color: $light;
   }
 
-  &.active, &:hover {
-    background: #fff;
+  &:hover {
+    background: $primary-hover;
+    color: $light;
+
+    button {
+      visibility: visible;
+      filter: invert(1) grayscale(100%) brightness(200%); // 反正关闭按钮白色显示
+    }
   }
 }
 

@@ -19,6 +19,7 @@ import {InputBoolean} from "monsta-design/core";
 export class NSFlipComponent implements OnDestroy {
   showBack = false;
   private elem;
+  @Input() nsDisabled: boolean = false;
   @Input() nsBack: TemplateRef<any>;
   @Input() nsBlurSelector: string;
   @Input() nsBlurCallback: ((escape: boolean, data: any) => boolean) | ((escape: boolean, data: any) => Promise<boolean>); // TODO 判断同步调用
@@ -48,12 +49,13 @@ export class NSFlipComponent implements OnDestroy {
   }
 
   @HostListener('click') onClick() {
-    if (!this.showBack && !this._nsTrigger) {
+    if (!this.nsDisabled && !this.showBack && !this._nsTrigger) {
       this.showBack = true
+      this.triggerClick()
     }
-    this.triggerClick()
   }
 
+  // TODO 优化 Check 回调返回 boolean 结果提示
   private triggerClick() {
     if (this.nsFocusCallback) {
       this.nsFocusCallback(this.nsData)
@@ -90,8 +92,10 @@ export class NSFlipComponent implements OnDestroy {
   }
 
   private triggerClickHandler = () => {
-    this.showBack = true
-    this.triggerClick()
+    if (!this.nsDisabled && !this.showBack) {
+      this.showBack = true
+      this.triggerClick()
+    }
   }
 
   private elemKeyupHandler = (event) => {
