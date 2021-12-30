@@ -1,2 +1,3 @@
 import {NSMessageModule} from 'monsta-design/message'
-export const moduleList = [NSMessageModule];
+import {NSButtonModule} from 'monsta-design/button'
+export const moduleList = [NSMessageModule, NSButtonModule];

@@ -1,13 +1,21 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NSMessageComponent } from './message.component';
-
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {NSMessageComponent} from './message.component';
+import {OverlayModule} from "@angular/cdk/overlay";
+import {NSMessageServiceModule} from "./message.service.module";
 
 @NgModule({
-  declarations: [NSMessageComponent],
+  declarations: [
+    NSMessageComponent
+  ],
+  exports: [
+    NSMessageComponent,
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    OverlayModule,
+    NSMessageServiceModule
   ]
 })
-export class NSMessageModule { }
+export class NSMessageModule {
+}

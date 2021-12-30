@@ -6,11 +6,15 @@ import {
   NSRouterViewComponent
 } from './router-tabs.component';
 import {RouterModule} from "@angular/router";
+import {RouterOutlet} from "./outlet";
+import {NSOutletComponent} from "monsta-design/router-tabs/outlet.component";
 
 const Components = [
+  RouterOutlet,
+  NSOutletComponent,
   NSRenderComponent,
   NSRouterTabsComponent,
-  NSRouterViewComponent,
+  NSRouterViewComponent
 ]
 
 @NgModule({

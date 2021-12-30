@@ -4,7 +4,7 @@ import {
   Component, ComponentFactoryResolver, ComponentRef, ContentChild, ContentChildren,
   Directive, EventEmitter,
   Injector,
-  Input, OnDestroy,
+  Input, NgModuleFactory, OnDestroy,
   OnInit, Output, QueryList, Type, ViewChildren,
   ViewContainerRef
 } from '@angular/core';
@@ -12,6 +12,9 @@ import {ActivatedRoute, ActivationEnd, Router, RouterOutlet} from "@angular/rout
 import {Tab, NSRouterTabMeta} from "./types";
 import {NSWindowDirective} from "monsta-design/windows";
 import {InputBoolean} from "monsta-design/core";
+import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+import {NgModuleCompiler} from "@angular/compiler";
+import {NgModuleFactoryLoader} from '@angular/core';
 
 // @Directive({
 //   selector: 'inner-ns-routers-tab-ref'
@@ -35,11 +38,13 @@ export class NSRenderComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(
     public viewContainerRef: ViewContainerRef,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private componentFactoryResolver: ComponentFactoryResolver,
   ) {
   }
 
   ngOnInit(): void {
+    // console.log('this.nsComponent', this.nsComponent)
+    // @ts-ignore
     let cFactory = this.componentFactoryResolver.resolveComponentFactory(this.nsComponent);
     this.componentRef = this.viewContainerRef.createComponent(cFactory);
   }
@@ -65,6 +70,7 @@ export class NSRenderComponent implements OnInit, OnDestroy, AfterViewInit {
       <div [style.display]="tab.active?'block':'none'" [id]="tab.id"
            role="tabpanel">
         <ns-render [nsContext]="tab" [nsComponent]="tab.component" [nsAfterRender]="afterComponentRender"></ns-render>
+        <!--        <ns-outlet></ns-outlet>-->
       </div>
     </ng-container>`,
   styleUrls: ['./router-tabs.scss']
@@ -172,8 +178,11 @@ export class NSRouterViewComponent {
     for (let item of this.tabs) {
       if (item.id === tab.id) {
         item.active = true
+        console.log('切换Tab', tab)
         history.pushState({}, tab.title, tab.url)
-        this.triggerOnTabFocus(item.instance).then()
+        if (item.instance) {
+          this.triggerOnTabFocus(item.instance).then()
+        }
         break
       }
     }
@@ -229,10 +238,11 @@ export class NSRouterTabsComponent implements AfterViewInit {
   private lastActivationEnd: ActivationEnd;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute,
     private router: Router,
     private injector: Injector,
     private cd: ChangeDetectorRef,
+    private locationStrategy: LocationStrategy,
   ) {
     this.router.events.subscribe(v => {
       if (v instanceof ActivationEnd) {
@@ -259,14 +269,23 @@ export class NSRouterTabsComponent implements AfterViewInit {
     if (RouterTabsIgnore) {
       return;
     }
+    // 处理 module
+    console.log('ve', this.route)
+    // this.router
+    // 处理 Hash 路径下的路径转换
+    // let url = this.router.url;
+    // if (this.locationStrategy instanceof HashLocationStrategy) {
+    //   url = `/#${url}`
+    // }
+    let url = location.href;
     this.lastActivationEnd = ve;
     let tab = {
-      id: this.router.url,
+      id: url,
       // @ts-ignore
       // title: await this.getTitle(component.prototype),
       component: component,
       active: true,
-      url: this.router.url,
+      url: url,
     }
     this.nsView.showTab(tab)
     this.cd.detectChanges();
