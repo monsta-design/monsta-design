@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, Attribute,
   ChangeDetectorRef,
   Component, ComponentFactoryResolver, ComponentRef, ContentChild, ContentChildren,
   Directive, EventEmitter,
@@ -8,7 +8,14 @@ import {
   OnInit, Output, QueryList, Type, ViewChildren,
   ViewContainerRef
 } from '@angular/core';
-import {ActivatedRoute, ActivationEnd, Router, RouterOutlet} from "@angular/router";
+import {
+  ActivatedRoute,
+  ActivationEnd,
+  ChildrenOutletContexts,
+  PRIMARY_OUTLET,
+  Router,
+  RouterOutlet
+} from "@angular/router";
 import {Tab, NSRouterTabMeta} from "./types";
 import {NSWindowDirective} from "monsta-design/windows";
 import {InputBoolean} from "monsta-design/core";
@@ -26,6 +33,25 @@ import {NgModuleFactoryLoader} from '@angular/core';
 //   }
 // }
 
+class OutletInjector implements Injector {
+  constructor(
+    private route: ActivatedRoute, private childContexts: ChildrenOutletContexts,
+    private parent: Injector) {
+  }
+
+  get(token: any, notFoundValue?: any): any {
+    if (token === ActivatedRoute) {
+      return this.route;
+    }
+
+    if (token === ChildrenOutletContexts) {
+      return this.childContexts;
+    }
+
+    return this.parent.get(token, notFoundValue);
+  }
+}
+
 @Component({
   selector: 'ns-render',
   template: ``,
@@ -35,18 +61,30 @@ export class NSRenderComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() nsComponent: any;
   @Input() nsAfterRender: (context: any, componentRef: ComponentRef<any>) => void
   private componentRef;
+  private name;
 
   constructor(
+    private parentContexts: ChildrenOutletContexts,
+    private resolver: ComponentFactoryResolver,
+    @Attribute('name') name: string,
+    private activatedRoute: ActivatedRoute,
     public viewContainerRef: ViewContainerRef,
     private componentFactoryResolver: ComponentFactoryResolver,
   ) {
+    this.name = name || PRIMARY_OUTLET;
   }
 
   ngOnInit(): void {
     // console.log('this.nsComponent', this.nsComponent)
     // @ts-ignore
-    let cFactory = this.componentFactoryResolver.resolveComponentFactory(this.nsComponent);
-    this.componentRef = this.viewContainerRef.createComponent(cFactory);
+    let context = this.parentContexts.getContext(this.name)
+    let resolver = context.resolver || this.resolver;
+    const factory = resolver.resolveComponentFactory(this.nsComponent);
+    const childContexts = this.parentContexts.getOrCreateContext(this.name).children;
+    const injector = new OutletInjector(context.route, childContexts, this.viewContainerRef.injector);
+    this.componentRef = this.viewContainerRef.createComponent(factory, 0, injector);
+    // let cFactory = this.componentFactoryResolver.resolveComponentFactory(this.nsComponent);
+    // this.componentRef = this.viewContainerRef.createComponent(cFactory);
   }
 
   ngOnDestroy(): void {
