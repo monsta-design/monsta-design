@@ -82,6 +82,7 @@ export class NSRenderComponent implements OnInit, OnDestroy, AfterViewInit {
     const factory = resolver.resolveComponentFactory(this.nsComponent);
     const childContexts = this.parentContexts.getOrCreateContext(this.name).children;
     const injector = new OutletInjector(context.route, childContexts, this.viewContainerRef.injector);
+    // 此处替换了源码的按Location长度替换
     this.componentRef = this.viewContainerRef.createComponent(factory, 0, injector);
     // let cFactory = this.componentFactoryResolver.resolveComponentFactory(this.nsComponent);
     // this.componentRef = this.viewContainerRef.createComponent(cFactory);

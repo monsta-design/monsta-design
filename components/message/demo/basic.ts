@@ -5,7 +5,6 @@ import {NSMessageService} from "monsta-design/message";
   selector: 'ns-demo-message-basic',
   template: `
     <button class="bs-btn bs-btn-primary" (click)="tip()">消息提示</button>
-    <ns-message></ns-message>
   `,
   styles: [`
   `],
