@@ -7,7 +7,7 @@ import {
 } from './router-tabs.component';
 import {RouterModule} from "@angular/router";
 import {RouterOutlet} from "./outlet";
-import {NSOutletComponent} from "monsta-design/router-tabs/outlet.component";
+import {NSOutletComponent} from "./outlet.component";
 
 const Components = [
   RouterOutlet,

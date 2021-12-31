@@ -14,24 +14,10 @@ import {
   ChildrenOutletContexts,
   PRIMARY_OUTLET,
   Router,
-  RouterOutlet
 } from "@angular/router";
 import {Tab, NSRouterTabMeta} from "./types";
-import {NSWindowDirective} from "monsta-design/windows";
 import {InputBoolean} from "monsta-design/core";
-import {HashLocationStrategy, LocationStrategy} from "@angular/common";
-import {NgModuleCompiler} from "@angular/compiler";
-import {NgModuleFactoryLoader} from '@angular/core';
-
-// @Directive({
-//   selector: 'inner-ns-routers-tab-ref'
-// })
-// export class NSRouterTabRefDirective {
-//   constructor(
-//     public viewContainerRef: ViewContainerRef,
-//   ) {
-//   }
-// }
+import {LocationStrategy} from "@angular/common";
 
 class OutletInjector implements Injector {
   constructor(
