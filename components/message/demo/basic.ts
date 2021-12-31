@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NSMessageService} from "monsta-design/message";
 
 @Component({
@@ -12,7 +12,7 @@ import {NSMessageService} from "monsta-design/message";
   styles: [`
   `],
 })
-export class NSDemoMessageBasicComponent {
+export class NSDemoMessageBasicComponent implements OnInit {
 
   constructor(
     private message: NSMessageService,
@@ -21,5 +21,9 @@ export class NSDemoMessageBasicComponent {
 
   tip(type) {
     this.message[type]('Hello world', null)
+  }
+
+  ngOnInit(): void {
+    this.message.success('默认就会显示')
   }
 }

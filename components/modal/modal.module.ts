@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {NSModalComponent} from './modal.component';
+import {NSModalServiceModule} from "./modal.service.module";
 
 const Components = [
   NSModalComponent
@@ -14,7 +15,8 @@ const Components = [
     ...Components
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NSModalServiceModule
   ]
 })
 export class NSModalModule {

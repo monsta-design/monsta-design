@@ -7,7 +7,9 @@
   right: 0;
   top: 1rem;
   margin: auto;
-  width: 350px;
+  width: 1px;
+  display: flex;
+  justify-content: center;
 
   fa-icon {
     margin-right: 0.2rem;
@@ -15,6 +17,8 @@
 
   .bs-toast {
     background: #fff;
+    width: auto;
+    min-width: 220px;
   }
 
   .ns-info {

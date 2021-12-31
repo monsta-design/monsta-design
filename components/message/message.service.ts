@@ -46,6 +46,7 @@ export class NSMessageService {
     const overlayConfig: OverlayConfig = {
       hasBackdrop: false,
       panelClass: 'ns-message'
+
     }
     const overlayRef = this.overlay.create(overlayConfig);
     // 注入 component
