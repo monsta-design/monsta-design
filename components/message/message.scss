@@ -1,0 +1,35 @@
+@import '~@angular/cdk/overlay-prebuilt.css';
+@import "../scss/varibales";
+
+.ns-message {
+  //background: green;
+  left: 0;
+  right: 0;
+  top: 1rem;
+  margin: auto;
+  width: 350px;
+
+  fa-icon {
+    margin-right: 0.2rem;
+  }
+
+  .bs-toast {
+    background: #fff;
+  }
+
+  .ns-info {
+    color: $blue;
+  }
+
+  .ns-success {
+    color: $green;
+  }
+
+  .ns-warn {
+    color: $yellow;
+  }
+
+  .ns-error {
+    color: $red;
+  }
+}

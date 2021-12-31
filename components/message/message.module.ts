@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {NSMessageComponent} from './message.component';
 import {OverlayModule} from "@angular/cdk/overlay";
 import {NSMessageServiceModule} from "./message.service.module";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 @NgModule({
   declarations: [
@@ -11,11 +12,12 @@ import {NSMessageServiceModule} from "./message.service.module";
   exports: [
     NSMessageComponent,
   ],
-  imports: [
-    CommonModule,
-    OverlayModule,
-    NSMessageServiceModule
-  ]
+    imports: [
+        CommonModule,
+        OverlayModule,
+        NSMessageServiceModule,
+        FontAwesomeModule
+    ]
 })
 export class NSMessageModule {
 }
