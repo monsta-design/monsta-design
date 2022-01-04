@@ -1,22 +1,32 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {NSModalComponent} from './modal.component';
-import {NSModalServiceModule} from "./modal.service.module";
+import {NsModalDialogComponent} from './dialog.component';
+import {OverlayModule} from "@angular/cdk/overlay";
+import {PortalModule} from "@angular/cdk/portal";
+import {NsModalComponent} from "./modal.component";
+import {NsModalService} from "./modal.service";
+import { NsModalContentDirective } from './modal-content.directive';
 
 const Components = [
-  NSModalComponent
+  NsModalDialogComponent,
+  NsModalComponent,
+  NsModalContentDirective
 ]
 
 @NgModule({
   declarations: [
-    ...Components
+    ...Components,
   ],
   exports: [
     ...Components
   ],
+  providers: [
+    NsModalService
+  ],
   imports: [
     CommonModule,
-    NSModalServiceModule
+    OverlayModule,
+    PortalModule,
   ]
 })
 export class NSModalModule {

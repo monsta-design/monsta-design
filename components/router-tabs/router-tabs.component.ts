@@ -15,9 +15,9 @@ import {
   PRIMARY_OUTLET,
   Router,
 } from "@angular/router";
-import {Tab, NSRouterTabMeta} from "./types";
+import {Tab, NSRouterTabMeta, NSRouterTabsIndex} from "./types";
 import {InputBoolean} from "monsta-design/core";
-import {LocationStrategy} from "@angular/common";
+import {replace, trimStart} from "lodash";
 
 class OutletInjector implements Injector {
   constructor(
@@ -47,15 +47,13 @@ export class NSRenderComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() nsComponent: any;
   @Input() nsAfterRender: (context: any, componentRef: ComponentRef<any>) => void
   private componentRef;
-  private name;
+  private readonly name;
 
   constructor(
     private parentContexts: ChildrenOutletContexts,
     private resolver: ComponentFactoryResolver,
     @Attribute('name') name: string,
-    private activatedRoute: ActivatedRoute,
     public viewContainerRef: ViewContainerRef,
-    private componentFactoryResolver: ComponentFactoryResolver,
   ) {
     this.name = name || PRIMARY_OUTLET;
   }
@@ -101,9 +99,12 @@ export class NSRenderComponent implements OnInit, OnDestroy, AfterViewInit {
   styleUrls: ['./router-tabs.scss']
 })
 export class NSRouterViewComponent {
-  public tabs: Tab[] = [];
-  nsTabMetaGetter: ((path: string) => NSRouterTabMeta) | ((path: string) => Promise<NSRouterTabMeta>);
   @Output() nsOnAfterRendered: EventEmitter<Tab> = new EventEmitter<Tab>();
+
+  public tabs: Tab[] = [];
+  public nsIndex: NSRouterTabsIndex; // 默认首页路由
+  private currentTab: Tab;
+  nsTabMetaGetter: ((path: string) => NSRouterTabMeta) | ((path: string) => Promise<NSRouterTabMeta>);
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -131,18 +132,19 @@ export class NSRouterViewComponent {
     this.tabs.forEach(tab => (tab.active = false));
   }
 
-  showTab(showTab: Tab) {
+  async showTab(showTab: Tab) {
     this.deactivateTabs();
     let id = showTab.id
     // check if the tab to be activated is already existing
     if (this.tabs.find(tab => tab.id == id) == null) {
       // if not, push it into the tab array
       this.tabs.push(showTab);
+      this.currentTab = showTab;
     } else {
       // if the tab exists, activate it
       const tabToActivate = this.tabs.find(tab => tab.id == id);
       if (tabToActivate) {
-        this.switchTab(showTab).then()
+        await this.switchTab(showTab)
       }
     }
     this.cd.detectChanges();
@@ -199,14 +201,17 @@ export class NSRouterViewComponent {
     })
   }
 
+
   async switchTab(tab: Tab) {
     for (let item of this.tabs) {
       if (item.id === tab.id) {
         item.active = true
-        console.log('切换Tab', tab)
-        history.pushState({}, tab.title, tab.url)
-        if (item.instance) {
-          this.triggerOnTabFocus(item.instance).then()
+        if (item.id !== this.currentTab?.id) {
+          this.currentTab = item
+          await this.router.navigateByUrl(item.urlTree)
+          if (item.instance) {
+            this.triggerOnTabFocus(item.instance).then()
+          }
         }
         break
       }
@@ -229,6 +234,12 @@ export class NSRouterViewComponent {
             this.switchTab(this.tabs[i + 1]).then()
           } else if (i - 1 >= 0) {
             this.switchTab(this.tabs[i - 1]).then()
+          }
+        }
+        if (this.tabs.length == 0) {
+          // 跳转到默认首页
+          if (this.nsIndex) {
+            this.router.navigate(this.nsIndex.commands, this.nsIndex.extras).then()
           }
         }
         break
@@ -259,6 +270,7 @@ export class NSRouterTabsComponent implements AfterViewInit {
   @Input() nsTabMetaGetter: ((path: string) => NSRouterTabMeta) | ((path: string) => Promise<NSRouterTabMeta>)
   @Input() nsView: NSRouterViewComponent;
   @Input() @InputBoolean() nsTitle: boolean = true;
+  @Input() nsIndex: NSRouterTabsIndex = null // 默认首页路由
 
   private lastActivationEnd: ActivationEnd;
 
@@ -267,7 +279,6 @@ export class NSRouterTabsComponent implements AfterViewInit {
     private router: Router,
     private injector: Injector,
     private cd: ChangeDetectorRef,
-    private locationStrategy: LocationStrategy,
   ) {
     this.router.events.subscribe(v => {
       if (v instanceof ActivationEnd) {
@@ -278,6 +289,7 @@ export class NSRouterTabsComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.nsView.nsTabMetaGetter = this.nsTabMetaGetter
+    this.nsView.nsIndex = this.nsIndex
     this.checkAndAddRouteTab(this.lastActivationEnd).then();
   }
 
@@ -294,25 +306,17 @@ export class NSRouterTabsComponent implements AfterViewInit {
     if (RouterTabsIgnore) {
       return;
     }
-    // 处理 module
-    console.log('ve', this.route)
-    // this.router
-    // 处理 Hash 路径下的路径转换
-    // let url = this.router.url;
-    // if (this.locationStrategy instanceof HashLocationStrategy) {
-    //   url = `/#${url}`
-    // }
+
     let url = location.href;
     this.lastActivationEnd = ve;
-    let tab = {
+    let tab: Tab = {
       id: url,
-      // @ts-ignore
-      // title: await this.getTitle(component.prototype),
       component: component,
       active: true,
       url: url,
+      urlTree: this.router.parseUrl(this.router.url)
     }
-    this.nsView.showTab(tab)
+    await this.nsView.showTab(tab)
     this.cd.detectChanges();
   }
 
@@ -320,9 +324,9 @@ export class NSRouterTabsComponent implements AfterViewInit {
     return this.nsView.tabs;
   }
 
-  show(tab: Tab) {
+  async show(tab: Tab) {
     tab.active = true
-    this.nsView.showTab(tab)
+    await this.nsView.showTab(tab)
   }
 
   close(tabId: string) {

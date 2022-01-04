@@ -1,136 +1,91 @@
 import {
-  AfterViewInit,
-  Component,
-  ElementRef, EventEmitter,
-  HostBinding,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-  TemplateRef, ViewChild
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component, ContentChild, EventEmitter, Input, OnChanges, Output, SimpleChanges, TemplateRef, Type,
 } from '@angular/core';
-import Modal from 'monsta-bootstrap/js/src/modal.js';
-import {isTrue, NS_BOOL, InputBoolean} from 'monsta-design/core';
-import {isNumeric} from "rxjs/internal-compatibility";
+import {NsModalService} from "./modal.service";
+import {InputBoolean} from "monsta-design/core";
+import {NsModalConfig, NsModalRef} from "./types";
+import {ViewContainerRef} from '@angular/core';
+import {NsModalContentDirective} from "./modal-content.directive";
+
 
 @Component({
   selector: 'ns-modal',
-  template: `
-    <div class="bs-modal-backdrop bs-fade bs-show" style="z-index: 0;"></div>
-    <div class="bs-modal-dialog" [style.maxWidth]="getWidth">
-      <div class="bs-modal-content">
-        <div class="bs-modal-header">
-          <h5 class="bs-modal-title">
-            <ng-template [ngIf]="isTplTitle">
-              <!--          <ng-container [ngTemplateOutlet]="nsTitle"></ng-container>-->
-            </ng-template>
-            <ng-template [ngIf]="!isTplTitle">
-              {{ nsTitle }}
-            </ng-template>
-          </h5>
-          <button *ngIf="nsClose" type="button" class="bs-btn-close" (click)="hide()"></button>
-        </div>
-        <div class="bs-modal-body">
-          <ng-content></ng-content>
-        </div>
-        <div *ngIf="nsFooter" class="bs-modal-footer">
-          <button type="button" class="bs-btn bs-btn-secondary" (click)="cancel()">
-            {{ nsCancelText }}
-          </button>
-          <button type="button" class="bs-btn bs-btn-primary" (click)="ok()">
-            {{ nsOkText }}
-          </button>
-        </div>
-      </div>
-    </div>
-  `,
-  styleUrls: ['./modal.component.scss'],
+  template: '',
+  styleUrls: ['./modal.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NSModalComponent implements AfterViewInit, OnChanges, OnInit {
+export class NsModalComponent implements OnChanges, AfterContentInit {
 
-  @HostBinding() class = 'bs-modal bs-fade';
-  @HostBinding() tabindex = -1;
-  @Input() nsHeader: TemplateRef<any> | null = null;
-  @Input() nsFooter: TemplateRef<any> | string | boolean = true;
-  @Input() nsButton: TemplateRef<any> | string | null = null;
-  @Input() nsTitle: TemplateRef<any> | string | null = null;
-  @Input() nsClose: TemplateRef<any> | boolean = true;
-  @Input() nsOk: boolean = true;
-  @Input() nsOkText: string = '确定';
-  @Input() nsCancelText: string = '取消';
-  @Input() nsCancel: boolean = true;
-  @Input() @InputBoolean() nsShow: boolean = false;
-  @Input() scrollable: boolean = true;
-  @Input() centered: boolean = false;
-  @Input() nsSize: string | null = null;
-  @Input() nsWidth: string | number = 500;
-  @Output() nsOnClose: EventEmitter<null> = new EventEmitter<null>();
-  @Output() nsOnOK: EventEmitter<null> = new EventEmitter<null>();
-  @Output() nsOnCancel: EventEmitter<null> = new EventEmitter<null>();
-  @Output() nsShowChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() nsHeader
+  @Input() nsContent?: string | TemplateRef<any> | Type<any>;
+  @Input() nsFooter
+  @Input() nsTitle
+  @Input() nsClose
+  @Input() @InputBoolean() nsVisible: boolean;
+  @Output() nsVisibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @ContentChild(NsModalContentDirective, {static: true, read: TemplateRef}) contentFromContentChild!: TemplateRef<any>;
+  // @ContentChild(NsModalContentComponent) contentFromContentChild!: Type<any>;
 
-  get getWidth() {
-    if (isNumeric(this.nsWidth)) {
-      return `${this.nsWidth}px`
+  private modalRef: NsModalRef = null
+
+  constructor(
+    private cd: ChangeDetectorRef,
+    private nsModalService: NsModalService,
+    private viewContainerRef: ViewContainerRef
+  ) {
+  }
+
+  ngAfterContentInit(): void {
+    console.log(this.contentFromContentChild)
+  }
+
+  open() {
+    if (!this.nsVisible) {
+      this.nsVisible = true
+      this.nsVisibleChange.emit(true)
     }
-    return this.nsWidth
-  }
-
-  isTplTitle: boolean = false;
-
-  // @ViewChild('modal') modal: ElementRef;
-
-  modal: Modal = null;
-
-  constructor(private el: ElementRef) {
-  }
-
-  ngOnInit() {
-    // this.isTplTitle = this.nsTitle instanceof TemplateRef;
-  }
-
-
-  ngAfterViewInit() {
-    if (this.nsShow) {
-      // this.modal.show()
-      this.show()
+    if (!this.modalRef) {
+      const config = this.getConfig();
+      this.modalRef = this.nsModalService.create(config);
     }
+  }
+
+  close() {
+    console.log('触发关闭21',this.nsVisible)
+    if (this.nsVisible) {
+      this.nsVisible = false
+      console.log('触发关闭222')
+      this.nsVisibleChange.emit(false)
+    }
+
+    if(this.modalRef){
+      this.modalRef.close()
+      this.modalRef = null
+    }
+  }
+
+  private getConfig(): NsModalConfig {
+    const componentConfig = new NsModalConfig()
+    componentConfig.nsViewContainerRef = this.viewContainerRef;
+    console.log(this.contentFromContentChild)
+    componentConfig.nsContent = this.nsContent || this.contentFromContentChild;
+    // componentConfig.nsContent = this.nsContent;
+    return componentConfig;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const {nsShow} = changes;
-    if (nsShow) {
-      if (isTrue(changes.nsShow.currentValue)) {
-        this.show();
+    const {nsVisible} = changes
+    if (nsVisible) {
+      if (this.nsVisible) {
+        this.open()
       } else {
-        this.hide();
+        this.close()
       }
-      // this.nsShowChange.emit(nsShow.currentValue)
     }
   }
 
-  getModal() {
-    if (this.modal == null) {
-      this.modal = new Modal(this.el.nativeElement);
-    }
-    return this.modal
-  }
 
-  show() {
-    this.getModal().show()
-  }
-
-  hide() {
-    this.getModal().hide()
-    this.nsShowChange.emit(false)
-  }
-
-  cancel() {
-    this.nsOnCancel.emit();
-  }
-
-  ok() {
-    this.nsOnOK.emit();
-  }
 }

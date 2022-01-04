@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     data: {
-      RoutesTabIgnore: true,
+      RouterTabsIgnore: true,
     },
     children: [
       ...DEMO_ROUTES,

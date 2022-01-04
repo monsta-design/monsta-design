@@ -1,2 +1,5 @@
 import {NSModalModule} from 'monsta-design/modal'
-export const moduleList = [NSModalModule];
+import {NSButtonModule} from 'monsta-design/button'
+import {NSInputModule} from 'monsta-design/input'
+import {NSFormModule} from 'monsta-design/form'
+export const moduleList = [NSModalModule,NSButtonModule,NSInputModule,NSFormModule];
