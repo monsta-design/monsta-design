@@ -10,7 +10,7 @@ import {
 } from "@angular/core";
 import {BasePortalOutlet, CdkPortalOutlet, ComponentPortal, TemplatePortal} from "@angular/cdk/portal";
 import {OverlayRef} from "@angular/cdk/overlay";
-import {NsModalConfig, NsModalRef} from "monsta-design/modal/types";
+import {NsModalConfig, NsModalRef} from "./types";
 
 
 // import {isTypedArray} from "lodash";

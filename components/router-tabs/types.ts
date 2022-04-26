@@ -11,10 +11,14 @@ export interface Tab {
   componentRef?: ComponentRef<any>;
   metaEmitter?: EventEmitter<NSRouterTabMeta>;
   urlTree: UrlTree,
+  background?: string,
+  color?: string,
 }
 
 export interface NSRouterTabMeta {
-  title: string,
+  title?: string,
+  background?: string,
+  color?: string,
 }
 
 export type NSRouterTabMetaGetter = (() => NSRouterTabMeta) | (() => Promise<NSRouterTabMeta>);

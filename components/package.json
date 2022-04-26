@@ -10,7 +10,7 @@
     "@fortawesome/angular-fontawesome": "0.8",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
-    "underscore": "^1.13.2"
+    "lodash": "^4.17.21"
   },
   "peerDependencies": {
     "@angular/common": "^11.0.9",

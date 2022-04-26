@@ -332,5 +332,12 @@ export class NSRouterTabsComponent implements AfterViewInit {
   close(tabId: string) {
     this.nsView.closeTab(tabId)
   }
+
+  getStyle(tab: Tab) {
+    let style = {}
+    if (tab.background) {
+
+    }
+  }
 }
 

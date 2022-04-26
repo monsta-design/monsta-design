@@ -1,5 +1,5 @@
 import {EventEmitter, TemplateRef, Type, ViewContainerRef} from "@angular/core";
-import {NsModalBaseComponent} from "monsta-design/modal/base.component";
+import {NsModalBaseComponent} from "./base.component";
 import {OverlayRef} from "@angular/cdk/overlay";
 
 export type OnClickCallback<T> = (instance: T) => (false | void | {}) | Promise<false | void | {}>;

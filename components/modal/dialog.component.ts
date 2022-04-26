@@ -13,7 +13,7 @@ import {
 import {NsModalBaseComponent} from "./base.component";
 import {CdkPortalOutlet} from "@angular/cdk/portal";
 import {OverlayRef} from "@angular/cdk/overlay";
-import {NsModalConfig} from "monsta-design/modal/types";
+import {NsModalConfig} from "./types";
 
 @Component({
   selector: 'ns-modal-dialog',

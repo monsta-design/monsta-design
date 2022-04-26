@@ -21,12 +21,14 @@ export class NSFlipComponent implements OnDestroy {
   private elem;
   @Input() nsDisabled: boolean = false;
   @Input() nsBack: TemplateRef<any>;
+  @Input() nsRecoverTrigger: 'click' | 'blur' = 'blur'; // TODO 定义恢复触发事件
   @Input() nsBlurSelector: string;
   @Input() nsBlurCallback: ((escape: boolean, data: any) => boolean) | ((escape: boolean, data: any) => Promise<boolean>); // TODO 判断同步调用
   @Input() @InputBoolean() nsKeyup: boolean = true;
   @Input() nsTabindex: number = -1;
   @Input() nsData: any;
   @Input() nsFocusCallback: (data: any) => void
+  @Input() nsStopPropagation = true;
   @Output() nsOnRecover: EventEmitter<void> = new EventEmitter<void>()
 
   @HostBinding('class') get getClass() {
@@ -48,7 +50,10 @@ export class NSFlipComponent implements OnDestroy {
   constructor(private el: ElementRef) {
   }
 
-  @HostListener('click') onClick() {
+  @HostListener('click', ['$event']) onClick(event) {
+    if (this.nsStopPropagation) {
+      event.stopPropagation()
+    }
     if (!this.nsDisabled && !this.showBack && !this._nsTrigger) {
       this.showBack = true
       this.triggerClick()
@@ -91,7 +96,10 @@ export class NSFlipComponent implements OnDestroy {
     }
   }
 
-  private triggerClickHandler = () => {
+  private triggerClickHandler = (event) => {
+    if (this.nsStopPropagation) {
+      event.stopPropagation()
+    }
     if (!this.nsDisabled && !this.showBack) {
       this.showBack = true
       this.triggerClick()
